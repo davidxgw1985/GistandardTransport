@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ex.ComCountyDaoEx" >
+
+  <cache-ref namespace="com.gistandard.transport.base.entity.dao.ComCountyDao"/>
+
+  <insert id="batchInsert" parameterType="com.gistandard.transport.base.entity.bean.ComCounty">
+    INSERT INTO COM_COUNTY (ID, AREA_NAME, CITY_ID,
+    PROVINCE_ID, PIN_YIN, PIN_YIN_CHAR,
+    IS_SHOW_WITH_CITY, UPDATE_TIME)
+    VALUES
+    <foreach collection="list" item="item" index="index" separator="," >
+      (#{item.id}, #{item.areaName}, #{item.cityId},
+      #{item.provinceId}, #{item.pinYin}, #{item.pinYinChar},
+      #{item.isShowWithCity}, #{item.updateTime})
+    </foreach>
+  </insert>
+
+  <select id="queryAll" resultMap="com.gistandard.transport.base.entity.dao.ComCountyDao.BaseResultMap">
+    select
+    <include refid="com.gistandard.transport.base.entity.dao.ComCountyDao.Base_Column_List" />
+    from COM_COUNTY
+  </select>
+
+  <select id="queryByParams" resultMap="com.gistandard.transport.base.entity.dao.ComCountyDao.BaseResultMap">
+    select
+    <include refid="com.gistandard.transport.base.entity.dao.ComCountyDao.Base_Column_List" />
+    from COM_COUNTY
+    WHERE CITY_ID = #{cityId}
+    AND AREA_NAME = #{areaName}
+  </select>
+</mapper>

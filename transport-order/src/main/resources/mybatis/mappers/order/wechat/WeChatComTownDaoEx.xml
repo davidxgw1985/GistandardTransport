@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.order.wechat.dao.WeChatComTownDaoEx" >
+  <resultMap id="BaseResultMap" type="com.gistandard.transport.app.dubbo.wechat.bean.WeChatComTown" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="TOWN_NAME" property="townName" jdbcType="VARCHAR" />
+    <result column="SHORT_NAME" property="shortName" jdbcType="VARCHAR" />
+    <result column="COUNTY_ID" property="countyId" jdbcType="INTEGER" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="LONGITUDE" property="longitude" jdbcType="DECIMAL" />
+    <result column="LATITUDE" property="latitude" jdbcType="DECIMAL" />
+    <result column="SORT_NO" property="sortNo" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <select id="selectByCountyId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select *
+    from COM_TOWN
+    where COUNTY_ID = #{countyId,jdbcType=INTEGER} AND STATUS= 1
+    ORDER BY SORT_NO
+  </select>
+
+</mapper>

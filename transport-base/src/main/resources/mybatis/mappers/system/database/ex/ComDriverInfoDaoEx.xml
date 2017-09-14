@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ex.ComDriverInfoDaoEx" >
+  
+  	<delete id="deleteDriverInfoByAcctId" parameterType="java.lang.Integer">
+  		DELETE FROM COM_DRIVER_INFO WHERE VEHICLE_ID IN 
+		(
+			 SELECT ID FROM COM_VEHICLE_INFO WHERE ACCT_ID=#{acctId}
+		)
+  	</delete>
+
+	<select id="queryListByVehicleId" resultMap="com.gistandard.transport.base.entity.dao.ComDriverInfoDao.BaseResultMap"
+			parameterType="java.lang.Integer">
+		SELECT
+		<include refid="com.gistandard.transport.base.entity.dao.ComDriverInfoDao.Base_Column_List"/>
+		FROM
+		COM_DRIVER_INFO
+		WHERE
+		VEHICLE_ID=#{vehicleId}
+	</select>
+
+	<select id="queryListByAccountId" resultMap="com.gistandard.transport.base.entity.dao.ComDriverInfoDao.BaseResultMap"
+			parameterType="java.lang.Integer">
+		SELECT
+		<include refid="com.gistandard.transport.base.entity.dao.ComDriverInfoDao.Base_Column_List"/>
+		FROM
+		COM_DRIVER_INFO
+		WHERE
+		ACCOUNT_ID=#{accountId}
+	</select>
+	<update id="updateByAccountId" parameterType="java.lang.Integer" >
+		update COM_DRIVER_INFO
+		set VEHICLE_ID = #{vehicleId,jdbcType=INTEGER}
+		where ACCOUNT_ID = #{accountId,jdbcType=INTEGER} AND ISNULL(VEHICLE_ID)
+	</update>
+	<update id="updateSetNullByAccountId" parameterType="java.lang.Integer" >
+		update COM_DRIVER_INFO
+		set VEHICLE_ID = NULL
+		where ACCOUNT_ID = #{accountId,jdbcType=INTEGER} AND VEHICLE_ID = #{vehicleId,jdbcType=INTEGER}
+	</update>
+</mapper>
+

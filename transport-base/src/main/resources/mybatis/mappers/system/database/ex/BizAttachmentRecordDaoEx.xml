@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ex.BizAttachmentRecordDaoEx" >
+    <select id="queryByUploadUser" resultMap="com.gistandard.transport.base.entity.dao.BizAttachmentRecordDao.BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="com.gistandard.transport.base.entity.dao.BizAttachmentRecordDao.Base_Column_List" />
+        from BIZ_ATTACHMENT_RECORD
+        where UPLOAD_USER = #{upLoadUser,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByUploadUser" parameterType="java.lang.Integer" >
+        delete from BIZ_ATTACHMENT_RECORD
+        where UPLOAD_USER = #{upLoadUser,jdbcType=INTEGER}
+    </delete>
+
+	<delete id="deleteByAcctIdAndFileType">
+		delete from BIZ_ATTACHMENT_RECORD
+		where UPLOAD_USER = #{acctId,jdbcType=INTEGER}
+		and FILE_TYPE = #{fileType,jdbcType=INTEGER}
+	</delete>
+    
+	<select id="queryRecordAttch" resultType="com.gistandard.transport.base.entity.bean.BizAttachmentRecord">
+		SELECT
+			BAR.ATTACH_ID AS attachId,
+			BAR.ATTACH_NAME AS attachName,
+			BAR.ATTACH_OLD_NAME AS attachOldName,
+			BAR.ATTACH_PATH AS attachPath,
+			BAR.PROJECT_PATH AS projectPath,
+			BAR.ATTACH_TYPE AS attachType,
+			BAR.ATTACH_STATE AS attachState,
+			BAR.ATTACH_REL_ID AS attachRelId, 
+			BAR.UPLOAD_USER AS uploadUser,
+			BAR.FILE_TYPE AS fileType
+		FROM
+			BIZ_ATTACHMENT_RECORD BAR
+		WHERE
+				BAR.UPLOAD_USER=#{acctId}
+			AND
+				BAR.FILE_TYPE=#{fileType}
+		ORDER BY BAR.UPLOAD_TIME DESC
+	</select>
+	
+    
+</mapper>

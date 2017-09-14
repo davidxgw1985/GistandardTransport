@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.order.module.mobilestation.dao.MobileTransportDao" >
+    <resultMap id="queryListMap" type="com.gistandard.transport.order.module.mobilestation.bean.want.WantInfoReq">
+        <id column="ID" property="id" jdbcType="INTEGER"/>
+        <result column="LINE_START" property="lineStart" jdbcType="VARCHAR"/>
+        <result column="LINE_DEST" property="lineDest" jdbcType="VARCHAR"/>
+        <result column="DEPART_TIME" property="departTime" jdbcType="TIMESTAMP"/>
+        <result column="ARRIVE_TIME" property="arriveTime" jdbcType="TIMESTAMP"/>
+        <result column="RESPONDENT_USER" property="respondentUser" jdbcType="INTEGER"/>
+        <result column="REST_LOAD" property="restLoad" jdbcType="DECIMAL"/>
+        <result column="REST_SPACE" property="restSpace" jdbcType="DECIMAL"/>
+        <result column="HEAVY_PRICE" property="heavyPrice" jdbcType="DECIMAL"/>
+        <result column="LIGHT_PRICE" property="lightPrice" jdbcType="DECIMAL"/>
+        <result column="LOWEST_VOTE" property="lowestVote" jdbcType="DECIMAL"/>
+        <result column="PER_TICKET" property="perTicket" jdbcType="DECIMAL"/>
+        <result column="CURRENCY" property="currency" jdbcType="CHAR"/>
+        <result column="WANT_TYPE" property="wantType" jdbcType="INTEGER"/>
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="WHERE_QUERY">
+        WHERE CREATE_USER_ID = #{accountId,jdbcType=INTEGER}
+        AND WANT_TYPE=#{wantType,jdbcType=INTEGER}
+        AND STATUS=1
+        <!-- 我要接单，可能需要只根据接单区域来查询记录 -->
+        <if test="lineStart!=null">
+            <!-- 查询区的时候，直接查询 -->
+            <if test="lineStart&gt;3999">
+                AND LINE_START = #{lineStart,jdbcType=VARCHAR}
+            </if>
+            <!-- 查询市的时候，需要将市对应的所有区的订单查取出来 -->
+            <if test="lineStart&lt;4000">
+                AND (LINE_START IN (SELECT ID FROM COM_COUNTY WHERE CITY_ID=#{lineStart}) OR LINE_START=#{lineStart})
+            </if>
+        </if>
+
+        <!-- 我要接单，可能需要只根据抵达区域来查询记录 -->
+        <if test="lineDest!=null">
+            <!-- 查询区的时候，直接查询 -->
+            <if test="lineDest&gt;3999">
+                AND LINE_DEST = #{lineDest,jdbcType=VARCHAR}
+            </if>
+            <!-- 查询市的时候，需要将市对应的所有区的订单查取出来 -->
+            <if test="lineDest&lt;4000">
+                AND (LINE_DEST IN (SELECT ID FROM COM_COUNTY WHERE CITY_ID=#{lineDest}) OR LINE_DEST=#{lineDest})
+            </if>
+        </if>
+
+        <!-- 我要运输，查询出的记录，发车时间必须在未来 -->
+        <if test="wantType==2">
+            AND DATE_FORMAT(DEPART_TIME,'%Y-%m-%d') >= DATE_FORMAT(NOW(),'%Y-%m-%d')
+        </if>
+    </sql>
+
+    <select id="getListByLineStartAndDest" resultMap="queryListMap"
+            parameterType="com.gistandard.transport.order.module.mobilestation.bean.want.QueryWantListReq">
+        <if test="wantType==1">
+            SELECT MOBILE_WANT_TRANSPORT.ID id,LINE_START lineStart,LINE_DEST lineDest,CREATE_TIME createTime,PER_TICKET perTicket,CURRENCY currency,IFNULL(STATION_TTL,"所有站点") station FROM MOBILE_WANT_TRANSPORT
+            LEFT JOIN MOBILE_TRANSPORT_REL ON MOBILE_TRANSPORT_REL.WANT_ID = MOBILE_WANT_TRANSPORT.ID
+        </if>
+        <if test="wantType==2">
+            SELECT MOBILE_WANT_TRANSPORT.ID id,LINE_START lineStart,LINE_DEST lineDest,DEPART_TIME departTime,ARRIVE_TIME arriveTime,RESPONDENT_USER respondentUser,CREATE_TIME createTime,CURRENCY currency,
+            REST_LOAD restLoad,REST_SPACE restSpace,HEAVY_PRICE heavyPrice,LIGHT_PRICE lightPrice,LOWEST_VOTE lowestVote FROM MOBILE_WANT_TRANSPORT
+        </if>
+
+        <include refid="WHERE_QUERY"/>
+        ORDER BY CREATE_TIME DESC
+        <if test="pageSize !=0">
+            limit #{startRecord},#{pageSize}
+        </if>
+    </select>
+    <sql id="WHERE_WEBSERVICE">
+        WHERE WANT_TYPE=1 AND STATUS = 1 AND MOBILE_MOUDLE_REL.MOUDLE_STATUS = 1 AND MOBILE_MOUDLE_REL.MOUDLE_CODE = 'OTCKD'
+        <if test="lineStart!=null">
+            <!-- 查询区的时候，直接查询 -->
+            <if test="lineStart&gt;3999">
+                AND LINE_START = #{lineStart,jdbcType=VARCHAR}
+            </if>
+            <!-- 查询市的时候，需要将市对应的所有区的订单查取出来 -->
+            <if test="lineStart&lt;4000">
+                AND (LINE_START IN (SELECT ID FROM COM_COUNTY WHERE CITY_ID=#{lineStart}) OR LINE_START=#{lineStart})
+            </if>
+        </if>
+        <if test="lineDest!=null">
+            <!-- 查询区的时候，直接查询 -->
+            <if test="lineStart&gt;3999">
+                AND LINE_DEST = #{lineDest,jdbcType=VARCHAR}
+            </if>
+            <!-- 查询市的时候，需要将市对应的所有区的订单查取出来 -->
+            <if test="lineStart&lt;4000">
+                AND (LINE_DEST IN (SELECT ID FROM COM_COUNTY WHERE CITY_ID=#{lineDest}) OR LINE_DEST=#{lineDest})
+            </if>
+        </if>
+        <if test="userName!=null">
+            AND COM_USERINFO.REAL_NAME LIKE CONCAT('%',#{userName},'%')
+        </if>
+    </sql>
+    <select id="getCountByLineStartAndLineDestAndUserNameAndStationName" resultType="Integer">
+        SELECT count(1) from MOBILE_WANT_TRANSPORT
+        LEFT JOIN MOBILE_TRANSPORT_REL ON MOBILE_TRANSPORT_REL.WANT_ID = MOBILE_WANT_TRANSPORT.ID
+        WHERE MOBILE_WANT_TRANSPORT.ID IN
+        (
+        SELECT MOBILE_WANT_TRANSPORT.ID FROM MOBILE_WANT_TRANSPORT
+        INNER JOIN COM_USERINFO ON MOBILE_WANT_TRANSPORT.CREATE_USER_ID = COM_USERINFO.ACCOUNT_ID
+        INNER JOIN MOBILE_MOUDLE_REL ON MOBILE_MOUDLE_REL.ACCOUNT_ID = COM_USERINFO.ACCOUNT_ID
+        <include refid="WHERE_WEBSERVICE"/>
+        AND RESPONDENT_USER=0
+        UNION
+        SELECT MOBILE_WANT_TRANSPORT.ID FROM MOBILE_WANT_TRANSPORT
+        INNER JOIN COM_USERINFO ON MOBILE_WANT_TRANSPORT.CREATE_USER_ID = COM_USERINFO.ACCOUNT_ID
+        INNER JOIN MOBILE_MOUDLE_REL ON MOBILE_MOUDLE_REL.ACCOUNT_ID = COM_USERINFO.ACCOUNT_ID
+        LEFT JOIN MOBILE_TRANSPORT_REL ON MOBILE_TRANSPORT_REL.WANT_ID = MOBILE_WANT_TRANSPORT.ID
+        <include refid="WHERE_WEBSERVICE"/>
+        AND MOBILE_TRANSPORT_REL.STATION_TTL LIKE CONCAT('%',#{stationName},'%')
+        AND RESPONDENT_USER=1
+        )
+
+    </select>
+
+    <select id="getDataByLineStartAndLineDestAndUserNameAndStationName"
+            resultType="com.gistandard.transport.order.webservice.server.mobilestation.bean.MobileWantOrderBean">
+        SELECT MOBILE_WANT_TRANSPORT.LINE_START lineStart,LINE_DEST lineDest,IFNULL(STATION_TTL,'所有站点') stationName,
+        COM_USERINFO.REAL_NAME userName,COM_USERINFO.TELEPHONE telephone,
+        COM_USERINFO.ID userInfoId,CURRENCY cussency,PER_TICKET perTicket
+        from MOBILE_WANT_TRANSPORT
+        INNER JOIN COM_USERINFO ON MOBILE_WANT_TRANSPORT.CREATE_USER_ID = COM_USERINFO.ACCOUNT_ID
+        LEFT JOIN MOBILE_TRANSPORT_REL ON MOBILE_TRANSPORT_REL.WANT_ID = MOBILE_WANT_TRANSPORT.ID
+        WHERE MOBILE_WANT_TRANSPORT.ID IN
+        (
+        SELECT MOBILE_WANT_TRANSPORT.ID FROM MOBILE_WANT_TRANSPORT
+        INNER JOIN COM_USERINFO ON MOBILE_WANT_TRANSPORT.CREATE_USER_ID = COM_USERINFO.ACCOUNT_ID
+        INNER JOIN MOBILE_MOUDLE_REL ON MOBILE_MOUDLE_REL.ACCOUNT_ID = COM_USERINFO.ACCOUNT_ID
+        <include refid="WHERE_WEBSERVICE"/>
+        AND RESPONDENT_USER=0
+        UNION
+        SELECT MOBILE_WANT_TRANSPORT.ID FROM MOBILE_WANT_TRANSPORT
+        INNER JOIN COM_USERINFO ON MOBILE_WANT_TRANSPORT.CREATE_USER_ID = COM_USERINFO.ACCOUNT_ID
+        INNER JOIN MOBILE_MOUDLE_REL ON MOBILE_MOUDLE_REL.ACCOUNT_ID = COM_USERINFO.ACCOUNT_ID
+        LEFT JOIN MOBILE_TRANSPORT_REL ON MOBILE_TRANSPORT_REL.WANT_ID = MOBILE_WANT_TRANSPORT.ID
+        <include refid="WHERE_WEBSERVICE"/>
+        AND MOBILE_TRANSPORT_REL.STATION_TTL LIKE CONCAT('%',#{stationName},'%')
+        AND RESPONDENT_USER=1
+        )
+        ORDER BY MOBILE_WANT_TRANSPORT.ID desc
+        <if test="pageSize !=0">
+            limit #{startRecord},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getAddressById" resultType="String">
+        <if test="id &gt; 3999">
+            SELECT CONCAT(COM_PROVINCE.PROVINCE_NAME,COM_CITY.NAME) FROM COM_COUNTY
+            INNER JOIN COM_CITY ON COM_CITY.ID = COM_COUNTY.CITY_ID
+            INNER JOIN COM_PROVINCE ON COM_PROVINCE.ID = COM_COUNTY.PROVINCE_ID
+            WHERE COM_COUNTY.ID = #{id}
+        </if>
+        <if test="id &lt; 4000">
+            <if test="id &gt; 2999">
+                SELECT CONCAT(COM_PROVINCE.PROVINCE_NAME,COM_CITY.NAME) FROM COM_CITY
+                INNER JOIN COM_PROVINCE ON COM_PROVINCE.ID = COM_CITY.PROVINCE_ID
+                WHERE COM_CITY.ID = #{id}
+            </if>
+            <if test="id &lt; 3000">
+                SELECT COM_PROVINCE.PROVINCE_NAME FROM COM_PROVINCE
+                WHERE COM_PROVINCE.ID = #{id}
+            </if>
+        </if>
+    </select>
+
+    <sql id="WHERE_WEBSERVICE_SJ">
+        WHERE WANT_TYPE=2 AND STATUS = 1 AND MOBILE_MOUDLE_REL.MOUDLE_STATUS = 1 AND MOBILE_MOUDLE_REL.MOUDLE_CODE = 'OTCYSEX'
+        <if test="lineStart!=null">
+            <!-- 查询区的时候，直接查询 -->
+            <if test="lineStart &gt; 3999">
+                AND LINE_START = #{lineStart,jdbcType=VARCHAR}
+            </if>
+            <!-- 查询市的时候，需要将市对应的所有区的订单查取出来 -->
+            <if test="lineStart &lt; 4000">
+                AND (LINE_START IN (SELECT ID FROM COM_COUNTY WHERE CITY_ID=#{lineStart}) OR LINE_START=#{lineStart})
+            </if>
+        </if>
+        <if test="lineDest!=null">
+            <!-- 查询区的时候，直接查询 -->
+            <if test="lineStart &gt; 3999">
+                AND LINE_DEST = #{lineDest,jdbcType=VARCHAR}
+            </if>
+            <!-- 查询市的时候，需要将市对应的所有区的订单查取出来 -->
+            <if test="lineStart &lt; 4000">
+                AND (LINE_DEST IN (SELECT ID FROM COM_COUNTY WHERE CITY_ID=#{lineDest}) OR LINE_DEST=#{lineDest})
+            </if>
+        </if>
+        <if test="userName!=null">
+            AND COM_USERINFO.REAL_NAME LIKE CONCAT('%',#{userName},'%')
+        </if>
+        <if test="departTime!=null">
+            AND DEPART_TIME <![CDATA[ >= ]]> #{departTime}
+        </if>
+        <if test="arriveTime!=null">
+            AND ARRIVE_TIME &lt;= #{arriveTime}
+        </if>
+        <if test="restLoad!=null">
+            AND REST_LOAD <![CDATA[ >= ]]> #{restLoad}
+        </if>
+        <if test="restSpace!=null">
+            AND REST_SPACE <![CDATA[ >= ]]> #{restSpace}
+        </if>
+        <if test="carNo!=null">
+            AND TRUCKCODE LIKE CONCAT('%',#{carNo},'%')
+        </if>
+    </sql>
+
+    <select id="getSjCount" resultType="Integer">
+        SELECT count(1) from MOBILE_WANT_TRANSPORT
+        LEFT JOIN MOBILE_TRANSPORT_REL ON MOBILE_TRANSPORT_REL.WANT_ID = MOBILE_WANT_TRANSPORT.ID
+        WHERE MOBILE_WANT_TRANSPORT.ID IN
+        (
+        SELECT MOBILE_WANT_TRANSPORT.ID FROM MOBILE_WANT_TRANSPORT
+        INNER JOIN COM_USERINFO ON MOBILE_WANT_TRANSPORT.CREATE_USER_ID = COM_USERINFO.ACCOUNT_ID
+        INNER JOIN COM_VEHICLE_INFO ON COM_USERINFO.ACCOUNT_ID = COM_VEHICLE_INFO.ACCT_ID
+        INNER JOIN MOBILE_MOUDLE_REL ON MOBILE_MOUDLE_REL.ACCOUNT_ID = COM_USERINFO.ACCOUNT_ID
+        <include refid="WHERE_WEBSERVICE_SJ"/>
+        )
+
+    </select>
+
+    <select id="getSjData" resultType="com.gistandard.transport.order.webservice.server.mobilestation.bean.MobileWantOrderSjBean">
+        SELECT MOBILE_WANT_TRANSPORT.LINE_START lineStart,LINE_DEST lineDest,IFNULL(STATION_TTL,'所有站点') stationName,
+        TRUCKCODE carNo,COM_VEHICLE_INFO.ID carId,COM_USERINFO.ID userInfoId,
+        COM_USERINFO.REAL_NAME userName,COM_USERINFO.TELEPHONE telephone,
+        DEPART_TIME departTime,ARRIVE_TIME arriveTime,REST_LOAD restLoad,REST_SPACE restSpace,
+        CURRENCY cussency,HEAVY_PRICE heavyPrice,LIGHT_PRICE lightPrice,LOWEST_VOTE lowestVote
+        from MOBILE_WANT_TRANSPORT
+        INNER JOIN COM_USERINFO ON MOBILE_WANT_TRANSPORT.CREATE_USER_ID = COM_USERINFO.ACCOUNT_ID
+        INNER JOIN COM_VEHICLE_INFO ON COM_USERINFO.ACCOUNT_ID = COM_VEHICLE_INFO.ACCT_ID
+        LEFT JOIN MOBILE_TRANSPORT_REL ON MOBILE_TRANSPORT_REL.WANT_ID = MOBILE_WANT_TRANSPORT.ID
+        WHERE MOBILE_WANT_TRANSPORT.ID IN
+        (
+        SELECT MOBILE_WANT_TRANSPORT.ID FROM MOBILE_WANT_TRANSPORT
+        INNER JOIN COM_USERINFO ON MOBILE_WANT_TRANSPORT.CREATE_USER_ID = COM_USERINFO.ACCOUNT_ID
+        INNER JOIN COM_VEHICLE_INFO ON COM_USERINFO.ACCOUNT_ID = COM_VEHICLE_INFO.ACCT_ID
+        INNER JOIN MOBILE_MOUDLE_REL ON MOBILE_MOUDLE_REL.ACCOUNT_ID = COM_USERINFO.ACCOUNT_ID
+        <include refid="WHERE_WEBSERVICE_SJ"/>
+        )
+        ORDER BY MOBILE_WANT_TRANSPORT.ID desc
+        <if test="pageSize !=0">
+            limit #{startRecord},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getCountByReq" resultType="int" parameterType="com.gistandard.transport.order.module.mobilestation.bean.want.QueryWantListReq">
+        SELECT count(1) FROM MOBILE_WANT_TRANSPORT
+        <include refid="WHERE_QUERY"/>
+    </select>
+
+    <select id="getStationByWantId" resultType="com.gistandard.transport.order.module.mobilestation.bean.want.Station">
+        SELECT STATION_ID stationId,STATION_TTL stationTtl FROM MOBILE_TRANSPORT_REL WHERE WANT_ID = #{id}
+    </select>
+
+    <update id="updateStatus" parameterType="com.gistandard.transport.order.module.mobilestation.bean.want.WantInfoReq">
+        UPDATE MOBILE_WANT_TRANSPORT SET STATUS=#{status},UPDATE_USER_ID=#{accountId,jdbcType=INTEGER},UPDATE_USER=#{acctUsername,jdbcType=VARCHAR},UPDATE_TIME=NOW() WHERE id=#{id}
+    </update>
+</mapper>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ComQuoteItemDao" >
+  <cache type="com.gistandard.transport.base.system.mybatis.cache.RedisCache" />
+  <resultMap id="BaseResultMap" type="com.gistandard.transport.base.entity.bean.ComQuoteItem" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="ITEM_NAME" property="itemName" jdbcType="VARCHAR" />
+    <result column="ITEM_CODE" property="itemCode" jdbcType="VARCHAR" />
+    <result column="ITEM_CATEGORY" property="itemCategory" jdbcType="INTEGER" />
+    <result column="ITEM_TYPE" property="itemType" jdbcType="INTEGER" />
+    <result column="ITEM_STATUS" property="itemStatus" jdbcType="INTEGER" />
+    <result column="ITEM_RULE" property="itemRule" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ITEM_NAME, ITEM_CODE, ITEM_CATEGORY, ITEM_TYPE, ITEM_STATUS, ITEM_RULE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from COM_QUOTE_ITEM
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from COM_QUOTE_ITEM
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gistandard.transport.base.entity.bean.ComQuoteItem" >
+    insert into COM_QUOTE_ITEM (ID, ITEM_NAME, ITEM_CODE, 
+      ITEM_CATEGORY, ITEM_TYPE, ITEM_STATUS, 
+      ITEM_RULE)
+    values (#{id,jdbcType=INTEGER}, #{itemName,jdbcType=VARCHAR}, #{itemCode,jdbcType=VARCHAR}, 
+      #{itemCategory,jdbcType=INTEGER}, #{itemType,jdbcType=INTEGER}, #{itemStatus,jdbcType=INTEGER}, 
+      #{itemRule,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gistandard.transport.base.entity.bean.ComQuoteItem" >
+    insert into COM_QUOTE_ITEM
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="itemName != null" >
+        ITEM_NAME,
+      </if>
+      <if test="itemCode != null" >
+        ITEM_CODE,
+      </if>
+      <if test="itemCategory != null" >
+        ITEM_CATEGORY,
+      </if>
+      <if test="itemType != null" >
+        ITEM_TYPE,
+      </if>
+      <if test="itemStatus != null" >
+        ITEM_STATUS,
+      </if>
+      <if test="itemRule != null" >
+        ITEM_RULE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="itemName != null" >
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode != null" >
+        #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCategory != null" >
+        #{itemCategory,jdbcType=INTEGER},
+      </if>
+      <if test="itemType != null" >
+        #{itemType,jdbcType=INTEGER},
+      </if>
+      <if test="itemStatus != null" >
+        #{itemStatus,jdbcType=INTEGER},
+      </if>
+      <if test="itemRule != null" >
+        #{itemRule,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gistandard.transport.base.entity.bean.ComQuoteItem" >
+    update COM_QUOTE_ITEM
+    <set >
+      <if test="itemName != null" >
+        ITEM_NAME = #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCode != null" >
+        ITEM_CODE = #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemCategory != null" >
+        ITEM_CATEGORY = #{itemCategory,jdbcType=INTEGER},
+      </if>
+      <if test="itemType != null" >
+        ITEM_TYPE = #{itemType,jdbcType=INTEGER},
+      </if>
+      <if test="itemStatus != null" >
+        ITEM_STATUS = #{itemStatus,jdbcType=INTEGER},
+      </if>
+      <if test="itemRule != null" >
+        ITEM_RULE = #{itemRule,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gistandard.transport.base.entity.bean.ComQuoteItem" >
+    update COM_QUOTE_ITEM
+    set ITEM_NAME = #{itemName,jdbcType=VARCHAR},
+      ITEM_CODE = #{itemCode,jdbcType=VARCHAR},
+      ITEM_CATEGORY = #{itemCategory,jdbcType=INTEGER},
+      ITEM_TYPE = #{itemType,jdbcType=INTEGER},
+      ITEM_STATUS = #{itemStatus,jdbcType=INTEGER},
+      ITEM_RULE = #{itemRule,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

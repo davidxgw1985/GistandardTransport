@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ComUserinfoRecordDao" >
+  <resultMap id="BaseResultMap" type="com.gistandard.transport.base.entity.bean.ComUserinfoRecord" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="ACCOUNT_ID" property="accountId" jdbcType="INTEGER" />
+    <result column="USER_CODE" property="userCode" jdbcType="VARCHAR" />
+    <result column="REAL_NAME" property="realName" jdbcType="VARCHAR" />
+    <result column="BIRTHDAY" property="birthday" jdbcType="TIMESTAMP" />
+    <result column="SEX" property="sex" jdbcType="BIT" />
+    <result column="NICK_NAME" property="nickName" jdbcType="VARCHAR" />
+    <result column="IDENTNO" property="identno" jdbcType="VARCHAR" />
+    <result column="TELEPHONE" property="telephone" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="COUNTRY" property="country" jdbcType="VARCHAR" />
+    <result column="PROVINCE" property="province" jdbcType="VARCHAR" />
+    <result column="CITY" property="city" jdbcType="VARCHAR" />
+    <result column="COUNTY" property="county" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="ZIPCODE" property="zipcode" jdbcType="VARCHAR" />
+    <result column="USER_IMG" property="userImg" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="COMPANY_NAME" property="companyName" jdbcType="VARCHAR" />
+    <result column="LEGAL_PERSON" property="legalPerson" jdbcType="VARCHAR" />
+    <result column="LINKMAN" property="linkman" jdbcType="VARCHAR" />
+    <result column="CUSTOMER_ID" property="customerId" jdbcType="INTEGER" />
+    <result column="URGENT_LINK_USER" property="urgentLinkUser" jdbcType="VARCHAR" />
+    <result column="URGENT_LINK_TEL" property="urgentLinkTel" jdbcType="VARCHAR" />
+    <result column="DETAIL_ADD" property="detailAdd" jdbcType="VARCHAR" />
+    <result column="STA_LONGITUDE" property="staLongitude" jdbcType="DECIMAL" />
+    <result column="STA_LATITUDE" property="staLatitude" jdbcType="DECIMAL" />
+    <result column="BUSINESS_HOURS_START" property="businessHoursStart" jdbcType="VARCHAR" />
+    <result column="BUSINESS_HOURS_END" property="businessHoursEnd" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ACCOUNT_ID, USER_CODE, REAL_NAME, BIRTHDAY, SEX, NICK_NAME, IDENTNO, TELEPHONE, 
+    EMAIL, COUNTRY, PROVINCE, CITY, COUNTY, ADDRESS, ZIPCODE, USER_IMG, REMARK, COMPANY_NAME, 
+    LEGAL_PERSON, LINKMAN, CUSTOMER_ID, URGENT_LINK_USER, URGENT_LINK_TEL, DETAIL_ADD, 
+    STA_LONGITUDE, STA_LATITUDE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from COM_USERINFO_RECORD
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from COM_USERINFO_RECORD
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyProperty="id" useGeneratedKeys="true" parameterType="com.gistandard.transport.base.entity.bean.ComUserinfoRecord" >
+    insert into COM_USERINFO_RECORD (ID, ACCOUNT_ID, USER_CODE, 
+      REAL_NAME, BIRTHDAY, SEX, 
+      NICK_NAME, IDENTNO, TELEPHONE, 
+      EMAIL, COUNTRY, PROVINCE, 
+      CITY, COUNTY, ADDRESS, 
+      ZIPCODE, USER_IMG, REMARK, 
+      COMPANY_NAME, LEGAL_PERSON, LINKMAN, 
+      CUSTOMER_ID, URGENT_LINK_USER, URGENT_LINK_TEL, 
+      DETAIL_ADD, STA_LONGITUDE, STA_LATITUDE, 
+      BUSINESS_HOURS_START, BUSINESS_HOURS_END)
+    values (#{id,jdbcType=INTEGER}, #{accountId,jdbcType=INTEGER}, #{userCode,jdbcType=VARCHAR}, 
+      #{realName,jdbcType=VARCHAR}, #{birthday,jdbcType=TIMESTAMP}, #{sex,jdbcType=BIT}, 
+      #{nickName,jdbcType=VARCHAR}, #{identno,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, 
+      #{city,jdbcType=VARCHAR}, #{county,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{zipcode,jdbcType=VARCHAR}, #{userImg,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{companyName,jdbcType=VARCHAR}, #{legalPerson,jdbcType=VARCHAR}, #{linkman,jdbcType=VARCHAR}, 
+      #{customerId,jdbcType=INTEGER}, #{urgentLinkUser,jdbcType=VARCHAR}, #{urgentLinkTel,jdbcType=VARCHAR}, 
+      #{detailAdd,jdbcType=VARCHAR}, #{staLongitude,jdbcType=DECIMAL}, #{staLatitude,jdbcType=DECIMAL}, 
+      #{businessHoursStart,jdbcType=VARCHAR}, #{businessHoursEnd,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyProperty="id" useGeneratedKeys="true" parameterType="com.gistandard.transport.base.entity.bean.ComUserinfoRecord" >
+    insert into COM_USERINFO_RECORD
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="accountId != null" >
+        ACCOUNT_ID,
+      </if>
+      <if test="userCode != null" >
+        USER_CODE,
+      </if>
+      <if test="realName != null" >
+        REAL_NAME,
+      </if>
+      <if test="birthday != null" >
+        BIRTHDAY,
+      </if>
+      <if test="sex != null" >
+        SEX,
+      </if>
+      <if test="nickName != null" >
+        NICK_NAME,
+      </if>
+      <if test="identno != null" >
+        IDENTNO,
+      </if>
+      <if test="telephone != null" >
+        TELEPHONE,
+      </if>
+      <if test="email != null" >
+        EMAIL,
+      </if>
+      <if test="country != null" >
+        COUNTRY,
+      </if>
+      <if test="province != null" >
+        PROVINCE,
+      </if>
+      <if test="city != null" >
+        CITY,
+      </if>
+      <if test="county != null" >
+        COUNTY,
+      </if>
+      <if test="address != null" >
+        ADDRESS,
+      </if>
+      <if test="zipcode != null" >
+        ZIPCODE,
+      </if>
+      <if test="userImg != null" >
+        USER_IMG,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="companyName != null" >
+        COMPANY_NAME,
+      </if>
+      <if test="legalPerson != null" >
+        LEGAL_PERSON,
+      </if>
+      <if test="linkman != null" >
+        LINKMAN,
+      </if>
+      <if test="customerId != null" >
+        CUSTOMER_ID,
+      </if>
+      <if test="urgentLinkUser != null" >
+        URGENT_LINK_USER,
+      </if>
+      <if test="urgentLinkTel != null" >
+        URGENT_LINK_TEL,
+      </if>
+      <if test="detailAdd != null" >
+        DETAIL_ADD,
+      </if>
+      <if test="staLongitude != null" >
+        STA_LONGITUDE,
+      </if>
+      <if test="staLatitude != null" >
+        STA_LATITUDE,
+      </if>
+      <if test="businessHoursStart != null" >
+        BUSINESS_HOURS_START,
+      </if>
+      <if test="businessHoursEnd != null" >
+        BUSINESS_HOURS_END,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="accountId != null" >
+        #{accountId,jdbcType=INTEGER},
+      </if>
+      <if test="userCode != null" >
+        #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=BIT},
+      </if>
+      <if test="nickName != null" >
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="identno != null" >
+        #{identno,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="county != null" >
+        #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="zipcode != null" >
+        #{zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="userImg != null" >
+        #{userImg,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPerson != null" >
+        #{legalPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="linkman != null" >
+        #{linkman,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="urgentLinkUser != null" >
+        #{urgentLinkUser,jdbcType=VARCHAR},
+      </if>
+      <if test="urgentLinkTel != null" >
+        #{urgentLinkTel,jdbcType=VARCHAR},
+      </if>
+      <if test="detailAdd != null" >
+        #{detailAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="staLongitude != null" >
+        #{staLongitude,jdbcType=DECIMAL},
+      </if>
+      <if test="staLatitude != null" >
+        #{staLatitude,jdbcType=DECIMAL},
+      </if>
+      <if test="businessHoursStart != null" >
+        #{businessHoursStart,jdbcType=VARCHAR},
+      </if>
+      <if test="businessHoursEnd != null" >
+        #{businessHoursEnd,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gistandard.transport.base.entity.bean.ComUserinfoRecord" >
+    update COM_USERINFO_RECORD
+    <set >
+      <if test="accountId != null" >
+        ACCOUNT_ID = #{accountId,jdbcType=INTEGER},
+      </if>
+      <if test="userCode != null" >
+        USER_CODE = #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        REAL_NAME = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        BIRTHDAY = #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sex != null" >
+        SEX = #{sex,jdbcType=BIT},
+      </if>
+      <if test="nickName != null" >
+        NICK_NAME = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="identno != null" >
+        IDENTNO = #{identno,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        TELEPHONE = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        COUNTRY = #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        PROVINCE = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        CITY = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="county != null" >
+        COUNTY = #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="zipcode != null" >
+        ZIPCODE = #{zipcode,jdbcType=VARCHAR},
+      </if>
+      <if test="userImg != null" >
+        USER_IMG = #{userImg,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        COMPANY_NAME = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPerson != null" >
+        LEGAL_PERSON = #{legalPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="linkman != null" >
+        LINKMAN = #{linkman,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null" >
+        CUSTOMER_ID = #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="urgentLinkUser != null" >
+        URGENT_LINK_USER = #{urgentLinkUser,jdbcType=VARCHAR},
+      </if>
+      <if test="urgentLinkTel != null" >
+        URGENT_LINK_TEL = #{urgentLinkTel,jdbcType=VARCHAR},
+      </if>
+      <if test="detailAdd != null" >
+        DETAIL_ADD = #{detailAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="staLongitude != null" >
+        STA_LONGITUDE = #{staLongitude,jdbcType=DECIMAL},
+      </if>
+      <if test="staLatitude != null" >
+        STA_LATITUDE = #{staLatitude,jdbcType=DECIMAL},
+      </if>
+      <if test="businessHoursStart != null" >
+        BUSINESS_HOURS_START = #{businessHoursStart,jdbcType=VARCHAR},
+      </if>
+      <if test="businessHoursEnd != null" >
+        BUSINESS_HOURS_END = #{businessHoursEnd,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gistandard.transport.base.entity.bean.ComUserinfoRecord" >
+    update COM_USERINFO_RECORD
+    set ACCOUNT_ID = #{accountId,jdbcType=INTEGER},
+      USER_CODE = #{userCode,jdbcType=VARCHAR},
+      REAL_NAME = #{realName,jdbcType=VARCHAR},
+      BIRTHDAY = #{birthday,jdbcType=TIMESTAMP},
+      SEX = #{sex,jdbcType=BIT},
+      NICK_NAME = #{nickName,jdbcType=VARCHAR},
+      IDENTNO = #{identno,jdbcType=VARCHAR},
+      TELEPHONE = #{telephone,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      COUNTRY = #{country,jdbcType=VARCHAR},
+      PROVINCE = #{province,jdbcType=VARCHAR},
+      CITY = #{city,jdbcType=VARCHAR},
+      COUNTY = #{county,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      ZIPCODE = #{zipcode,jdbcType=VARCHAR},
+      USER_IMG = #{userImg,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      COMPANY_NAME = #{companyName,jdbcType=VARCHAR},
+      LEGAL_PERSON = #{legalPerson,jdbcType=VARCHAR},
+      LINKMAN = #{linkman,jdbcType=VARCHAR},
+      CUSTOMER_ID = #{customerId,jdbcType=INTEGER},
+      URGENT_LINK_USER = #{urgentLinkUser,jdbcType=VARCHAR},
+      URGENT_LINK_TEL = #{urgentLinkTel,jdbcType=VARCHAR},
+      DETAIL_ADD = #{detailAdd,jdbcType=VARCHAR},
+      STA_LONGITUDE = #{staLongitude,jdbcType=DECIMAL},
+      STA_LATITUDE = #{staLatitude,jdbcType=DECIMAL},
+      BUSINESS_HOURS_START = #{businessHoursStart,jdbcType=VARCHAR},
+      BUSINESS_HOURS_END = #{businessHoursEnd,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

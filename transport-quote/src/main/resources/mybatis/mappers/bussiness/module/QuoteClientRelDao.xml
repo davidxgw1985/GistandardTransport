@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.quote.system.database.dao.QuoteClientRelDao" >
+    <resultMap id="BaseResultMap" type="com.gistandard.transport.quote.system.common.bean.ComQuoteClientRelBean" >
+        <id column="ID" property="id" jdbcType="INTEGER" />
+        <result column="QUOTE_ID" property="quoteId" jdbcType="INTEGER" />
+        <result column="ACCOUNT_ID" property="accountId" jdbcType="INTEGER" />
+        <result column="CUST_NAME" property="custName" jdbcType="VARCHAR" />
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+  <insert id="batchInsert" parameterType="com.gistandard.transport.quote.system.common.bean.QuoteBean" >
+    insert into COM_QUOTE_CLIENT_REL (QUOTE_ID, ACCOUNT_ID,CREATE_TIME)
+    values
+    <foreach collection="comQuoteClientRelList" index="index" item="item" separator=",">
+      (#{comQuote.id,jdbcType=INTEGER}, #{item.accountId,jdbcType=INTEGER},
+      NOW() )
+    </foreach>
+
+  </insert>
+
+  <select id="selectByQuoteId" resultMap="BaseResultMap"
+          parameterType="java.lang.Integer" >
+    select
+    A.ID, A.QUOTE_ID, A.ACCOUNT_ID, A.CREATE_TIME
+      ,B.CUST_NAME custName
+      from COM_QUOTE_CLIENT_REL A
+      LEFT JOIN  COM_CUSTOMER B ON  A.ACCOUNT_ID=B.ACCOUNT_ID
+    where QUOTE_ID = #{quoteId,jdbcType=INTEGER}
+  </select>
+
+</mapper>

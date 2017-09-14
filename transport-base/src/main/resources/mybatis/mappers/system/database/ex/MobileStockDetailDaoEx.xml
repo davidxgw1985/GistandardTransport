@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ex.MobileStockDetailDaoEx">
+    <select id="selectByOrderNo" resultMap="com.gistandard.transport.base.entity.dao.MobileStockDetailDao.BaseResultMap">
+        select
+        <include refid="com.gistandard.transport.base.entity.dao.MobileStockDetailDao.Base_Column_List"/>
+        from MOBILE_STOCK_DETAIL
+        where STOCK_TYPE = 0
+        <if test="scheducarno != null and scheducarno != ''">
+            AND SCHEDUCARNO = #{scheducarno,jdbcType=VARCHAR}
+        </if>
+        <if test="busiBookNo != null and busiBookNo != ''">
+            AND BUSI_BOOK_NO = #{busiBookNo,jdbcType=VARCHAR}
+        </if>
+        <if test="boxNum != null and boxNum != ''">
+            AND BOX_NUM = #{boxNum,jdbcType=Integer}
+        </if>
+    </select>
+    <delete id="deleteByBusiBookNoAndScheducarno">
+        delete from MOBILE_STOCK_DETAIL
+        where
+        BUSI_BOOK_NO = #{busiBookNo,jdbcType=VARCHAR}
+        <if test="scheducarno != null and scheducarno != ''">
+            AND SCHEDUCARNO = #{scheducarno,jdbcType=VARCHAR}
+        </if>
+    </delete>
+    <insert id="batchInsert" parameterType="java.util.List">
+        insert into MOBILE_STOCK_DETAIL (SCHEDUCARNO, BUSI_BOOK_NO,
+        BOX_NUM, GOODS_TYPE, GOODS_NAME,
+        GOODS_QTY, GOODS_QTY_UNIT, CREATE_DATE,
+        STOCK_TYPE, CREATE_USER, ORDER_FROM
+        )
+        values
+        <foreach collection="list" item="item" index="index" separator="," >
+            (#{item.scheducarno,jdbcType=VARCHAR}, #{item.busiBookNo,jdbcType=VARCHAR},
+            #{item.boxNum,jdbcType=INTEGER}, #{item.goodsType,jdbcType=VARCHAR}, #{item.goodsName,jdbcType=VARCHAR},
+            #{item.goodsQty,jdbcType=DECIMAL}, #{item.goodsQtyUnit,jdbcType=CHAR}, #{item.createDate,jdbcType=TIMESTAMP},
+            #{item.stockType,jdbcType=INTEGER}, #{item.createUser,jdbcType=INTEGER}, #{item.orderFrom,jdbcType=INTEGER}
+            )
+        </foreach>
+    </insert>
+</mapper>

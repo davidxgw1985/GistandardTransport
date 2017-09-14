@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ex.ComReasonDaoEx" >
+    <select id="getReasonByCondtion" resultMap="com.gistandard.transport.base.entity.dao.ComReasonDao.BaseResultMap">
+        SELECT
+        <include refid="com.gistandard.transport.base.entity.dao.ComReasonDao.Base_Column_List" />
+        FROM COM_REASON
+        WHERE T_TYPE = #{dicType} AND LANG =  #{characterType}
+        ORDER BY T_SORT ASC
+    </select>
+</mapper>

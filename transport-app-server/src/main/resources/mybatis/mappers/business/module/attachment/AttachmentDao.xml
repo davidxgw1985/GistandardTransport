@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.app.module.attachment.dao.AttachmentDao">
+
+    <!--送达确认查询附件列表 -->
+    <resultMap id="picFIleResultMap" type="com.gistandard.transport.base.entity.bean.BizAttachment" >
+        <id column="ATTACH_ID" property="attachId" jdbcType="INTEGER" />
+        <result column="ATTACH_NAME" property="attachName" jdbcType="VARCHAR" />
+        <result column="ATTACH_OLD_NAME" property="attachOldName" jdbcType="VARCHAR" />
+        <result column="ATTACH_PATH" property="attachPath" jdbcType="VARCHAR" />
+        <result column="PROJECT_PATH" property="projectPath" jdbcType="VARCHAR" />
+        <result column="ATTACH_TYPE" property="attachType" jdbcType="VARCHAR" />
+        <result column="ATTACH_STATE" property="attachState" jdbcType="INTEGER" />
+        <result column="ATTACH_SIZE" property="attachSize" jdbcType="VARCHAR" />
+        <result column="ATTACH_REL_ID" property="attachRelId" jdbcType="INTEGER" />
+        <result column="ATTACH_SERVER_IP" property="attachServerIp" jdbcType="VARCHAR" />
+        <result column="UPLOAD_USER" property="uploadUser" jdbcType="INTEGER" />
+        <result column="UPLOAD_TIME" property="uploadTime" jdbcType="TIMESTAMP" />
+        <result column="FILE_TYPE" property="fileType" jdbcType="INTEGER" />
+    </resultMap>
+    <select id="queryPicFileListCount" resultType="java.lang.Integer" parameterType="com.gistandard.transport.app.module.attachment.bean.QueryPicFileListReq" >
+        SELECT COUNT(1) FROM BIZ_ATTACHMENT att
+        LEFT JOIN COM_ACCESSORY_RELATION relation ON att.ATTACH_ID=relation.ATTACH_ID
+        WHERE relation.RELA_ID = #{orderId} AND relation.T_TAB= #{tableName}
+    </select>
+    <select id="queryPicFileList" resultMap="picFIleResultMap" parameterType="com.gistandard.transport.app.module.attachment.bean.QueryPicFileListReq" >
+        select
+        att.ATTACH_ID, att.ATTACH_NAME, att.ATTACH_OLD_NAME, att.ATTACH_PATH, att.PROJECT_PATH, att.ATTACH_TYPE,
+        att.ATTACH_STATE, att.ATTACH_SIZE, att.ATTACH_REL_ID, att.ATTACH_SERVER_IP, att.UPLOAD_USER, att.UPLOAD_TIME,
+        att.FILE_TYPE
+        FROM BIZ_ATTACHMENT att
+        LEFT JOIN COM_ACCESSORY_RELATION relation ON att.ATTACH_ID=relation.ATTACH_ID
+        WHERE relation.RELA_ID = #{orderId}
+        AND relation.T_TAB= #{tableName}
+        ORDER BY ATTACH_ID
+        <if test="pageSize !=0">
+            limit #{startRecord},#{pageSize}
+        </if>
+    </select>
+
+</mapper>

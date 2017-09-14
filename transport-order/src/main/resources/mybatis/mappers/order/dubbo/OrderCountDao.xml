@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.order.dubbo.dao.OrderCountDao">
+
+    <!--根据accountId查询推荐用户的揽件单数和派件单数量 -->
+    <select id="QueryPopAndPodCount" resultType="com.gistandard.transport.app.dubbo.order.bean.PopAndPodOrderCount">
+        SELECT A.popCount,B.podCount,C.ysOrderCount,D.mOrderCount,E.zsOrderCount FROM
+            (SELECT COUNT(1) AS popCount FROM MOBILE_BOOKING_FORM
+            WHERE REV_USER_ID = #{accountId} AND BUSI_CTRL IN(5,40,22,25) AND ROLE_ID = 7 AND START_LOCUS ='POP'
+            AND PRODUCT_TYPE = 'OTCKD' AND date_format(REV_DATE,'%Y-%m-%d')=#{date})AS A,
+            (SELECT COUNT(1) AS podCount FROM MOBILE_BOOKING_FORM
+            WHERE EDIT_USER_ID = #{accountId} AND BUSI_CTRL = 5 AND ROLE_ID = 7 AND  DESTN_LOCUS ='POD'
+            AND PRODUCT_TYPE = 'OTCKD' AND date_format(EDIT_DATE,'%Y-%m-%d')=#{date})AS B,
+            (SELECT COUNT(1) AS ysOrderCount FROM MOBILE_BOOKING_FORM
+            WHERE REV_USER_ID = #{accountId} AND BUSI_CTRL = 5 AND ROLE_ID = 3
+            AND date_format(EDIT_DATE,'%Y-%m-%d')=#{date})AS C,
+            (SELECT COUNT(1) AS mOrderCount FROM MOBILE_BOOKING_FORM
+            WHERE REV_USER_ID = #{accountId} AND  BUSI_CTRL = 5 AND ROLE_ID = 23 AND START_LOCUS ='M'
+            AND date_format(REV_DATE,'%Y-%m-%d')=#{date})AS D,
+            (SELECT COUNT(1) AS zsOrderCount FROM MOBILE_BOOKING_FORM
+            WHERE REV_USER_ID =#{accountId} AND  BUSI_CTRL = 5
+            AND PRODUCT_TYPE = 'OTCZS' AND date_format(EDIT_DATE,'%Y-%m-%d')=#{date})AS E;
+    </select>
+</mapper>

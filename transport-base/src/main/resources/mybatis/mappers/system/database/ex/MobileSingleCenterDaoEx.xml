@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ex.MobileSingleCenterDaoEx">
+    <insert id="batchInsert" parameterType="java.util.List">
+        insert into MOBILE_SINGLE_CENTER (ID, MOBILE_BOOKING_FORM_ID, BUSI_BOOK_NO,
+        BUSI_CTRL, COM_QUOTE_ID, QUOTED_TYPE,
+        DISPATCH_ID, CREATE_USER_ID, CREATE_USER,
+        CREATE_DATE, SINGLE_DATE, TEAM_COMSIX_NO,
+        REV_USER_ID, REV_USER, REV_DATE,
+        PRODUCT_TYPE, SINGLE_VALUE, SINGLE_CURR
+        )
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.id,jdbcType=INTEGER}, #{item.mobileBookingFormId,jdbcType=INTEGER}, #{item.busiBookNo,jdbcType=VARCHAR},
+            #{item.busiCtrl,jdbcType=INTEGER}, #{item.comQuoteId,jdbcType=VARCHAR}, #{item.quotedType,jdbcType=INTEGER},
+            #{item.dispatchId,jdbcType=INTEGER}, #{item.createUserId,jdbcType=INTEGER}, #{item.createUser,jdbcType=VARCHAR},
+            #{item.createDate,jdbcType=TIMESTAMP}, #{item.singleDate,jdbcType=TIMESTAMP}, #{item.teamComsixNo,jdbcType=VARCHAR},
+            #{item.revUserId,jdbcType=INTEGER}, #{item.revUser,jdbcType=VARCHAR}, #{item.revDate,jdbcType=TIMESTAMP},
+            #{item.productType,jdbcType=VARCHAR}, #{item.singleValue,jdbcType=DECIMAL}, #{item.singleCurr,jdbcType=CHAR}
+            )
+        </foreach>
+    </insert>
+</mapper>

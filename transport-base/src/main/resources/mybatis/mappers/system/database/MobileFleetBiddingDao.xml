@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.MobileFleetBiddingDao" >
+  <resultMap id="BaseResultMap" type="com.gistandard.transport.base.entity.bean.MobileFleetBidding" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="PICK_TIME" property="pickTime" jdbcType="TIMESTAMP" />
+    <result column="DELIVERY_TIME" property="deliveryTime" jdbcType="TIMESTAMP" />
+    <result column="FLEET_USER_ID" property="fleetUserId" jdbcType="INTEGER" />
+    <result column="FLEET_USER" property="fleetUser" jdbcType="VARCHAR" />
+    <result column="FLEET_NAME" property="fleetName" jdbcType="VARCHAR" />
+    <result column="CREATE_USER_ID" property="createUserId" jdbcType="INTEGER" />
+    <result column="CREATE_USER" property="createUser" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="BID_VALUE" property="bidValue" jdbcType="DECIMAL" />
+    <result column="BID_CURR" property="bidCurr" jdbcType="CHAR" />
+    <result column="TRUCK_ID" property="truckId" jdbcType="INTEGER" />
+    <result column="TRUCK_CODE" property="truckCode" jdbcType="VARCHAR" />
+    <result column="DRIVER_USER_ID" property="driverUserId" jdbcType="INTEGER" />
+    <result column="DRIVER_USER" property="driverUser" jdbcType="VARCHAR" />
+    <result column="DRIVER_NAME" property="driverName" jdbcType="VARCHAR" />
+    <result column="DRIVER_TELEPHONE" property="driverTelephone" jdbcType="VARCHAR" />
+    <result column="PRODUCT_TYPE" property="productType" jdbcType="VARCHAR" />
+    <result column="CHOOSE_FLAG" property="chooseFlag" jdbcType="INTEGER" />
+    <result column="BUSI_BOOK_NO" property="busiBookNo" jdbcType="VARCHAR" />
+    <result column="SCHEDUCARNO" property="scheducarno" jdbcType="VARCHAR" />
+    <result column="BOOKING_FORM_ID" property="bookingFormId" jdbcType="INTEGER" />
+    <result column="MOBILE_BOOKING_FORM_ID" property="mobileBookingFormId" jdbcType="INTEGER" />
+    <result column="TAX_RATE" property="taxRate" jdbcType="DECIMAL" />
+    <result column="DRIVER_BID_VALUE" property="driverBidValue" jdbcType="DECIMAL" />
+    <result column="DRIVER_BID_CURR" property="driverBidCurr" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, PICK_TIME, DELIVERY_TIME, FLEET_USER_ID, FLEET_USER, FLEET_NAME, CREATE_USER_ID,
+    CREATE_USER, CREATE_DATE, BID_VALUE, BID_CURR, TRUCK_ID, TRUCK_CODE, DRIVER_USER_ID,
+    DRIVER_USER, DRIVER_NAME, DRIVER_TELEPHONE, PRODUCT_TYPE, CHOOSE_FLAG, BUSI_BOOK_NO,
+    SCHEDUCARNO, BOOKING_FORM_ID, MOBILE_BOOKING_FORM_ID,TAX_RATE,DRIVER_BID_VALUE,DRIVER_BID_CURR
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from MOBILE_FLEET_BIDDING
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from MOBILE_FLEET_BIDDING
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gistandard.transport.base.entity.bean.MobileFleetBidding" >
+    insert into MOBILE_FLEET_BIDDING (ID, PICK_TIME, DELIVERY_TIME,
+    FLEET_USER_ID, FLEET_USER, FLEET_NAME,
+    CREATE_USER_ID, CREATE_USER, CREATE_DATE,
+    BID_VALUE, BID_CURR, TRUCK_ID,
+    TRUCK_CODE, DRIVER_USER_ID, DRIVER_USER,
+    DRIVER_NAME, DRIVER_TELEPHONE, PRODUCT_TYPE,
+    CHOOSE_FLAG, BUSI_BOOK_NO, SCHEDUCARNO,
+    BOOKING_FORM_ID, MOBILE_BOOKING_FORM_ID,TAX_RATE,DRIVER_BID_VALUE,DRIVER_BID_CURR)
+    values (#{id,jdbcType=INTEGER}, #{pickTime,jdbcType=TIMESTAMP}, #{deliveryTime,jdbcType=TIMESTAMP},
+    #{fleetUserId,jdbcType=INTEGER}, #{fleetUser,jdbcType=VARCHAR}, #{fleetName,jdbcType=VARCHAR},
+    #{createUserId,jdbcType=INTEGER}, #{createUser,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP},
+    #{bidValue,jdbcType=DECIMAL}, #{bidCurr,jdbcType=CHAR}, #{truckId,jdbcType=INTEGER},
+    #{truckCode,jdbcType=VARCHAR}, #{driverUserId,jdbcType=INTEGER}, #{driverUser,jdbcType=VARCHAR},
+    #{driverName,jdbcType=VARCHAR}, #{driverTelephone,jdbcType=VARCHAR}, #{productType,jdbcType=VARCHAR},
+    #{chooseFlag,jdbcType=INTEGER}, #{busiBookNo,jdbcType=VARCHAR}, #{scheducarno,jdbcType=VARCHAR},
+    #{bookingFormId,jdbcType=INTEGER}, #{mobileBookingFormId,jdbcType=INTEGER},#{taxRate,jdbcType=DECIMAL},
+    #{driverBidValue,jdbcType=DECIMAL}, #{driverBidCurr,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gistandard.transport.base.entity.bean.MobileFleetBidding" >
+    insert into MOBILE_FLEET_BIDDING
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="pickTime != null" >
+        PICK_TIME,
+      </if>
+      <if test="deliveryTime != null" >
+        DELIVERY_TIME,
+      </if>
+      <if test="fleetUserId != null" >
+        FLEET_USER_ID,
+      </if>
+      <if test="fleetUser != null" >
+        FLEET_USER,
+      </if>
+      <if test="fleetName != null" >
+        FLEET_NAME,
+      </if>
+      <if test="createUserId != null" >
+        CREATE_USER_ID,
+      </if>
+      <if test="createUser != null" >
+        CREATE_USER,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="bidValue != null" >
+        BID_VALUE,
+      </if>
+      <if test="bidCurr != null" >
+        BID_CURR,
+      </if>
+      <if test="truckId != null" >
+        TRUCK_ID,
+      </if>
+      <if test="truckCode != null" >
+        TRUCK_CODE,
+      </if>
+      <if test="driverUserId != null" >
+        DRIVER_USER_ID,
+      </if>
+      <if test="driverUser != null" >
+        DRIVER_USER,
+      </if>
+      <if test="driverName != null" >
+        DRIVER_NAME,
+      </if>
+      <if test="driverTelephone != null" >
+        DRIVER_TELEPHONE,
+      </if>
+      <if test="productType != null" >
+        PRODUCT_TYPE,
+      </if>
+      <if test="chooseFlag != null" >
+        CHOOSE_FLAG,
+      </if>
+      <if test="busiBookNo != null" >
+        BUSI_BOOK_NO,
+      </if>
+      <if test="scheducarno != null" >
+        SCHEDUCARNO,
+      </if>
+      <if test="bookingFormId != null" >
+        BOOKING_FORM_ID,
+      </if>
+      <if test="mobileBookingFormId != null" >
+        MOBILE_BOOKING_FORM_ID,
+      </if>
+      <if test="taxRate != null" >
+        TAX_RATE,
+      </if>
+      <if test="driverBidValue != null" >
+        DRIVER_BID_VALUE,
+      </if>
+      <if test="driverBidCurr != null" >
+        DRIVER_BID_CURR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="pickTime != null" >
+        #{pickTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryTime != null" >
+        #{deliveryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fleetUserId != null" >
+        #{fleetUserId,jdbcType=INTEGER},
+      </if>
+      <if test="fleetUser != null" >
+        #{fleetUser,jdbcType=VARCHAR},
+      </if>
+      <if test="fleetName != null" >
+        #{fleetName,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bidValue != null" >
+        #{bidValue,jdbcType=DECIMAL},
+      </if>
+      <if test="bidCurr != null" >
+        #{bidCurr,jdbcType=CHAR},
+      </if>
+      <if test="truckId != null" >
+        #{truckId,jdbcType=INTEGER},
+      </if>
+      <if test="truckCode != null" >
+        #{truckCode,jdbcType=VARCHAR},
+      </if>
+      <if test="driverUserId != null" >
+        #{driverUserId,jdbcType=INTEGER},
+      </if>
+      <if test="driverUser != null" >
+        #{driverUser,jdbcType=VARCHAR},
+      </if>
+      <if test="driverName != null" >
+        #{driverName,jdbcType=VARCHAR},
+      </if>
+      <if test="driverTelephone != null" >
+        #{driverTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="productType != null" >
+        #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="chooseFlag != null" >
+        #{chooseFlag,jdbcType=INTEGER},
+      </if>
+      <if test="busiBookNo != null" >
+        #{busiBookNo,jdbcType=VARCHAR},
+      </if>
+      <if test="scheducarno != null" >
+        #{scheducarno,jdbcType=VARCHAR},
+      </if>
+      <if test="bookingFormId != null" >
+        #{bookingFormId,jdbcType=INTEGER},
+      </if>
+      <if test="mobileBookingFormId != null" >
+        #{mobileBookingFormId,jdbcType=INTEGER},
+      </if>
+      <if test="taxRate != null" >
+        #{taxRate,jdbcType=DECIMAL},
+      </if>
+      <if test="driverBidValue != null" >
+        #{driverBidValue,jdbcType=DECIMAL},
+      </if>
+      <if test="driverBidCurr != null" >
+        #{driverBidCurr,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gistandard.transport.base.entity.bean.MobileFleetBidding" >
+    update MOBILE_FLEET_BIDDING
+    <set >
+      <if test="pickTime != null" >
+        PICK_TIME = #{pickTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliveryTime != null" >
+        DELIVERY_TIME = #{deliveryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fleetUserId != null" >
+        FLEET_USER_ID = #{fleetUserId,jdbcType=INTEGER},
+      </if>
+      <if test="fleetUser != null" >
+        FLEET_USER = #{fleetUser,jdbcType=VARCHAR},
+      </if>
+      <if test="fleetName != null" >
+        FLEET_NAME = #{fleetName,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null" >
+        CREATE_USER_ID = #{createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null" >
+        CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bidValue != null" >
+        BID_VALUE = #{bidValue,jdbcType=DECIMAL},
+      </if>
+      <if test="bidCurr != null" >
+        BID_CURR = #{bidCurr,jdbcType=CHAR},
+      </if>
+      <if test="truckId != null" >
+        TRUCK_ID = #{truckId,jdbcType=INTEGER},
+      </if>
+      <if test="truckCode != null" >
+        TRUCK_CODE = #{truckCode,jdbcType=VARCHAR},
+      </if>
+      <if test="driverUserId != null" >
+        DRIVER_USER_ID = #{driverUserId,jdbcType=INTEGER},
+      </if>
+      <if test="driverUser != null" >
+        DRIVER_USER = #{driverUser,jdbcType=VARCHAR},
+      </if>
+      <if test="driverName != null" >
+        DRIVER_NAME = #{driverName,jdbcType=VARCHAR},
+      </if>
+      <if test="driverTelephone != null" >
+        DRIVER_TELEPHONE = #{driverTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="productType != null" >
+        PRODUCT_TYPE = #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="chooseFlag != null" >
+        CHOOSE_FLAG = #{chooseFlag,jdbcType=INTEGER},
+      </if>
+      <if test="busiBookNo != null" >
+        BUSI_BOOK_NO = #{busiBookNo,jdbcType=VARCHAR},
+      </if>
+      <if test="scheducarno != null" >
+        SCHEDUCARNO = #{scheducarno,jdbcType=VARCHAR},
+      </if>
+      <if test="bookingFormId != null" >
+        BOOKING_FORM_ID = #{bookingFormId,jdbcType=INTEGER},
+      </if>
+      <if test="mobileBookingFormId != null" >
+        MOBILE_BOOKING_FORM_ID = #{mobileBookingFormId,jdbcType=INTEGER},
+      </if>
+      <if test="taxRate != null" >
+        TAX_RATE = #{taxRate,jdbcType=DECIMAL},
+      </if>
+      <if test="driverBidValue != null" >
+        DRIVER_BID_VALUE = #{driverBidValue,jdbcType=DECIMAL},
+      </if>
+      <if test="driverBidCurr != null" >
+        DRIVER_BID_CURR = #{driverBidCurr,jdbcType=CHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gistandard.transport.base.entity.bean.MobileFleetBidding" >
+    update MOBILE_FLEET_BIDDING
+    set PICK_TIME = #{pickTime,jdbcType=TIMESTAMP},
+      DELIVERY_TIME = #{deliveryTime,jdbcType=TIMESTAMP},
+      FLEET_USER_ID = #{fleetUserId,jdbcType=INTEGER},
+      FLEET_USER = #{fleetUser,jdbcType=VARCHAR},
+      FLEET_NAME = #{fleetName,jdbcType=VARCHAR},
+      CREATE_USER_ID = #{createUserId,jdbcType=INTEGER},
+      CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      BID_VALUE = #{bidValue,jdbcType=DECIMAL},
+      BID_CURR = #{bidCurr,jdbcType=CHAR},
+      TRUCK_ID = #{truckId,jdbcType=INTEGER},
+      TRUCK_CODE = #{truckCode,jdbcType=VARCHAR},
+      DRIVER_USER_ID = #{driverUserId,jdbcType=INTEGER},
+      DRIVER_USER = #{driverUser,jdbcType=VARCHAR},
+      DRIVER_NAME = #{driverName,jdbcType=VARCHAR},
+      DRIVER_TELEPHONE = #{driverTelephone,jdbcType=VARCHAR},
+      PRODUCT_TYPE = #{productType,jdbcType=VARCHAR},
+      CHOOSE_FLAG = #{chooseFlag,jdbcType=INTEGER},
+      BUSI_BOOK_NO = #{busiBookNo,jdbcType=VARCHAR},
+      SCHEDUCARNO = #{scheducarno,jdbcType=VARCHAR},
+      BOOKING_FORM_ID = #{bookingFormId,jdbcType=INTEGER},
+      MOBILE_BOOKING_FORM_ID = #{mobileBookingFormId,jdbcType=INTEGER},
+      TAX_RATE = #{taxRate,jdbcType=DECIMAL},
+      DRIVER_BID_VALUE = #{driverBidValue,jdbcType=DECIMAL},
+      DRIVER_BID_CURR = #{driverBidCurr,jdbcType=CHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+
+
+
+</mapper>

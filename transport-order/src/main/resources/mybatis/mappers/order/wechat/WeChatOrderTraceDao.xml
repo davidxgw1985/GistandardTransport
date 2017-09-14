@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.order.wechat.dao.WeChatOrderTraceDao" >
+    <resultMap id="BaseResultMap" type="com.gistandard.transport.app.dubbo.wechat.bean.OrderTraceDetail" >
+        <id column="ID" property="id" jdbcType="INTEGER" />
+        <result column="STA_DATE" property="stadate" jdbcType="VARCHAR" />
+        <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    </resultMap>
+    <select id="queryOrderTraceByBusiNo" resultMap="BaseResultMap" parameterType="com.gistandard.transport.app.dubbo.wechat.bean.WeChatOrderTraceReq" >
+        SELECT M.ID,  DATE_FORMAT(M.STA_DATE,'%Y-%m-%d %H:%i:%s') STA_DATE, M.REMARK FROM COM_WAYBILL_TRACE M
+        where M.BUSI_BOOK_NO = #{busiBookNo,jdbcType=VARCHAR}
+        ORDER BY M.ID DESC
+    </select>
+</mapper>

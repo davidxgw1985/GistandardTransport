@@ -1,0 +1,1054 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.MobileBookingFormDao" >
+  <resultMap id="BaseResultMap" type="com.gistandard.transport.base.entity.bean.MobileBookingForm" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="BOOKING_FORM_ID" property="bookingFormId" jdbcType="INTEGER" />
+    <result column="BUSI_BOOK_NO" property="busiBookNo" jdbcType="VARCHAR" />
+    <result column="SHIP_CUST_PROVIDE" property="shipCustProvide" jdbcType="VARCHAR" />
+    <result column="SHIP_CUST_CITY" property="shipCustCity" jdbcType="VARCHAR" />
+    <result column="SHIP_CUST_COUNTY" property="shipCustCounty" jdbcType="VARCHAR" />
+    <result column="SHIP_CUST_ADDR" property="shipCustAddr" jdbcType="VARCHAR" />
+    <result column="SHIP_CUST_LINK_MAN" property="shipCustLinkMan" jdbcType="VARCHAR" />
+    <result column="SHIP_CUST_LINK_TEL" property="shipCustLinkTel" jdbcType="VARCHAR" />
+    <result column="SHIP_LONGITUDE" property="shipLongitude" jdbcType="DECIMAL" />
+    <result column="SHIP_LATITUDE" property="shipLatitude" jdbcType="DECIMAL" />
+    <result column="CNEE_CUST_PROVIDE" property="cneeCustProvide" jdbcType="VARCHAR" />
+    <result column="CNEE_CUST_CITY" property="cneeCustCity" jdbcType="VARCHAR" />
+    <result column="CNEE_CUST_COUNTY" property="cneeCustCounty" jdbcType="VARCHAR" />
+    <result column="CNEE_CUST_ADDR" property="cneeCustAddr" jdbcType="VARCHAR" />
+    <result column="CNEE_CUST_LINK_MAN" property="cneeCustLinkMan" jdbcType="VARCHAR" />
+    <result column="CNEE_CUST_LINK_TEL" property="cneeCustLinkTel" jdbcType="VARCHAR" />
+    <result column="CNEE_LONGITUDE" property="cneeLongitude" jdbcType="DECIMAL" />
+    <result column="CNEE_LATITUDE" property="cneeLatitude" jdbcType="DECIMAL" />
+    <result column="ETA_POP_DATE" property="etaPopDate" jdbcType="TIMESTAMP" />
+    <result column="BOOKING_DATE" property="bookingDate" jdbcType="TIMESTAMP" />
+    <result column="TEAM_COMSIX_NO" property="teamComsixNo" jdbcType="VARCHAR" />
+    <result column="BUSI_CTRL" property="busiCtrl" jdbcType="INTEGER" />
+    <result column="TRANSPORT_TYPE" property="transportType" jdbcType="INTEGER" />
+    <result column="ORDER_TYPE" property="orderType" jdbcType="INTEGER" />
+    <result column="PAY_TYPE" property="payType" jdbcType="INTEGER" />
+    <result column="GOODS_PAYMENT" property="goodsPayment" jdbcType="DECIMAL" />
+    <result column="GOODS_PAYMENT_CURR" property="goodsPaymentCurr" jdbcType="CHAR" />
+    <result column="DEST_PAYMENT" property="destPayment" jdbcType="DECIMAL" />
+    <result column="DEST_PAYMENT_CURR" property="destPaymentCurr" jdbcType="CHAR" />
+    <result column="NEED_INSURE" property="needInsure" jdbcType="BIT" />
+    <result column="PREMIUM_PROPORTION" property="premiumProportion" jdbcType="DECIMAL" />
+    <result column="PREMIUM_VALUE" property="premiumValue" jdbcType="DECIMAL" />
+    <result column="GOODS_VALUE" property="goodsValue" jdbcType="DECIMAL" />
+    <result column="IS_JS" property="isJs" jdbcType="INTEGER" />
+    <result column="VALID_BILLNO" property="validBillno" jdbcType="VARCHAR" />
+    <result column="COM_QUOTE_ID" property="comQuoteId" jdbcType="VARCHAR" />
+    <result column="QUOTED_TYPE" property="quotedType" jdbcType="INTEGER" />
+    <result column="PREDICT_VALUE" property="predictValue" jdbcType="DECIMAL" />
+    <result column="PREDICT_CURR" property="predictCurr" jdbcType="CHAR" />
+    <result column="ORDER_FROM" property="orderFrom" jdbcType="INTEGER" />
+    <result column="DISPATCH_ID" property="dispatchId" jdbcType="INTEGER" />
+    <result column="SCHEDUCARNO" property="scheducarno" jdbcType="VARCHAR" />
+    <result column="CREATE_USER_ID" property="createUserId" jdbcType="INTEGER" />
+    <result column="CREATE_USER" property="createUser" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="REV_USER_ID" property="revUserId" jdbcType="INTEGER" />
+    <result column="REV_USER" property="revUser" jdbcType="VARCHAR" />
+    <result column="REV_DATE" property="revDate" jdbcType="TIMESTAMP" />
+    <result column="EDIT_USER_ID" property="editUserId" jdbcType="INTEGER" />
+    <result column="EDIT_USER" property="editUser" jdbcType="VARCHAR" />
+    <result column="EDIT_DATE" property="editDate" jdbcType="TIMESTAMP" />
+    <result column="FORM_EDIT_FLAG" property="formEditFlag" jdbcType="BIT" />
+    <result column="GOODS_EDIT_FLAG" property="goodsEditFlag" jdbcType="BIT" />
+    <result column="START_LOCUS" property="startLocus" jdbcType="VARCHAR" />
+    <result column="DESTN_LOCUS" property="destnLocus" jdbcType="VARCHAR" />
+    <result column="NARRATE" property="narrate" jdbcType="VARCHAR" />
+    <result column="PRODUCT_TYPE" property="productType" jdbcType="VARCHAR" />
+    <result column="PARENT_BOOKING_FORM_ID" property="parentBookingFormId" jdbcType="INTEGER" />
+    <result column="EMERGENCY_CUST_ADDR" property="emergencyCustAddr" jdbcType="VARCHAR" />
+    <result column="EMERGENCY_CUST_LINK_MAN" property="emergencyCustLinkMan" jdbcType="VARCHAR" />
+    <result column="EMERGENCY_CUST_LINK_TEL" property="emergencyCustLinkTel" jdbcType="VARCHAR" />
+    <result column="EMERGENCY_LONGITUDE" property="emergencyLongitude" jdbcType="DECIMAL" />
+    <result column="EMERGENCY_LATITUDE" property="emergencyLatitude" jdbcType="DECIMAL" />
+    <result column="IS_EMERGENCY" property="isEmergency" jdbcType="INTEGER" />
+    <result column="CONNECTION_STATUS" property="connectionStatus" jdbcType="INTEGER" />
+    <result column="CONNECTION_ORDER_NO" property="connectionOrderNo" jdbcType="VARCHAR" />
+    <result column="ROLE_ID" property="roleId" jdbcType="INTEGER" />
+    <result column="CREATE_COMPANY_ID" property="createCompanyId" jdbcType="INTEGER" />
+    <result column="REV_COMPANY_ID" property="revCompanyId" jdbcType="INTEGER" />
+    <result column="ASSIGN_USER_ID" property="assignUserId" jdbcType="INTEGER" />
+    <result column="ASSIGN_USER" property="assignUser" jdbcType="VARCHAR" />
+    <result column="ASSIGN_DATE" property="assignDate" jdbcType="TIMESTAMP" />
+    <result column="FAILURE_TIMES" property="failureTimes" jdbcType="INTEGER" />
+    <result column="SELF_QUOTE_VALUE" property="selfQuoteValue" jdbcType="DECIMAL" />
+    <result column="SELF_QUOTE_CURR" property="selfQuoteCurr" jdbcType="CHAR" />
+    <result column="DELIVERY_DATE" property="deliveryDate" jdbcType="TIMESTAMP" />
+    <result column="I_JS_STATE" property="iJsState" jdbcType="VARCHAR" />
+    <result column="BID_BY" property="bidBy" jdbcType="VARCHAR" />
+    <result column="BID_USER" property="bidUser" jdbcType="VARCHAR" />
+    <result column="BID_USER_ID" property="bidUserId" jdbcType="INTEGER" />
+    <result column="VEHICLE_TYPE_ID" property="vehicleTypeId" jdbcType="INTEGER" />
+    <result column="START_LOCUS_ID" property="startLocusId" jdbcType="INTEGER" />
+    <result column="DESTN_LOCUS_ID" property="destnLocusId" jdbcType="INTEGER" />
+    <result column="SIGN_IN_TIME" property="signInTime" jdbcType="TIMESTAMP" />
+    <result column="MILEAGE" property="mileage" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, BOOKING_FORM_ID, BUSI_BOOK_NO, SHIP_CUST_PROVIDE, SHIP_CUST_CITY, SHIP_CUST_COUNTY,
+    SHIP_CUST_ADDR, SHIP_CUST_LINK_MAN, SHIP_CUST_LINK_TEL, SHIP_LONGITUDE, SHIP_LATITUDE,
+    CNEE_CUST_PROVIDE, CNEE_CUST_CITY, CNEE_CUST_COUNTY, CNEE_CUST_ADDR, CNEE_CUST_LINK_MAN,
+    CNEE_CUST_LINK_TEL, CNEE_LONGITUDE, CNEE_LATITUDE, ETA_POP_DATE, BOOKING_DATE, TEAM_COMSIX_NO,
+    BUSI_CTRL, TRANSPORT_TYPE, ORDER_TYPE, PAY_TYPE, GOODS_PAYMENT, GOODS_PAYMENT_CURR,
+    DEST_PAYMENT, DEST_PAYMENT_CURR, NEED_INSURE, PREMIUM_PROPORTION, PREMIUM_VALUE,
+    GOODS_VALUE, IS_JS, VALID_BILLNO, COM_QUOTE_ID, QUOTED_TYPE, PREDICT_VALUE, PREDICT_CURR,
+    ORDER_FROM, DISPATCH_ID, SCHEDUCARNO, CREATE_USER_ID, CREATE_USER, CREATE_DATE, REV_USER_ID,
+    REV_USER, REV_DATE, EDIT_USER_ID, EDIT_USER, EDIT_DATE, FORM_EDIT_FLAG, GOODS_EDIT_FLAG,
+    START_LOCUS, DESTN_LOCUS, NARRATE, PRODUCT_TYPE, PARENT_BOOKING_FORM_ID, EMERGENCY_CUST_ADDR,
+    EMERGENCY_CUST_LINK_MAN, EMERGENCY_CUST_LINK_TEL, EMERGENCY_LONGITUDE, EMERGENCY_LATITUDE,
+    IS_EMERGENCY, CONNECTION_STATUS, CONNECTION_ORDER_NO, ROLE_ID, CREATE_COMPANY_ID,
+    REV_COMPANY_ID, ASSIGN_USER_ID, ASSIGN_USER, ASSIGN_DATE, FAILURE_TIMES, SELF_QUOTE_VALUE,
+    SELF_QUOTE_CURR, DELIVERY_DATE, I_JS_STATE, BID_BY, BID_USER, BID_USER_ID, VEHICLE_TYPE_ID,
+    START_LOCUS_ID, DESTN_LOCUS_ID, SIGN_IN_TIME, MILEAGE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from MOBILE_BOOKING_FORM
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from MOBILE_BOOKING_FORM
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.gistandard.transport.base.entity.bean.MobileBookingForm" >
+    insert into MOBILE_BOOKING_FORM (ID, BOOKING_FORM_ID, BUSI_BOOK_NO,
+      SHIP_CUST_PROVIDE, SHIP_CUST_CITY, SHIP_CUST_COUNTY,
+      SHIP_CUST_ADDR, SHIP_CUST_LINK_MAN, SHIP_CUST_LINK_TEL,
+      SHIP_LONGITUDE, SHIP_LATITUDE, CNEE_CUST_PROVIDE,
+      CNEE_CUST_CITY, CNEE_CUST_COUNTY, CNEE_CUST_ADDR,
+      CNEE_CUST_LINK_MAN, CNEE_CUST_LINK_TEL, CNEE_LONGITUDE,
+      CNEE_LATITUDE, ETA_POP_DATE, BOOKING_DATE,
+      TEAM_COMSIX_NO, BUSI_CTRL, TRANSPORT_TYPE,
+      ORDER_TYPE, PAY_TYPE, GOODS_PAYMENT,
+      GOODS_PAYMENT_CURR, DEST_PAYMENT, DEST_PAYMENT_CURR,
+      NEED_INSURE, PREMIUM_PROPORTION, PREMIUM_VALUE,
+      GOODS_VALUE, IS_JS, VALID_BILLNO,
+      COM_QUOTE_ID, QUOTED_TYPE, PREDICT_VALUE,
+      PREDICT_CURR, ORDER_FROM, DISPATCH_ID,
+      SCHEDUCARNO, CREATE_USER_ID, CREATE_USER,
+      CREATE_DATE, REV_USER_ID, REV_USER,
+      REV_DATE, EDIT_USER_ID, EDIT_USER,
+      EDIT_DATE, FORM_EDIT_FLAG, GOODS_EDIT_FLAG,
+      START_LOCUS, DESTN_LOCUS, NARRATE,
+      PRODUCT_TYPE, PARENT_BOOKING_FORM_ID, EMERGENCY_CUST_ADDR,
+      EMERGENCY_CUST_LINK_MAN, EMERGENCY_CUST_LINK_TEL,
+      EMERGENCY_LONGITUDE, EMERGENCY_LATITUDE,
+      IS_EMERGENCY, CONNECTION_STATUS, CONNECTION_ORDER_NO,
+      ROLE_ID, CREATE_COMPANY_ID, REV_COMPANY_ID,
+      ASSIGN_USER_ID, ASSIGN_USER, ASSIGN_DATE,
+      FAILURE_TIMES, SELF_QUOTE_VALUE, SELF_QUOTE_CURR,
+      DELIVERY_DATE, I_JS_STATE, BID_BY,
+      BID_USER, BID_USER_ID, VEHICLE_TYPE_ID,
+      START_LOCUS_ID, DESTN_LOCUS_ID, SIGN_IN_TIME,
+      MILEAGE)
+    values (#{id,jdbcType=INTEGER}, #{bookingFormId,jdbcType=INTEGER}, #{busiBookNo,jdbcType=VARCHAR},
+      #{shipCustProvide,jdbcType=VARCHAR}, #{shipCustCity,jdbcType=VARCHAR}, #{shipCustCounty,jdbcType=VARCHAR},
+      #{shipCustAddr,jdbcType=VARCHAR}, #{shipCustLinkMan,jdbcType=VARCHAR}, #{shipCustLinkTel,jdbcType=VARCHAR},
+      #{shipLongitude,jdbcType=DECIMAL}, #{shipLatitude,jdbcType=DECIMAL}, #{cneeCustProvide,jdbcType=VARCHAR},
+      #{cneeCustCity,jdbcType=VARCHAR}, #{cneeCustCounty,jdbcType=VARCHAR}, #{cneeCustAddr,jdbcType=VARCHAR},
+      #{cneeCustLinkMan,jdbcType=VARCHAR}, #{cneeCustLinkTel,jdbcType=VARCHAR}, #{cneeLongitude,jdbcType=DECIMAL},
+      #{cneeLatitude,jdbcType=DECIMAL}, #{etaPopDate,jdbcType=TIMESTAMP}, #{bookingDate,jdbcType=TIMESTAMP},
+      #{teamComsixNo,jdbcType=VARCHAR}, #{busiCtrl,jdbcType=INTEGER}, #{transportType,jdbcType=INTEGER},
+      #{orderType,jdbcType=INTEGER}, #{payType,jdbcType=INTEGER}, #{goodsPayment,jdbcType=DECIMAL},
+      #{goodsPaymentCurr,jdbcType=CHAR}, #{destPayment,jdbcType=DECIMAL}, #{destPaymentCurr,jdbcType=CHAR},
+      #{needInsure,jdbcType=BIT}, #{premiumProportion,jdbcType=DECIMAL}, #{premiumValue,jdbcType=DECIMAL},
+      #{goodsValue,jdbcType=DECIMAL}, #{isJs,jdbcType=INTEGER}, #{validBillno,jdbcType=VARCHAR},
+      #{comQuoteId,jdbcType=VARCHAR}, #{quotedType,jdbcType=INTEGER}, #{predictValue,jdbcType=DECIMAL},
+      #{predictCurr,jdbcType=CHAR}, #{orderFrom,jdbcType=INTEGER}, #{dispatchId,jdbcType=INTEGER},
+      #{scheducarno,jdbcType=VARCHAR}, #{createUserId,jdbcType=INTEGER}, #{createUser,jdbcType=VARCHAR},
+      #{createDate,jdbcType=TIMESTAMP}, #{revUserId,jdbcType=INTEGER}, #{revUser,jdbcType=VARCHAR},
+      #{revDate,jdbcType=TIMESTAMP}, #{editUserId,jdbcType=INTEGER}, #{editUser,jdbcType=VARCHAR},
+      #{editDate,jdbcType=TIMESTAMP}, #{formEditFlag,jdbcType=BIT}, #{goodsEditFlag,jdbcType=BIT},
+      #{startLocus,jdbcType=VARCHAR}, #{destnLocus,jdbcType=VARCHAR}, #{narrate,jdbcType=VARCHAR},
+      #{productType,jdbcType=VARCHAR}, #{parentBookingFormId,jdbcType=INTEGER}, #{emergencyCustAddr,jdbcType=VARCHAR},
+      #{emergencyCustLinkMan,jdbcType=VARCHAR}, #{emergencyCustLinkTel,jdbcType=VARCHAR},
+      #{emergencyLongitude,jdbcType=DECIMAL}, #{emergencyLatitude,jdbcType=DECIMAL},
+      #{isEmergency,jdbcType=INTEGER}, #{connectionStatus,jdbcType=INTEGER}, #{connectionOrderNo,jdbcType=VARCHAR},
+      #{roleId,jdbcType=INTEGER}, #{createCompanyId,jdbcType=INTEGER}, #{revCompanyId,jdbcType=INTEGER},
+      #{assignUserId,jdbcType=INTEGER}, #{assignUser,jdbcType=VARCHAR}, #{assignDate,jdbcType=TIMESTAMP},
+      #{failureTimes,jdbcType=INTEGER}, #{selfQuoteValue,jdbcType=DECIMAL}, #{selfQuoteCurr,jdbcType=CHAR},
+      #{deliveryDate,jdbcType=TIMESTAMP}, #{iJsState,jdbcType=VARCHAR}, #{bidBy,jdbcType=VARCHAR},
+      #{bidUser,jdbcType=VARCHAR}, #{bidUserId,jdbcType=INTEGER}, #{vehicleTypeId,jdbcType=INTEGER},
+      #{startLocusId,jdbcType=INTEGER}, #{destnLocusId,jdbcType=INTEGER}, #{signInTime,jdbcType=TIMESTAMP},
+      #{mileage,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.gistandard.transport.base.entity.bean.MobileBookingForm" >
+    insert into MOBILE_BOOKING_FORM
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="bookingFormId != null" >
+        BOOKING_FORM_ID,
+      </if>
+      <if test="busiBookNo != null" >
+        BUSI_BOOK_NO,
+      </if>
+      <if test="shipCustProvide != null" >
+        SHIP_CUST_PROVIDE,
+      </if>
+      <if test="shipCustCity != null" >
+        SHIP_CUST_CITY,
+      </if>
+      <if test="shipCustCounty != null" >
+        SHIP_CUST_COUNTY,
+      </if>
+      <if test="shipCustAddr != null" >
+        SHIP_CUST_ADDR,
+      </if>
+      <if test="shipCustLinkMan != null" >
+        SHIP_CUST_LINK_MAN,
+      </if>
+      <if test="shipCustLinkTel != null" >
+        SHIP_CUST_LINK_TEL,
+      </if>
+      <if test="shipLongitude != null" >
+        SHIP_LONGITUDE,
+      </if>
+      <if test="shipLatitude != null" >
+        SHIP_LATITUDE,
+      </if>
+      <if test="cneeCustProvide != null" >
+        CNEE_CUST_PROVIDE,
+      </if>
+      <if test="cneeCustCity != null" >
+        CNEE_CUST_CITY,
+      </if>
+      <if test="cneeCustCounty != null" >
+        CNEE_CUST_COUNTY,
+      </if>
+      <if test="cneeCustAddr != null" >
+        CNEE_CUST_ADDR,
+      </if>
+      <if test="cneeCustLinkMan != null" >
+        CNEE_CUST_LINK_MAN,
+      </if>
+      <if test="cneeCustLinkTel != null" >
+        CNEE_CUST_LINK_TEL,
+      </if>
+      <if test="cneeLongitude != null" >
+        CNEE_LONGITUDE,
+      </if>
+      <if test="cneeLatitude != null" >
+        CNEE_LATITUDE,
+      </if>
+      <if test="etaPopDate != null" >
+        ETA_POP_DATE,
+      </if>
+      <if test="bookingDate != null" >
+        BOOKING_DATE,
+      </if>
+      <if test="teamComsixNo != null" >
+        TEAM_COMSIX_NO,
+      </if>
+      <if test="busiCtrl != null" >
+        BUSI_CTRL,
+      </if>
+      <if test="transportType != null" >
+        TRANSPORT_TYPE,
+      </if>
+      <if test="orderType != null" >
+        ORDER_TYPE,
+      </if>
+      <if test="payType != null" >
+        PAY_TYPE,
+      </if>
+      <if test="goodsPayment != null" >
+        GOODS_PAYMENT,
+      </if>
+      <if test="goodsPaymentCurr != null" >
+        GOODS_PAYMENT_CURR,
+      </if>
+      <if test="destPayment != null" >
+        DEST_PAYMENT,
+      </if>
+      <if test="destPaymentCurr != null" >
+        DEST_PAYMENT_CURR,
+      </if>
+      <if test="needInsure != null" >
+        NEED_INSURE,
+      </if>
+      <if test="premiumProportion != null" >
+        PREMIUM_PROPORTION,
+      </if>
+      <if test="premiumValue != null" >
+        PREMIUM_VALUE,
+      </if>
+      <if test="goodsValue != null" >
+        GOODS_VALUE,
+      </if>
+      <if test="isJs != null" >
+        IS_JS,
+      </if>
+      <if test="validBillno != null" >
+        VALID_BILLNO,
+      </if>
+      <if test="comQuoteId != null" >
+        COM_QUOTE_ID,
+      </if>
+      <if test="quotedType != null" >
+        QUOTED_TYPE,
+      </if>
+      <if test="predictValue != null" >
+        PREDICT_VALUE,
+      </if>
+      <if test="predictCurr != null" >
+        PREDICT_CURR,
+      </if>
+      <if test="orderFrom != null" >
+        ORDER_FROM,
+      </if>
+      <if test="dispatchId != null" >
+        DISPATCH_ID,
+      </if>
+      <if test="scheducarno != null" >
+        SCHEDUCARNO,
+      </if>
+      <if test="createUserId != null" >
+        CREATE_USER_ID,
+      </if>
+      <if test="createUser != null" >
+        CREATE_USER,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="revUserId != null" >
+        REV_USER_ID,
+      </if>
+      <if test="revUser != null" >
+        REV_USER,
+      </if>
+      <if test="revDate != null" >
+        REV_DATE,
+      </if>
+      <if test="editUserId != null" >
+        EDIT_USER_ID,
+      </if>
+      <if test="editUser != null" >
+        EDIT_USER,
+      </if>
+      <if test="editDate != null" >
+        EDIT_DATE,
+      </if>
+      <if test="formEditFlag != null" >
+        FORM_EDIT_FLAG,
+      </if>
+      <if test="goodsEditFlag != null" >
+        GOODS_EDIT_FLAG,
+      </if>
+      <if test="startLocus != null" >
+        START_LOCUS,
+      </if>
+      <if test="destnLocus != null" >
+        DESTN_LOCUS,
+      </if>
+      <if test="narrate != null" >
+        NARRATE,
+      </if>
+      <if test="productType != null" >
+        PRODUCT_TYPE,
+      </if>
+      <if test="parentBookingFormId != null" >
+        PARENT_BOOKING_FORM_ID,
+      </if>
+      <if test="emergencyCustAddr != null" >
+        EMERGENCY_CUST_ADDR,
+      </if>
+      <if test="emergencyCustLinkMan != null" >
+        EMERGENCY_CUST_LINK_MAN,
+      </if>
+      <if test="emergencyCustLinkTel != null" >
+        EMERGENCY_CUST_LINK_TEL,
+      </if>
+      <if test="emergencyLongitude != null" >
+        EMERGENCY_LONGITUDE,
+      </if>
+      <if test="emergencyLatitude != null" >
+        EMERGENCY_LATITUDE,
+      </if>
+      <if test="isEmergency != null" >
+        IS_EMERGENCY,
+      </if>
+      <if test="connectionStatus != null" >
+        CONNECTION_STATUS,
+      </if>
+      <if test="connectionOrderNo != null" >
+        CONNECTION_ORDER_NO,
+      </if>
+      <if test="roleId != null" >
+        ROLE_ID,
+      </if>
+      <if test="createCompanyId != null" >
+        CREATE_COMPANY_ID,
+      </if>
+      <if test="revCompanyId != null" >
+        REV_COMPANY_ID,
+      </if>
+      <if test="assignUserId != null" >
+        ASSIGN_USER_ID,
+      </if>
+      <if test="assignUser != null" >
+        ASSIGN_USER,
+      </if>
+      <if test="assignDate != null" >
+        ASSIGN_DATE,
+      </if>
+      <if test="failureTimes != null" >
+        FAILURE_TIMES,
+      </if>
+      <if test="selfQuoteValue != null" >
+        SELF_QUOTE_VALUE,
+      </if>
+      <if test="selfQuoteCurr != null" >
+        SELF_QUOTE_CURR,
+      </if>
+      <if test="deliveryDate != null" >
+        DELIVERY_DATE,
+      </if>
+      <if test="iJsState != null" >
+        I_JS_STATE,
+      </if>
+      <if test="bidBy != null" >
+        BID_BY,
+      </if>
+      <if test="bidUser != null" >
+        BID_USER,
+      </if>
+      <if test="bidUserId != null" >
+        BID_USER_ID,
+      </if>
+      <if test="vehicleTypeId != null" >
+        VEHICLE_TYPE_ID,
+      </if>
+      <if test="startLocusId != null" >
+        START_LOCUS_ID,
+      </if>
+      <if test="destnLocusId != null" >
+        DESTN_LOCUS_ID,
+      </if>
+      <if test="signInTime != null" >
+        SIGN_IN_TIME,
+      </if>
+      <if test="mileage != null" >
+        MILEAGE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="bookingFormId != null" >
+        #{bookingFormId,jdbcType=INTEGER},
+      </if>
+      <if test="busiBookNo != null" >
+        #{busiBookNo,jdbcType=VARCHAR},
+      </if>
+      <if test="shipCustProvide != null" >
+        #{shipCustProvide,jdbcType=VARCHAR},
+      </if>
+      <if test="shipCustCity != null" >
+        #{shipCustCity,jdbcType=VARCHAR},
+      </if>
+      <if test="shipCustCounty != null" >
+        #{shipCustCounty,jdbcType=VARCHAR},
+      </if>
+      <if test="shipCustAddr != null" >
+        #{shipCustAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="shipCustLinkMan != null" >
+        #{shipCustLinkMan,jdbcType=VARCHAR},
+      </if>
+      <if test="shipCustLinkTel != null" >
+        #{shipCustLinkTel,jdbcType=VARCHAR},
+      </if>
+      <if test="shipLongitude != null" >
+        #{shipLongitude,jdbcType=DECIMAL},
+      </if>
+      <if test="shipLatitude != null" >
+        #{shipLatitude,jdbcType=DECIMAL},
+      </if>
+      <if test="cneeCustProvide != null" >
+        #{cneeCustProvide,jdbcType=VARCHAR},
+      </if>
+      <if test="cneeCustCity != null" >
+        #{cneeCustCity,jdbcType=VARCHAR},
+      </if>
+      <if test="cneeCustCounty != null" >
+        #{cneeCustCounty,jdbcType=VARCHAR},
+      </if>
+      <if test="cneeCustAddr != null" >
+        #{cneeCustAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="cneeCustLinkMan != null" >
+        #{cneeCustLinkMan,jdbcType=VARCHAR},
+      </if>
+      <if test="cneeCustLinkTel != null" >
+        #{cneeCustLinkTel,jdbcType=VARCHAR},
+      </if>
+      <if test="cneeLongitude != null" >
+        #{cneeLongitude,jdbcType=DECIMAL},
+      </if>
+      <if test="cneeLatitude != null" >
+        #{cneeLatitude,jdbcType=DECIMAL},
+      </if>
+      <if test="etaPopDate != null" >
+        #{etaPopDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bookingDate != null" >
+        #{bookingDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="teamComsixNo != null" >
+        #{teamComsixNo,jdbcType=VARCHAR},
+      </if>
+      <if test="busiCtrl != null" >
+        #{busiCtrl,jdbcType=INTEGER},
+      </if>
+      <if test="transportType != null" >
+        #{transportType,jdbcType=INTEGER},
+      </if>
+      <if test="orderType != null" >
+        #{orderType,jdbcType=INTEGER},
+      </if>
+      <if test="payType != null" >
+        #{payType,jdbcType=INTEGER},
+      </if>
+      <if test="goodsPayment != null" >
+        #{goodsPayment,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsPaymentCurr != null" >
+        #{goodsPaymentCurr,jdbcType=CHAR},
+      </if>
+      <if test="destPayment != null" >
+        #{destPayment,jdbcType=DECIMAL},
+      </if>
+      <if test="destPaymentCurr != null" >
+        #{destPaymentCurr,jdbcType=CHAR},
+      </if>
+      <if test="needInsure != null" >
+        #{needInsure,jdbcType=BIT},
+      </if>
+      <if test="premiumProportion != null" >
+        #{premiumProportion,jdbcType=DECIMAL},
+      </if>
+      <if test="premiumValue != null" >
+        #{premiumValue,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsValue != null" >
+        #{goodsValue,jdbcType=DECIMAL},
+      </if>
+      <if test="isJs != null" >
+        #{isJs,jdbcType=INTEGER},
+      </if>
+      <if test="validBillno != null" >
+        #{validBillno,jdbcType=VARCHAR},
+      </if>
+      <if test="comQuoteId != null" >
+        #{comQuoteId,jdbcType=VARCHAR},
+      </if>
+      <if test="quotedType != null" >
+        #{quotedType,jdbcType=INTEGER},
+      </if>
+      <if test="predictValue != null" >
+        #{predictValue,jdbcType=DECIMAL},
+      </if>
+      <if test="predictCurr != null" >
+        #{predictCurr,jdbcType=CHAR},
+      </if>
+      <if test="orderFrom != null" >
+        #{orderFrom,jdbcType=INTEGER},
+      </if>
+      <if test="dispatchId != null" >
+        #{dispatchId,jdbcType=INTEGER},
+      </if>
+      <if test="scheducarno != null" >
+        #{scheducarno,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="revUserId != null" >
+        #{revUserId,jdbcType=INTEGER},
+      </if>
+      <if test="revUser != null" >
+        #{revUser,jdbcType=VARCHAR},
+      </if>
+      <if test="revDate != null" >
+        #{revDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editUserId != null" >
+        #{editUserId,jdbcType=INTEGER},
+      </if>
+      <if test="editUser != null" >
+        #{editUser,jdbcType=VARCHAR},
+      </if>
+      <if test="editDate != null" >
+        #{editDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="formEditFlag != null" >
+        #{formEditFlag,jdbcType=BIT},
+      </if>
+      <if test="goodsEditFlag != null" >
+        #{goodsEditFlag,jdbcType=BIT},
+      </if>
+      <if test="startLocus != null" >
+        #{startLocus,jdbcType=VARCHAR},
+      </if>
+      <if test="destnLocus != null" >
+        #{destnLocus,jdbcType=VARCHAR},
+      </if>
+      <if test="narrate != null" >
+        #{narrate,jdbcType=VARCHAR},
+      </if>
+      <if test="productType != null" >
+        #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="parentBookingFormId != null" >
+        #{parentBookingFormId,jdbcType=INTEGER},
+      </if>
+      <if test="emergencyCustAddr != null" >
+        #{emergencyCustAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="emergencyCustLinkMan != null" >
+        #{emergencyCustLinkMan,jdbcType=VARCHAR},
+      </if>
+      <if test="emergencyCustLinkTel != null" >
+        #{emergencyCustLinkTel,jdbcType=VARCHAR},
+      </if>
+      <if test="emergencyLongitude != null" >
+        #{emergencyLongitude,jdbcType=DECIMAL},
+      </if>
+      <if test="emergencyLatitude != null" >
+        #{emergencyLatitude,jdbcType=DECIMAL},
+      </if>
+      <if test="isEmergency != null" >
+        #{isEmergency,jdbcType=INTEGER},
+      </if>
+      <if test="connectionStatus != null" >
+        #{connectionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="connectionOrderNo != null" >
+        #{connectionOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="createCompanyId != null" >
+        #{createCompanyId,jdbcType=INTEGER},
+      </if>
+      <if test="revCompanyId != null" >
+        #{revCompanyId,jdbcType=INTEGER},
+      </if>
+      <if test="assignUserId != null" >
+        #{assignUserId,jdbcType=INTEGER},
+      </if>
+      <if test="assignUser != null" >
+        #{assignUser,jdbcType=VARCHAR},
+      </if>
+      <if test="assignDate != null" >
+        #{assignDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="failureTimes != null" >
+        #{failureTimes,jdbcType=INTEGER},
+      </if>
+      <if test="selfQuoteValue != null" >
+        #{selfQuoteValue,jdbcType=DECIMAL},
+      </if>
+      <if test="selfQuoteCurr != null" >
+        #{selfQuoteCurr,jdbcType=CHAR},
+      </if>
+      <if test="deliveryDate != null" >
+        #{deliveryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="iJsState != null" >
+        #{iJsState,jdbcType=VARCHAR},
+      </if>
+      <if test="bidBy != null" >
+        #{bidBy,jdbcType=VARCHAR},
+      </if>
+      <if test="bidUser != null" >
+        #{bidUser,jdbcType=VARCHAR},
+      </if>
+      <if test="bidUserId != null" >
+        #{bidUserId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleTypeId != null" >
+        #{vehicleTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="startLocusId != null" >
+        #{startLocusId,jdbcType=INTEGER},
+      </if>
+      <if test="destnLocusId != null" >
+        #{destnLocusId,jdbcType=INTEGER},
+      </if>
+      <if test="signInTime != null" >
+        #{signInTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mileage != null" >
+        #{mileage,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gistandard.transport.base.entity.bean.MobileBookingForm" >
+    update MOBILE_BOOKING_FORM
+    <set >
+      <if test="bookingFormId != null" >
+        BOOKING_FORM_ID = #{bookingFormId,jdbcType=INTEGER},
+      </if>
+      <if test="busiBookNo != null" >
+        BUSI_BOOK_NO = #{busiBookNo,jdbcType=VARCHAR},
+      </if>
+      <if test="shipCustProvide != null" >
+        SHIP_CUST_PROVIDE = #{shipCustProvide,jdbcType=VARCHAR},
+      </if>
+      <if test="shipCustCity != null" >
+        SHIP_CUST_CITY = #{shipCustCity,jdbcType=VARCHAR},
+      </if>
+      <if test="shipCustCounty != null" >
+        SHIP_CUST_COUNTY = #{shipCustCounty,jdbcType=VARCHAR},
+      </if>
+      <if test="shipCustAddr != null" >
+        SHIP_CUST_ADDR = #{shipCustAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="shipCustLinkMan != null" >
+        SHIP_CUST_LINK_MAN = #{shipCustLinkMan,jdbcType=VARCHAR},
+      </if>
+      <if test="shipCustLinkTel != null" >
+        SHIP_CUST_LINK_TEL = #{shipCustLinkTel,jdbcType=VARCHAR},
+      </if>
+      <if test="shipLongitude != null" >
+        SHIP_LONGITUDE = #{shipLongitude,jdbcType=DECIMAL},
+      </if>
+      <if test="shipLatitude != null" >
+        SHIP_LATITUDE = #{shipLatitude,jdbcType=DECIMAL},
+      </if>
+      <if test="cneeCustProvide != null" >
+        CNEE_CUST_PROVIDE = #{cneeCustProvide,jdbcType=VARCHAR},
+      </if>
+      <if test="cneeCustCity != null" >
+        CNEE_CUST_CITY = #{cneeCustCity,jdbcType=VARCHAR},
+      </if>
+      <if test="cneeCustCounty != null" >
+        CNEE_CUST_COUNTY = #{cneeCustCounty,jdbcType=VARCHAR},
+      </if>
+      <if test="cneeCustAddr != null" >
+        CNEE_CUST_ADDR = #{cneeCustAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="cneeCustLinkMan != null" >
+        CNEE_CUST_LINK_MAN = #{cneeCustLinkMan,jdbcType=VARCHAR},
+      </if>
+      <if test="cneeCustLinkTel != null" >
+        CNEE_CUST_LINK_TEL = #{cneeCustLinkTel,jdbcType=VARCHAR},
+      </if>
+      <if test="cneeLongitude != null" >
+        CNEE_LONGITUDE = #{cneeLongitude,jdbcType=DECIMAL},
+      </if>
+      <if test="cneeLatitude != null" >
+        CNEE_LATITUDE = #{cneeLatitude,jdbcType=DECIMAL},
+      </if>
+      <if test="etaPopDate != null" >
+        ETA_POP_DATE = #{etaPopDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bookingDate != null" >
+        BOOKING_DATE = #{bookingDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="teamComsixNo != null" >
+        TEAM_COMSIX_NO = #{teamComsixNo,jdbcType=VARCHAR},
+      </if>
+      <if test="busiCtrl != null" >
+        BUSI_CTRL = #{busiCtrl,jdbcType=INTEGER},
+      </if>
+      <if test="transportType != null" >
+        TRANSPORT_TYPE = #{transportType,jdbcType=INTEGER},
+      </if>
+      <if test="orderType != null" >
+        ORDER_TYPE = #{orderType,jdbcType=INTEGER},
+      </if>
+      <if test="payType != null" >
+        PAY_TYPE = #{payType,jdbcType=INTEGER},
+      </if>
+      <if test="goodsPayment != null" >
+        GOODS_PAYMENT = #{goodsPayment,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsPaymentCurr != null" >
+        GOODS_PAYMENT_CURR = #{goodsPaymentCurr,jdbcType=CHAR},
+      </if>
+      <if test="destPayment != null" >
+        DEST_PAYMENT = #{destPayment,jdbcType=DECIMAL},
+      </if>
+      <if test="destPaymentCurr != null" >
+        DEST_PAYMENT_CURR = #{destPaymentCurr,jdbcType=CHAR},
+      </if>
+      <if test="needInsure != null" >
+        NEED_INSURE = #{needInsure,jdbcType=BIT},
+      </if>
+      <if test="premiumProportion != null" >
+        PREMIUM_PROPORTION = #{premiumProportion,jdbcType=DECIMAL},
+      </if>
+      <if test="premiumValue != null" >
+        PREMIUM_VALUE = #{premiumValue,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsValue != null" >
+        GOODS_VALUE = #{goodsValue,jdbcType=DECIMAL},
+      </if>
+      <if test="isJs != null" >
+        IS_JS = #{isJs,jdbcType=INTEGER},
+      </if>
+      <if test="validBillno != null" >
+        VALID_BILLNO = #{validBillno,jdbcType=VARCHAR},
+      </if>
+      <if test="comQuoteId != null" >
+        COM_QUOTE_ID = #{comQuoteId,jdbcType=VARCHAR},
+      </if>
+      <if test="quotedType != null" >
+        QUOTED_TYPE = #{quotedType,jdbcType=INTEGER},
+      </if>
+      <if test="predictValue != null" >
+        PREDICT_VALUE = #{predictValue,jdbcType=DECIMAL},
+      </if>
+      <if test="predictCurr != null" >
+        PREDICT_CURR = #{predictCurr,jdbcType=CHAR},
+      </if>
+      <if test="orderFrom != null" >
+        ORDER_FROM = #{orderFrom,jdbcType=INTEGER},
+      </if>
+      <if test="dispatchId != null" >
+        DISPATCH_ID = #{dispatchId,jdbcType=INTEGER},
+      </if>
+      <if test="scheducarno != null" >
+        SCHEDUCARNO = #{scheducarno,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserId != null" >
+        CREATE_USER_ID = #{createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null" >
+        CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="revUserId != null" >
+        REV_USER_ID = #{revUserId,jdbcType=INTEGER},
+      </if>
+      <if test="revUser != null" >
+        REV_USER = #{revUser,jdbcType=VARCHAR},
+      </if>
+      <if test="revDate != null" >
+        REV_DATE = #{revDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="editUserId != null" >
+        EDIT_USER_ID = #{editUserId,jdbcType=INTEGER},
+      </if>
+      <if test="editUser != null" >
+        EDIT_USER = #{editUser,jdbcType=VARCHAR},
+      </if>
+      <if test="editDate != null" >
+        EDIT_DATE = #{editDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="formEditFlag != null" >
+        FORM_EDIT_FLAG = #{formEditFlag,jdbcType=BIT},
+      </if>
+      <if test="goodsEditFlag != null" >
+        GOODS_EDIT_FLAG = #{goodsEditFlag,jdbcType=BIT},
+      </if>
+      <if test="startLocus != null" >
+        START_LOCUS = #{startLocus,jdbcType=VARCHAR},
+      </if>
+      <if test="destnLocus != null" >
+        DESTN_LOCUS = #{destnLocus,jdbcType=VARCHAR},
+      </if>
+      <if test="narrate != null" >
+        NARRATE = #{narrate,jdbcType=VARCHAR},
+      </if>
+      <if test="productType != null" >
+        PRODUCT_TYPE = #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="parentBookingFormId != null" >
+        PARENT_BOOKING_FORM_ID = #{parentBookingFormId,jdbcType=INTEGER},
+      </if>
+      <if test="emergencyCustAddr != null" >
+        EMERGENCY_CUST_ADDR = #{emergencyCustAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="emergencyCustLinkMan != null" >
+        EMERGENCY_CUST_LINK_MAN = #{emergencyCustLinkMan,jdbcType=VARCHAR},
+      </if>
+      <if test="emergencyCustLinkTel != null" >
+        EMERGENCY_CUST_LINK_TEL = #{emergencyCustLinkTel,jdbcType=VARCHAR},
+      </if>
+      <if test="emergencyLongitude != null" >
+        EMERGENCY_LONGITUDE = #{emergencyLongitude,jdbcType=DECIMAL},
+      </if>
+      <if test="emergencyLatitude != null" >
+        EMERGENCY_LATITUDE = #{emergencyLatitude,jdbcType=DECIMAL},
+      </if>
+      <if test="isEmergency != null" >
+        IS_EMERGENCY = #{isEmergency,jdbcType=INTEGER},
+      </if>
+      <if test="connectionStatus != null" >
+        CONNECTION_STATUS = #{connectionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="connectionOrderNo != null" >
+        CONNECTION_ORDER_NO = #{connectionOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        ROLE_ID = #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="createCompanyId != null" >
+        CREATE_COMPANY_ID = #{createCompanyId,jdbcType=INTEGER},
+      </if>
+      <if test="revCompanyId != null" >
+        REV_COMPANY_ID = #{revCompanyId,jdbcType=INTEGER},
+      </if>
+      <if test="assignUserId != null" >
+        ASSIGN_USER_ID = #{assignUserId,jdbcType=INTEGER},
+      </if>
+      <if test="assignUser != null" >
+        ASSIGN_USER = #{assignUser,jdbcType=VARCHAR},
+      </if>
+      <if test="assignDate != null" >
+        ASSIGN_DATE = #{assignDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="failureTimes != null" >
+        FAILURE_TIMES = #{failureTimes,jdbcType=INTEGER},
+      </if>
+      <if test="selfQuoteValue != null" >
+        SELF_QUOTE_VALUE = #{selfQuoteValue,jdbcType=DECIMAL},
+      </if>
+      <if test="selfQuoteCurr != null" >
+        SELF_QUOTE_CURR = #{selfQuoteCurr,jdbcType=CHAR},
+      </if>
+      <if test="deliveryDate != null" >
+        DELIVERY_DATE = #{deliveryDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="iJsState != null" >
+        I_JS_STATE = #{iJsState,jdbcType=VARCHAR},
+      </if>
+      <if test="bidBy != null" >
+        BID_BY = #{bidBy,jdbcType=VARCHAR},
+      </if>
+      <if test="bidUser != null" >
+        BID_USER = #{bidUser,jdbcType=VARCHAR},
+      </if>
+      <if test="bidUserId != null" >
+        BID_USER_ID = #{bidUserId,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleTypeId != null" >
+        VEHICLE_TYPE_ID = #{vehicleTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="startLocusId != null" >
+        START_LOCUS_ID = #{startLocusId,jdbcType=INTEGER},
+      </if>
+      <if test="destnLocusId != null" >
+        DESTN_LOCUS_ID = #{destnLocusId,jdbcType=INTEGER},
+      </if>
+      <if test="signInTime != null" >
+        SIGN_IN_TIME = #{signInTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mileage != null" >
+        MILEAGE = #{mileage,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gistandard.transport.base.entity.bean.MobileBookingForm" >
+    update MOBILE_BOOKING_FORM
+    set BOOKING_FORM_ID = #{bookingFormId,jdbcType=INTEGER},
+      BUSI_BOOK_NO = #{busiBookNo,jdbcType=VARCHAR},
+      SHIP_CUST_PROVIDE = #{shipCustProvide,jdbcType=VARCHAR},
+      SHIP_CUST_CITY = #{shipCustCity,jdbcType=VARCHAR},
+      SHIP_CUST_COUNTY = #{shipCustCounty,jdbcType=VARCHAR},
+      SHIP_CUST_ADDR = #{shipCustAddr,jdbcType=VARCHAR},
+      SHIP_CUST_LINK_MAN = #{shipCustLinkMan,jdbcType=VARCHAR},
+      SHIP_CUST_LINK_TEL = #{shipCustLinkTel,jdbcType=VARCHAR},
+      SHIP_LONGITUDE = #{shipLongitude,jdbcType=DECIMAL},
+      SHIP_LATITUDE = #{shipLatitude,jdbcType=DECIMAL},
+      CNEE_CUST_PROVIDE = #{cneeCustProvide,jdbcType=VARCHAR},
+      CNEE_CUST_CITY = #{cneeCustCity,jdbcType=VARCHAR},
+      CNEE_CUST_COUNTY = #{cneeCustCounty,jdbcType=VARCHAR},
+      CNEE_CUST_ADDR = #{cneeCustAddr,jdbcType=VARCHAR},
+      CNEE_CUST_LINK_MAN = #{cneeCustLinkMan,jdbcType=VARCHAR},
+      CNEE_CUST_LINK_TEL = #{cneeCustLinkTel,jdbcType=VARCHAR},
+      CNEE_LONGITUDE = #{cneeLongitude,jdbcType=DECIMAL},
+      CNEE_LATITUDE = #{cneeLatitude,jdbcType=DECIMAL},
+      ETA_POP_DATE = #{etaPopDate,jdbcType=TIMESTAMP},
+      BOOKING_DATE = #{bookingDate,jdbcType=TIMESTAMP},
+      TEAM_COMSIX_NO = #{teamComsixNo,jdbcType=VARCHAR},
+      BUSI_CTRL = #{busiCtrl,jdbcType=INTEGER},
+      TRANSPORT_TYPE = #{transportType,jdbcType=INTEGER},
+      ORDER_TYPE = #{orderType,jdbcType=INTEGER},
+      PAY_TYPE = #{payType,jdbcType=INTEGER},
+      GOODS_PAYMENT = #{goodsPayment,jdbcType=DECIMAL},
+      GOODS_PAYMENT_CURR = #{goodsPaymentCurr,jdbcType=CHAR},
+      DEST_PAYMENT = #{destPayment,jdbcType=DECIMAL},
+      DEST_PAYMENT_CURR = #{destPaymentCurr,jdbcType=CHAR},
+      NEED_INSURE = #{needInsure,jdbcType=BIT},
+      PREMIUM_PROPORTION = #{premiumProportion,jdbcType=DECIMAL},
+      PREMIUM_VALUE = #{premiumValue,jdbcType=DECIMAL},
+      GOODS_VALUE = #{goodsValue,jdbcType=DECIMAL},
+      IS_JS = #{isJs,jdbcType=INTEGER},
+      VALID_BILLNO = #{validBillno,jdbcType=VARCHAR},
+      COM_QUOTE_ID = #{comQuoteId,jdbcType=VARCHAR},
+      QUOTED_TYPE = #{quotedType,jdbcType=INTEGER},
+      PREDICT_VALUE = #{predictValue,jdbcType=DECIMAL},
+      PREDICT_CURR = #{predictCurr,jdbcType=CHAR},
+      ORDER_FROM = #{orderFrom,jdbcType=INTEGER},
+      DISPATCH_ID = #{dispatchId,jdbcType=INTEGER},
+      SCHEDUCARNO = #{scheducarno,jdbcType=VARCHAR},
+      CREATE_USER_ID = #{createUserId,jdbcType=INTEGER},
+      CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      REV_USER_ID = #{revUserId,jdbcType=INTEGER},
+      REV_USER = #{revUser,jdbcType=VARCHAR},
+      REV_DATE = #{revDate,jdbcType=TIMESTAMP},
+      EDIT_USER_ID = #{editUserId,jdbcType=INTEGER},
+      EDIT_USER = #{editUser,jdbcType=VARCHAR},
+      EDIT_DATE = #{editDate,jdbcType=TIMESTAMP},
+      FORM_EDIT_FLAG = #{formEditFlag,jdbcType=BIT},
+      GOODS_EDIT_FLAG = #{goodsEditFlag,jdbcType=BIT},
+      START_LOCUS = #{startLocus,jdbcType=VARCHAR},
+      DESTN_LOCUS = #{destnLocus,jdbcType=VARCHAR},
+      NARRATE = #{narrate,jdbcType=VARCHAR},
+      PRODUCT_TYPE = #{productType,jdbcType=VARCHAR},
+      PARENT_BOOKING_FORM_ID = #{parentBookingFormId,jdbcType=INTEGER},
+      EMERGENCY_CUST_ADDR = #{emergencyCustAddr,jdbcType=VARCHAR},
+      EMERGENCY_CUST_LINK_MAN = #{emergencyCustLinkMan,jdbcType=VARCHAR},
+      EMERGENCY_CUST_LINK_TEL = #{emergencyCustLinkTel,jdbcType=VARCHAR},
+      EMERGENCY_LONGITUDE = #{emergencyLongitude,jdbcType=DECIMAL},
+      EMERGENCY_LATITUDE = #{emergencyLatitude,jdbcType=DECIMAL},
+      IS_EMERGENCY = #{isEmergency,jdbcType=INTEGER},
+      CONNECTION_STATUS = #{connectionStatus,jdbcType=INTEGER},
+      CONNECTION_ORDER_NO = #{connectionOrderNo,jdbcType=VARCHAR},
+      ROLE_ID = #{roleId,jdbcType=INTEGER},
+      CREATE_COMPANY_ID = #{createCompanyId,jdbcType=INTEGER},
+      REV_COMPANY_ID = #{revCompanyId,jdbcType=INTEGER},
+      ASSIGN_USER_ID = #{assignUserId,jdbcType=INTEGER},
+      ASSIGN_USER = #{assignUser,jdbcType=VARCHAR},
+      ASSIGN_DATE = #{assignDate,jdbcType=TIMESTAMP},
+      FAILURE_TIMES = #{failureTimes,jdbcType=INTEGER},
+      SELF_QUOTE_VALUE = #{selfQuoteValue,jdbcType=DECIMAL},
+      SELF_QUOTE_CURR = #{selfQuoteCurr,jdbcType=CHAR},
+      DELIVERY_DATE = #{deliveryDate,jdbcType=TIMESTAMP},
+      I_JS_STATE = #{iJsState,jdbcType=VARCHAR},
+      BID_BY = #{bidBy,jdbcType=VARCHAR},
+      BID_USER = #{bidUser,jdbcType=VARCHAR},
+      BID_USER_ID = #{bidUserId,jdbcType=INTEGER},
+      VEHICLE_TYPE_ID = #{vehicleTypeId,jdbcType=INTEGER},
+      START_LOCUS_ID = #{startLocusId,jdbcType=INTEGER},
+      DESTN_LOCUS_ID = #{destnLocusId,jdbcType=INTEGER},
+      SIGN_IN_TIME = #{signInTime,jdbcType=TIMESTAMP},
+      MILEAGE = #{mileage,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

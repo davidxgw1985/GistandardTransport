@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ex.ExpreessFileUploadRecordDaoEx" >
+
+  <select id="queryOrderUploadPath"  resultType="java.lang.String">
+    SELECT
+       e.FILE_PATH
+    FROM
+      EXPREESS_FILE_UPLOAD_RECORD e
+    WHERE
+      e.BUSI_BOOK_NO = #{busiBookNo} AND e.UPLOAD_PEOPLE = #{acctUsername}
+  </select>
+
+</mapper>

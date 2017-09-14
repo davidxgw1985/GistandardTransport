@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ex.BookingFormErrDaoEx">
+    <select id="getBookingFormErrByBusiNo" resultMap="com.gistandard.transport.base.entity.dao.BookingFormErrDao.BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="com.gistandard.transport.base.entity.dao.BookingFormErrDao.Base_Column_List" />
+        from BOOKING_FORM_ERR
+        where BUSI_BOOK_NO = #{busiNo}
+    </select>
+    <!--根据旧状态修改订单表状态 -->
+    <update id="updateBookingFormErrStatus">
+        update BOOKING_FORM_ERR
+        set BUSI_CTRL = #{busiCtrl}
+        where
+            BUSI_BOOK_NO = #{busiNo}
+        AND BUSI_CTRL = #{oldStatus}
+    </update>
+
+</mapper>

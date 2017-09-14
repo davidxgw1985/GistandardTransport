@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ex.MobileGoodsDtlDaoEx" >
+    <update id="updateByPrimaryKey" parameterType="com.gistandard.transport.base.entity.bean.MobileGoodsDtl" >
+        update MOBILE_GOODS_DTL
+        set MOBILE_BOOKING_FORM_ID = #{mobileBookingFormId,jdbcType=INTEGER},
+        GOODS_TYPE = #{goodsType,jdbcType=VARCHAR},
+        GOODS_NAME = #{goodsName,jdbcType=VARCHAR},
+        GOODS_QTY = #{goodsQty,jdbcType=DECIMAL},
+        GOODS_QTY_UNIT = #{goodsQtyUnit,jdbcType=CHAR},
+        GOODS_LENGHT = #{goodsLenght,jdbcType=DECIMAL},
+        GOODS_WIDE = #{goodsWide,jdbcType=DECIMAL},
+        GOODS_HEIGHT = #{goodsHeight,jdbcType=DECIMAL},
+        GOODS_VOLUME = #{goodsVolume,jdbcType=DECIMAL},
+        GOODS_VOLUME_UNIT = #{goodsVolumeUnit,jdbcType=CHAR},
+        GOODS_WEIGHT = #{goodsWeight,jdbcType=DECIMAL},
+        GOODS_WEIGHT_UNIT = #{goodsWeightUnit,jdbcType=CHAR},
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+        CREATE_USER = #{createUser,jdbcType=VARCHAR}
+        where ID = #{id,jdbcType=INTEGER}
+    </update>
+    <insert id="batchInsert" parameterType="java.util.List">
+        insert into MOBILE_GOODS_DTL(MOBILE_BOOKING_FORM_ID, GOODS_TYPE,
+        GOODS_NAME, GOODS_QTY, GOODS_QTY_UNIT,
+        GOODS_LENGHT, GOODS_WIDE, GOODS_HEIGHT,
+        GOODS_VOLUME, GOODS_VOLUME_UNIT, GOODS_WEIGHT,
+        GOODS_WEIGHT_UNIT, CREATE_DATE, CREATE_USER, MOBILE_SCHEDU_ORDER_ID
+        )
+        values
+        <foreach collection="list" item="item" index="index" separator="," >
+            (#{item.mobileBookingFormId}, #{item.goodsType},
+            #{item.goodsName}, #{item.goodsQty}, #{item.goodsQtyUnit},
+            #{item.goodsLenght}, #{item.goodsWide}, #{item.goodsHeight},
+            #{item.goodsVolume}, #{item.goodsVolumeUnit}, #{item.goodsWeight},
+            #{item.goodsWeightUnit}, #{item.createDate}, #{item.createUser},
+            #{item.mobileScheduOrderId}
+            )
+        </foreach>
+    </insert>
+
+    <select id="selectByMobileBookingFormId" resultMap="com.gistandard.transport.base.entity.dao.MobileGoodsDtlDao.BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="com.gistandard.transport.base.entity.dao.MobileGoodsDtlDao.Base_Column_List" />
+        from MOBILE_GOODS_DTL
+        where MOBILE_BOOKING_FORM_ID = #{mobileBookingFormId}
+    </select>
+
+    <select id="selectBySubOrderId" resultMap="com.gistandard.transport.base.entity.dao.MobileGoodsDtlDao.BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="com.gistandard.transport.base.entity.dao.MobileGoodsDtlDao.Base_Column_List" />
+        from MOBILE_GOODS_DTL
+        where MOBILE_BOOKING_FORM_ID = #{mobileBookingFormId}
+        AND MOBILE_SCHEDU_ORDER_ID = #{subOrderId}
+    </select>
+
+    <delete id="batchDeleteMobileGoodsDtl"  >
+        delete from MOBILE_GOODS_DTL
+        where ID IN
+        <foreach item="item" collection="list" separator="," open="(" close=")" index="index">
+            #{item.id,jdbcType=INTEGER}
+        </foreach>
+    </delete>
+</mapper>

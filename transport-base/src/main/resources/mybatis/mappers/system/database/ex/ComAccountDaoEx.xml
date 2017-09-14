@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ex.ComAccountDaoEx" >
+
+  <sql id="Base_Column_List" >
+    G.ID, G.ACCT_USERNAME, G.ACCT_PASSWORD, G.ACCT_STATUS, G.ACCT_AUDIT_USER, G.ACCT_AUDIT_DATE,
+    G.CREDIT_GRADE, G.REMARK, G.FLAG, G.ACCT_TYPE, G.USER_IMG, G.BUSI_TYPE, G.ACCR_SYS, G.NICK_NAME,
+    G.REAL_NAME, G.REGISTER_TYPE, G.CREATE_TIME, G.TEL_PREFIX, G.TELEPHONE
+  </sql>
+  <select id="queryByAccount" resultMap="com.gistandard.transport.base.entity.dao.ComAccountDao.BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="com.gistandard.transport.base.entity.dao.ComAccountDao.Base_Column_List" />
+    from COM_ACCOUNT
+    where ACCT_USERNAME = TRIM(#{acct})
+  </select>
+
+  <select id="queryWaInfoByAccount" resultMap="com.gistandard.transport.base.entity.dao.ComAccountDao.BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    FROM
+    COM_USERINFO A
+    LEFT JOIN COM_ACCOUNT B
+    ON A.ACCOUNT_ID = B.ID
+    LEFT JOIN COM_CUSTOMER C ON C.ID = A.CUSTOMER_ID
+    LEFT JOIN COM_ACCOUNT_ROLE_REL D ON D.REL_ID = C.ID
+    LEFT JOIN COM_ACCOUNT_ROLE E ON E.ID = D.ROLE_ID
+    LEFT JOIN COM_ACCOUNT G ON G.ID = C.ACCOUNT_ID
+    WHERE  B.ACCT_USERNAME = #{acct}  AND E.ID = '5'
+  </select>
+
+  <!-- 根据收货人电话号码获取账号信息-->
+  <select id="queryAccountByTelephone" resultMap="com.gistandard.transport.base.entity.dao.ComAccountDao.BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="com.gistandard.transport.base.entity.dao.ComAccountDao.Base_Column_List" />
+    from COM_ACCOUNT
+    where TELEPHONE = TRIM(#{telephone})
+    limit 1
+  </select>
+
+  <!-- 根据账号或者电话号码获取账号信息-->
+  <select id="queryAccountByParam" resultMap="com.gistandard.transport.base.entity.dao.ComAccountDao.BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="com.gistandard.transport.base.entity.dao.ComAccountDao.Base_Column_List" />
+    from COM_ACCOUNT
+    where TELEPHONE = TRIM(#{param})
+    OR ACCT_USERNAME = TRIM(#{param})
+    limit 1
+  </select>
+
+  <!-- 根据企业id查询所有未绑定车子的司机账号信息-->
+  <select id="queryUnbindDriver" resultMap="com.gistandard.transport.base.entity.dao.ComAccountDao.BaseResultMap" parameterType="java.lang.Integer" >
+    SELECT CA.ID,CA.ACCT_USERNAME,CA.REAL_NAME, CA.TELEPHONE
+      FROM COM_COMPANY_STAFF COM
+      LEFT JOIN COM_ACCOUNT CA ON COM.STAFF_ACCOUNT_ID = CA.ID
+      LEFT JOIN COM_DRIVER_INFO CD ON COM.STAFF_ACCOUNT_ID = CD.ACCOUNT_ID
+      WHERE CA.ACCT_STATUS = 2 AND  FIND_IN_SET('3', COM.ROLE_IDS) AND ISNULL(CD.VEHICLE_ID) AND COM.COMPANY_ACCOUNT_ID = #{companyAccountId}
+  </select>
+</mapper>

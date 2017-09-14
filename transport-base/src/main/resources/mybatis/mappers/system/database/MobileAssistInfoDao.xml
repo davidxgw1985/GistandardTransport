@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gistandard.transport.base.entity.dao.MobileAssistInfoDao">
+    <resultMap id="BaseResultMap" type="com.gistandard.transport.base.entity.bean.MobileAssistInfo">
+        <id column="ID" jdbcType="INTEGER" property="id" />
+        <result column="MOBILE_BOOKING_FORM_ID" jdbcType="INTEGER" property="mobileBookingFormId" />
+        <result column="BUSI_BOOK_NO" jdbcType="VARCHAR" property="busiBookNo" />
+        <result column="BUSI_CTRL_BEFORE" jdbcType="INTEGER" property="busiCtrlBefore" />
+        <result column="BUSI_CTRL_APPLY" jdbcType="INTEGER" property="busiCtrlApply" />
+        <result column="APPLY_ACCT_USER" jdbcType="VARCHAR" property="applyAcctUser" />
+        <result column="APPLY_ACCT_USER_ID" jdbcType="INTEGER" property="applyAcctUserId" />
+        <result column="APPLY_USER_ROLE_ID" jdbcType="INTEGER" property="applyUserRoleId" />
+        <result column="APPLY_TYPE" jdbcType="INTEGER" property="applyType" />
+        <result column="APPLY_TIME" jdbcType="TIMESTAMP" property="applyTime" />
+        <result column="APPLY_REASON" jdbcType="VARCHAR" property="applyReason" />
+        <result column="SCHEDU_ACCT_USER" jdbcType="VARCHAR" property="scheduAcctUser" />
+        <result column="SCHEDU_FLAG" jdbcType="INTEGER" property="scheduFlag" />
+        <result column="SCHEDU_REMARK" jdbcType="VARCHAR" property="scheduRemark" />
+        <result column="SCHEDU_TIME" jdbcType="TIMESTAMP" property="scheduTime" />
+        <result column="SCHEDU_ASSIST_ACCT_USER" jdbcType="VARCHAR" property="scheduAssistAcctUser" />
+        <result column="SCHEDU_REFUSE_REASON" jdbcType="VARCHAR" property="scheduRefuseReason" />
+        <result column="SCHEDU_ASS_SHIP_TEL" jdbcType="VARCHAR" property="scheduAssShipTel" />
+        <result column="SCHEDU_ASS_CNEE_TEL" jdbcType="VARCHAR" property="scheduAssCneeTel" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        ID, MOBILE_BOOKING_FORM_ID, BUSI_BOOK_NO, BUSI_CTRL_BEFORE, BUSI_CTRL_APPLY, APPLY_ACCT_USER,
+        APPLY_ACCT_USER_ID, APPLY_USER_ROLE_ID, APPLY_TYPE, APPLY_TIME, APPLY_REASON, SCHEDU_ACCT_USER,
+        SCHEDU_FLAG, SCHEDU_REMARK, SCHEDU_TIME, SCHEDU_ASSIST_ACCT_USER, SCHEDU_REFUSE_REASON,
+        SCHEDU_ASS_SHIP_TEL,SCHEDU_ASS_CNEE_TEL
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from MOBILE_ASSIST_INFO
+        where ID = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from MOBILE_ASSIST_INFO
+        where ID = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.gistandard.transport.base.entity.bean.MobileAssistInfo">
+        insert into MOBILE_ASSIST_INFO (ID, MOBILE_BOOKING_FORM_ID, BUSI_BOOK_NO,
+        BUSI_CTRL_BEFORE, BUSI_CTRL_APPLY, APPLY_ACCT_USER,
+        APPLY_ACCT_USER_ID, APPLY_USER_ROLE_ID, APPLY_TYPE,
+        APPLY_TIME, APPLY_REASON, SCHEDU_ACCT_USER,
+        SCHEDU_FLAG, SCHEDU_REMARK, SCHEDU_TIME,
+        SCHEDU_ASSIST_ACCT_USER, SCHEDU_REFUSE_REASON,SCHEDU_ASS_SHIP_TEL,SCHEDU_ASS_CNEE_TEL
+        )
+        values (#{id,jdbcType=INTEGER}, #{mobileBookingFormId,jdbcType=INTEGER}, #{busiBookNo,jdbcType=VARCHAR},
+        #{busiCtrlBefore,jdbcType=INTEGER}, #{busiCtrlApply,jdbcType=INTEGER}, #{applyAcctUser,jdbcType=VARCHAR},
+        #{applyAcctUserId,jdbcType=INTEGER}, #{applyUserRoleId,jdbcType=INTEGER}, #{applyType,jdbcType=INTEGER},
+        #{applyTime,jdbcType=TIMESTAMP}, #{applyReason,jdbcType=VARCHAR}, #{scheduAcctUser,jdbcType=VARCHAR},
+        #{scheduFlag,jdbcType=INTEGER}, #{scheduRemark,jdbcType=VARCHAR}, #{scheduTime,jdbcType=TIMESTAMP},
+        #{scheduAssistAcctUser,jdbcType=VARCHAR}, #{scheduRefuseReason,jdbcType=VARCHAR},
+        #{scheduAssShipTel,jdbcType=VARCHAR},#{scheduAssCneeTel,jdbcType=VARCHAR}
+        )
+    </insert>
+    <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.gistandard.transport.base.entity.bean.MobileAssistInfo">
+        insert into MOBILE_ASSIST_INFO
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="mobileBookingFormId != null">
+                MOBILE_BOOKING_FORM_ID,
+            </if>
+            <if test="busiBookNo != null">
+                BUSI_BOOK_NO,
+            </if>
+            <if test="busiCtrlBefore != null">
+                BUSI_CTRL_BEFORE,
+            </if>
+            <if test="busiCtrlApply != null">
+                BUSI_CTRL_APPLY,
+            </if>
+            <if test="applyAcctUser != null">
+                APPLY_ACCT_USER,
+            </if>
+            <if test="applyAcctUserId != null">
+                APPLY_ACCT_USER_ID,
+            </if>
+            <if test="applyUserRoleId != null">
+                APPLY_USER_ROLE_ID,
+            </if>
+            <if test="applyType != null">
+                APPLY_TYPE,
+            </if>
+            <if test="applyTime != null">
+                APPLY_TIME,
+            </if>
+            <if test="applyReason != null">
+                APPLY_REASON,
+            </if>
+            <if test="scheduAcctUser != null">
+                SCHEDU_ACCT_USER,
+            </if>
+            <if test="scheduFlag != null">
+                SCHEDU_FLAG,
+            </if>
+            <if test="scheduRemark != null">
+                SCHEDU_REMARK,
+            </if>
+            <if test="scheduTime != null">
+                SCHEDU_TIME,
+            </if>
+            <if test="scheduAssistAcctUser != null">
+                SCHEDU_ASSIST_ACCT_USER,
+            </if>
+            <if test="scheduRefuseReason != null">
+                SCHEDU_REFUSE_REASON,
+            </if>
+            <if test="scheduAssShipTel != null">
+                SCHEDU_ASS_SHIP_TEL,
+            </if>
+            <if test="scheduAssCneeTel != null">
+                SCHEDU_ASS_CNEE_TEL,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="mobileBookingFormId != null">
+                #{mobileBookingFormId,jdbcType=INTEGER},
+            </if>
+            <if test="busiBookNo != null">
+                #{busiBookNo,jdbcType=VARCHAR},
+            </if>
+            <if test="busiCtrlBefore != null">
+                #{busiCtrlBefore,jdbcType=INTEGER},
+            </if>
+            <if test="busiCtrlApply != null">
+                #{busiCtrlApply,jdbcType=INTEGER},
+            </if>
+            <if test="applyAcctUser != null">
+                #{applyAcctUser,jdbcType=VARCHAR},
+            </if>
+            <if test="applyAcctUserId != null">
+                #{applyAcctUserId,jdbcType=INTEGER},
+            </if>
+            <if test="applyUserRoleId != null">
+                #{applyUserRoleId,jdbcType=INTEGER},
+            </if>
+            <if test="applyType != null">
+                #{applyType,jdbcType=INTEGER},
+            </if>
+            <if test="applyTime != null">
+                #{applyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="applyReason != null">
+                #{applyReason,jdbcType=VARCHAR},
+            </if>
+            <if test="scheduAcctUser != null">
+                #{scheduAcctUser,jdbcType=VARCHAR},
+            </if>
+            <if test="scheduFlag != null">
+                #{scheduFlag,jdbcType=INTEGER},
+            </if>
+            <if test="scheduRemark != null">
+                #{scheduRemark,jdbcType=VARCHAR},
+            </if>
+            <if test="scheduTime != null">
+                #{scheduTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="scheduAssistAcctUser != null">
+                #{scheduAssistAcctUser,jdbcType=VARCHAR},
+            </if>
+            <if test="scheduRefuseReason != null">
+                #{scheduRefuseReason,jdbcType=VARCHAR},
+            </if>
+            <if test="scheduAssShipTel != null">
+                #{scheduAssShipTel,jdbcType=VARCHAR},
+            </if>
+            <if test="scheduAssCneeTel != null">
+                #{scheduAssCneeTel,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.gistandard.transport.base.entity.bean.MobileAssistInfo">
+        update MOBILE_ASSIST_INFO
+        <set>
+            <if test="mobileBookingFormId != null">
+                MOBILE_BOOKING_FORM_ID = #{mobileBookingFormId,jdbcType=INTEGER},
+            </if>
+            <if test="busiBookNo != null">
+                BUSI_BOOK_NO = #{busiBookNo,jdbcType=VARCHAR},
+            </if>
+            <if test="busiCtrlBefore != null">
+                BUSI_CTRL_BEFORE = #{busiCtrlBefore,jdbcType=INTEGER},
+            </if>
+            <if test="busiCtrlApply != null">
+                BUSI_CTRL_APPLY = #{busiCtrlApply,jdbcType=INTEGER},
+            </if>
+            <if test="applyAcctUser != null">
+                APPLY_ACCT_USER = #{applyAcctUser,jdbcType=VARCHAR},
+            </if>
+            <if test="applyAcctUserId != null">
+                APPLY_ACCT_USER_ID = #{applyAcctUserId,jdbcType=INTEGER},
+            </if>
+            <if test="applyUserRoleId != null">
+                APPLY_USER_ROLE_ID = #{applyUserRoleId,jdbcType=INTEGER},
+            </if>
+            <if test="applyType != null">
+                APPLY_TYPE = #{applyType,jdbcType=INTEGER},
+            </if>
+            <if test="applyTime != null">
+                APPLY_TIME = #{applyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="applyReason != null">
+                APPLY_REASON = #{applyReason,jdbcType=VARCHAR},
+            </if>
+            <if test="scheduAcctUser != null">
+                SCHEDU_ACCT_USER = #{scheduAcctUser,jdbcType=VARCHAR},
+            </if>
+            <if test="scheduFlag != null">
+                SCHEDU_FLAG = #{scheduFlag,jdbcType=INTEGER},
+            </if>
+            <if test="scheduRemark != null">
+                SCHEDU_REMARK = #{scheduRemark,jdbcType=VARCHAR},
+            </if>
+            <if test="scheduTime != null">
+                SCHEDU_TIME = #{scheduTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="scheduAssistAcctUser != null">
+                SCHEDU_ASSIST_ACCT_USER = #{scheduAssistAcctUser,jdbcType=VARCHAR},
+            </if>
+            <if test="scheduRefuseReason != null">
+                SCHEDU_REFUSE_REASON = #{scheduRefuseReason,jdbcType=VARCHAR},
+            </if>
+            <if test="scheduAssShipTel != null">
+                SCHEDU_ASS_SHIP_TEL = #{scheduAssShipTel,jdbcType=VARCHAR},
+            </if>
+            <if test="scheduAssCneeTel != null">
+                SCHEDU_ASS_CNEE_TEL = #{scheduAssCneeTel,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.gistandard.transport.base.entity.bean.MobileAssistInfo">
+        update MOBILE_ASSIST_INFO
+        set MOBILE_BOOKING_FORM_ID = #{mobileBookingFormId,jdbcType=INTEGER},
+        BUSI_BOOK_NO = #{busiBookNo,jdbcType=VARCHAR},
+        BUSI_CTRL_BEFORE = #{busiCtrlBefore,jdbcType=INTEGER},
+        BUSI_CTRL_APPLY = #{busiCtrlApply,jdbcType=INTEGER},
+        APPLY_ACCT_USER = #{applyAcctUser,jdbcType=VARCHAR},
+        APPLY_ACCT_USER_ID = #{applyAcctUserId,jdbcType=INTEGER},
+        APPLY_USER_ROLE_ID = #{applyUserRoleId,jdbcType=INTEGER},
+        APPLY_TYPE = #{applyType,jdbcType=INTEGER},
+        APPLY_TIME = #{applyTime,jdbcType=TIMESTAMP},
+        APPLY_REASON = #{applyReason,jdbcType=VARCHAR},
+        SCHEDU_ACCT_USER = #{scheduAcctUser,jdbcType=VARCHAR},
+        SCHEDU_FLAG = #{scheduFlag,jdbcType=INTEGER},
+        SCHEDU_REMARK = #{scheduRemark,jdbcType=VARCHAR},
+        SCHEDU_TIME = #{scheduTime,jdbcType=TIMESTAMP},
+        SCHEDU_ASSIST_ACCT_USER = #{scheduAssistAcctUser,jdbcType=VARCHAR},
+        SCHEDU_REFUSE_REASON = #{scheduRefuseReason,jdbcType=VARCHAR},
+        SCHEDU_ASS_SHIP_TEL = #{scheduAssShipTel,jdbcType=VARCHAR},
+        SCHEDU_ASS_CNEE_TEL = #{scheduAssCneeTel,jdbcType=VARCHAR}
+        where ID = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

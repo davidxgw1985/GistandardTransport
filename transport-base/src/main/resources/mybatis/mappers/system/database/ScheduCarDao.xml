@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ScheduCarDao" >
+  <resultMap id="BaseResultMap" type="com.gistandard.transport.base.entity.bean.ScheduCar" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="SCHEDUCARNO" property="scheducarno" jdbcType="VARCHAR" />
+    <result column="VEHICLEID" property="vehicleid" jdbcType="INTEGER" />
+    <result column="TRUCKCODE" property="truckcode" jdbcType="VARCHAR" />
+    <result column="TRUCKTYPE" property="trucktype" jdbcType="VARCHAR" />
+    <result column="DRIVER" property="driver" jdbcType="VARCHAR" />
+    <result column="CONTAINERNO" property="containerno" jdbcType="VARCHAR" />
+    <result column="ETD" property="etd" jdbcType="TIMESTAMP" />
+    <result column="SCHEDUCARCTRL" property="scheducarctrl" jdbcType="INTEGER" />
+    <result column="CREATEUSER" property="createuser" jdbcType="VARCHAR" />
+    <result column="CREATEDATE" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="VEHICLE_ORDER_ID" property="vehicleOrderId" jdbcType="INTEGER" />
+    <result column="COM_DRIVER_INFO_ID" property="comDriverInfoId" jdbcType="INTEGER" />
+    <result column="ACCT_USERNAME" property="acctUsername" jdbcType="VARCHAR" />
+    <result column="STA_CODE" property="staCode" jdbcType="VARCHAR" />
+    <result column="ACTUAL_STATR_DATE" property="actualStatrDate" jdbcType="TIMESTAMP" />
+    <result column="CUSTOM_NO" property="customNo" jdbcType="VARCHAR" />
+    <result column="IS_USE" property="isUse" jdbcType="INTEGER" />
+    <result column="IS_JS" property="isJs" jdbcType="INTEGER" />
+    <result column="JS_AMOUNT" property="jsAmount" jdbcType="DECIMAL" />
+    <result column="JS_CURRENCY" property="jsCurrency" jdbcType="CHAR" />
+    <result column="ARRIVAL_TIME" property="arrivalTime" jdbcType="TIMESTAMP" />
+    <result column="CUSTOM_CO_OUT" property="customCoOut" jdbcType="VARCHAR" />
+    <result column="CUSTOM_CO_IN" property="customCoIn" jdbcType="VARCHAR" />
+    <result column="OLD_STA_CODE" property="oldStaCode" jdbcType="VARCHAR" />
+    <result column="BOX_ID" property="boxId" jdbcType="INTEGER" />
+    <result column="BRACKET_ID" property="bracketId" jdbcType="INTEGER" />
+    <result column="PAD_ID" property="padId" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="CUSTOMS_STATUS" property="customsStatus" jdbcType="TINYINT" />
+    <result column="IS_BROADCAST" property="isBroadcast" jdbcType="BIT" />
+    <result column="BROADCAST_TIME" property="broadcastTime" jdbcType="TIMESTAMP" />
+    <result column="QUOTE_NO" property="quoteNo" jdbcType="VARCHAR" />
+    <result column="POP_DATE" property="popDate" jdbcType="TIMESTAMP" />
+    <result column="POD_DATE" property="podDate" jdbcType="TIMESTAMP" />
+    <result column="START_LOCUS" property="startLocus" jdbcType="VARCHAR" />
+    <result column="DESTN_LOCUS" property="destnLocus" jdbcType="VARCHAR" />
+    <result column="ARRANGER" property="arranger" jdbcType="VARCHAR" />
+    <result column="ARRANGE_TIME" property="arrangeTime" jdbcType="TIMESTAMP" />
+    <result column="RECEIVING_MODE" property="receivingMode" jdbcType="INTEGER" />
+    <result column="ARRANGE_STATUS" property="arrangeStatus" jdbcType="INTEGER" />
+    <result column="ARRANGER_ID" property="arrangerId" jdbcType="INTEGER" />
+    <result column="OLD_SCHEDUCARNO" property="oldScheducarno" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, SCHEDUCARNO, VEHICLEID, TRUCKCODE, TRUCKTYPE, DRIVER, CONTAINERNO, ETD, SCHEDUCARCTRL, 
+    CREATEUSER, CREATEDATE, VEHICLE_ORDER_ID, COM_DRIVER_INFO_ID, ACCT_USERNAME, STA_CODE, 
+    ACTUAL_STATR_DATE, CUSTOM_NO, IS_USE, IS_JS, JS_AMOUNT, JS_CURRENCY, ARRIVAL_TIME, 
+    CUSTOM_CO_OUT, CUSTOM_CO_IN, OLD_STA_CODE, BOX_ID, BRACKET_ID, PAD_ID, STATUS, CUSTOMS_STATUS, 
+    IS_BROADCAST, BROADCAST_TIME, QUOTE_NO, POP_DATE, POD_DATE, START_LOCUS, DESTN_LOCUS, 
+    ARRANGER, ARRANGE_TIME, RECEIVING_MODE, ARRANGE_STATUS, ARRANGER_ID, OLD_SCHEDUCARNO
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from SCHEDU_CAR
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from SCHEDU_CAR
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gistandard.transport.base.entity.bean.ScheduCar" >
+    insert into SCHEDU_CAR (ID, SCHEDUCARNO, VEHICLEID, 
+      TRUCKCODE, TRUCKTYPE, DRIVER, 
+      CONTAINERNO, ETD, SCHEDUCARCTRL, 
+      CREATEUSER, CREATEDATE, VEHICLE_ORDER_ID, 
+      COM_DRIVER_INFO_ID, ACCT_USERNAME, STA_CODE, 
+      ACTUAL_STATR_DATE, CUSTOM_NO, IS_USE, 
+      IS_JS, JS_AMOUNT, JS_CURRENCY, 
+      ARRIVAL_TIME, CUSTOM_CO_OUT, CUSTOM_CO_IN, 
+      OLD_STA_CODE, BOX_ID, BRACKET_ID, 
+      PAD_ID, STATUS, CUSTOMS_STATUS, 
+      IS_BROADCAST, BROADCAST_TIME, QUOTE_NO, 
+      POP_DATE, POD_DATE, START_LOCUS, 
+      DESTN_LOCUS, ARRANGER, ARRANGE_TIME, 
+      RECEIVING_MODE, ARRANGE_STATUS, ARRANGER_ID, 
+      OLD_SCHEDUCARNO)
+    values (#{id,jdbcType=INTEGER}, #{scheducarno,jdbcType=VARCHAR}, #{vehicleid,jdbcType=INTEGER}, 
+      #{truckcode,jdbcType=VARCHAR}, #{trucktype,jdbcType=VARCHAR}, #{driver,jdbcType=VARCHAR}, 
+      #{containerno,jdbcType=VARCHAR}, #{etd,jdbcType=TIMESTAMP}, #{scheducarctrl,jdbcType=INTEGER}, 
+      #{createuser,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}, #{vehicleOrderId,jdbcType=INTEGER}, 
+      #{comDriverInfoId,jdbcType=INTEGER}, #{acctUsername,jdbcType=VARCHAR}, #{staCode,jdbcType=VARCHAR}, 
+      #{actualStatrDate,jdbcType=TIMESTAMP}, #{customNo,jdbcType=VARCHAR}, #{isUse,jdbcType=INTEGER}, 
+      #{isJs,jdbcType=INTEGER}, #{jsAmount,jdbcType=DECIMAL}, #{jsCurrency,jdbcType=CHAR}, 
+      #{arrivalTime,jdbcType=TIMESTAMP}, #{customCoOut,jdbcType=VARCHAR}, #{customCoIn,jdbcType=VARCHAR}, 
+      #{oldStaCode,jdbcType=VARCHAR}, #{boxId,jdbcType=INTEGER}, #{bracketId,jdbcType=INTEGER}, 
+      #{padId,jdbcType=VARCHAR}, #{status,jdbcType=CHAR}, #{customsStatus,jdbcType=TINYINT}, 
+      #{isBroadcast,jdbcType=BIT}, #{broadcastTime,jdbcType=TIMESTAMP}, #{quoteNo,jdbcType=VARCHAR}, 
+      #{popDate,jdbcType=TIMESTAMP}, #{podDate,jdbcType=TIMESTAMP}, #{startLocus,jdbcType=VARCHAR}, 
+      #{destnLocus,jdbcType=VARCHAR}, #{arranger,jdbcType=VARCHAR}, #{arrangeTime,jdbcType=TIMESTAMP}, 
+      #{receivingMode,jdbcType=INTEGER}, #{arrangeStatus,jdbcType=INTEGER}, #{arrangerId,jdbcType=INTEGER}, 
+      #{oldScheducarno,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gistandard.transport.base.entity.bean.ScheduCar" >
+    insert into SCHEDU_CAR
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="scheducarno != null" >
+        SCHEDUCARNO,
+      </if>
+      <if test="vehicleid != null" >
+        VEHICLEID,
+      </if>
+      <if test="truckcode != null" >
+        TRUCKCODE,
+      </if>
+      <if test="trucktype != null" >
+        TRUCKTYPE,
+      </if>
+      <if test="driver != null" >
+        DRIVER,
+      </if>
+      <if test="containerno != null" >
+        CONTAINERNO,
+      </if>
+      <if test="etd != null" >
+        ETD,
+      </if>
+      <if test="scheducarctrl != null" >
+        SCHEDUCARCTRL,
+      </if>
+      <if test="createuser != null" >
+        CREATEUSER,
+      </if>
+      <if test="createdate != null" >
+        CREATEDATE,
+      </if>
+      <if test="vehicleOrderId != null" >
+        VEHICLE_ORDER_ID,
+      </if>
+      <if test="comDriverInfoId != null" >
+        COM_DRIVER_INFO_ID,
+      </if>
+      <if test="acctUsername != null" >
+        ACCT_USERNAME,
+      </if>
+      <if test="staCode != null" >
+        STA_CODE,
+      </if>
+      <if test="actualStatrDate != null" >
+        ACTUAL_STATR_DATE,
+      </if>
+      <if test="customNo != null" >
+        CUSTOM_NO,
+      </if>
+      <if test="isUse != null" >
+        IS_USE,
+      </if>
+      <if test="isJs != null" >
+        IS_JS,
+      </if>
+      <if test="jsAmount != null" >
+        JS_AMOUNT,
+      </if>
+      <if test="jsCurrency != null" >
+        JS_CURRENCY,
+      </if>
+      <if test="arrivalTime != null" >
+        ARRIVAL_TIME,
+      </if>
+      <if test="customCoOut != null" >
+        CUSTOM_CO_OUT,
+      </if>
+      <if test="customCoIn != null" >
+        CUSTOM_CO_IN,
+      </if>
+      <if test="oldStaCode != null" >
+        OLD_STA_CODE,
+      </if>
+      <if test="boxId != null" >
+        BOX_ID,
+      </if>
+      <if test="bracketId != null" >
+        BRACKET_ID,
+      </if>
+      <if test="padId != null" >
+        PAD_ID,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="customsStatus != null" >
+        CUSTOMS_STATUS,
+      </if>
+      <if test="isBroadcast != null" >
+        IS_BROADCAST,
+      </if>
+      <if test="broadcastTime != null" >
+        BROADCAST_TIME,
+      </if>
+      <if test="quoteNo != null" >
+        QUOTE_NO,
+      </if>
+      <if test="popDate != null" >
+        POP_DATE,
+      </if>
+      <if test="podDate != null" >
+        POD_DATE,
+      </if>
+      <if test="startLocus != null" >
+        START_LOCUS,
+      </if>
+      <if test="destnLocus != null" >
+        DESTN_LOCUS,
+      </if>
+      <if test="arranger != null" >
+        ARRANGER,
+      </if>
+      <if test="arrangeTime != null" >
+        ARRANGE_TIME,
+      </if>
+      <if test="receivingMode != null" >
+        RECEIVING_MODE,
+      </if>
+      <if test="arrangeStatus != null" >
+        ARRANGE_STATUS,
+      </if>
+      <if test="arrangerId != null" >
+        ARRANGER_ID,
+      </if>
+      <if test="oldScheducarno != null" >
+        OLD_SCHEDUCARNO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="scheducarno != null" >
+        #{scheducarno,jdbcType=VARCHAR},
+      </if>
+      <if test="vehicleid != null" >
+        #{vehicleid,jdbcType=INTEGER},
+      </if>
+      <if test="truckcode != null" >
+        #{truckcode,jdbcType=VARCHAR},
+      </if>
+      <if test="trucktype != null" >
+        #{trucktype,jdbcType=VARCHAR},
+      </if>
+      <if test="driver != null" >
+        #{driver,jdbcType=VARCHAR},
+      </if>
+      <if test="containerno != null" >
+        #{containerno,jdbcType=VARCHAR},
+      </if>
+      <if test="etd != null" >
+        #{etd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="scheducarctrl != null" >
+        #{scheducarctrl,jdbcType=INTEGER},
+      </if>
+      <if test="createuser != null" >
+        #{createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="vehicleOrderId != null" >
+        #{vehicleOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="comDriverInfoId != null" >
+        #{comDriverInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="acctUsername != null" >
+        #{acctUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="staCode != null" >
+        #{staCode,jdbcType=VARCHAR},
+      </if>
+      <if test="actualStatrDate != null" >
+        #{actualStatrDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="customNo != null" >
+        #{customNo,jdbcType=VARCHAR},
+      </if>
+      <if test="isUse != null" >
+        #{isUse,jdbcType=INTEGER},
+      </if>
+      <if test="isJs != null" >
+        #{isJs,jdbcType=INTEGER},
+      </if>
+      <if test="jsAmount != null" >
+        #{jsAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="jsCurrency != null" >
+        #{jsCurrency,jdbcType=CHAR},
+      </if>
+      <if test="arrivalTime != null" >
+        #{arrivalTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="customCoOut != null" >
+        #{customCoOut,jdbcType=VARCHAR},
+      </if>
+      <if test="customCoIn != null" >
+        #{customCoIn,jdbcType=VARCHAR},
+      </if>
+      <if test="oldStaCode != null" >
+        #{oldStaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="boxId != null" >
+        #{boxId,jdbcType=INTEGER},
+      </if>
+      <if test="bracketId != null" >
+        #{bracketId,jdbcType=INTEGER},
+      </if>
+      <if test="padId != null" >
+        #{padId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="customsStatus != null" >
+        #{customsStatus,jdbcType=TINYINT},
+      </if>
+      <if test="isBroadcast != null" >
+        #{isBroadcast,jdbcType=BIT},
+      </if>
+      <if test="broadcastTime != null" >
+        #{broadcastTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="quoteNo != null" >
+        #{quoteNo,jdbcType=VARCHAR},
+      </if>
+      <if test="popDate != null" >
+        #{popDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="podDate != null" >
+        #{podDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startLocus != null" >
+        #{startLocus,jdbcType=VARCHAR},
+      </if>
+      <if test="destnLocus != null" >
+        #{destnLocus,jdbcType=VARCHAR},
+      </if>
+      <if test="arranger != null" >
+        #{arranger,jdbcType=VARCHAR},
+      </if>
+      <if test="arrangeTime != null" >
+        #{arrangeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receivingMode != null" >
+        #{receivingMode,jdbcType=INTEGER},
+      </if>
+      <if test="arrangeStatus != null" >
+        #{arrangeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="arrangerId != null" >
+        #{arrangerId,jdbcType=INTEGER},
+      </if>
+      <if test="oldScheducarno != null" >
+        #{oldScheducarno,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gistandard.transport.base.entity.bean.ScheduCar" >
+    update SCHEDU_CAR
+    <set >
+      <if test="scheducarno != null" >
+        SCHEDUCARNO = #{scheducarno,jdbcType=VARCHAR},
+      </if>
+      <if test="vehicleid != null" >
+        VEHICLEID = #{vehicleid,jdbcType=INTEGER},
+      </if>
+      <if test="truckcode != null" >
+        TRUCKCODE = #{truckcode,jdbcType=VARCHAR},
+      </if>
+      <if test="trucktype != null" >
+        TRUCKTYPE = #{trucktype,jdbcType=VARCHAR},
+      </if>
+      <if test="driver != null" >
+        DRIVER = #{driver,jdbcType=VARCHAR},
+      </if>
+      <if test="containerno != null" >
+        CONTAINERNO = #{containerno,jdbcType=VARCHAR},
+      </if>
+      <if test="etd != null" >
+        ETD = #{etd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="scheducarctrl != null" >
+        SCHEDUCARCTRL = #{scheducarctrl,jdbcType=INTEGER},
+      </if>
+      <if test="createuser != null" >
+        CREATEUSER = #{createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null" >
+        CREATEDATE = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="vehicleOrderId != null" >
+        VEHICLE_ORDER_ID = #{vehicleOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="comDriverInfoId != null" >
+        COM_DRIVER_INFO_ID = #{comDriverInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="acctUsername != null" >
+        ACCT_USERNAME = #{acctUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="staCode != null" >
+        STA_CODE = #{staCode,jdbcType=VARCHAR},
+      </if>
+      <if test="actualStatrDate != null" >
+        ACTUAL_STATR_DATE = #{actualStatrDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="customNo != null" >
+        CUSTOM_NO = #{customNo,jdbcType=VARCHAR},
+      </if>
+      <if test="isUse != null" >
+        IS_USE = #{isUse,jdbcType=INTEGER},
+      </if>
+      <if test="isJs != null" >
+        IS_JS = #{isJs,jdbcType=INTEGER},
+      </if>
+      <if test="jsAmount != null" >
+        JS_AMOUNT = #{jsAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="jsCurrency != null" >
+        JS_CURRENCY = #{jsCurrency,jdbcType=CHAR},
+      </if>
+      <if test="arrivalTime != null" >
+        ARRIVAL_TIME = #{arrivalTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="customCoOut != null" >
+        CUSTOM_CO_OUT = #{customCoOut,jdbcType=VARCHAR},
+      </if>
+      <if test="customCoIn != null" >
+        CUSTOM_CO_IN = #{customCoIn,jdbcType=VARCHAR},
+      </if>
+      <if test="oldStaCode != null" >
+        OLD_STA_CODE = #{oldStaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="boxId != null" >
+        BOX_ID = #{boxId,jdbcType=INTEGER},
+      </if>
+      <if test="bracketId != null" >
+        BRACKET_ID = #{bracketId,jdbcType=INTEGER},
+      </if>
+      <if test="padId != null" >
+        PAD_ID = #{padId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=CHAR},
+      </if>
+      <if test="customsStatus != null" >
+        CUSTOMS_STATUS = #{customsStatus,jdbcType=TINYINT},
+      </if>
+      <if test="isBroadcast != null" >
+        IS_BROADCAST = #{isBroadcast,jdbcType=BIT},
+      </if>
+      <if test="broadcastTime != null" >
+        BROADCAST_TIME = #{broadcastTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="quoteNo != null" >
+        QUOTE_NO = #{quoteNo,jdbcType=VARCHAR},
+      </if>
+      <if test="popDate != null" >
+        POP_DATE = #{popDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="podDate != null" >
+        POD_DATE = #{podDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startLocus != null" >
+        START_LOCUS = #{startLocus,jdbcType=VARCHAR},
+      </if>
+      <if test="destnLocus != null" >
+        DESTN_LOCUS = #{destnLocus,jdbcType=VARCHAR},
+      </if>
+      <if test="arranger != null" >
+        ARRANGER = #{arranger,jdbcType=VARCHAR},
+      </if>
+      <if test="arrangeTime != null" >
+        ARRANGE_TIME = #{arrangeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receivingMode != null" >
+        RECEIVING_MODE = #{receivingMode,jdbcType=INTEGER},
+      </if>
+      <if test="arrangeStatus != null" >
+        ARRANGE_STATUS = #{arrangeStatus,jdbcType=INTEGER},
+      </if>
+      <if test="arrangerId != null" >
+        ARRANGER_ID = #{arrangerId,jdbcType=INTEGER},
+      </if>
+      <if test="oldScheducarno != null" >
+        OLD_SCHEDUCARNO = #{oldScheducarno,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gistandard.transport.base.entity.bean.ScheduCar" >
+    update SCHEDU_CAR
+    set SCHEDUCARNO = #{scheducarno,jdbcType=VARCHAR},
+      VEHICLEID = #{vehicleid,jdbcType=INTEGER},
+      TRUCKCODE = #{truckcode,jdbcType=VARCHAR},
+      TRUCKTYPE = #{trucktype,jdbcType=VARCHAR},
+      DRIVER = #{driver,jdbcType=VARCHAR},
+      CONTAINERNO = #{containerno,jdbcType=VARCHAR},
+      ETD = #{etd,jdbcType=TIMESTAMP},
+      SCHEDUCARCTRL = #{scheducarctrl,jdbcType=INTEGER},
+      CREATEUSER = #{createuser,jdbcType=VARCHAR},
+      CREATEDATE = #{createdate,jdbcType=TIMESTAMP},
+      VEHICLE_ORDER_ID = #{vehicleOrderId,jdbcType=INTEGER},
+      COM_DRIVER_INFO_ID = #{comDriverInfoId,jdbcType=INTEGER},
+      ACCT_USERNAME = #{acctUsername,jdbcType=VARCHAR},
+      STA_CODE = #{staCode,jdbcType=VARCHAR},
+      ACTUAL_STATR_DATE = #{actualStatrDate,jdbcType=TIMESTAMP},
+      CUSTOM_NO = #{customNo,jdbcType=VARCHAR},
+      IS_USE = #{isUse,jdbcType=INTEGER},
+      IS_JS = #{isJs,jdbcType=INTEGER},
+      JS_AMOUNT = #{jsAmount,jdbcType=DECIMAL},
+      JS_CURRENCY = #{jsCurrency,jdbcType=CHAR},
+      ARRIVAL_TIME = #{arrivalTime,jdbcType=TIMESTAMP},
+      CUSTOM_CO_OUT = #{customCoOut,jdbcType=VARCHAR},
+      CUSTOM_CO_IN = #{customCoIn,jdbcType=VARCHAR},
+      OLD_STA_CODE = #{oldStaCode,jdbcType=VARCHAR},
+      BOX_ID = #{boxId,jdbcType=INTEGER},
+      BRACKET_ID = #{bracketId,jdbcType=INTEGER},
+      PAD_ID = #{padId,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=CHAR},
+      CUSTOMS_STATUS = #{customsStatus,jdbcType=TINYINT},
+      IS_BROADCAST = #{isBroadcast,jdbcType=BIT},
+      BROADCAST_TIME = #{broadcastTime,jdbcType=TIMESTAMP},
+      QUOTE_NO = #{quoteNo,jdbcType=VARCHAR},
+      POP_DATE = #{popDate,jdbcType=TIMESTAMP},
+      POD_DATE = #{podDate,jdbcType=TIMESTAMP},
+      START_LOCUS = #{startLocus,jdbcType=VARCHAR},
+      DESTN_LOCUS = #{destnLocus,jdbcType=VARCHAR},
+      ARRANGER = #{arranger,jdbcType=VARCHAR},
+      ARRANGE_TIME = #{arrangeTime,jdbcType=TIMESTAMP},
+      RECEIVING_MODE = #{receivingMode,jdbcType=INTEGER},
+      ARRANGE_STATUS = #{arrangeStatus,jdbcType=INTEGER},
+      ARRANGER_ID = #{arrangerId,jdbcType=INTEGER},
+      OLD_SCHEDUCARNO = #{oldScheducarno,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

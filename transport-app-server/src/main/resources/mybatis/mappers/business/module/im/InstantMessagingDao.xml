@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.app.module.im.dao.InstantMessagingDao">
+    <resultMap id="queryContactsDetailMap" type="com.gistandard.transport.app.module.im.bean.QueryContactsDetailData">
+        <result column="ACCOUNT_ID" property="accountId" jdbcType="INTEGER"/>
+        <result column="ACCT_USERNAME" property="acctUsername" jdbcType="VARCHAR"/>
+        <result column="USER_IMG" property="userImg" jdbcType="VARCHAR"/>
+        <result column="NICK_NAME" property="nickName" jdbcType="VARCHAR"/>
+        <result column="TELEPHONE" property="telephone" jdbcType="VARCHAR"/>
+        <result column="IDENTNO" property="identno" jdbcType="VARCHAR"/>
+        <result column="EMAIL" property="email" jdbcType="VARCHAR"/>
+        <result column="COUNTRY" property="country" jdbcType="VARCHAR"/>
+        <result column="PROVINCE" property="province" jdbcType="VARCHAR"/>
+        <result column="CITY" property="city" jdbcType="VARCHAR"/>
+        <result column="COUNTY" property="county" jdbcType="VARCHAR"/>
+        <result column="ADDRESS" property="address" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="queryContactsListMap" type="com.gistandard.transport.app.module.im.bean.QueryContactsListData">
+        <result column="ID" property="accountId" jdbcType="INTEGER"/>
+        <result column="ACCT_USERNAME" property="acctUsername" jdbcType="VARCHAR"/>
+        <result column="USER_IMG" property="userImg" jdbcType="VARCHAR"/>
+        <result column="NICK_NAME" property="nickName" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="queryContactsDetail" resultMap="queryContactsDetailMap" parameterType="INTEGER">
+        select
+        CU.ACCOUNT_ID, CA.ACCT_USERNAME, CA.USER_IMG, CU.NICK_NAME, CU.TELEPHONE, CU.IDENTNO,
+        CU.EMAIL, CU.COUNTRY, CU.PROVINCE, CU.CITY, CU.COUNTY, CU.ADDRESS
+        FROM COM_ACCOUNT CA
+        LEFT JOIN COM_USERINFO CU ON CU.ACCOUNT_ID = CA.ID
+        where CA.ID = #{accountId}
+        AND CU.ID IS NOT NULL
+    </select>
+
+    <sql id="queryContactsListSql" >
+        SELECT
+        CA.ID, CA.USER_IMG, CA.NICK_NAME, CA.ACCT_USERNAME,1 as ACCOUNT_TYPE
+        FROM COM_ACCOUNT CA
+        LEFT JOIN COM_CUSTOMER CC ON CC.ACCOUNT_ID = CA.ID
+        WHERE
+        CC.ACCOUNT_ID IS NOT NULL
+        AND CA.ID != #{accountId}
+        <if test="param != null">
+            AND ( CA.ACCT_USERNAME LIKE CONCAT('%',#{param},'%')
+            OR CC.CUST_MANTEL LIKE CONCAT('%',#{param},'%')
+            OR CA.NICK_NAME LIKE CONCAT('%',#{param},'%'))
+        </if>
+        UNION ALL
+        SELECT
+        CA.ID, CA.USER_IMG, CA.NICK_NAME, CA.ACCT_USERNAME,2 as ACCOUNT_TYPE
+        FROM COM_ACCOUNT CA
+        LEFT JOIN COM_USERINFO CU ON CU.ACCOUNT_ID = CA.ID
+        WHERE
+        CU.ACCOUNT_ID IS NOT NULL
+        AND CA.ID != #{accountId}
+        <if test="param != null">
+            AND ( CA.ACCT_USERNAME LIKE CONCAT('%',#{param},'%')
+            OR CU.TELEPHONE LIKE CONCAT('%',#{param},'%')
+            OR CA.NICK_NAME LIKE CONCAT('%',#{param},'%'))
+        </if>
+    </sql>
+
+    <select id="queryContactsListCount" resultType="java.lang.Integer"
+            parameterType="com.gistandard.transport.app.module.im.bean.QueryContactsListParam">
+        select count(1) FROM (
+        <include refid="queryContactsListSql" />
+        ) as temp
+    </select>
+
+    <select id="queryContactsList" resultMap="queryContactsListMap" parameterType="com.gistandard.transport.app.module.im.bean.QueryContactsListParam">
+        SELECT ID,USER_IMG,NICK_NAME,ACCT_USERNAME,ACCOUNT_TYPE FROM (
+        <include refid="queryContactsListSql" />
+        ) as temp
+        ORDER BY ACCOUNT_TYPE DESC
+        <if test="pageSize !=0">
+            limit #{startRecord},#{pageSize}
+        </if>
+    </select>
+
+</mapper>

@@ -1,0 +1,648 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gistandard.transport.quote.module.product.dao.ProductDao">
+    <resultMap id="BaseResultMap" type="com.gistandard.transport.quote.system.common.bean.ComQuoteBean" >
+        <id column="ID" property="id" jdbcType="INTEGER" />
+        <result column="ITEM_ID" property="itemId" jdbcType="INTEGER" />
+        <result column="QUOTE_NO" property="quoteNo" jdbcType="VARCHAR" />
+        <result column="START_ROUTE" property="startRoute" jdbcType="INTEGER" />
+        <result column="END_ROUTE" property="endRoute" jdbcType="INTEGER" />
+        <result column="START_STATION" property="startStation" jdbcType="INTEGER" />
+        <result column="END_STATION" property="endStation" jdbcType="INTEGER" />
+        <result column="ADDRESS" property="address" jdbcType="INTEGER" />
+        <result column="PRODUCT_DESC" property="productDesc" jdbcType="VARCHAR" />
+        <result column="PUBLIC_FLAG" property="publicFlag" jdbcType="BIT" />
+        <result column="PRODUCT_TYPE" property="productType" jdbcType="VARCHAR" />
+        <result column="PRODUCT_STATUS" property="productStatus" jdbcType="INTEGER" />
+        <result column="CURRENCY_CODE" property="currencyCode" jdbcType="VARCHAR" />
+        <result column="QUOTE_TYPE" property="quoteType" jdbcType="INTEGER" />
+        <result column="TOTAL_WEIGHT" property="totalWeight" jdbcType="DECIMAL" />
+        <result column="TOTAL_PRICE" property="totalPrice" jdbcType="DECIMAL" />
+        <result column="UNIT_PRICE" property="unitPrice" jdbcType="DECIMAL" />
+        <result column="LIGHT_UNIT_PRICE" property="lightUnitPrice" jdbcType="DECIMAL" />
+        <result column="HEAVY_UNIT_PRICE" property="heavyUnitPrice" jdbcType="DECIMAL" />
+        <result column="ROUTE_ID" property="routeId" jdbcType="VARCHAR" />
+        <result column="COL_NUM" property="colNum" jdbcType="INTEGER" />
+        <result column="CUSTOMER_ID" property="customerId" jdbcType="INTEGER" />
+        <result column="CREATE_ACCOUNT" property="createAccount" jdbcType="VARCHAR" />
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="CUSTOMS_CO" property="customsCo" jdbcType="VARCHAR" />
+    </resultMap>
+    <resultMap id="StationResultMap" type="com.gistandard.transport.quote.system.common.bean.StationBean" >
+        <id column="ID" property="id" jdbcType="INTEGER" />
+        <id column="CUSTOM_NO" property="customNo" jdbcType="VARCHAR" />
+        <id column="CUST_NAME" property="custName" jdbcType="VARCHAR" />
+        <id column="CUST_ADD" property="custAdd" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="queryStationList" parameterType="com.gistandard.transport.quote.system.common.bean.StationQueryBean"
+            resultMap="StationResultMap">
+                SELECT A.ID AS ID,A.CUSTOM_NO AS CUSTOM_NO,
+                       A.CUST_NAME AS CUST_NAME,A.CUST_ADD AS CUST_ADD
+                FROM COM_CUSTOMER A
+                WHERE  EXISTS(
+                  SELECT 1 FROM COM_ACCOUNT_ROLE_REL B WHERE A.ID = B.REL_ID AND B.ROLE_ID IN (5,14)
+                )
+            <if test="areaInput!= null and areaInput!= ''">
+                    AND (A.COUNTRY = #{areaInput,jdbcType=VARCHAR}
+                    OR A.PROVINCE = #{areaInput,jdbcType=VARCHAR}
+                    OR A.CITY = #{areaInput,jdbcType=VARCHAR}
+                    OR A.COUNTY = #{areaInput,jdbcType=VARCHAR})
+                </if>
+
+                <if test="country!= null and country!= ''">
+                   AND  COUNTRY = #{country,jdbcType=VARCHAR}
+                </if>
+
+                <if test="province!= null and province!= ''">
+                    AND  PROVINCE = #{province,jdbcType=VARCHAR}
+
+                </if>
+
+                <if test="city!= null and city!= ''">
+                    AND CITY = #{city,jdbcType=VARCHAR}
+                </if>
+
+                <if test="county!= null and county!= ''">
+                    AND COUNTY = #{county,jdbcType=VARCHAR}
+                </if>
+    </select>
+
+
+
+    <select id="queryQuoteListCount" resultType="java.lang.Integer"
+            parameterType="com.gistandard.transport.quote.system.common.bean.ProductQueryBean">
+        SELECT
+        count(1)
+        FROM COM_QUOTE A WHERE
+        A.QUOTE_BELONG IN (1,2)
+        <if test="isManage == true">
+            AND PRODUCT_STATUS in(1,2)
+        </if>
+        <if test="isManage == false">
+            AND  PRODUCT_STATUS =1
+        </if>
+        <if test="itemId != null">
+            AND ITEM_ID = #{itemId}
+        </if>
+        <if test="customerId != null and customerId != '' ">
+            AND CUSTOMER_ID = #{customerId}
+        </if>
+        <if test="userinfoId != null and userinfoId != '' ">
+            AND USERINFO_ID = #{userinfoId}
+        </if>
+        <if test="account != null">
+            AND CREATE_ACCOUNT = #{account,jdbcType=VARCHAR}
+        </if>
+        <if test="itemType != null ">
+            AND  EXISTS (
+            SELECT  1 FROM COM_QUOTE_ITEM  B WHERE A.ITEM_ID = B.ID
+            AND  B.ITEM_TYPE = #{itemType}
+            )
+        </if>
+
+        <if test="quoteType != null and quoteType != '' ">
+            AND QUOTE_TYPE = #{quoteType}
+        </if>
+
+        <if test="productType != null and productType != '' ">
+            AND PRODUCT_TYPE = #{productType}
+        </if>
+
+        <if test="itemCategory != null and itemCategory != ''">
+            AND  EXISTS (
+            SELECT  1 FROM COM_QUOTE_ITEM  B WHERE A.ITEM_ID = B.ID
+            AND  B.ITEM_CATEGORY = #{itemCategory}
+            )
+        </if>
+
+        <if test="startStation != null and startStation != ''">
+            AND  START_STATION = #{startStation}
+        </if>
+        <if test="endStation != null and endStation != ''">
+            AND  START_STATION = #{startStation}
+        </if>
+
+        <if test="publicState == 1">
+            AND  PUBLIC_FLAG = 1
+        </if>
+
+        <if test="publicState == 2">
+            AND  PUBLIC_FLAG = 0
+        </if>
+
+        <if test="publicState == 3">
+            AND  ( PUBLIC_FLAG = 1 OR EXISTS (
+            SELECT 1 FROM  COM_QUOTE_CLIENT_REL B WHERE A.ID=B.QUOTE_ID
+            AND B.ACCOUNT_ID=#{clientAccountId}
+            ))
+        </if>
+
+
+        <if test="account != null and account != ''">
+            AND  CREATE_ACCOUNT = #{account}
+        </if>
+        <if test="customerId != null and customerId != ''">
+            AND  CUSTOMER_ID = #{customerId}
+        </if>
+        <if test="comQuoteId != null and comQuoteId != ''">
+            AND  ID = #{comQuoteId}
+        </if>
+        <if test="quoteStatus != null and quoteStatus != ''">
+            AND  PRODUCT_STATUS = #{quoteStatus.value}
+        </if>
+        <if test="quoteNo != null and quoteNo != ''">
+            AND  QUOTE_NO LIKE "%"#{quoteNo}"%"
+        </if>
+
+
+        <if test="roleId != null and roleId != '' ">
+            AND  EXISTS (
+            SELECT 1 FROM COM_ACCOUNT_ROLE_REL B WHERE A.BELONG_ACCOUNT_ID = B.ACCOUNT_ID  AND B.ROLE_ID = #{roleId}
+            )
+        </if>
+
+        <if test="startRouteType == 'PROVINCE' ">
+            AND EXISTS(
+            SELECT 1 FROM  COM_COUNTY B WHERE
+            B.PROVINCE_ID = #{startRoute}
+            AND (A.START_ROUTE = B.ID
+
+            OR A.START_ROUTE = B.CITY_ID
+
+            OR A.START_ROUTE = B.PROVINCE_ID)
+            )
+        </if>
+        <if test="startRouteType == 'CITY' ">
+            AND EXISTS(
+            SELECT 1 FROM  COM_COUNTY B WHERE
+            B.CITY_ID = #{startRoute}
+            AND (A.START_ROUTE = B.ID
+            OR A.START_ROUTE = B.CITY_ID)
+            )
+        </if>
+        <if test="startRouteType == 'COUNTY' ">
+            AND EXISTS(
+            SELECT 1 FROM  COM_COUNTY B WHERE
+            B.ID = #{startRoute}
+            AND (A.START_ROUTE = B.ID
+            OR A.START_ROUTE = B.CITY_ID)
+            )
+        </if>
+
+        <if test="endRouteType == 'PROVINCE' ">
+
+            AND EXISTS(
+            SELECT 1 FROM  COM_COUNTY B WHERE
+            B.PROVINCE_ID = #{endRoute}
+            AND (A.END_ROUTE = B.ID
+            OR A.END_ROUTE = B.CITY_ID
+            OR A.END_ROUTE = B.PROVINCE_ID)
+            )
+        </if>
+        <if test="endRouteType == 'CITY' ">
+
+            AND EXISTS(
+            SELECT 1 FROM  COM_COUNTY B WHERE
+            B.CITY_ID = #{endRoute}
+            AND (A.END_ROUTE = B.ID
+            OR A.END_ROUTE = B.CITY_ID)
+            )
+        </if>
+        <if test="endRouteType == 'COUNTY' ">
+            AND EXISTS(
+            SELECT 1 FROM  COM_COUNTY B WHERE
+            B.ID = #{endRoute}
+            AND (A.END_ROUTE = B.ID
+            OR A.END_ROUTE = B.CITY_ID)
+            )
+        </if>
+        <if test="accountName != null and accountName != ''">
+            AND EXISTS (
+            SELECT  1 FROM  COM_ACCOUNT B
+            WHERE A.BELONG_ACCOUNT_ID = B.ID AND B.REAL_NAME   LIKE CONCAT(CONCAT('%', #{accountName}), '%')
+            )
+        </if>
+        <if test="belongAccountId != null and belongAccountId != '' ">
+            AND BELONG_ACCOUNT_ID = #{belongAccountId}
+        </if>
+        <if test="excludeAccountId != null and excludeAccountId != '' ">
+            AND A.BELONG_ACCOUNT_ID not in(#{excludeAccountId})
+        </if>
+        <if test="kdOperateType != null and kdOperateType != ''">
+            AND A.KD_OPERATE_TYPE = #{kdOperateType}
+        </if>
+    </select>
+
+    <select id="queryQuoteList" resultMap="BaseResultMap"
+            parameterType="com.gistandard.transport.quote.system.common.bean.ProductQueryBean">
+        SELECT
+        <include refid="com.gistandard.transport.base.entity.dao.ComQuoteDao.Base_Column_List"/>
+        FROM COM_QUOTE A
+        WHERE
+        A.QUOTE_BELONG IN (1,2)
+        <if test="isManage == true">
+            AND PRODUCT_STATUS in(1,2)
+        </if>
+        <if test="isManage == false">
+            AND  PRODUCT_STATUS =1
+        </if>
+        <if test="itemId != null">
+            AND ITEM_ID = #{itemId}
+        </if>
+        <if test="customerId != null and customerId != '' ">
+            AND CUSTOMER_ID = #{customerId}
+        </if>
+        <if test="userinfoId != null and userinfoId != '' ">
+            AND USERINFO_ID = #{userinfoId}
+        </if>
+        <if test="account != null">
+            AND CREATE_ACCOUNT = #{account,jdbcType=VARCHAR}
+        </if>
+        <if test="itemType != null ">
+            AND  EXISTS (
+            SELECT  1 FROM COM_QUOTE_ITEM  B WHERE A.ITEM_ID = B.ID
+            AND  B.ITEM_TYPE = #{itemType}
+            )
+        </if>
+
+        <if test="quoteType != null and quoteType != '' ">
+            AND QUOTE_TYPE = #{quoteType}
+        </if>
+
+        <if test="productType != null and productType != '' ">
+            AND PRODUCT_TYPE = #{productType}
+        </if>
+
+        <if test="itemCategory != null and itemCategory != ''">
+            AND  EXISTS (
+            SELECT  1 FROM COM_QUOTE_ITEM  B WHERE A.ITEM_ID = B.ID
+            AND  B.ITEM_CATEGORY = #{itemCategory}
+            )
+        </if>
+
+        <if test="startStation != null and startStation != ''">
+            AND  START_STATION = #{startStation}
+        </if>
+        <if test="endStation != null and endStation != ''">
+            AND  START_STATION = #{startStation}
+        </if>
+
+        <if test="publicState == 1">
+            AND  PUBLIC_FLAG = 1
+        </if>
+
+        <if test="publicState == 2">
+            AND  PUBLIC_FLAG = 0
+        </if>
+
+        <if test="publicState == 3">
+            AND  ( PUBLIC_FLAG = 1 OR EXISTS (
+            SELECT 1 FROM  COM_QUOTE_CLIENT_REL B WHERE A.ID=B.QUOTE_ID
+            AND B.ACCOUNT_ID=#{clientAccountId}
+            ))
+        </if>
+
+
+        <if test="account != null and account != ''">
+            AND  CREATE_ACCOUNT = #{account}
+        </if>
+        <if test="customerId != null and customerId != ''">
+            AND  CUSTOMER_ID = #{customerId}
+        </if>
+        <if test="comQuoteId != null and comQuoteId != ''">
+            AND  ID = #{comQuoteId}
+        </if>
+        <if test="quoteStatus != null and quoteStatus != ''">
+            AND  PRODUCT_STATUS = #{quoteStatus.value}
+        </if>
+        <if test="quoteNo != null and quoteNo != ''">
+            AND  QUOTE_NO LIKE "%"#{quoteNo}"%"
+        </if>
+
+        <if test="roleId != null and roleId != '' ">
+            AND  EXISTS (
+            SELECT 1 FROM COM_ACCOUNT_ROLE_REL B WHERE A.BELONG_ACCOUNT_ID = B.ACCOUNT_ID  AND B.ROLE_ID = #{roleId}
+            )
+        </if>
+
+        <if test="startRouteType == 'PROVINCE' ">
+            AND EXISTS(
+            SELECT 1 FROM  COM_COUNTY B WHERE
+            B.PROVINCE_ID = #{startRoute}
+            AND (A.START_ROUTE = B.ID
+
+            OR A.START_ROUTE = B.CITY_ID
+
+            OR A.START_ROUTE = B.PROVINCE_ID)
+            )
+        </if>
+        <if test="startRouteType == 'CITY' ">
+            AND EXISTS(
+            SELECT 1 FROM  COM_COUNTY B WHERE
+            B.CITY_ID = #{startRoute}
+            AND (A.START_ROUTE = B.ID
+            OR A.START_ROUTE = B.CITY_ID)
+            )
+        </if>
+        <if test="startRouteType == 'COUNTY' ">
+            AND EXISTS(
+            SELECT 1 FROM  COM_COUNTY B WHERE
+            B.ID = #{startRoute}
+            AND (A.START_ROUTE = B.ID
+            OR A.START_ROUTE = B.CITY_ID)
+            )
+        </if>
+
+        <if test="endRouteType == 'PROVINCE' ">
+
+            AND EXISTS(
+            SELECT 1 FROM  COM_COUNTY B WHERE
+            B.PROVINCE_ID = #{endRoute}
+            AND (A.END_ROUTE = B.ID
+            OR A.END_ROUTE = B.CITY_ID
+            OR A.END_ROUTE = B.PROVINCE_ID)
+            )
+        </if>
+        <if test="endRouteType == 'CITY' ">
+
+            AND EXISTS(
+            SELECT 1 FROM  COM_COUNTY B WHERE
+            B.CITY_ID = #{endRoute}
+            AND (A.END_ROUTE = B.ID
+            OR A.END_ROUTE = B.CITY_ID)
+            )
+        </if>
+        <if test="endRouteType == 'COUNTY' ">
+            AND EXISTS(
+            SELECT 1 FROM  COM_COUNTY B WHERE
+            B.ID = #{endRoute}
+            AND (A.END_ROUTE = B.ID
+            OR A.END_ROUTE = B.CITY_ID)
+            )
+        </if>
+        <if test="accountName != null and accountName != ''">
+            AND EXISTS (
+            SELECT  1 FROM  COM_ACCOUNT B
+            WHERE A.BELONG_ACCOUNT_ID = B.ID AND B.REAL_NAME   LIKE CONCAT(CONCAT('%', #{accountName}), '%')
+            )
+        </if>
+        <if test="belongAccountId != null and belongAccountId != '' ">
+            AND BELONG_ACCOUNT_ID = #{belongAccountId}
+        </if>
+        <if test="excludeAccountId != null and excludeAccountId != '' ">
+            AND A.BELONG_ACCOUNT_ID not in(#{excludeAccountId})
+        </if>
+        <if test="kdOperateType != null and kdOperateType != ''">
+            AND A.KD_OPERATE_TYPE = #{kdOperateType}
+        </if>
+        ORDER by ID DESC
+        limit #{startRecord}, #{pageSize}
+    </select>
+
+    <select id="getQuoteInfo" resultMap="BaseResultMap"
+            parameterType="java.lang.Integer">
+        SELECT
+        <include refid="com.gistandard.transport.base.entity.dao.ComQuoteDao.Base_Column_List"/>
+        FROM COM_QUOTE A WHERE ID = #{id}
+    </select>
+
+    <select id="getQuoteInfoByQuoteNo" resultMap="BaseResultMap"
+            parameterType="java.lang.String">
+        SELECT
+        <include refid="com.gistandard.transport.base.entity.dao.ComQuoteDao.Base_Column_List"/>
+        FROM COM_QUOTE A WHERE  QUOTE_NO = #{quoteNo}
+    </select>
+
+    <select id="querySelectAccountListByRole" parameterType="com.gistandard.transport.quote.module.product.bean.CustomerQueryBean"
+            resultMap="com.gistandard.transport.base.entity.dao.ComCustomerDao.BaseResultMap">
+        SELECT A.ID AS ACCOUNT_ID,A.ACCT_USERNAME AS CUSTOM_NO,
+        A.REAL_NAME AS CUST_NAME
+        FROM COM_ACCOUNT A
+        WHERE ACCT_STATUS=2
+        <if test="roles !=null and roles != ''">
+            AND  EXISTS(
+            SELECT 1 FROM COM_ACCOUNT_ROLE_REL B WHERE A.ID = B.ACCOUNT_ID AND B.ROLE_ID in(${roles})
+            )
+        </if>
+        <if test="custName != null and custName != ''">
+            AND (REAL_NAME LIKE CONCAT(CONCAT('%', #{custName}), '%') OR ACCT_USERNAME LIKE CONCAT(CONCAT('%', #{custName}), '%'))
+        </if>
+        ORDER BY  A.ID
+        limit #{startRecord}, #{pageSize}
+    </select>
+
+
+    <select id="querySelectAccountListByRoleCount" parameterType="com.gistandard.transport.quote.module.product.bean.CustomerQueryBean"
+            resultType="java.lang.Integer">
+        SELECT count(1)
+        FROM COM_ACCOUNT A
+        WHERE ACCT_STATUS=2
+        <if test="roles !=null and roles != ''">
+            AND  EXISTS(
+            SELECT 1 FROM COM_ACCOUNT_ROLE_REL B WHERE A.ID = B.ACCOUNT_ID AND B.ROLE_ID in(${roles})
+            )
+        </if>
+        <if test="custName != null and custName != ''">
+            AND (REAL_NAME LIKE CONCAT(CONCAT('%', #{custName}), '%') OR ACCT_USERNAME LIKE CONCAT(CONCAT('%', #{custName}), '%'))
+        </if>
+    </select>
+
+    <select id="getQuoteItemList" resultMap="com.gistandard.transport.base.entity.dao.ComQuoteItemDao.BaseResultMap"
+            parameterType="com.gistandard.transport.quote.system.common.bean.QuoteItemQueryBean" >
+        select
+        <include refid="com.gistandard.transport.base.entity.dao.ComQuoteItemDao.Base_Column_List" />
+        from COM_QUOTE_ITEM A
+        where  ITEM_STATUS = 1
+        <if test="itemType != null">
+            AND ITEM_TYPE = #{itemType}
+        </if>
+        <if test="itemTypeList != null  ">
+            AND ITEM_TYPE IN
+            <foreach item="itemType" index="index" collection="itemTypeList"
+                     open="(" separator="," close=")">
+                ${itemType}
+            </foreach>
+        </if>
+        <if test="itemCategory != null  ">
+            AND ITEM_CATEGORY = #{itemCategory}
+        </if>
+        <if test="roleId != null">
+           AND  EXISTS (
+             SELECT 1 FROM  COM_QUOTE_ITEM_ROLE_REL B WHERE A.ID = B.ITEM_ID AND  B.ROLE_ID =#{roleId}
+            )
+        </if>
+        ORDER BY ITEM_TYPE,ID
+    </select>
+
+
+    <select id="checkHasSameQuote" parameterType="com.gistandard.transport.base.entity.bean.ComQuote"
+            resultType="java.lang.Integer">
+        SELECT count(1) FROM COM_QUOTE a
+        WHERE
+        PUBLIC_FLAG = 1
+
+        AND PRODUCT_STATUS =1
+        <choose>
+            <when test="startRoute != null">
+               AND START_ROUTE = #{startRoute}
+            </when>
+            <otherwise>
+                AND START_ROUTE IS NULL
+            </otherwise>
+        </choose>
+        <choose>
+            <when test="endRoute != null">
+                AND END_ROUTE = #{endRoute}
+            </when>
+            <otherwise>
+                AND END_ROUTE IS NULL
+            </otherwise>
+        </choose>
+        <choose>
+            <when test="startStation != null">
+                AND START_STATION = #{startStation}
+            </when>
+            <otherwise>
+                AND START_STATION IS NULL
+            </otherwise>
+        </choose>
+        <choose>
+            <when test="endStation != null">
+                AND END_STATION = #{endStation}
+            </when>
+            <otherwise>
+                AND END_STATION IS NULL
+            </otherwise>
+        </choose>
+        <choose>
+            <when test="productDesc != null">
+                AND PRODUCT_DESC = #{productDesc}
+            </when>
+            <otherwise>
+                AND PRODUCT_DESC IS NULL
+            </otherwise>
+        </choose>
+        <choose>
+            <when test="timeLines != null">
+                AND TIME_LINES = #{timeLines}
+            </when>
+            <otherwise>
+                AND TIME_LINES IS NULL
+            </otherwise>
+        </choose>
+        <choose>
+            <when test="departureTime != null">
+                AND DEPARTURE_TIME = #{departureTime}
+            </when>
+            <otherwise>
+                AND DEPARTURE_TIME IS NULL
+            </otherwise>
+        </choose>
+        <choose>
+            <when test="quoteBelong == 1">
+                AND QUOTE_BELONG  =1
+                AND CUSTOMER_ID = #{customerId}
+            </when>
+            <when test="quoteBelong == 2">
+                AND QUOTE_BELONG  = 2
+                AND USERINFO_ID = #{userinfoId}
+            </when>
+        </choose>
+        AND QUOTE_TYPE = #{quoteType}
+        AND ITEM_ID =#{itemId}
+
+        <if test="id != null  ">
+            AND ID != #{id}
+        </if>
+
+    </select>
+
+
+    <select id="queryCustomerList" parameterType="com.gistandard.transport.quote.module.product.bean.CustomerQueryBean"
+            resultMap="com.gistandard.transport.base.entity.dao.ComCustomerDao.BaseResultMap">
+        SELECT A.ID AS ID,A.CUSTOM_NO AS CUSTOM_NO,A.ACCOUNT_ID AS  ACCOUNT_ID,
+        A.CUST_NAME AS CUST_NAME,A.CUST_ADD AS CUST_ADD
+        FROM COM_CUSTOMER A
+        WHERE EXISTS(
+        SELECT 1 FROM COM_ACCOUNT C WHERE A.ACCOUNT_ID = C.ID AND C.ACCT_STATUS=2
+        )
+        <if test="roles !=null and roles != ''">
+            AND  EXISTS(
+            SELECT 1 FROM COM_ACCOUNT_ROLE_REL B WHERE A.ACCOUNT_ID = B.ACCOUNT_ID AND B.ROLE_ID in(${roles})
+            )
+        </if>
+        <if test="custName != null and custName != ''">
+            AND (CUST_NAME LIKE CONCAT(CONCAT('%', #{custName}), '%') OR CUSTOM_NO LIKE CONCAT(CONCAT('%', #{custName}), '%'))
+        </if>
+
+        <if test="areaInput!= null and areaInput!= ''">
+            AND (A.COUNTRY = #{areaInput,jdbcType=VARCHAR}
+            OR A.PROVINCE = #{areaInput,jdbcType=VARCHAR}
+            OR A.CITY = #{areaInput,jdbcType=VARCHAR}
+            OR A.COUNTY = #{areaInput,jdbcType=VARCHAR})
+        </if>
+
+        <if test="country!= null and country!= ''">
+            AND  COUNTRY = #{country,jdbcType=VARCHAR}
+        </if>
+
+        <if test="province!= null and province!= ''">
+            AND  PROVINCE = #{province,jdbcType=VARCHAR}
+
+        </if>
+
+        <if test="city!= null and city!= ''">
+            AND CITY = #{city,jdbcType=VARCHAR}
+        </if>
+
+        <if test="county!= null and county!= ''">
+            AND COUNTY = #{county,jdbcType=VARCHAR}
+        </if>
+        ORDER BY  A.ID
+        limit #{startRecord}, #{pageSize}
+    </select>
+
+
+    <select id="queryCustomerCount" parameterType="com.gistandard.transport.quote.module.product.bean.CustomerQueryBean"
+            resultType="java.lang.Integer">
+        SELECT count(1)
+        FROM COM_CUSTOMER A
+        WHERE EXISTS(
+        SELECT 1 FROM COM_ACCOUNT C WHERE A.ACCOUNT_ID = C.ID AND C.ACCT_STATUS=2
+        )
+        <if test="roles !=null and roles != ''">
+            AND EXISTS(
+            SELECT 1 FROM COM_ACCOUNT_ROLE_REL B WHERE A.ID = B.REL_ID AND B.ROLE_ID in(${roles})
+            )
+        </if>
+        <if test="custName != null and custName != ''">
+            AND (CUST_NAME LIKE CONCAT(CONCAT('%', #{custName}), '%') OR CUSTOM_NO LIKE CONCAT(CONCAT('%', #{custName}), '%'))
+        </if>
+
+        <if test="areaInput!= null and areaInput!= ''">
+            AND (A.COUNTRY = #{areaInput,jdbcType=VARCHAR}
+            OR A.PROVINCE = #{areaInput,jdbcType=VARCHAR}
+            OR A.CITY = #{areaInput,jdbcType=VARCHAR}
+            OR A.COUNTY = #{areaInput,jdbcType=VARCHAR})
+        </if>
+
+        <if test="country!= null and country!= ''">
+            AND  COUNTRY = #{country,jdbcType=VARCHAR}
+        </if>
+
+        <if test="province!= null and province!= ''">
+            AND  PROVINCE = #{province,jdbcType=VARCHAR}
+
+        </if>
+
+        <if test="city!= null and city!= ''">
+            AND CITY = #{city,jdbcType=VARCHAR}
+        </if>
+
+        <if test="county!= null and county!= ''">
+            AND COUNTY = #{county,jdbcType=VARCHAR}
+        </if>
+    </select>
+
+</mapper>

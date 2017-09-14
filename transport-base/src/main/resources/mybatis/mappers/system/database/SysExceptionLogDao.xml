@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.SysExceptionLogDao" >
+  <resultMap id="BaseResultMap" type="com.gistandard.transport.base.entity.bean.SysExceptionLog" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="EX_CLASS" property="exClass" jdbcType="VARCHAR" />
+    <result column="EX_MESSAGE" property="exMessage" jdbcType="VARCHAR" />
+    <result column="EX_USER" property="exUser" jdbcType="VARCHAR" />
+    <result column="CUSTOM_EX_NO" property="customExNo" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="EX_STATUS" property="exStatus" jdbcType="INTEGER" />
+    <result column="EX_DESC" property="exDesc" jdbcType="VARCHAR" />
+    <result column="SOLVE_TIME" property="solveTime" jdbcType="TIMESTAMP" />
+    <result column="SOLVE_USER" property="solveUser" jdbcType="INTEGER" />
+    <result column="EX_LEVEL" property="exLevel" jdbcType="INTEGER" />
+    <result column="EX_PARAM" property="exParam" jdbcType="LONGVARCHAR" />
+    <result column="EX_CAUSE" property="exCause" jdbcType="LONGVARCHAR" />
+    <result column="FROM_SYS" property="fromSys" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, EX_CLASS, EX_MESSAGE, EX_USER, CUSTOM_EX_NO, CREATE_TIME, EX_STATUS, EX_DESC,
+    SOLVE_TIME, SOLVE_USER, EX_LEVEL, FROM_SYS
+  </sql>
+  <sql id="Blob_Column_List" >
+    EX_PARAM, EX_CAUSE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from SYS_EXCEPTION_LOG
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from SYS_EXCEPTION_LOG
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gistandard.transport.base.entity.bean.SysExceptionLog" >
+    insert into SYS_EXCEPTION_LOG (ID, EX_CLASS, EX_MESSAGE,
+    EX_USER, CUSTOM_EX_NO, CREATE_TIME,
+    EX_STATUS, EX_DESC, SOLVE_TIME,
+    SOLVE_USER, EX_LEVEL, EX_PARAM,
+    EX_CAUSE, FROM_SYS)
+    values (#{id,jdbcType=INTEGER}, #{exClass,jdbcType=VARCHAR}, #{exMessage,jdbcType=VARCHAR},
+    #{exUser,jdbcType=VARCHAR}, #{customExNo,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
+    #{exStatus,jdbcType=INTEGER}, #{exDesc,jdbcType=VARCHAR}, #{solveTime,jdbcType=TIMESTAMP},
+    #{solveUser,jdbcType=VARCHAR}, #{exLevel,jdbcType=INTEGER}, #{exParam,jdbcType=LONGVARCHAR},
+    #{exCause,jdbcType=LONGVARCHAR}, #{fromSys,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gistandard.transport.base.entity.bean.SysExceptionLog" >
+    insert into SYS_EXCEPTION_LOG
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="exClass != null" >
+        EX_CLASS,
+      </if>
+      <if test="exMessage != null" >
+        EX_MESSAGE,
+      </if>
+      <if test="exUser != null" >
+        EX_USER,
+      </if>
+      <if test="customExNo != null" >
+        CUSTOM_EX_NO,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="exStatus != null" >
+        EX_STATUS,
+      </if>
+      <if test="exDesc != null" >
+        EX_DESC,
+      </if>
+      <if test="solveTime != null" >
+        SOLVE_TIME,
+      </if>
+      <if test="solveUser != null" >
+        SOLVE_USER,
+      </if>
+      <if test="exLevel != null" >
+        EX_LEVEL,
+      </if>
+      <if test="exParam != null" >
+        EX_PARAM,
+      </if>
+      <if test="exCause != null" >
+        EX_CAUSE,
+      </if>
+      <if test="fromSys != null" >
+        FROM_SYS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="exClass != null" >
+        #{exClass,jdbcType=VARCHAR},
+      </if>
+      <if test="exMessage != null" >
+        #{exMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="exUser != null" >
+        #{exUser,jdbcType=VARCHAR},
+      </if>
+      <if test="customExNo != null" >
+        #{customExNo,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="exStatus != null" >
+        #{exStatus,jdbcType=INTEGER},
+      </if>
+      <if test="exDesc != null" >
+        #{exDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="solveTime != null" >
+        #{solveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="solveUser != null" >
+        #{solveUser,jdbcType=VARCHAR},
+      </if>
+      <if test="exLevel != null" >
+        #{exLevel,jdbcType=INTEGER},
+      </if>
+      <if test="exParam != null" >
+        #{exParam,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="exCause != null" >
+        #{exCause,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="fromSys != null" >
+        #{fromSys,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gistandard.transport.base.entity.bean.SysExceptionLog" >
+    update SYS_EXCEPTION_LOG
+    <set >
+      <if test="exClass != null" >
+        EX_CLASS = #{exClass,jdbcType=VARCHAR},
+      </if>
+      <if test="exMessage != null" >
+        EX_MESSAGE = #{exMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="exUser != null" >
+        EX_USER = #{exUser,jdbcType=VARCHAR},
+      </if>
+      <if test="customExNo != null" >
+        CUSTOM_EX_NO = #{customExNo,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="exStatus != null" >
+        EX_STATUS = #{exStatus,jdbcType=INTEGER},
+      </if>
+      <if test="exDesc != null" >
+        EX_DESC = #{exDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="solveTime != null" >
+        SOLVE_TIME = #{solveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="solveUser != null" >
+        SOLVE_USER = #{solveUser,jdbcType=VARCHAR},
+      </if>
+      <if test="exLevel != null" >
+        EX_LEVEL = #{exLevel,jdbcType=INTEGER},
+      </if>
+      <if test="exParam != null" >
+        EX_PARAM = #{exParam,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="exCause != null" >
+        EX_CAUSE = #{exCause,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="fromSys != null" >
+        FROM_SYS = #{fromSys,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.gistandard.transport.base.entity.bean.SysExceptionLog" >
+    update SYS_EXCEPTION_LOG
+    set EX_CLASS = #{exClass,jdbcType=VARCHAR},
+    EX_MESSAGE = #{exMessage,jdbcType=VARCHAR},
+    EX_USER = #{exUser,jdbcType=VARCHAR},
+    CUSTOM_EX_NO = #{customExNo,jdbcType=INTEGER},
+    CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+    EX_STATUS = #{exStatus,jdbcType=INTEGER},
+    EX_DESC = #{exDesc,jdbcType=VARCHAR},
+    SOLVE_TIME = #{solveTime,jdbcType=TIMESTAMP},
+    SOLVE_USER = #{solveUser,jdbcType=VARCHAR},
+    EX_LEVEL = #{exLevel,jdbcType=INTEGER},
+    EX_PARAM = #{exParam,jdbcType=LONGVARCHAR},
+    EX_CAUSE = #{exCause,jdbcType=LONGVARCHAR},
+    FROM_SYS = #{fromSys,jdbcType=LONGVARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gistandard.transport.base.entity.bean.SysExceptionLog" >
+    update SYS_EXCEPTION_LOG
+    set EX_CLASS = #{exClass,jdbcType=VARCHAR},
+    EX_MESSAGE = #{exMessage,jdbcType=VARCHAR},
+    EX_USER = #{exUser,jdbcType=VARCHAR},
+    CUSTOM_EX_NO = #{customExNo,jdbcType=INTEGER},
+    CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+    EX_STATUS = #{exStatus,jdbcType=INTEGER},
+    EX_DESC = #{exDesc,jdbcType=VARCHAR},
+    SOLVE_TIME = #{solveTime,jdbcType=TIMESTAMP},
+    SOLVE_USER = #{solveUser,jdbcType=VARCHAR},
+    EX_LEVEL = #{exLevel,jdbcType=INTEGER},
+    EX_PARAM = #{exParam,jdbcType=LONGVARCHAR},
+    EX_CAUSE = #{exCause,jdbcType=LONGVARCHAR},
+    FROM_SYS = #{fromSys,jdbcType=LONGVARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

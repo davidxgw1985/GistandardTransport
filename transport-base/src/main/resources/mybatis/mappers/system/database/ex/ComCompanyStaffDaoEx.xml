@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ex.ComCompanyStaffDaoEx">
+    <select id="queryByAccountAndCompany"
+            resultMap="com.gistandard.transport.base.entity.dao.ComCompanyStaffDao.BaseResultMap">
+        select
+        <include refid="com.gistandard.transport.base.entity.dao.ComCompanyStaffDao.Base_Column_List"/>
+        from COM_COMPANY_STAFF
+        where STAFF_ACCOUNT_ID = #{staffaccountid,jdbcType=INTEGER}
+        AND COMPANY_ACCOUNT_ID = #{companyaccountid,jdbcType=VARCHAR}
+    </select>
+    <select id="queryMangerInfo" resultMap="com.gistandard.transport.base.entity.dao.ComAccountDao.BaseResultMap"
+            parameterType="java.lang.Integer">
+        SELECT CA.ACCT_USERNAME,CA.ID,CA.TELEPHONE,CA.REAL_NAME FROM COM_COMPANY_STAFF CCS
+        LEFT JOIN COM_ACCOUNT CA ON CA.ID = CCS.STAFF_ACCOUNT_ID
+        WHERE CCS.COMPANY_ACCOUNT_ID =#{companyaccountid,jdbcType=INTEGER}
+        AND CCS.STATUS =1 AND CCS.ROLE_TYPE =1
+    </select>
+    <select id="queryCompanyByAccount"
+            resultMap="com.gistandard.transport.base.entity.dao.ComCompanyStaffDao.BaseResultMap">
+        select
+        <include refid="com.gistandard.transport.base.entity.dao.ComCompanyStaffDao.Base_Column_List"/>
+        from COM_COMPANY_STAFF
+        where STAFF_ACCOUNT_ID = #{staffaccountid,jdbcType=INTEGER}
+        limit 1
+    </select>
+    <select id="queryCompanyByAccountRole"
+            resultMap="com.gistandard.transport.base.entity.dao.ComCompanyStaffDao.BaseResultMap">
+        select
+        <include refid="com.gistandard.transport.base.entity.dao.ComCompanyStaffDao.Base_Column_List"/>
+        from COM_COMPANY_STAFF
+        where STAFF_ACCOUNT_ID = #{staffaccountid,jdbcType=INTEGER}
+    </select>
+</mapper>

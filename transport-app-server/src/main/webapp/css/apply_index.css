@@ -1,0 +1,169 @@
+@charset "utf-8";
+
+/**
+ *  newzong
+ *  
+ */
+
+/* 加载项目通用布局mixin.css */
+
+/**
+	less效果函数
+	NewZong 2016/07/15
+**/
+
+.cf {
+  overflow: hidden;
+}
+
+/** 高度计算 **/
+
+/** 宽度计算 **/
+
+/*
+定义圆角
+@radius 圆角大小
+*/
+
+/*
+盒子阴影
+@right_left 右边阴影为正数 左边负数
+@bottom_top 下边阴影为正数 上边负数
+@box  阴影大小
+@box_color 阴影颜色
+*/
+
+/*
+文字阴影,可以指定多组阴影
+@right_left1 右边阴影为正数 左边负数
+@bottom_top1 下边阴影为正数 上边负数
+@text  阴影大小
+@text_color 阴影颜色
+*/
+
+/*
+透明度 或渐变 1为不透明 0透明
+css3 rgba(110, 142, 185, .4)!important;前三个是颜色值 后一个是透明值
+用来兼容所有浏览器
+*/
+
+/*
+列布局
+@c1 列数
+@c2 列宽
+@c3 列间距
+@c4 边框样式
+*/
+
+/*背景渐变
+@start  渐变开始颜色
+@end  结束颜色
+*/
+
+/*
+画轮廓 就是内部框
+@outline 样式
+@outline1 间距 负数在内部
+*/
+
+/*
+旋转角度
+@ro定义度数 
+IE不支持 滤镜支持0，1，2，3
+*/
+
+/*
+菱形旋转角度
+@x横向缩放比例
+@y纵向缩放比例
+*/
+
+/* 全局字体大小 */
+
+/* 全局边框颜色 */
+
+* {
+  box-sizing: border-box;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.wrapper .content {
+  width: 100%;
+  height: calc(100% - 1.666667rem);
+  margin-top: 1.666667rem;
+  float: left;
+}
+
+.wrapper .content .con-tips:nth-of-type(1) {
+  margin-top: 0.740741rem;
+}
+
+.wrapper .content .con-tips:nth-last-of-type(1) {
+  margin-bottom: 0.555556rem;
+}
+
+.wrapper .content .op {
+  opacity: 0;
+}
+
+.wrapper .content .con-type {
+  text-align: center;
+  width: 100%;
+  margin: 0.092593rem auto;
+  height: calc(( 100% - 3.055556rem) / 3);
+  min-height: 23%;
+}
+
+.wrapper .content .con-type .tp-courier {
+  width: 55%;
+  margin: auto;
+}
+
+.wrapper .content .con-type .tp-courier .cou-img {
+  width: 55%;
+  margin: 0 auto;
+}
+
+.wrapper .content .con-type .tp-courier img {
+  width: 100%;
+}
+
+.wrapper .content .con-type .tp-courier .tp-mes {
+  font-size: 0.518519rem;
+  color: #263172;
+  letter-spacing: 0.055556rem;
+}
+
+.wrapper .content .con-type .tp-courier .activecolor {
+  color: #B5B7C8 !important;
+}
+
+.wrapper .content .con-type:nth-last-of-type(1) .tp-courier .tp-mes {
+  margin-top: 0.185185rem;
+}
+
+/* iPhone4 */
+
+@media screen and (min-device-width: 320px) and (max-device-height: 500px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+  .wrapper .content .con-type .tp-courier {
+    width: 50%;
+  }
+}
+
+/* iPhone5 */
+
+@media screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+  .wrapper .content .con-type .tp-courier {
+    /*margin: 7% auto;*/
+  }
+}
+
+@media only screen and (max-device-width: 640px), only screen and (max-device-width: 667px), only screen and (max-width: 480px) and (orientation: landscape) {
+  .wrapper .content .con-type .tp-courier {
+    /*margin: 8% auto;*/
+  }
+}

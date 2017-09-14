@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ex.OrderNumberPartitionDaoEx" >
+    <insert id="batchInsert" parameterType="java.util.List" >
+        INSERT INTO ORDER_NUMBER_PARTITION(
+        <include refid="com.gistandard.transport.base.entity.dao.OrderNumberPartitionDao.Base_Column_List" />
+        )
+        VALUES
+        <foreach collection="list" item="item" index="index" separator="," >
+            (#{item.id,jdbcType=INTEGER}, #{item.cityId,jdbcType=INTEGER}, #{item.partitionNo,jdbcType=INTEGER},
+            #{item.nextSeq,jdbcType=INTEGER}, #{item.numberSequence,jdbcType=VARCHAR}, #{item.createTime,jdbcType=TIMESTAMP}
+            )
+        </foreach>
+    </insert>
+
+    <select id="queryByCityIdAndPartitionNo" resultMap="com.gistandard.transport.base.entity.dao.OrderNumberPartitionDao.BaseResultMap"  >
+        select
+        <include refid="com.gistandard.transport.base.entity.dao.OrderNumberPartitionDao.Base_Column_List" />
+        from ORDER_NUMBER_PARTITION
+        where CITY_ID = #{cityId,jdbcType=INTEGER}
+        AND PARTITION_NO = #{partitionNo,jdbcType=INTEGER}
+    </select>
+
+    <update id="updateSeqByCityIdAndPartitionNo" >
+        update ORDER_NUMBER_PARTITION
+        <set >
+                NEXT_SEQ = #{nextSeq,jdbcType=INTEGER},
+                NUMBER_SEQUENCE = #{seq,jdbcType=VARCHAR}
+        </set>
+        where CITY_ID = #{cityId,jdbcType=INTEGER}
+        AND PARTITION_NO = #{partitionNo,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateIdByCityIdAndPartitionNo" >
+        UPDATE ORDER_NUMBER_PARTITION ONP
+        SET ONP.ID = #{id,jdbcType=INTEGER}
+        WHERE ONP.CITY_ID = #{cityId,jdbcType=INTEGER}
+        AND  ONP.PARTITION_NO = #{partitionNo,jdbcType=INTEGER}
+    </update>
+</mapper>

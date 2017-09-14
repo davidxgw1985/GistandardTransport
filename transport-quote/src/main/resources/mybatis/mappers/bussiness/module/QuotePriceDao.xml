@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.quote.system.database.dao.QuotePriceDao" >
+
+  <resultMap id="BaseResultMap" type="com.gistandard.transport.quote.system.common.bean.ComQuotePriceBean" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="QUOTE_ID" property="quoteId" jdbcType="INTEGER" />
+    <result column="UNIT_CODE" property="unitCode" jdbcType="VARCHAR" />
+    <result column="UNIT_PRICE" property="unitPrice" jdbcType="DECIMAL" />
+    <result column="POINT_VALUE" property="pointValue" jdbcType="DECIMAL" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="RULE_TYPE" property="ruleType" jdbcType="INTEGER" />
+    <result column="SORT_NO" property="sortNo" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="ADD_SCALAR" property="addScalar" jdbcType="DECIMAL" />
+    <result column="SCALAR_UNIT" property="scalarUnit" jdbcType="INTEGER" />
+    <result column="TIME_CONTROL" property="timeControl" jdbcType="INTEGER" />
+  </resultMap>
+
+  <insert id="batchInsert" parameterType="com.gistandard.transport.quote.system.common.bean.QuoteBean" >
+    insert into COM_QUOTE_PRICE (QUOTE_ID, UNIT_CODE,
+      UNIT_PRICE, POINT_VALUE, STATUS, 
+      RULE_TYPE, SORT_NO, CREATE_TIME,
+      ADD_SCALAR, SCALAR_UNIT, TIME_CONTROL
+      )
+    values
+    <foreach collection="comQuotePriceList" index="index" item="item" separator=",">
+      (#{comQuote.id,jdbcType=INTEGER}, #{item.unitCode,jdbcType=VARCHAR},
+      #{item.unitPrice,jdbcType=DECIMAL}, #{item.pointValue,jdbcType=DECIMAL}, #{item.status,jdbcType=INTEGER},
+      #{item.ruleType,jdbcType=INTEGER}, #{item.sortNo,jdbcType=INTEGER}, NOW(),
+      #{addScalar,jdbcType=DECIMAL}, #{scalarUnit,jdbcType=INTEGER}, #{timeControl,jdbcType=INTEGER}
+      )
+    </foreach>
+
+  </insert>
+
+  <select id="selectByQuoteId" resultMap="BaseResultMap"
+          parameterType="java.lang.Integer" >
+    select
+    <include refid="com.gistandard.transport.base.entity.dao.ComQuotePriceDao.Base_Column_List" />
+    from COM_QUOTE_PRICE
+    where QUOTE_ID = #{quoteId,jdbcType=INTEGER}
+    ORDER BY SORT_NO
+  </select>
+
+
+</mapper>

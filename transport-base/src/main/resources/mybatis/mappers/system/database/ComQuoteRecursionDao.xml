@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ComQuoteRecursionDao" >
+  <resultMap id="BaseResultMap" type="com.gistandard.transport.base.entity.bean.ComQuoteRecursion" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="ROOT_QUOTE_ID" property="rootQuoteId" jdbcType="INTEGER" />
+    <result column="SON_QUOTE_IDS" property="sonQuoteIds" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ROOT_QUOTE_ID, SON_QUOTE_IDS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from COM_QUOTE_RECURSION
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from COM_QUOTE_RECURSION
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gistandard.transport.base.entity.bean.ComQuoteRecursion" >
+    insert into COM_QUOTE_RECURSION (ID, ROOT_QUOTE_ID, SON_QUOTE_IDS
+      )
+    values (#{id,jdbcType=INTEGER}, #{rootQuoteId,jdbcType=INTEGER}, #{sonQuoteIds,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gistandard.transport.base.entity.bean.ComQuoteRecursion" >
+    insert into COM_QUOTE_RECURSION
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="rootQuoteId != null" >
+        ROOT_QUOTE_ID,
+      </if>
+      <if test="sonQuoteIds != null" >
+        SON_QUOTE_IDS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="rootQuoteId != null" >
+        #{rootQuoteId,jdbcType=INTEGER},
+      </if>
+      <if test="sonQuoteIds != null" >
+        #{sonQuoteIds,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gistandard.transport.base.entity.bean.ComQuoteRecursion" >
+    update COM_QUOTE_RECURSION
+    <set >
+      <if test="rootQuoteId != null" >
+        ROOT_QUOTE_ID = #{rootQuoteId,jdbcType=INTEGER},
+      </if>
+      <if test="sonQuoteIds != null" >
+        SON_QUOTE_IDS = #{sonQuoteIds,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gistandard.transport.base.entity.bean.ComQuoteRecursion" >
+    update COM_QUOTE_RECURSION
+    set ROOT_QUOTE_ID = #{rootQuoteId,jdbcType=INTEGER},
+      SON_QUOTE_IDS = #{sonQuoteIds,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

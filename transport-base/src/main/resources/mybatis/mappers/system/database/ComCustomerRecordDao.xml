@@ -1,0 +1,920 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ComCustomerRecordDao" >
+  <resultMap id="BaseResultMap" type="com.gistandard.transport.base.entity.bean.ComCustomerRecord" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="CUSTOM_NO" property="customNo" jdbcType="VARCHAR" />
+    <result column="CUST_TTL" property="custTtl" jdbcType="VARCHAR" />
+    <result column="CUST_CLAS" property="custClas" jdbcType="VARCHAR" />
+    <result column="CUST_RANC" property="custRanc" jdbcType="VARCHAR" />
+    <result column="CUST_NAME" property="custName" jdbcType="VARCHAR" />
+    <result column="CUST_ENG" property="custEng" jdbcType="VARCHAR" />
+    <result column="CUST_ROOT" property="custRoot" jdbcType="VARCHAR" />
+    <result column="CUST_AREA" property="custArea" jdbcType="VARCHAR" />
+    <result column="CUST_GILD" property="custGild" jdbcType="VARCHAR" />
+    <result column="COMSKIND" property="comskind" jdbcType="VARCHAR" />
+    <result column="CUST_MAN" property="custMan" jdbcType="VARCHAR" />
+    <result column="CUST_MANTEL" property="custMantel" jdbcType="VARCHAR" />
+    <result column="CUST_ADD" property="custAdd" jdbcType="VARCHAR" />
+    <result column="DETAIL_ADD" property="detailAdd" jdbcType="VARCHAR" />
+    <result column="CUST_POST" property="custPost" jdbcType="VARCHAR" />
+    <result column="IDENTNO" property="identno" jdbcType="VARCHAR" />
+    <result column="COUNTRY" property="country" jdbcType="VARCHAR" />
+    <result column="PROVINCE" property="province" jdbcType="VARCHAR" />
+    <result column="CITY" property="city" jdbcType="VARCHAR" />
+    <result column="COUNTY" property="county" jdbcType="VARCHAR" />
+    <result column="CUST_E_ADD" property="custEAdd" jdbcType="VARCHAR" />
+    <result column="CUST_E_POST" property="custEPost" jdbcType="VARCHAR" />
+    <result column="CUST_TEL" property="custTel" jdbcType="VARCHAR" />
+    <result column="CUST_FAX" property="custFax" jdbcType="VARCHAR" />
+    <result column="CUST_MAIL" property="custMail" jdbcType="VARCHAR" />
+    <result column="CUST_WEB" property="custWeb" jdbcType="VARCHAR" />
+    <result column="FLINK_MAN" property="flinkMan" jdbcType="VARCHAR" />
+    <result column="FPLACE" property="fplace" jdbcType="VARCHAR" />
+    <result column="FWORK_TEL" property="fworkTel" jdbcType="VARCHAR" />
+    <result column="FWORK_FAX" property="fworkFax" jdbcType="VARCHAR" />
+    <result column="FMOBILE" property="fmobile" jdbcType="VARCHAR" />
+    <result column="FEMAIL" property="femail" jdbcType="VARCHAR" />
+    <result column="FHOMETEL" property="fhometel" jdbcType="VARCHAR" />
+    <result column="SLINKMAN" property="slinkman" jdbcType="VARCHAR" />
+    <result column="SPLACE" property="splace" jdbcType="VARCHAR" />
+    <result column="SWORKTEL" property="sworktel" jdbcType="VARCHAR" />
+    <result column="SWORKFAX" property="sworkfax" jdbcType="VARCHAR" />
+    <result column="SMOBILE" property="smobile" jdbcType="VARCHAR" />
+    <result column="SEMAIL" property="semail" jdbcType="VARCHAR" />
+    <result column="SHOMETEL" property="shometel" jdbcType="VARCHAR" />
+    <result column="CUST_COMNO" property="custComno" jdbcType="VARCHAR" />
+    <result column="CUST_TAXNO" property="custTaxno" jdbcType="VARCHAR" />
+    <result column="CURR_CODE" property="currCode" jdbcType="VARCHAR" />
+    <result column="CUST_BANK" property="custBank" jdbcType="VARCHAR" />
+    <result column="CUST_BANKNO" property="custBankno" jdbcType="VARCHAR" />
+    <result column="RECEIKIND" property="receikind" jdbcType="VARCHAR" />
+    <result column="PROMPTDAYS" property="promptdays" jdbcType="DECIMAL" />
+    <result column="SETTLEKIND" property="settlekind" jdbcType="VARCHAR" />
+    <result column="SETTLEDAYS" property="settledays" jdbcType="DECIMAL" />
+    <result column="CREDITRANC" property="creditranc" jdbcType="VARCHAR" />
+    <result column="CREDITMAX" property="creditmax" jdbcType="DECIMAL" />
+    <result column="CUSTVMMSNO" property="custvmmsno" jdbcType="VARCHAR" />
+    <result column="CUSTINTRO" property="custintro" jdbcType="VARCHAR" />
+    <result column="NARRATE" property="narrate" jdbcType="VARCHAR" />
+    <result column="DEPTOUN" property="deptoun" jdbcType="VARCHAR" />
+    <result column="ISPUBLIC" property="ispublic" jdbcType="TINYINT" />
+    <result column="SALESNO" property="salesno" jdbcType="VARCHAR" />
+    <result column="NOTEDATE" property="notedate" jdbcType="TIMESTAMP" />
+    <result column="ACCOUNT_ID" property="accountId" jdbcType="INTEGER" />
+    <result column="STA_LONGITUDE" property="staLongitude" jdbcType="DECIMAL" />
+    <result column="STA_LATITUDE" property="staLatitude" jdbcType="DECIMAL" />
+    <result column="PREFIX_CODE" property="prefixCode" jdbcType="VARCHAR" />
+    <result column="CUSTOMS_CO" property="customsCo" jdbcType="VARCHAR" />
+    <result column="SERVICE_SCOPE" property="serviceScope" jdbcType="VARCHAR" />
+    <result column="REGISTER_FUND" property="registerFund" jdbcType="INTEGER" />
+    <result column="REGISTER_FUND_CURR_CODE" property="registerFundCurrCode" jdbcType="VARCHAR" />
+    <result column="FOUNDED_YEARS" property="foundedYears" jdbcType="TIMESTAMP" />
+    <result column="STAFF_NUM" property="staffNum" jdbcType="VARCHAR" />
+    <result column="AREA_NUM" property="areaNum" jdbcType="DECIMAL" />
+    <result column="MAIN_LINE_CAR_NUM" property="mainLineCarNum" jdbcType="INTEGER" />
+    <result column="SELF_OWNER_CAR_NUM" property="selfOwnerCarNum" jdbcType="INTEGER" />
+    <result column="ROAD_TRAN_PERMIT_NO" property="roadTranPermitNo" jdbcType="VARCHAR" />
+    <result column="ORG_CODE_LIlCENSE_NO" property="orgCodeLilcenseNo" jdbcType="VARCHAR" />
+    <result column="SERVICE_TYPE" property="serviceType" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, CUSTOM_NO, CUST_TTL, CUST_CLAS, CUST_RANC, CUST_NAME, CUST_ENG, CUST_ROOT, CUST_AREA, 
+    CUST_GILD, COMSKIND, CUST_MAN, CUST_MANTEL, CUST_ADD, DETAIL_ADD, CUST_POST, IDENTNO, 
+    COUNTRY, PROVINCE, CITY, COUNTY, CUST_E_ADD, CUST_E_POST, CUST_TEL, CUST_FAX, CUST_MAIL, 
+    CUST_WEB, FLINK_MAN, FPLACE, FWORK_TEL, FWORK_FAX, FMOBILE, FEMAIL, FHOMETEL, SLINKMAN, 
+    SPLACE, SWORKTEL, SWORKFAX, SMOBILE, SEMAIL, SHOMETEL, CUST_COMNO, CUST_TAXNO, CURR_CODE, 
+    CUST_BANK, CUST_BANKNO, RECEIKIND, PROMPTDAYS, SETTLEKIND, SETTLEDAYS, CREDITRANC, 
+    CREDITMAX, CUSTVMMSNO, CUSTINTRO, NARRATE, DEPTOUN, ISPUBLIC, SALESNO, NOTEDATE, 
+    ACCOUNT_ID, STA_LONGITUDE, STA_LATITUDE, PREFIX_CODE, CUSTOMS_CO, SERVICE_SCOPE, 
+    REGISTER_FUND, REGISTER_FUND_CURR_CODE, FOUNDED_YEARS, STAFF_NUM, AREA_NUM, MAIN_LINE_CAR_NUM, 
+    SELF_OWNER_CAR_NUM, ROAD_TRAN_PERMIT_NO, ORG_CODE_LIlCENSE_NO, SERVICE_TYPE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from COM_CUSTOMER_RECORD
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from COM_CUSTOMER_RECORD
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyProperty="id" useGeneratedKeys="true" parameterType="com.gistandard.transport.base.entity.bean.ComCustomerRecord" >
+    insert into COM_CUSTOMER_RECORD (ID, CUSTOM_NO, CUST_TTL, 
+      CUST_CLAS, CUST_RANC, CUST_NAME, 
+      CUST_ENG, CUST_ROOT, CUST_AREA, 
+      CUST_GILD, COMSKIND, CUST_MAN, 
+      CUST_MANTEL, CUST_ADD, DETAIL_ADD, 
+      CUST_POST, IDENTNO, COUNTRY, 
+      PROVINCE, CITY, COUNTY, 
+      CUST_E_ADD, CUST_E_POST, CUST_TEL, 
+      CUST_FAX, CUST_MAIL, CUST_WEB, 
+      FLINK_MAN, FPLACE, FWORK_TEL, 
+      FWORK_FAX, FMOBILE, FEMAIL, 
+      FHOMETEL, SLINKMAN, SPLACE, 
+      SWORKTEL, SWORKFAX, SMOBILE, 
+      SEMAIL, SHOMETEL, CUST_COMNO, 
+      CUST_TAXNO, CURR_CODE, CUST_BANK, 
+      CUST_BANKNO, RECEIKIND, PROMPTDAYS, 
+      SETTLEKIND, SETTLEDAYS, CREDITRANC, 
+      CREDITMAX, CUSTVMMSNO, CUSTINTRO, 
+      NARRATE, DEPTOUN, ISPUBLIC, 
+      SALESNO, NOTEDATE, ACCOUNT_ID, 
+      STA_LONGITUDE, STA_LATITUDE, PREFIX_CODE, 
+      CUSTOMS_CO, SERVICE_SCOPE, REGISTER_FUND, 
+      REGISTER_FUND_CURR_CODE, FOUNDED_YEARS, STAFF_NUM, 
+      AREA_NUM, MAIN_LINE_CAR_NUM, SELF_OWNER_CAR_NUM, 
+      ROAD_TRAN_PERMIT_NO, ORG_CODE_LIlCENSE_NO, SERVICE_TYPE
+      )
+    values (#{id,jdbcType=INTEGER}, #{customNo,jdbcType=VARCHAR}, #{custTtl,jdbcType=VARCHAR}, 
+      #{custClas,jdbcType=VARCHAR}, #{custRanc,jdbcType=VARCHAR}, #{custName,jdbcType=VARCHAR}, 
+      #{custEng,jdbcType=VARCHAR}, #{custRoot,jdbcType=VARCHAR}, #{custArea,jdbcType=VARCHAR}, 
+      #{custGild,jdbcType=VARCHAR}, #{comskind,jdbcType=VARCHAR}, #{custMan,jdbcType=VARCHAR}, 
+      #{custMantel,jdbcType=VARCHAR}, #{custAdd,jdbcType=VARCHAR}, #{detailAdd,jdbcType=VARCHAR}, 
+      #{custPost,jdbcType=VARCHAR}, #{identno,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR}, 
+      #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{county,jdbcType=VARCHAR}, 
+      #{custEAdd,jdbcType=VARCHAR}, #{custEPost,jdbcType=VARCHAR}, #{custTel,jdbcType=VARCHAR}, 
+      #{custFax,jdbcType=VARCHAR}, #{custMail,jdbcType=VARCHAR}, #{custWeb,jdbcType=VARCHAR}, 
+      #{flinkMan,jdbcType=VARCHAR}, #{fplace,jdbcType=VARCHAR}, #{fworkTel,jdbcType=VARCHAR}, 
+      #{fworkFax,jdbcType=VARCHAR}, #{fmobile,jdbcType=VARCHAR}, #{femail,jdbcType=VARCHAR}, 
+      #{fhometel,jdbcType=VARCHAR}, #{slinkman,jdbcType=VARCHAR}, #{splace,jdbcType=VARCHAR}, 
+      #{sworktel,jdbcType=VARCHAR}, #{sworkfax,jdbcType=VARCHAR}, #{smobile,jdbcType=VARCHAR}, 
+      #{semail,jdbcType=VARCHAR}, #{shometel,jdbcType=VARCHAR}, #{custComno,jdbcType=VARCHAR}, 
+      #{custTaxno,jdbcType=VARCHAR}, #{currCode,jdbcType=VARCHAR}, #{custBank,jdbcType=VARCHAR}, 
+      #{custBankno,jdbcType=VARCHAR}, #{receikind,jdbcType=VARCHAR}, #{promptdays,jdbcType=DECIMAL}, 
+      #{settlekind,jdbcType=VARCHAR}, #{settledays,jdbcType=DECIMAL}, #{creditranc,jdbcType=VARCHAR}, 
+      #{creditmax,jdbcType=DECIMAL}, #{custvmmsno,jdbcType=VARCHAR}, #{custintro,jdbcType=VARCHAR}, 
+      #{narrate,jdbcType=VARCHAR}, #{deptoun,jdbcType=VARCHAR}, #{ispublic,jdbcType=TINYINT}, 
+      #{salesno,jdbcType=VARCHAR}, #{notedate,jdbcType=TIMESTAMP}, #{accountId,jdbcType=INTEGER}, 
+      #{staLongitude,jdbcType=DECIMAL}, #{staLatitude,jdbcType=DECIMAL}, #{prefixCode,jdbcType=VARCHAR}, 
+      #{customsCo,jdbcType=VARCHAR}, #{serviceScope,jdbcType=VARCHAR}, #{registerFund,jdbcType=INTEGER}, 
+      #{registerFundCurrCode,jdbcType=VARCHAR}, #{foundedYears,jdbcType=TIMESTAMP}, #{staffNum,jdbcType=VARCHAR}, 
+      #{areaNum,jdbcType=DECIMAL}, #{mainLineCarNum,jdbcType=INTEGER}, #{selfOwnerCarNum,jdbcType=INTEGER}, 
+      #{roadTranPermitNo,jdbcType=VARCHAR}, #{orgCodeLilcenseNo,jdbcType=VARCHAR}, #{serviceType,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" keyProperty="id" useGeneratedKeys="true" parameterType="com.gistandard.transport.base.entity.bean.ComCustomerRecord" >
+    insert into COM_CUSTOMER_RECORD
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="customNo != null" >
+        CUSTOM_NO,
+      </if>
+      <if test="custTtl != null" >
+        CUST_TTL,
+      </if>
+      <if test="custClas != null" >
+        CUST_CLAS,
+      </if>
+      <if test="custRanc != null" >
+        CUST_RANC,
+      </if>
+      <if test="custName != null" >
+        CUST_NAME,
+      </if>
+      <if test="custEng != null" >
+        CUST_ENG,
+      </if>
+      <if test="custRoot != null" >
+        CUST_ROOT,
+      </if>
+      <if test="custArea != null" >
+        CUST_AREA,
+      </if>
+      <if test="custGild != null" >
+        CUST_GILD,
+      </if>
+      <if test="comskind != null" >
+        COMSKIND,
+      </if>
+      <if test="custMan != null" >
+        CUST_MAN,
+      </if>
+      <if test="custMantel != null" >
+        CUST_MANTEL,
+      </if>
+      <if test="custAdd != null" >
+        CUST_ADD,
+      </if>
+      <if test="detailAdd != null" >
+        DETAIL_ADD,
+      </if>
+      <if test="custPost != null" >
+        CUST_POST,
+      </if>
+      <if test="identno != null" >
+        IDENTNO,
+      </if>
+      <if test="country != null" >
+        COUNTRY,
+      </if>
+      <if test="province != null" >
+        PROVINCE,
+      </if>
+      <if test="city != null" >
+        CITY,
+      </if>
+      <if test="county != null" >
+        COUNTY,
+      </if>
+      <if test="custEAdd != null" >
+        CUST_E_ADD,
+      </if>
+      <if test="custEPost != null" >
+        CUST_E_POST,
+      </if>
+      <if test="custTel != null" >
+        CUST_TEL,
+      </if>
+      <if test="custFax != null" >
+        CUST_FAX,
+      </if>
+      <if test="custMail != null" >
+        CUST_MAIL,
+      </if>
+      <if test="custWeb != null" >
+        CUST_WEB,
+      </if>
+      <if test="flinkMan != null" >
+        FLINK_MAN,
+      </if>
+      <if test="fplace != null" >
+        FPLACE,
+      </if>
+      <if test="fworkTel != null" >
+        FWORK_TEL,
+      </if>
+      <if test="fworkFax != null" >
+        FWORK_FAX,
+      </if>
+      <if test="fmobile != null" >
+        FMOBILE,
+      </if>
+      <if test="femail != null" >
+        FEMAIL,
+      </if>
+      <if test="fhometel != null" >
+        FHOMETEL,
+      </if>
+      <if test="slinkman != null" >
+        SLINKMAN,
+      </if>
+      <if test="splace != null" >
+        SPLACE,
+      </if>
+      <if test="sworktel != null" >
+        SWORKTEL,
+      </if>
+      <if test="sworkfax != null" >
+        SWORKFAX,
+      </if>
+      <if test="smobile != null" >
+        SMOBILE,
+      </if>
+      <if test="semail != null" >
+        SEMAIL,
+      </if>
+      <if test="shometel != null" >
+        SHOMETEL,
+      </if>
+      <if test="custComno != null" >
+        CUST_COMNO,
+      </if>
+      <if test="custTaxno != null" >
+        CUST_TAXNO,
+      </if>
+      <if test="currCode != null" >
+        CURR_CODE,
+      </if>
+      <if test="custBank != null" >
+        CUST_BANK,
+      </if>
+      <if test="custBankno != null" >
+        CUST_BANKNO,
+      </if>
+      <if test="receikind != null" >
+        RECEIKIND,
+      </if>
+      <if test="promptdays != null" >
+        PROMPTDAYS,
+      </if>
+      <if test="settlekind != null" >
+        SETTLEKIND,
+      </if>
+      <if test="settledays != null" >
+        SETTLEDAYS,
+      </if>
+      <if test="creditranc != null" >
+        CREDITRANC,
+      </if>
+      <if test="creditmax != null" >
+        CREDITMAX,
+      </if>
+      <if test="custvmmsno != null" >
+        CUSTVMMSNO,
+      </if>
+      <if test="custintro != null" >
+        CUSTINTRO,
+      </if>
+      <if test="narrate != null" >
+        NARRATE,
+      </if>
+      <if test="deptoun != null" >
+        DEPTOUN,
+      </if>
+      <if test="ispublic != null" >
+        ISPUBLIC,
+      </if>
+      <if test="salesno != null" >
+        SALESNO,
+      </if>
+      <if test="notedate != null" >
+        NOTEDATE,
+      </if>
+      <if test="accountId != null" >
+        ACCOUNT_ID,
+      </if>
+      <if test="staLongitude != null" >
+        STA_LONGITUDE,
+      </if>
+      <if test="staLatitude != null" >
+        STA_LATITUDE,
+      </if>
+      <if test="prefixCode != null" >
+        PREFIX_CODE,
+      </if>
+      <if test="customsCo != null" >
+        CUSTOMS_CO,
+      </if>
+      <if test="serviceScope != null" >
+        SERVICE_SCOPE,
+      </if>
+      <if test="registerFund != null" >
+        REGISTER_FUND,
+      </if>
+      <if test="registerFundCurrCode != null" >
+        REGISTER_FUND_CURR_CODE,
+      </if>
+      <if test="foundedYears != null" >
+        FOUNDED_YEARS,
+      </if>
+      <if test="staffNum != null" >
+        STAFF_NUM,
+      </if>
+      <if test="areaNum != null" >
+        AREA_NUM,
+      </if>
+      <if test="mainLineCarNum != null" >
+        MAIN_LINE_CAR_NUM,
+      </if>
+      <if test="selfOwnerCarNum != null" >
+        SELF_OWNER_CAR_NUM,
+      </if>
+      <if test="roadTranPermitNo != null" >
+        ROAD_TRAN_PERMIT_NO,
+      </if>
+      <if test="orgCodeLilcenseNo != null" >
+        ORG_CODE_LIlCENSE_NO,
+      </if>
+      <if test="serviceType != null" >
+        SERVICE_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="customNo != null" >
+        #{customNo,jdbcType=VARCHAR},
+      </if>
+      <if test="custTtl != null" >
+        #{custTtl,jdbcType=VARCHAR},
+      </if>
+      <if test="custClas != null" >
+        #{custClas,jdbcType=VARCHAR},
+      </if>
+      <if test="custRanc != null" >
+        #{custRanc,jdbcType=VARCHAR},
+      </if>
+      <if test="custName != null" >
+        #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="custEng != null" >
+        #{custEng,jdbcType=VARCHAR},
+      </if>
+      <if test="custRoot != null" >
+        #{custRoot,jdbcType=VARCHAR},
+      </if>
+      <if test="custArea != null" >
+        #{custArea,jdbcType=VARCHAR},
+      </if>
+      <if test="custGild != null" >
+        #{custGild,jdbcType=VARCHAR},
+      </if>
+      <if test="comskind != null" >
+        #{comskind,jdbcType=VARCHAR},
+      </if>
+      <if test="custMan != null" >
+        #{custMan,jdbcType=VARCHAR},
+      </if>
+      <if test="custMantel != null" >
+        #{custMantel,jdbcType=VARCHAR},
+      </if>
+      <if test="custAdd != null" >
+        #{custAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="detailAdd != null" >
+        #{detailAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="custPost != null" >
+        #{custPost,jdbcType=VARCHAR},
+      </if>
+      <if test="identno != null" >
+        #{identno,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="county != null" >
+        #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="custEAdd != null" >
+        #{custEAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="custEPost != null" >
+        #{custEPost,jdbcType=VARCHAR},
+      </if>
+      <if test="custTel != null" >
+        #{custTel,jdbcType=VARCHAR},
+      </if>
+      <if test="custFax != null" >
+        #{custFax,jdbcType=VARCHAR},
+      </if>
+      <if test="custMail != null" >
+        #{custMail,jdbcType=VARCHAR},
+      </if>
+      <if test="custWeb != null" >
+        #{custWeb,jdbcType=VARCHAR},
+      </if>
+      <if test="flinkMan != null" >
+        #{flinkMan,jdbcType=VARCHAR},
+      </if>
+      <if test="fplace != null" >
+        #{fplace,jdbcType=VARCHAR},
+      </if>
+      <if test="fworkTel != null" >
+        #{fworkTel,jdbcType=VARCHAR},
+      </if>
+      <if test="fworkFax != null" >
+        #{fworkFax,jdbcType=VARCHAR},
+      </if>
+      <if test="fmobile != null" >
+        #{fmobile,jdbcType=VARCHAR},
+      </if>
+      <if test="femail != null" >
+        #{femail,jdbcType=VARCHAR},
+      </if>
+      <if test="fhometel != null" >
+        #{fhometel,jdbcType=VARCHAR},
+      </if>
+      <if test="slinkman != null" >
+        #{slinkman,jdbcType=VARCHAR},
+      </if>
+      <if test="splace != null" >
+        #{splace,jdbcType=VARCHAR},
+      </if>
+      <if test="sworktel != null" >
+        #{sworktel,jdbcType=VARCHAR},
+      </if>
+      <if test="sworkfax != null" >
+        #{sworkfax,jdbcType=VARCHAR},
+      </if>
+      <if test="smobile != null" >
+        #{smobile,jdbcType=VARCHAR},
+      </if>
+      <if test="semail != null" >
+        #{semail,jdbcType=VARCHAR},
+      </if>
+      <if test="shometel != null" >
+        #{shometel,jdbcType=VARCHAR},
+      </if>
+      <if test="custComno != null" >
+        #{custComno,jdbcType=VARCHAR},
+      </if>
+      <if test="custTaxno != null" >
+        #{custTaxno,jdbcType=VARCHAR},
+      </if>
+      <if test="currCode != null" >
+        #{currCode,jdbcType=VARCHAR},
+      </if>
+      <if test="custBank != null" >
+        #{custBank,jdbcType=VARCHAR},
+      </if>
+      <if test="custBankno != null" >
+        #{custBankno,jdbcType=VARCHAR},
+      </if>
+      <if test="receikind != null" >
+        #{receikind,jdbcType=VARCHAR},
+      </if>
+      <if test="promptdays != null" >
+        #{promptdays,jdbcType=DECIMAL},
+      </if>
+      <if test="settlekind != null" >
+        #{settlekind,jdbcType=VARCHAR},
+      </if>
+      <if test="settledays != null" >
+        #{settledays,jdbcType=DECIMAL},
+      </if>
+      <if test="creditranc != null" >
+        #{creditranc,jdbcType=VARCHAR},
+      </if>
+      <if test="creditmax != null" >
+        #{creditmax,jdbcType=DECIMAL},
+      </if>
+      <if test="custvmmsno != null" >
+        #{custvmmsno,jdbcType=VARCHAR},
+      </if>
+      <if test="custintro != null" >
+        #{custintro,jdbcType=VARCHAR},
+      </if>
+      <if test="narrate != null" >
+        #{narrate,jdbcType=VARCHAR},
+      </if>
+      <if test="deptoun != null" >
+        #{deptoun,jdbcType=VARCHAR},
+      </if>
+      <if test="ispublic != null" >
+        #{ispublic,jdbcType=TINYINT},
+      </if>
+      <if test="salesno != null" >
+        #{salesno,jdbcType=VARCHAR},
+      </if>
+      <if test="notedate != null" >
+        #{notedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accountId != null" >
+        #{accountId,jdbcType=INTEGER},
+      </if>
+      <if test="staLongitude != null" >
+        #{staLongitude,jdbcType=DECIMAL},
+      </if>
+      <if test="staLatitude != null" >
+        #{staLatitude,jdbcType=DECIMAL},
+      </if>
+      <if test="prefixCode != null" >
+        #{prefixCode,jdbcType=VARCHAR},
+      </if>
+      <if test="customsCo != null" >
+        #{customsCo,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceScope != null" >
+        #{serviceScope,jdbcType=VARCHAR},
+      </if>
+      <if test="registerFund != null" >
+        #{registerFund,jdbcType=INTEGER},
+      </if>
+      <if test="registerFundCurrCode != null" >
+        #{registerFundCurrCode,jdbcType=VARCHAR},
+      </if>
+      <if test="foundedYears != null" >
+        #{foundedYears,jdbcType=TIMESTAMP},
+      </if>
+      <if test="staffNum != null" >
+        #{staffNum,jdbcType=VARCHAR},
+      </if>
+      <if test="areaNum != null" >
+        #{areaNum,jdbcType=DECIMAL},
+      </if>
+      <if test="mainLineCarNum != null" >
+        #{mainLineCarNum,jdbcType=INTEGER},
+      </if>
+      <if test="selfOwnerCarNum != null" >
+        #{selfOwnerCarNum,jdbcType=INTEGER},
+      </if>
+      <if test="roadTranPermitNo != null" >
+        #{roadTranPermitNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCodeLilcenseNo != null" >
+        #{orgCodeLilcenseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceType != null" >
+        #{serviceType,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gistandard.transport.base.entity.bean.ComCustomerRecord" >
+    update COM_CUSTOMER_RECORD
+    <set >
+      <if test="customNo != null" >
+        CUSTOM_NO = #{customNo,jdbcType=VARCHAR},
+      </if>
+      <if test="custTtl != null" >
+        CUST_TTL = #{custTtl,jdbcType=VARCHAR},
+      </if>
+      <if test="custClas != null" >
+        CUST_CLAS = #{custClas,jdbcType=VARCHAR},
+      </if>
+      <if test="custRanc != null" >
+        CUST_RANC = #{custRanc,jdbcType=VARCHAR},
+      </if>
+      <if test="custName != null" >
+        CUST_NAME = #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="custEng != null" >
+        CUST_ENG = #{custEng,jdbcType=VARCHAR},
+      </if>
+      <if test="custRoot != null" >
+        CUST_ROOT = #{custRoot,jdbcType=VARCHAR},
+      </if>
+      <if test="custArea != null" >
+        CUST_AREA = #{custArea,jdbcType=VARCHAR},
+      </if>
+      <if test="custGild != null" >
+        CUST_GILD = #{custGild,jdbcType=VARCHAR},
+      </if>
+      <if test="comskind != null" >
+        COMSKIND = #{comskind,jdbcType=VARCHAR},
+      </if>
+      <if test="custMan != null" >
+        CUST_MAN = #{custMan,jdbcType=VARCHAR},
+      </if>
+      <if test="custMantel != null" >
+        CUST_MANTEL = #{custMantel,jdbcType=VARCHAR},
+      </if>
+      <if test="custAdd != null" >
+        CUST_ADD = #{custAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="detailAdd != null" >
+        DETAIL_ADD = #{detailAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="custPost != null" >
+        CUST_POST = #{custPost,jdbcType=VARCHAR},
+      </if>
+      <if test="identno != null" >
+        IDENTNO = #{identno,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        COUNTRY = #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        PROVINCE = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        CITY = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="county != null" >
+        COUNTY = #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="custEAdd != null" >
+        CUST_E_ADD = #{custEAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="custEPost != null" >
+        CUST_E_POST = #{custEPost,jdbcType=VARCHAR},
+      </if>
+      <if test="custTel != null" >
+        CUST_TEL = #{custTel,jdbcType=VARCHAR},
+      </if>
+      <if test="custFax != null" >
+        CUST_FAX = #{custFax,jdbcType=VARCHAR},
+      </if>
+      <if test="custMail != null" >
+        CUST_MAIL = #{custMail,jdbcType=VARCHAR},
+      </if>
+      <if test="custWeb != null" >
+        CUST_WEB = #{custWeb,jdbcType=VARCHAR},
+      </if>
+      <if test="flinkMan != null" >
+        FLINK_MAN = #{flinkMan,jdbcType=VARCHAR},
+      </if>
+      <if test="fplace != null" >
+        FPLACE = #{fplace,jdbcType=VARCHAR},
+      </if>
+      <if test="fworkTel != null" >
+        FWORK_TEL = #{fworkTel,jdbcType=VARCHAR},
+      </if>
+      <if test="fworkFax != null" >
+        FWORK_FAX = #{fworkFax,jdbcType=VARCHAR},
+      </if>
+      <if test="fmobile != null" >
+        FMOBILE = #{fmobile,jdbcType=VARCHAR},
+      </if>
+      <if test="femail != null" >
+        FEMAIL = #{femail,jdbcType=VARCHAR},
+      </if>
+      <if test="fhometel != null" >
+        FHOMETEL = #{fhometel,jdbcType=VARCHAR},
+      </if>
+      <if test="slinkman != null" >
+        SLINKMAN = #{slinkman,jdbcType=VARCHAR},
+      </if>
+      <if test="splace != null" >
+        SPLACE = #{splace,jdbcType=VARCHAR},
+      </if>
+      <if test="sworktel != null" >
+        SWORKTEL = #{sworktel,jdbcType=VARCHAR},
+      </if>
+      <if test="sworkfax != null" >
+        SWORKFAX = #{sworkfax,jdbcType=VARCHAR},
+      </if>
+      <if test="smobile != null" >
+        SMOBILE = #{smobile,jdbcType=VARCHAR},
+      </if>
+      <if test="semail != null" >
+        SEMAIL = #{semail,jdbcType=VARCHAR},
+      </if>
+      <if test="shometel != null" >
+        SHOMETEL = #{shometel,jdbcType=VARCHAR},
+      </if>
+      <if test="custComno != null" >
+        CUST_COMNO = #{custComno,jdbcType=VARCHAR},
+      </if>
+      <if test="custTaxno != null" >
+        CUST_TAXNO = #{custTaxno,jdbcType=VARCHAR},
+      </if>
+      <if test="currCode != null" >
+        CURR_CODE = #{currCode,jdbcType=VARCHAR},
+      </if>
+      <if test="custBank != null" >
+        CUST_BANK = #{custBank,jdbcType=VARCHAR},
+      </if>
+      <if test="custBankno != null" >
+        CUST_BANKNO = #{custBankno,jdbcType=VARCHAR},
+      </if>
+      <if test="receikind != null" >
+        RECEIKIND = #{receikind,jdbcType=VARCHAR},
+      </if>
+      <if test="promptdays != null" >
+        PROMPTDAYS = #{promptdays,jdbcType=DECIMAL},
+      </if>
+      <if test="settlekind != null" >
+        SETTLEKIND = #{settlekind,jdbcType=VARCHAR},
+      </if>
+      <if test="settledays != null" >
+        SETTLEDAYS = #{settledays,jdbcType=DECIMAL},
+      </if>
+      <if test="creditranc != null" >
+        CREDITRANC = #{creditranc,jdbcType=VARCHAR},
+      </if>
+      <if test="creditmax != null" >
+        CREDITMAX = #{creditmax,jdbcType=DECIMAL},
+      </if>
+      <if test="custvmmsno != null" >
+        CUSTVMMSNO = #{custvmmsno,jdbcType=VARCHAR},
+      </if>
+      <if test="custintro != null" >
+        CUSTINTRO = #{custintro,jdbcType=VARCHAR},
+      </if>
+      <if test="narrate != null" >
+        NARRATE = #{narrate,jdbcType=VARCHAR},
+      </if>
+      <if test="deptoun != null" >
+        DEPTOUN = #{deptoun,jdbcType=VARCHAR},
+      </if>
+      <if test="ispublic != null" >
+        ISPUBLIC = #{ispublic,jdbcType=TINYINT},
+      </if>
+      <if test="salesno != null" >
+        SALESNO = #{salesno,jdbcType=VARCHAR},
+      </if>
+      <if test="notedate != null" >
+        NOTEDATE = #{notedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accountId != null" >
+        ACCOUNT_ID = #{accountId,jdbcType=INTEGER},
+      </if>
+      <if test="staLongitude != null" >
+        STA_LONGITUDE = #{staLongitude,jdbcType=DECIMAL},
+      </if>
+      <if test="staLatitude != null" >
+        STA_LATITUDE = #{staLatitude,jdbcType=DECIMAL},
+      </if>
+      <if test="prefixCode != null" >
+        PREFIX_CODE = #{prefixCode,jdbcType=VARCHAR},
+      </if>
+      <if test="customsCo != null" >
+        CUSTOMS_CO = #{customsCo,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceScope != null" >
+        SERVICE_SCOPE = #{serviceScope,jdbcType=VARCHAR},
+      </if>
+      <if test="registerFund != null" >
+        REGISTER_FUND = #{registerFund,jdbcType=INTEGER},
+      </if>
+      <if test="registerFundCurrCode != null" >
+        REGISTER_FUND_CURR_CODE = #{registerFundCurrCode,jdbcType=VARCHAR},
+      </if>
+      <if test="foundedYears != null" >
+        FOUNDED_YEARS = #{foundedYears,jdbcType=TIMESTAMP},
+      </if>
+      <if test="staffNum != null" >
+        STAFF_NUM = #{staffNum,jdbcType=VARCHAR},
+      </if>
+      <if test="areaNum != null" >
+        AREA_NUM = #{areaNum,jdbcType=DECIMAL},
+      </if>
+      <if test="mainLineCarNum != null" >
+        MAIN_LINE_CAR_NUM = #{mainLineCarNum,jdbcType=INTEGER},
+      </if>
+      <if test="selfOwnerCarNum != null" >
+        SELF_OWNER_CAR_NUM = #{selfOwnerCarNum,jdbcType=INTEGER},
+      </if>
+      <if test="roadTranPermitNo != null" >
+        ROAD_TRAN_PERMIT_NO = #{roadTranPermitNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCodeLilcenseNo != null" >
+        ORG_CODE_LIlCENSE_NO = #{orgCodeLilcenseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceType != null" >
+        SERVICE_TYPE = #{serviceType,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gistandard.transport.base.entity.bean.ComCustomerRecord" >
+    update COM_CUSTOMER_RECORD
+    set CUSTOM_NO = #{customNo,jdbcType=VARCHAR},
+      CUST_TTL = #{custTtl,jdbcType=VARCHAR},
+      CUST_CLAS = #{custClas,jdbcType=VARCHAR},
+      CUST_RANC = #{custRanc,jdbcType=VARCHAR},
+      CUST_NAME = #{custName,jdbcType=VARCHAR},
+      CUST_ENG = #{custEng,jdbcType=VARCHAR},
+      CUST_ROOT = #{custRoot,jdbcType=VARCHAR},
+      CUST_AREA = #{custArea,jdbcType=VARCHAR},
+      CUST_GILD = #{custGild,jdbcType=VARCHAR},
+      COMSKIND = #{comskind,jdbcType=VARCHAR},
+      CUST_MAN = #{custMan,jdbcType=VARCHAR},
+      CUST_MANTEL = #{custMantel,jdbcType=VARCHAR},
+      CUST_ADD = #{custAdd,jdbcType=VARCHAR},
+      DETAIL_ADD = #{detailAdd,jdbcType=VARCHAR},
+      CUST_POST = #{custPost,jdbcType=VARCHAR},
+      IDENTNO = #{identno,jdbcType=VARCHAR},
+      COUNTRY = #{country,jdbcType=VARCHAR},
+      PROVINCE = #{province,jdbcType=VARCHAR},
+      CITY = #{city,jdbcType=VARCHAR},
+      COUNTY = #{county,jdbcType=VARCHAR},
+      CUST_E_ADD = #{custEAdd,jdbcType=VARCHAR},
+      CUST_E_POST = #{custEPost,jdbcType=VARCHAR},
+      CUST_TEL = #{custTel,jdbcType=VARCHAR},
+      CUST_FAX = #{custFax,jdbcType=VARCHAR},
+      CUST_MAIL = #{custMail,jdbcType=VARCHAR},
+      CUST_WEB = #{custWeb,jdbcType=VARCHAR},
+      FLINK_MAN = #{flinkMan,jdbcType=VARCHAR},
+      FPLACE = #{fplace,jdbcType=VARCHAR},
+      FWORK_TEL = #{fworkTel,jdbcType=VARCHAR},
+      FWORK_FAX = #{fworkFax,jdbcType=VARCHAR},
+      FMOBILE = #{fmobile,jdbcType=VARCHAR},
+      FEMAIL = #{femail,jdbcType=VARCHAR},
+      FHOMETEL = #{fhometel,jdbcType=VARCHAR},
+      SLINKMAN = #{slinkman,jdbcType=VARCHAR},
+      SPLACE = #{splace,jdbcType=VARCHAR},
+      SWORKTEL = #{sworktel,jdbcType=VARCHAR},
+      SWORKFAX = #{sworkfax,jdbcType=VARCHAR},
+      SMOBILE = #{smobile,jdbcType=VARCHAR},
+      SEMAIL = #{semail,jdbcType=VARCHAR},
+      SHOMETEL = #{shometel,jdbcType=VARCHAR},
+      CUST_COMNO = #{custComno,jdbcType=VARCHAR},
+      CUST_TAXNO = #{custTaxno,jdbcType=VARCHAR},
+      CURR_CODE = #{currCode,jdbcType=VARCHAR},
+      CUST_BANK = #{custBank,jdbcType=VARCHAR},
+      CUST_BANKNO = #{custBankno,jdbcType=VARCHAR},
+      RECEIKIND = #{receikind,jdbcType=VARCHAR},
+      PROMPTDAYS = #{promptdays,jdbcType=DECIMAL},
+      SETTLEKIND = #{settlekind,jdbcType=VARCHAR},
+      SETTLEDAYS = #{settledays,jdbcType=DECIMAL},
+      CREDITRANC = #{creditranc,jdbcType=VARCHAR},
+      CREDITMAX = #{creditmax,jdbcType=DECIMAL},
+      CUSTVMMSNO = #{custvmmsno,jdbcType=VARCHAR},
+      CUSTINTRO = #{custintro,jdbcType=VARCHAR},
+      NARRATE = #{narrate,jdbcType=VARCHAR},
+      DEPTOUN = #{deptoun,jdbcType=VARCHAR},
+      ISPUBLIC = #{ispublic,jdbcType=TINYINT},
+      SALESNO = #{salesno,jdbcType=VARCHAR},
+      NOTEDATE = #{notedate,jdbcType=TIMESTAMP},
+      ACCOUNT_ID = #{accountId,jdbcType=INTEGER},
+      STA_LONGITUDE = #{staLongitude,jdbcType=DECIMAL},
+      STA_LATITUDE = #{staLatitude,jdbcType=DECIMAL},
+      PREFIX_CODE = #{prefixCode,jdbcType=VARCHAR},
+      CUSTOMS_CO = #{customsCo,jdbcType=VARCHAR},
+      SERVICE_SCOPE = #{serviceScope,jdbcType=VARCHAR},
+      REGISTER_FUND = #{registerFund,jdbcType=INTEGER},
+      REGISTER_FUND_CURR_CODE = #{registerFundCurrCode,jdbcType=VARCHAR},
+      FOUNDED_YEARS = #{foundedYears,jdbcType=TIMESTAMP},
+      STAFF_NUM = #{staffNum,jdbcType=VARCHAR},
+      AREA_NUM = #{areaNum,jdbcType=DECIMAL},
+      MAIN_LINE_CAR_NUM = #{mainLineCarNum,jdbcType=INTEGER},
+      SELF_OWNER_CAR_NUM = #{selfOwnerCarNum,jdbcType=INTEGER},
+      ROAD_TRAN_PERMIT_NO = #{roadTranPermitNo,jdbcType=VARCHAR},
+      ORG_CODE_LIlCENSE_NO = #{orgCodeLilcenseNo,jdbcType=VARCHAR},
+      SERVICE_TYPE = #{serviceType,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,1040 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ex.BookingFormDaoEx">
+    <update id="makeSenderOrder" parameterType="java.lang.Integer">
+        update BOOKING_FORM
+        set BUSI_CTRL = 0
+        where ID = #{OrderId}
+    </update>
+    <update id="updateBookingForm" parameterType="com.gistandard.transport.base.entity.bean.BookingForm" >
+        update BOOKING_FORM
+        <set>
+            <if test="busiBookNo != null" >
+                BUSI_BOOK_NO = #{busiBookNo},
+            </if>
+            <if test="tradeTerm != null" >
+                TRADE_TERM = #{tradeTerm},
+            </if>
+            <if test="bookingDate != null" >
+                BOOKING_DATE = #{bookingDate},
+            </if>
+            <if test="busiDate != null" >
+                BUSI_DATE = #{busiDate},
+            </if>
+            <if test="bookingModel != null" >
+                BOOKING_MODEL = #{bookingModel},
+            </if>
+            <if test="bookmodelName != null" >
+                BOOKMODEL_NAME = #{bookmodelName},
+            </if>
+            <if test="busiKind != null" >
+                BUSI_KIND = #{busiKind},
+            </if>
+            <if test="formKind != null" >
+                FORM_KIND = #{formKind},
+            </if>
+            <if test="busiType != null" >
+                BUSI_TYPE = #{busiType},
+            </if>
+            <if test="routeBook != null" >
+                ROUTE_BOOK = #{routeBook},
+            </if>
+            <if test="routeBookNa != null" >
+                ROUTE_BOOK_NA = #{routeBookNa},
+            </if>
+            <if test="routeWay != null" >
+                ROUTE_WAY = #{routeWay},
+            </if>
+            <if test="routeName != null" >
+                ROUTE_NAME = #{routeName},
+            </if>
+            <if test="popPod != null" >
+                POP_POD = #{popPod},
+            </if>
+            <if test="needHaikwan != null" >
+                NEED_HAIKWAN = #{needHaikwan},
+            </if>
+            <if test="needInsure != null" >
+                NEED_INSURE = #{needInsure},
+            </if>
+            <if test="teamComsixNo != null" >
+                TEAM_COMSIX_NO = #{teamComsixNo},
+            </if>
+            <if test="bookCustomNo != null" >
+                BOOK_CUSTOM_NO = #{bookCustomNo},
+            </if>
+            <if test="bookCustName != null" >
+                BOOK_CUST_NAME = #{bookCustName},
+            </if>
+            <if test="bookCustAddr != null" >
+                BOOK_CUST_ADDR = #{bookCustAddr},
+            </if>
+            <if test="bookCustlinkMan != null" >
+                BOOK_CUSTLINK_MAN = #{bookCustlinkMan},
+            </if>
+            <if test="bookCustlinkTel != null" >
+                BOOK_CUSTLINK_TEL = #{bookCustlinkTel},
+            </if>
+            <if test="bookCustlinkMail != null" >
+                BOOK_CUSTLINK_MAIL = #{bookCustlinkMail},
+            </if>
+            <if test="bookCustlinkFax != null" >
+                BOOK_CUSTLINK_FAX = #{bookCustlinkFax},
+            </if>
+            <if test="suppCustomNo != null" >
+                SUPP_CUSTOM_NO = #{suppCustomNo},
+            </if>
+            <if test="suppCustName != null" >
+                SUPP_CUST_NAME = #{suppCustName},
+            </if>
+            <if test="suppCustAddr != null" >
+                SUPP_CUST_ADDR = #{suppCustAddr},
+            </if>
+            <if test="suppCustlinkMan != null" >
+                SUPP_CUSTLINK_MAN = #{suppCustlinkMan},
+            </if>
+            <if test="suppCustlinkTel != null" >
+                SUPP_CUSTLINK_TEL = #{suppCustlinkTel},
+            </if>
+            <if test="suppCustlinkMail != null" >
+                SUPP_CUSTLINK_MAIL = #{suppCustlinkMail},
+            </if>
+            <if test="suppCustlinkFax != null" >
+                SUPP_CUSTLINK_FAX = #{suppCustlinkFax},
+            </if>
+            <if test="purcCustomNo != null" >
+                PURC_CUSTOM_NO = #{purcCustomNo},
+            </if>
+            <if test="purcCustName != null" >
+                PURC_CUST_NAME = #{purcCustName},
+            </if>
+            <if test="purcCustAddr != null" >
+                PURC_CUST_ADDR = #{purcCustAddr},
+            </if>
+            <if test="purcCustlinkMan != null" >
+                PURC_CUSTLINK_MAN = #{purcCustlinkMan},
+            </if>
+            <if test="purcCustlinkTel != null" >
+                PURC_CUSTLINK_TEL = #{purcCustlinkTel},
+            </if>
+            <if test="purcCustlinkMail != null" >
+                PURC_CUSTLINK_MAIL = #{purcCustlinkMail},
+            </if>
+            <if test="purcCustlinkFax != null" >
+                PURC_CUSTLINK_FAX = #{purcCustlinkFax},
+            </if>
+            <if test="shipCustomNo != null" >
+                SHIP_CUSTOM_NO = #{shipCustomNo},
+            </if>
+            <if test="shipCustName != null" >
+                SHIP_CUST_NAME = #{shipCustName},
+            </if>
+            <if test="shipCustaDdr != null" >
+                SHIP_CUSTA_DDR = #{shipCustaDdr},
+            </if>
+            <if test="shipCustlinkMan != null" >
+                SHIP_CUSTLINK_MAN = #{shipCustlinkMan},
+            </if>
+            <if test="shipCustlinkTel != null" >
+                SHIP_CUSTLINK_TEL = #{shipCustlinkTel},
+            </if>
+            <if test="shipCustlinkMail != null" >
+                SHIP_CUSTLINK_MAIL = #{shipCustlinkMail},
+            </if>
+            <if test="shipCustlinkFax != null" >
+                SHIP_CUSTLINK_FAX = #{shipCustlinkFax},
+            </if>
+            <if test="cneeCustomNo != null" >
+                CNEE_CUSTOM_NO = #{cneeCustomNo},
+            </if>
+            <if test="cneeCustName != null" >
+                CNEE_CUST_NAME = #{cneeCustName},
+            </if>
+            <if test="cneeCustAddr != null" >
+                CNEE_CUST_ADDR = #{cneeCustAddr},
+            </if>
+            <if test="cneeCustLinkMan != null" >
+                CNEE_CUST_LINK_MAN = #{cneeCustLinkMan},
+            </if>
+            <if test="cneeCustLinkTel != null" >
+                CNEE_CUST_LINK_TEL = #{cneeCustLinkTel},
+            </if>
+            <if test="cneeCustLinkMail != null" >
+                CNEE_CUST_LINK_MAIL = #{cneeCustLinkMail},
+            </if>
+            <if test="cneeCustLinkFax != null" >
+                CNEE_CUST_LINK_FAX = #{cneeCustLinkFax},
+            </if>
+            <if test="notyCustomNo != null" >
+                NOTY_CUSTOM_NO = #{notyCustomNo},
+            </if>
+            <if test="notyCustName != null" >
+                NOTY_CUST_NAME = #{notyCustName},
+            </if>
+            <if test="notyCustAddr != null" >
+                NOTY_CUST_ADDR = #{notyCustAddr},
+            </if>
+            <if test="notyCustLinkMan != null" >
+                NOTY_CUST_LINK_MAN = #{notyCustLinkMan},
+            </if>
+            <if test="notyCustLinkTel != null" >
+                NOTY_CUST_LINK_TEL = #{notyCustLinkTel},
+            </if>
+            <if test="notyCustLinkMail != null" >
+                NOTY_CUST_LINK_MAIL = #{notyCustLinkMail},
+            </if>
+            <if test="notyCustLinkFax != null" >
+                NOTY_CUST_LINK_FAX = #{notyCustLinkFax},
+            </if>
+            <if test="saleComsixNo != null" >
+                SALE_COMSIX_NO = #{saleComsixNo},
+            </if>
+            <if test="busiComsixNo != null" >
+                BUSI_COMSIX_NO = #{busiComsixNo},
+            </if>
+            <if test="salesNo != null" >
+                SALES_NO = #{salesNo},
+            </if>
+            <if test="tradeSite != null" >
+                TRADE_SITE = #{tradeSite},
+            </if>
+            <if test="carriAgerecei != null" >
+                CARRI_AGERECEI = #{carriAgerecei},
+            </if>
+            ETA_POP_DATE = #{etaPopDate},
+            <if test="carriageReceiType != null" >
+                CARRIAGE_RECEI_TYPE = #{carriageReceiType},
+            </if>
+            <if test="carriageReceiZone != null" >
+                CARRIAGE_RECEI_ZONE = #{carriageReceiZone},
+            </if>
+            CARRIAGE_RECEI_ADDR = #{carriageReceiAddr},
+            <if test="carriageDeiv != null" >
+                CARRIAGE_DEIV = #{carriageDeiv},
+            </if>
+            ETA_POD_DATE = #{etaPodDate},
+            <if test="carriageDelivType != null" >
+                CARRIAGE_DELIV_TYPE = #{carriageDelivType},
+            </if>
+            <if test="carriageDelivZone != null" >
+                CARRIAGE_DELIV_ZONE = #{carriageDelivZone},
+            </if>
+            CARRIAGE_DELIV_ADDR = #{carriageDelivAddr},
+            <if test="goodsPalletQty != null" >
+                GOODS_PALLET_QTY = #{goodsPalletQty},
+            </if>
+            <if test="goodsPackageQty != null" >
+                GOODS_PACKAGE_QTY = #{goodsPackageQty},
+            </if>
+            <if test="goodsQty != null" >
+                GOODS_QTY = #{goodsQty},
+            </if>
+            <if test="whtNetwht != null" >
+                WHT_NETWHT = #{whtNetwht},
+            </if>
+            <if test="whtGrosswht != null" >
+                WHT_GROSSWHT = #{whtGrosswht},
+            </if>
+            <if test="whtVolcbm != null" >
+                WHT_VOLCBM = #{whtVolcbm},
+            </if>
+            <if test="whtVolwht != null" >
+                WHT_VOLWHT = #{whtVolwht},
+            </if>
+            <if test="whtFeewht != null" >
+                WHT_FEEWHT = #{whtFeewht},
+            </if>
+            <if test="goodsValue != null" >
+                GOODS_VALUE = #{goodsValue},
+            </if>
+            <if test="cargoLoader != null" >
+                CARGO_LOADER = #{cargoLoader},
+            </if>
+            <if test="cargoFeetype != null" >
+                CARGO_FEETYPE = #{cargoFeetype},
+            </if>
+            <if test="goodsDesc != null" >
+                GOODS_DESC = #{goodsDesc},
+            </if>
+            <if test="plusInsure != null" >
+                PLUS_INSURE = #{plusInsure},
+            </if>
+            <if test="busiHand != null" >
+                BUSI_HAND = #{busiHand},
+            </if>
+            <if test="busiAudit != null" >
+                BUSI_AUDIT = #{busiAudit},
+            </if>
+            <if test="busiAuditDate != null" >
+                BUSI_AUDIT_DATE = #{busiAuditDate},
+            </if>
+            <if test="busiAbort != null" >
+                BUSI_ABORT = #{busiAbort},
+            </if>
+            <if test="busiAbortCaus != null" >
+                BUSI_ABORT_CAUS = #{busiAbortCaus},
+            </if>
+            <if test="busiAbortDate != null" >
+                BUSI_ABORT_DATE = #{busiAbortDate},
+            </if>
+            <if test="bookPickedCtrl != null" >
+                BOOK_PICKED_CTRL = #{bookPickedCtrl},
+            </if>
+            <if test="bookMailCtrl != null" >
+                BOOK_MAIL_CTRL = #{bookMailCtrl},
+            </if>
+            <if test="bookingCtrl != null" >
+                BOOKING_CTRL = #{bookingCtrl},
+            </if>
+            <if test="narrate != null" >
+                NARRATE = #{narrate},
+            </if>
+            <if test="busiSts != null" >
+                BUSI_STS = #{busiSts},
+            </if>
+            <if test="busiCtrl != null" >
+                BUSI_CTRL = #{busiCtrl},
+            </if>
+            <if test="vehicleOrderId != null" >
+                VEHICLE_ORDER_ID = #{vehicleOrderId},
+            </if>
+            <if test="predictValue != null" >
+                PREDICT_VALUE = #{predictValue},
+            </if>
+            <if test="predictValueHub != null" >
+                PREDICT_VALUE_HUB = #{predictValueHub},
+            </if>
+            <if test="totValue != null" >
+                TOT_VALUE = #{totValue},
+            </if>
+            <if test="getValue != null" >
+                GET_VALUE = #{getValue},
+            </if>
+            <if test="sentValue != null" >
+                SENT_VALUE = #{sentValue},
+            </if>
+            <if test="premiumValue != null" >
+                PREMIUM_VALUE = #{premiumValue},
+            </if>
+            <if test="waybillNo != null" >
+                WAYBILL_NO = #{waybillNo},
+            </if>
+            <if test="quotedType != null" >
+                QUOTED_TYPE = #{quotedType},
+            </if>
+            <if test="orderType != null" >
+                ORDER_TYPE = #{orderType},
+            </if>
+            <if test="isAgent != null" >
+                IS_AGENT = #{isAgent},
+            </if>
+            <if test="startLocus != null" >
+                START_LOCUS = #{startLocus},
+            </if>
+            <if test="startLocusNa != null" >
+                START_LOCUS_NA = #{startLocusNa},
+            </if>
+            <if test="destnLocus != null" >
+                DESTN_LOCUS = #{destnLocus},
+            </if>
+            <if test="destnLocusNa != null" >
+                DESTN_LOCUS_NA = #{destnLocusNa},
+            </if>
+            <if test="createUser != null" >
+                CREATE_USER = #{createUser},
+            </if>
+            <if test="isJs != null" >
+                IS_JS = #{isJs},
+            </if>
+            <if test="transportType != null" >
+                TRANSPORT_TYPE = #{transportType},
+            </if>
+            <if test="docno != null" >
+                DOCNO = #{docno},
+            </if>
+            <if test="isDel != null" >
+                IS_DEL = #{isDel},
+            </if>
+            <if test="teamComsixName != null" >
+                TEAM_COMSIX_NAME = #{teamComsixName},
+            </if>
+            <if test="isLock != null" >
+                IS_LOCK = #{isLock},
+            </if>
+            <if test="payType != null" >
+                PAY_TYPE = #{payType},
+            </if>
+            <if test="goodsPayment != null" >
+                GOODS_PAYMENT = #{goodsPayment},
+            </if>
+            <if test="lastBusiCtrl != null" >
+                LAST_BUSI_CTRL = #{lastBusiCtrl},
+            </if>
+            <if test="goodsPaymentCurr != null" >
+                GOODS_PAYMENT_CURR = #{goodsPaymentCurr},
+            </if>
+            <if test="destPayment != null" >
+                DEST_PAYMENT = #{destPayment},
+            </if>
+            <if test="destPaymentCurr != null" >
+                DEST_PAYMENT_CURR = #{destPaymentCurr},
+            </if>
+            <if test="reveiceNo != null" >
+                REVEICE_NO = #{reveiceNo},
+            </if>
+            <if test="routeway != null" >
+                ROUTEWAY = #{routeway},
+            </if>
+            <if test="vPn != null" >
+                V_PN = #{vPn},
+            </if>
+            <if test="totGoodsValue != null" >
+                TOT_GOODS_VALUE = #{totGoodsValue},
+            </if>
+            <if test="revUser != null" >
+                REV_USER = #{revUser},
+            </if>
+            <if test="revDate != null" >
+                REV_DATE = #{revDate},
+            </if>
+            <if test="createUserId != null" >
+                CREATE_USER_ID = #{createUserId},
+            </if>
+            <if test="carriageReceiProvince != null" >
+                CARRIAGE_RECEI_PROVINCE = #{carriageReceiProvince,jdbcType=VARCHAR},
+            </if>
+            <if test="carriageReceiCity != null" >
+                CARRIAGE_RECEI_CITY = #{carriageReceiCity,jdbcType=VARCHAR},
+            </if>
+            <if test="carriageReceiCounty != null" >
+                CARRIAGE_RECEI_COUNTY = #{carriageReceiCounty,jdbcType=VARCHAR},
+            </if>
+            <if test="carriageReceiLongitude != null" >
+                CARRIAGE_RECEI_LONGITUDE = #{carriageReceiLongitude,jdbcType=DECIMAL},
+            </if>
+            <if test="carriageReceiLatitude != null" >
+                CARRIAGE_RECEI_LATITUDE = #{carriageReceiLatitude,jdbcType=DECIMAL},
+            </if>
+            <if test="carriageDelivProvince != null" >
+                CARRIAGE_DELIV_PROVINCE = #{carriageDelivProvince,jdbcType=VARCHAR},
+            </if>
+            <if test="carriageDelivCity != null" >
+                CARRIAGE_DELIV_CITY = #{carriageDelivCity,jdbcType=VARCHAR},
+            </if>
+            <if test="carriageDelivCounty != null" >
+                CARRIAGE_DELIV_COUNTY = #{carriageDelivCounty,jdbcType=VARCHAR},
+            </if>
+            <if test="carriageDelivLongitude != null" >
+                CARRIAGE_DELIV_LONGITUDE = #{carriageDelivLongitude,jdbcType=DECIMAL},
+            </if>
+            <if test="carriageDelivLatitude != null" >
+                CARRIAGE_DELIV_LATITUDE = #{carriageDelivLatitude,jdbcType=DECIMAL},
+            </if>
+        </set>
+        where ID = #{id}
+        and (BUSI_CTRL = 0 or BUSI_CTRL = 1 )
+    </update>
+    <select id="getBookingFormListByScheducarno" resultMap="com.gistandard.transport.base.entity.dao.BookingFormDao.BaseResultMap" parameterType="java.lang.String" >
+        select BF.*
+        FROM SCHEDU_GOODS_DTL SGD
+        INNER JOIN BOOKING_FORM BF ON SGD.BUSIBOOKNO=BF.BUSI_BOOK_NO
+        INNER JOIN SCHEDU_GOODS SG  ON SG.SCHEDU_GOODS_NO=SGD.SCHEDU_GOODS_NO
+        WHERE SG.SCHEDUCARNO = #{scheducarno}
+    </select>
+    <update id="updateBookingFormCustom" parameterType="com.gistandard.transport.base.entity.bean.BookingForm">
+        update BOOKING_FORM
+        <set>
+            <if test="busiBookNo != null">
+                BUSI_BOOK_NO = #{busiBookNo},
+            </if>
+            <if test="tradeTerm != null">
+                TRADE_TERM = #{tradeTerm},
+            </if>
+            <if test="bookingDate != null">
+                BOOKING_DATE = #{bookingDate},
+            </if>
+            <if test="busiDate != null">
+                BUSI_DATE = #{busiDate},
+            </if>
+            <if test="bookingModel != null">
+                BOOKING_MODEL = #{bookingModel},
+            </if>
+            <if test="bookmodelName != null">
+                BOOKMODEL_NAME = #{bookmodelName},
+            </if>
+            <if test="busiKind != null">
+                BUSI_KIND = #{busiKind},
+            </if>
+            <if test="formKind != null">
+                FORM_KIND = #{formKind},
+            </if>
+            <if test="busiType != null">
+                BUSI_TYPE = #{busiType},
+            </if>
+            <if test="routeBook != null">
+                ROUTE_BOOK = #{routeBook},
+            </if>
+            <if test="routeBookNa != null">
+                ROUTE_BOOK_NA = #{routeBookNa},
+            </if>
+            <if test="routeWay != null">
+                ROUTE_WAY = #{routeWay},
+            </if>
+            <if test="routeName != null">
+                ROUTE_NAME = #{routeName},
+            </if>
+            <if test="popPod != null">
+                POP_POD = #{popPod},
+            </if>
+            <if test="needHaikwan != null">
+                NEED_HAIKWAN = #{needHaikwan},
+            </if>
+            <if test="needInsure != null">
+                NEED_INSURE = #{needInsure},
+            </if>
+            <if test="teamComsixNo != null">
+                TEAM_COMSIX_NO = #{teamComsixNo},
+            </if>
+            <if test="bookCustomNo != null">
+                BOOK_CUSTOM_NO = #{bookCustomNo},
+            </if>
+            <if test="bookCustName != null">
+                BOOK_CUST_NAME = #{bookCustName},
+            </if>
+            <if test="bookCustAddr != null">
+                BOOK_CUST_ADDR = #{bookCustAddr},
+            </if>
+            <if test="bookCustlinkMan != null">
+                BOOK_CUSTLINK_MAN = #{bookCustlinkMan},
+            </if>
+            <if test="bookCustlinkTel != null">
+                BOOK_CUSTLINK_TEL = #{bookCustlinkTel},
+            </if>
+            <if test="bookCustlinkMail != null">
+                BOOK_CUSTLINK_MAIL = #{bookCustlinkMail},
+            </if>
+            <if test="bookCustlinkFax != null">
+                BOOK_CUSTLINK_FAX = #{bookCustlinkFax},
+            </if>
+            <if test="suppCustomNo != null">
+                SUPP_CUSTOM_NO = #{suppCustomNo},
+            </if>
+            <if test="suppCustName != null">
+                SUPP_CUST_NAME = #{suppCustName},
+            </if>
+            <if test="suppCustAddr != null">
+                SUPP_CUST_ADDR = #{suppCustAddr},
+            </if>
+            <if test="suppCustlinkMan != null">
+                SUPP_CUSTLINK_MAN = #{suppCustlinkMan},
+            </if>
+            <if test="suppCustlinkTel != null">
+                SUPP_CUSTLINK_TEL = #{suppCustlinkTel},
+            </if>
+            <if test="suppCustlinkMail != null">
+                SUPP_CUSTLINK_MAIL = #{suppCustlinkMail},
+            </if>
+            <if test="suppCustlinkFax != null">
+                SUPP_CUSTLINK_FAX = #{suppCustlinkFax},
+            </if>
+            <if test="purcCustomNo != null">
+                PURC_CUSTOM_NO = #{purcCustomNo},
+            </if>
+            <if test="purcCustName != null">
+                PURC_CUST_NAME = #{purcCustName},
+            </if>
+            <if test="purcCustAddr != null">
+                PURC_CUST_ADDR = #{purcCustAddr},
+            </if>
+            <if test="purcCustlinkMan != null">
+                PURC_CUSTLINK_MAN = #{purcCustlinkMan},
+            </if>
+            <if test="purcCustlinkTel != null">
+                PURC_CUSTLINK_TEL = #{purcCustlinkTel},
+            </if>
+            <if test="purcCustlinkMail != null">
+                PURC_CUSTLINK_MAIL = #{purcCustlinkMail},
+            </if>
+            <if test="purcCustlinkFax != null">
+                PURC_CUSTLINK_FAX = #{purcCustlinkFax},
+            </if>
+            <if test="shipCustomNo != null">
+                SHIP_CUSTOM_NO = #{shipCustomNo},
+            </if>
+            <if test="shipCustName != null">
+                SHIP_CUST_NAME = #{shipCustName},
+            </if>
+            <if test="shipCustaDdr != null">
+                SHIP_CUSTA_DDR = #{shipCustaDdr},
+            </if>
+            <if test="shipCustlinkMan != null">
+                SHIP_CUSTLINK_MAN = #{shipCustlinkMan},
+            </if>
+            <if test="shipCustlinkTel != null">
+                SHIP_CUSTLINK_TEL = #{shipCustlinkTel},
+            </if>
+            <if test="shipCustlinkMail != null">
+                SHIP_CUSTLINK_MAIL = #{shipCustlinkMail},
+            </if>
+            <if test="shipCustlinkFax != null">
+                SHIP_CUSTLINK_FAX = #{shipCustlinkFax},
+            </if>
+            <if test="cneeCustomNo != null">
+                CNEE_CUSTOM_NO = #{cneeCustomNo},
+            </if>
+            <if test="cneeCustName != null">
+                CNEE_CUST_NAME = #{cneeCustName},
+            </if>
+            <if test="cneeCustAddr != null">
+                CNEE_CUST_ADDR = #{cneeCustAddr},
+            </if>
+            <if test="cneeCustLinkMan != null">
+                CNEE_CUST_LINK_MAN = #{cneeCustLinkMan},
+            </if>
+            <if test="cneeCustLinkTel != null">
+                CNEE_CUST_LINK_TEL = #{cneeCustLinkTel},
+            </if>
+            <if test="cneeCustLinkMail != null">
+                CNEE_CUST_LINK_MAIL = #{cneeCustLinkMail},
+            </if>
+            <if test="cneeCustLinkFax != null">
+                CNEE_CUST_LINK_FAX = #{cneeCustLinkFax},
+            </if>
+            <if test="notyCustomNo != null">
+                NOTY_CUSTOM_NO = #{notyCustomNo},
+            </if>
+            <if test="notyCustName != null">
+                NOTY_CUST_NAME = #{notyCustName},
+            </if>
+            <if test="notyCustAddr != null">
+                NOTY_CUST_ADDR = #{notyCustAddr},
+            </if>
+            <if test="notyCustLinkMan != null">
+                NOTY_CUST_LINK_MAN = #{notyCustLinkMan},
+            </if>
+            <if test="notyCustLinkTel != null">
+                NOTY_CUST_LINK_TEL = #{notyCustLinkTel},
+            </if>
+            <if test="notyCustLinkMail != null">
+                NOTY_CUST_LINK_MAIL = #{notyCustLinkMail},
+            </if>
+            <if test="notyCustLinkFax != null">
+                NOTY_CUST_LINK_FAX = #{notyCustLinkFax},
+            </if>
+            <if test="saleComsixNo != null">
+                SALE_COMSIX_NO = #{saleComsixNo},
+            </if>
+            <if test="busiComsixNo != null">
+                BUSI_COMSIX_NO = #{busiComsixNo},
+            </if>
+            <if test="salesNo != null">
+                SALES_NO = #{salesNo},
+            </if>
+            <if test="tradeSite != null">
+                TRADE_SITE = #{tradeSite},
+            </if>
+            <if test="carriAgerecei != null">
+                CARRI_AGERECEI = #{carriAgerecei},
+            </if>
+            <if test="etaPopDate != null">
+                ETA_POP_DATE = #{etaPopDate},
+            </if>
+            <if test="carriageReceiType != null">
+                CARRIAGE_RECEI_TYPE = #{carriageReceiType},
+            </if>
+            <if test="carriageReceiZone != null">
+                CARRIAGE_RECEI_ZONE = #{carriageReceiZone},
+            </if>
+            <if test="carriageReceiAddr != null">
+                CARRIAGE_RECEI_ADDR = #{carriageReceiAddr},
+            </if>
+            <if test="carriageDeiv != null">
+                CARRIAGE_DEIV = #{carriageDeiv},
+            </if>
+            <if test="etaPodDate != null">
+                ETA_POD_DATE = #{etaPodDate},
+            </if>
+            <if test="carriageDelivType != null">
+                CARRIAGE_DELIV_TYPE = #{carriageDelivType},
+            </if>
+            <if test="carriageDelivZone != null">
+                CARRIAGE_DELIV_ZONE = #{carriageDelivZone},
+            </if>
+            <if test="carriageDelivAddr != null">
+                CARRIAGE_DELIV_ADDR = #{carriageDelivAddr},
+            </if>
+            <if test="goodsPalletQty != null">
+                GOODS_PALLET_QTY = #{goodsPalletQty},
+            </if>
+            <if test="goodsPackageQty != null">
+                GOODS_PACKAGE_QTY = #{goodsPackageQty},
+            </if>
+            <if test="goodsQty != null">
+                GOODS_QTY = #{goodsQty},
+            </if>
+            <if test="whtNetwht != null">
+                WHT_NETWHT = #{whtNetwht},
+            </if>
+            <if test="whtGrosswht != null">
+                WHT_GROSSWHT = #{whtGrosswht},
+            </if>
+            <if test="whtVolcbm != null">
+                WHT_VOLCBM = #{whtVolcbm},
+            </if>
+            <if test="whtVolwht != null">
+                WHT_VOLWHT = #{whtVolwht},
+            </if>
+            <if test="whtFeewht != null">
+                WHT_FEEWHT = #{whtFeewht},
+            </if>
+            <if test="goodsValue != null">
+                GOODS_VALUE = #{goodsValue},
+            </if>
+            <if test="cargoLoader != null">
+                CARGO_LOADER = #{cargoLoader},
+            </if>
+            <if test="cargoFeetype != null">
+                CARGO_FEETYPE = #{cargoFeetype},
+            </if>
+            <if test="goodsDesc != null">
+                GOODS_DESC = #{goodsDesc},
+            </if>
+            <if test="plusInsure != null">
+                PLUS_INSURE = #{plusInsure},
+            </if>
+            <if test="busiHand != null">
+                BUSI_HAND = #{busiHand},
+            </if>
+            <if test="busiAudit != null">
+                BUSI_AUDIT = #{busiAudit},
+            </if>
+            <if test="busiAuditDate != null">
+                BUSI_AUDIT_DATE = #{busiAuditDate},
+            </if>
+            <if test="busiAbort != null">
+                BUSI_ABORT = #{busiAbort},
+            </if>
+            <if test="busiAbortCaus != null">
+                BUSI_ABORT_CAUS = #{busiAbortCaus},
+            </if>
+            <if test="busiAbortDate != null">
+                BUSI_ABORT_DATE = #{busiAbortDate},
+            </if>
+            <if test="bookPickedCtrl != null">
+                BOOK_PICKED_CTRL = #{bookPickedCtrl},
+            </if>
+            <if test="bookMailCtrl != null">
+                BOOK_MAIL_CTRL = #{bookMailCtrl},
+            </if>
+            <if test="bookingCtrl != null">
+                BOOKING_CTRL = #{bookingCtrl},
+            </if>
+            <if test="narrate != null">
+                NARRATE = #{narrate},
+            </if>
+            <if test="busiSts != null">
+                BUSI_STS = #{busiSts},
+            </if>
+            <if test="busiCtrl != null">
+                BUSI_CTRL = #{busiCtrl},
+            </if>
+            <if test="vehicleOrderId != null">
+                VEHICLE_ORDER_ID = #{vehicleOrderId},
+            </if>
+            <if test="predictValue != null">
+                PREDICT_VALUE = #{predictValue},
+            </if>
+            <if test="predictValueHub != null">
+                PREDICT_VALUE_HUB = #{predictValueHub},
+            </if>
+            <if test="totValue != null">
+                TOT_VALUE = #{totValue},
+            </if>
+            <if test="getValue != null">
+                GET_VALUE = #{getValue},
+            </if>
+            <if test="sentValue != null">
+                SENT_VALUE = #{sentValue},
+            </if>
+            <if test="premiumValue != null">
+                PREMIUM_VALUE = #{premiumValue},
+            </if>
+            <if test="waybillNo != null">
+                WAYBILL_NO = #{waybillNo},
+            </if>
+            <if test="quotedType != null">
+                QUOTED_TYPE = #{quotedType},
+            </if>
+            <if test="orderType != null">
+                ORDER_TYPE = #{orderType},
+            </if>
+            <if test="isAgent != null">
+                IS_AGENT = #{isAgent},
+            </if>
+            <if test="startLocus != null">
+                START_LOCUS = #{startLocus},
+            </if>
+            <if test="startLocusNa != null">
+                START_LOCUS_NA = #{startLocusNa},
+            </if>
+            <if test="destnLocus != null">
+                DESTN_LOCUS = #{destnLocus},
+            </if>
+            <if test="destnLocusNa != null">
+                DESTN_LOCUS_NA = #{destnLocusNa},
+            </if>
+            <if test="createUser != null">
+                CREATE_USER = #{createUser},
+            </if>
+            <if test="isJs != null">
+                IS_JS = #{isJs},
+            </if>
+            <if test="transportType != null">
+                TRANSPORT_TYPE = #{transportType},
+            </if>
+            <if test="docno != null">
+                DOCNO = #{docno},
+            </if>
+            <if test="isDel != null">
+                IS_DEL = #{isDel},
+            </if>
+            <if test="teamComsixName != null">
+                TEAM_COMSIX_NAME = #{teamComsixName},
+            </if>
+            <if test="isLock != null">
+                IS_LOCK = #{isLock},
+            </if>
+            <if test="payType != null">
+                PAY_TYPE = #{payType},
+            </if>
+            <if test="goodsPayment != null">
+                GOODS_PAYMENT = #{goodsPayment},
+            </if>
+            <if test="lastBusiCtrl != null">
+                LAST_BUSI_CTRL = #{lastBusiCtrl},
+            </if>
+            <if test="goodsPaymentCurr != null">
+                GOODS_PAYMENT_CURR = #{goodsPaymentCurr},
+            </if>
+            <if test="destPayment != null">
+                DEST_PAYMENT = #{destPayment},
+            </if>
+            <if test="destPaymentCurr != null">
+                DEST_PAYMENT_CURR = #{destPaymentCurr},
+            </if>
+            <if test="reveiceNo != null">
+                REVEICE_NO = #{reveiceNo},
+            </if>
+            <if test="routeway != null">
+                ROUTEWAY = #{routeway},
+            </if>
+            <if test="vPn != null">
+                V_PN = #{vPn},
+            </if>
+            <if test="totGoodsValue != null">
+                TOT_GOODS_VALUE = #{totGoodsValue},
+            </if>
+            <if test="revUser != null">
+                REV_USER = #{revUser},
+            </if>
+            <if test="revDate != null">
+                REV_DATE = #{revDate}
+            </if>
+            <if test="createUserId != null">
+                CREATE_USER_ID = #{createUserId}
+            </if>
+            <if test="receiverUser != null">
+                RECEIVER_USER= #{receiverUser},
+            </if>
+            <if test="predictCurr != null">
+                PREDICT_CURR= #{predictCurr},
+            </if>
+            <if test="smsNoty != null">
+                SMS_NOTY= #{smsNoty},
+            </if>
+            <if test="receiverFollow != null">
+                RECEIVER_FOLLOW= #{receiverFollow},
+            </if>
+            <if test="senderFollow != null">
+                SENDER_FOLLOW= #{senderFollow},
+            </if>
+            <if test="receiverZipCode != null">
+                RECEIVER_ZIP_CODE = #{receiverZipCode,jdbcType=VARCHAR},
+            </if>
+            <if test="senderZipCode != null">
+                SENDER_ZIP_CODE = #{senderZipCode,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ID = #{id}
+        and (BUSI_CTRL = 0 or BUSI_CTRL = 1 )
+    </update>
+    <select id="getBookingFormByBusiNo" resultMap="com.gistandard.transport.base.entity.dao.BookingFormDao.BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="com.gistandard.transport.base.entity.dao.BookingFormDao.Base_Column_List" />
+        from BOOKING_FORM
+        where BUSI_BOOK_NO = #{busiNo}
+    </select>
+    <select id="getBookingFormByExpressOrderNo" resultMap="com.gistandard.transport.base.entity.dao.BookingFormDao.BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="com.gistandard.transport.base.entity.dao.BookingFormDao.Base_Column_List" />
+        from BOOKING_FORM
+        where EXPRESS_ORDER_NO = #{expressOrderNo}
+    </select>
+    <!--修改订单表状态 -->
+    <update id="updateBookingFormStatus">
+        update BOOKING_FORM
+        set BUSI_CTRL = #{busiCtrl}
+        where
+         BUSI_BOOK_NO = #{busiNo}
+    </update>
+    <!--根据旧状态修改订单表状态 -->
+    <update id="updateBookingFormOldStatus">
+        update BOOKING_FORM
+        set BUSI_CTRL = #{busiCtrl},
+        REV_COMPANY_ID = #{fleetId}
+        where
+            BUSI_BOOK_NO = #{busiNo}
+        AND BUSI_CTRL = #{oldStatus}
+    </update>
+    <!--根据旧状态修改订单表状态 指派司机-->
+    <update id="updateBookingFormOldStatusDriver">
+        update BOOKING_FORM
+        set BUSI_CTRL = #{busiCtrl},
+        REV_USER_ID = #{revUserId},
+        REV_USER = #{revUser},
+        REV_DATE = #{revDate},
+        REV_COMPANY_ID = #{fleetId}
+        where
+        BUSI_BOOK_NO = #{busiNo}
+        AND BUSI_CTRL = #{oldStatus}
+    </update>
+    <update id="updateBookingFormReceiveBroadcastOrder" parameterType="com.gistandard.transport.base.entity.bean.BookingForm" >
+        update BOOKING_FORM
+        <set>
+            <if test="busiCtrl != null" >
+                BUSI_CTRL = #{busiCtrl},
+            </if>
+            <if test="revUser != null" >
+                REV_USER = #{revUser},
+            </if>
+            <if test="revUserId != null" >
+                REV_USER_ID = #{revUserId},
+            </if>
+            <if test="revCompanyId != null" >
+                REV_COMPANY_ID = #{revCompanyId},
+            </if>
+            <if test="revDate != null" >
+                REV_DATE = #{revDate},
+            </if>
+            <if test="createUserId != null" >
+                CREATE_USER_ID = #{createUserId},
+            </if>
+            <if test="createUser != null" >
+                CREATE_USER = #{createUser},
+            </if>
+            <if test="revUserName != null" >
+                REV_USER_NAME = #{revUserName},
+            </if>
+            <if test="bookingCtrl != null" >
+                BOOKING_CTRL = #{bookingCtrl},
+            </if>
+            <if test="revCompanyId != null" >
+                REV_COMPANY_ID = #{revCompanyId},
+            </if>
+            <if test="payUser != null" >
+                PAY_USER = #{payUser,jdbcType=VARCHAR},
+            </if>
+            <if test="payUserRealName != null" >
+                PAY_USER_REAL_NAME = #{payUserRealName,jdbcType=VARCHAR},
+            </if>
+            <if test="payUserTelephone != null" >
+                PAY_USER_TELEPHONE = #{payUserTelephone,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ID = #{id}
+        and BUSI_CTRL = 0
+    </update>
+
+    <update id="updateCtrl" parameterType="com.gistandard.transport.base.entity.bean.BookingForm" >
+        update BOOKING_FORM
+        SET BUSI_CTRL = #{busiCtrl}
+        where ID = #{id}
+    </update>
+
+    <delete id="deleteByBusiNo" >
+        delete from BOOKING_FORM
+        where BUSI_BOOK_NO = #{busiNo,jdbcType=VARCHAR} AND BUSI_CTRL = #{busiCtrl,jdbcType=INTEGER}
+    </delete>
+
+    <!--修改订单支付方式 -->
+    <update id="updateBookingFormPayType">
+        update BOOKING_FORM
+        set PAY_TYPE = #{payType},
+            PAY_USER = #{payUser,jdbcType=VARCHAR},
+            PAY_USER_REAL_NAME = #{payUserRealName,jdbcType=VARCHAR},
+            PAY_USER_TELEPHONE = #{payUserTelephone,jdbcType=VARCHAR}
+        where
+        BUSI_BOOK_NO = #{busiBookNo}
+    </update>
+
+    <!--车队分发修改订单接单人 -->
+    <update id="updateBookingFormRevUser" parameterType="com.gistandard.transport.base.entity.bean.BookingForm">
+        update BOOKING_FORM
+        set
+            REV_USER = #{revUser},
+            REV_USER_ID = #{revUserId},
+            REV_USER_NAME = #{revUserName},
+            BUSI_CTRL = #{busiCtrl}
+        where
+        BUSI_BOOK_NO = #{busiBookNo}
+    </update>
+
+    <!--车队竞价完成后修改订单状态和pridictValue-->
+    <update id="updateBfCtrlPridict" parameterType="com.gistandard.transport.base.entity.bean.BookingForm" >
+        update BOOKING_FORM
+        set
+        BUSI_CTRL = #{busiCtrl},
+        PREDICT_VALUE = #{predictValue},
+        PREDICT_CURR= #{predictCurr}
+        where
+        BUSI_BOOK_NO = #{busiBookNo}
+    </update>
+
+    <!--用户确认报价后 修改订单状态为已接单-->
+    <update id="updateBookingFormAfterQuoted" parameterType="com.gistandard.transport.base.entity.bean.BookingForm" >
+        update BOOKING_FORM
+        <set>
+            <if test="busiCtrl != null" >
+                BUSI_CTRL = #{busiCtrl},
+            </if>
+            <if test="revUser != null" >
+                REV_USER = #{revUser},
+            </if>
+            <if test="revUserName != null" >
+                REV_USER_NAME = #{revUserName},
+            </if>
+            <if test="revUserId != null" >
+                REV_USER_ID = #{revUserId},
+            </if>
+            <if test="revCompanyId != null" >
+                REV_COMPANY_ID = #{revCompanyId},
+            </if>
+            <if test="revDate != null" >
+                REV_DATE = #{revDate},
+            </if>
+            <if test="createUserId != null" >
+                CREATE_USER_ID = #{createUserId},
+            </if>
+            <if test="createUser != null" >
+                CREATE_USER = #{createUser},
+            </if>
+            <if test="bookingCtrl != null" >
+                BOOKING_CTRL = #{bookingCtrl},
+            </if>
+        </set>
+        where ID = #{id}
+    </update>
+
+
+
+</mapper>

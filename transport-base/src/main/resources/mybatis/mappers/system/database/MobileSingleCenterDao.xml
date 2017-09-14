@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.MobileSingleCenterDao" >
+  <resultMap id="BaseResultMap" type="com.gistandard.transport.base.entity.bean.MobileSingleCenter" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="MOBILE_BOOKING_FORM_ID" property="mobileBookingFormId" jdbcType="INTEGER" />
+    <result column="BUSI_BOOK_NO" property="busiBookNo" jdbcType="VARCHAR" />
+    <result column="BUSI_CTRL" property="busiCtrl" jdbcType="INTEGER" />
+    <result column="COM_QUOTE_ID" property="comQuoteId" jdbcType="VARCHAR" />
+    <result column="QUOTED_TYPE" property="quotedType" jdbcType="INTEGER" />
+    <result column="DISPATCH_ID" property="dispatchId" jdbcType="INTEGER" />
+    <result column="CREATE_USER_ID" property="createUserId" jdbcType="INTEGER" />
+    <result column="CREATE_USER" property="createUser" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="SINGLE_DATE" property="singleDate" jdbcType="TIMESTAMP" />
+    <result column="TEAM_COMSIX_NO" property="teamComsixNo" jdbcType="VARCHAR" />
+    <result column="REV_USER_ID" property="revUserId" jdbcType="INTEGER" />
+    <result column="REV_USER" property="revUser" jdbcType="VARCHAR" />
+    <result column="REV_DATE" property="revDate" jdbcType="TIMESTAMP" />
+    <result column="PRODUCT_TYPE" property="productType" jdbcType="VARCHAR" />
+    <result column="SINGLE_VALUE" property="singleValue" jdbcType="DECIMAL" />
+    <result column="SINGLE_CURR" property="singleCurr" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, MOBILE_BOOKING_FORM_ID, BUSI_BOOK_NO, BUSI_CTRL, COM_QUOTE_ID, QUOTED_TYPE, DISPATCH_ID, 
+    CREATE_USER_ID, CREATE_USER, CREATE_DATE, SINGLE_DATE, TEAM_COMSIX_NO, REV_USER_ID, 
+    REV_USER, REV_DATE, PRODUCT_TYPE, SINGLE_VALUE, SINGLE_CURR
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from MOBILE_SINGLE_CENTER
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from MOBILE_SINGLE_CENTER
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gistandard.transport.base.entity.bean.MobileSingleCenter" >
+    insert into MOBILE_SINGLE_CENTER (ID, MOBILE_BOOKING_FORM_ID, BUSI_BOOK_NO, 
+      BUSI_CTRL, COM_QUOTE_ID, QUOTED_TYPE, 
+      DISPATCH_ID, CREATE_USER_ID, CREATE_USER, 
+      CREATE_DATE, SINGLE_DATE, TEAM_COMSIX_NO, 
+      REV_USER_ID, REV_USER, REV_DATE, 
+      PRODUCT_TYPE, SINGLE_VALUE, SINGLE_CURR
+      )
+    values (#{id,jdbcType=INTEGER}, #{mobileBookingFormId,jdbcType=INTEGER}, #{busiBookNo,jdbcType=VARCHAR}, 
+      #{busiCtrl,jdbcType=INTEGER}, #{comQuoteId,jdbcType=VARCHAR}, #{quotedType,jdbcType=INTEGER}, 
+      #{dispatchId,jdbcType=INTEGER}, #{createUserId,jdbcType=INTEGER}, #{createUser,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{singleDate,jdbcType=TIMESTAMP}, #{teamComsixNo,jdbcType=VARCHAR}, 
+      #{revUserId,jdbcType=INTEGER}, #{revUser,jdbcType=VARCHAR}, #{revDate,jdbcType=TIMESTAMP}, 
+      #{productType,jdbcType=VARCHAR}, #{singleValue,jdbcType=DECIMAL}, #{singleCurr,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gistandard.transport.base.entity.bean.MobileSingleCenter" >
+    insert into MOBILE_SINGLE_CENTER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="mobileBookingFormId != null" >
+        MOBILE_BOOKING_FORM_ID,
+      </if>
+      <if test="busiBookNo != null" >
+        BUSI_BOOK_NO,
+      </if>
+      <if test="busiCtrl != null" >
+        BUSI_CTRL,
+      </if>
+      <if test="comQuoteId != null" >
+        COM_QUOTE_ID,
+      </if>
+      <if test="quotedType != null" >
+        QUOTED_TYPE,
+      </if>
+      <if test="dispatchId != null" >
+        DISPATCH_ID,
+      </if>
+      <if test="createUserId != null" >
+        CREATE_USER_ID,
+      </if>
+      <if test="createUser != null" >
+        CREATE_USER,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="singleDate != null" >
+        SINGLE_DATE,
+      </if>
+      <if test="teamComsixNo != null" >
+        TEAM_COMSIX_NO,
+      </if>
+      <if test="revUserId != null" >
+        REV_USER_ID,
+      </if>
+      <if test="revUser != null" >
+        REV_USER,
+      </if>
+      <if test="revDate != null" >
+        REV_DATE,
+      </if>
+      <if test="productType != null" >
+        PRODUCT_TYPE,
+      </if>
+      <if test="singleValue != null" >
+        SINGLE_VALUE,
+      </if>
+      <if test="singleCurr != null" >
+        SINGLE_CURR,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mobileBookingFormId != null" >
+        #{mobileBookingFormId,jdbcType=INTEGER},
+      </if>
+      <if test="busiBookNo != null" >
+        #{busiBookNo,jdbcType=VARCHAR},
+      </if>
+      <if test="busiCtrl != null" >
+        #{busiCtrl,jdbcType=INTEGER},
+      </if>
+      <if test="comQuoteId != null" >
+        #{comQuoteId,jdbcType=VARCHAR},
+      </if>
+      <if test="quotedType != null" >
+        #{quotedType,jdbcType=INTEGER},
+      </if>
+      <if test="dispatchId != null" >
+        #{dispatchId,jdbcType=INTEGER},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="singleDate != null" >
+        #{singleDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="teamComsixNo != null" >
+        #{teamComsixNo,jdbcType=VARCHAR},
+      </if>
+      <if test="revUserId != null" >
+        #{revUserId,jdbcType=INTEGER},
+      </if>
+      <if test="revUser != null" >
+        #{revUser,jdbcType=VARCHAR},
+      </if>
+      <if test="revDate != null" >
+        #{revDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productType != null" >
+        #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="singleValue != null" >
+        #{singleValue,jdbcType=DECIMAL},
+      </if>
+      <if test="singleCurr != null" >
+        #{singleCurr,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gistandard.transport.base.entity.bean.MobileSingleCenter" >
+    update MOBILE_SINGLE_CENTER
+    <set >
+      <if test="mobileBookingFormId != null" >
+        MOBILE_BOOKING_FORM_ID = #{mobileBookingFormId,jdbcType=INTEGER},
+      </if>
+      <if test="busiBookNo != null" >
+        BUSI_BOOK_NO = #{busiBookNo,jdbcType=VARCHAR},
+      </if>
+      <if test="busiCtrl != null" >
+        BUSI_CTRL = #{busiCtrl,jdbcType=INTEGER},
+      </if>
+      <if test="comQuoteId != null" >
+        COM_QUOTE_ID = #{comQuoteId,jdbcType=VARCHAR},
+      </if>
+      <if test="quotedType != null" >
+        QUOTED_TYPE = #{quotedType,jdbcType=INTEGER},
+      </if>
+      <if test="dispatchId != null" >
+        DISPATCH_ID = #{dispatchId,jdbcType=INTEGER},
+      </if>
+      <if test="createUserId != null" >
+        CREATE_USER_ID = #{createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null" >
+        CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="singleDate != null" >
+        SINGLE_DATE = #{singleDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="teamComsixNo != null" >
+        TEAM_COMSIX_NO = #{teamComsixNo,jdbcType=VARCHAR},
+      </if>
+      <if test="revUserId != null" >
+        REV_USER_ID = #{revUserId,jdbcType=INTEGER},
+      </if>
+      <if test="revUser != null" >
+        REV_USER = #{revUser,jdbcType=VARCHAR},
+      </if>
+      <if test="revDate != null" >
+        REV_DATE = #{revDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productType != null" >
+        PRODUCT_TYPE = #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="singleValue != null" >
+        SINGLE_VALUE = #{singleValue,jdbcType=DECIMAL},
+      </if>
+      <if test="singleCurr != null" >
+        SINGLE_CURR = #{singleCurr,jdbcType=CHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gistandard.transport.base.entity.bean.MobileSingleCenter" >
+    update MOBILE_SINGLE_CENTER
+    set MOBILE_BOOKING_FORM_ID = #{mobileBookingFormId,jdbcType=INTEGER},
+      BUSI_BOOK_NO = #{busiBookNo,jdbcType=VARCHAR},
+      BUSI_CTRL = #{busiCtrl,jdbcType=INTEGER},
+      COM_QUOTE_ID = #{comQuoteId,jdbcType=VARCHAR},
+      QUOTED_TYPE = #{quotedType,jdbcType=INTEGER},
+      DISPATCH_ID = #{dispatchId,jdbcType=INTEGER},
+      CREATE_USER_ID = #{createUserId,jdbcType=INTEGER},
+      CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      SINGLE_DATE = #{singleDate,jdbcType=TIMESTAMP},
+      TEAM_COMSIX_NO = #{teamComsixNo,jdbcType=VARCHAR},
+      REV_USER_ID = #{revUserId,jdbcType=INTEGER},
+      REV_USER = #{revUser,jdbcType=VARCHAR},
+      REV_DATE = #{revDate,jdbcType=TIMESTAMP},
+      PRODUCT_TYPE = #{productType,jdbcType=VARCHAR},
+      SINGLE_VALUE = #{singleValue,jdbcType=DECIMAL},
+      SINGLE_CURR = #{singleCurr,jdbcType=CHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

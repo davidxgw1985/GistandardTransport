@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ex.ComTackoutGoodsTypeDaoEx" >
+    <select id="selectAll" resultMap="com.gistandard.transport.base.entity.dao.ComTackoutGoodsTypeDao.BaseResultMap" >
+        select
+        TYPE_CODE,TYPE_CH
+        from COM_TACKOUT_GOODS_TYPE
+        where STATUS = 1
+    </select>
+</mapper>

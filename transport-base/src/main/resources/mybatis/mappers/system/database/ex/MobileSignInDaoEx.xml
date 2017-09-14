@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ex.MobileSignInDaoEx" >
+
+  <select id="selectMsiByModel" resultMap="com.gistandard.transport.base.entity.dao.MobileSignInDao.BaseResultMap">
+    select
+    <include refid="com.gistandard.transport.base.entity.dao.MobileSignInDao.Base_Column_List" />
+    from MOBILE_SIGN_IN WHERE 1 = 1
+    <if test="qrCodeInfo != null and qrCodeInfo != ''">
+      AND QR_CODE_INFO = #{qrCodeInfo}
+    </if>
+    limit 1
+  </select>
+
+  <select id="queryMobileSignIn" resultMap="com.gistandard.transport.base.entity.dao.MobileSignInDao.BaseResultMap">
+    select
+    <include refid="com.gistandard.transport.base.entity.dao.MobileSignInDao.Base_Column_List" />
+    from MOBILE_SIGN_IN
+    where ACCT_USERNAME = #{acctUserName}
+        AND DEST_ACCOUNT_ID = #{destAccountId}
+    ORDER by SCAN_TIME DESC
+    limit 1
+  </select>
+
+  <select id="getUser2UserSignInfo" resultMap="com.gistandard.transport.base.entity.dao.MobileSignInDao.BaseResultMap">
+    select
+    <include refid="com.gistandard.transport.base.entity.dao.MobileSignInDao.Base_Column_List" />
+    from MOBILE_SIGN_IN
+    where
+    ACCT_USERNAME = #{acctUserName}
+    AND MW_ACCT_USERNAME = #{stationAcctUser}
+    <![CDATA[ AND SCAN_TIME <= #{signInTime}]]>
+    ORDER by SCAN_TIME DESC
+    limit 1
+  </select>
+
+  <select id="getUser2CompanySignInfo" resultMap="com.gistandard.transport.base.entity.dao.MobileSignInDao.BaseResultMap">
+    select
+    <include refid="com.gistandard.transport.base.entity.dao.MobileSignInDao.Base_Column_List" />
+    from MOBILE_SIGN_IN
+    where
+    ACCT_USERNAME = #{acctUserName}
+    AND MW_COMPANY_ACCT_USERNAME = #{stationAcctUser}
+    <![CDATA[ AND SCAN_TIME <= #{signInTime}]]>
+    ORDER by SCAN_TIME DESC
+    limit 1
+  </select>
+
+  <select id="getCompany2CompanySignInfo" resultMap="com.gistandard.transport.base.entity.dao.MobileSignInDao.BaseResultMap">
+    select
+    <include refid="com.gistandard.transport.base.entity.dao.MobileSignInDao.Base_Column_List" />
+    from MOBILE_SIGN_IN
+    where
+    COMPANY_ACCT_USERNAME = #{acctUserName}
+    AND MW_COMPANY_ACCT_USERNAME = #{stationAcctUser}
+    <![CDATA[ AND SCAN_TIME <= #{signInTime}]]>
+    ORDER by SCAN_TIME DESC
+    limit 1
+  </select>
+
+
+  <select id="getCompany2UserSignInfo" resultMap="com.gistandard.transport.base.entity.dao.MobileSignInDao.BaseResultMap">
+    select
+    <include refid="com.gistandard.transport.base.entity.dao.MobileSignInDao.Base_Column_List" />
+    from MOBILE_SIGN_IN
+    where
+    COMPANY_ACCT_USERNAME = #{acctUserName}
+    AND MW_ACCT_USERNAME = #{stationAcctUser}
+    <![CDATA[ AND SCAN_TIME <= #{signInTime}]]>
+    ORDER by SCAN_TIME DESC
+    limit 1
+  </select>
+
+
+
+</mapper>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ComUnitDao" >
+  <cache type="com.gistandard.transport.base.system.mybatis.cache.RedisCache" />
+  <resultMap id="BaseResultMap" type="com.gistandard.transport.base.entity.bean.ComUnit" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="UNIT_CODE" property="unitCode" jdbcType="CHAR" />
+    <result column="UNIT_EN" property="unitEn" jdbcType="VARCHAR" />
+    <result column="UNIT_CH" property="unitCh" jdbcType="VARCHAR" />
+    <result column="FLAG" property="flag" jdbcType="BIT" />
+    <result column="UNIT_TYPE" property="unitType" jdbcType="INTEGER" />
+    <result column="INSURANCE_CODE" property="insuranceCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, UNIT_CODE, UNIT_EN, UNIT_CH, FLAG, UNIT_TYPE, INSURANCE_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from COM_UNIT
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from COM_UNIT
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gistandard.transport.base.entity.bean.ComUnit" >
+    insert into COM_UNIT (ID, UNIT_CODE, UNIT_EN, 
+      UNIT_CH, FLAG, UNIT_TYPE, 
+      INSURANCE_CODE)
+    values (#{id,jdbcType=INTEGER}, #{unitCode,jdbcType=CHAR}, #{unitEn,jdbcType=VARCHAR}, 
+      #{unitCh,jdbcType=VARCHAR}, #{flag,jdbcType=BIT}, #{unitType,jdbcType=INTEGER}, 
+      #{insuranceCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gistandard.transport.base.entity.bean.ComUnit" >
+    insert into COM_UNIT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="unitCode != null" >
+        UNIT_CODE,
+      </if>
+      <if test="unitEn != null" >
+        UNIT_EN,
+      </if>
+      <if test="unitCh != null" >
+        UNIT_CH,
+      </if>
+      <if test="flag != null" >
+        FLAG,
+      </if>
+      <if test="unitType != null" >
+        UNIT_TYPE,
+      </if>
+      <if test="insuranceCode != null" >
+        INSURANCE_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="unitCode != null" >
+        #{unitCode,jdbcType=CHAR},
+      </if>
+      <if test="unitEn != null" >
+        #{unitEn,jdbcType=VARCHAR},
+      </if>
+      <if test="unitCh != null" >
+        #{unitCh,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=BIT},
+      </if>
+      <if test="unitType != null" >
+        #{unitType,jdbcType=INTEGER},
+      </if>
+      <if test="insuranceCode != null" >
+        #{insuranceCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gistandard.transport.base.entity.bean.ComUnit" >
+    update COM_UNIT
+    <set >
+      <if test="unitCode != null" >
+        UNIT_CODE = #{unitCode,jdbcType=CHAR},
+      </if>
+      <if test="unitEn != null" >
+        UNIT_EN = #{unitEn,jdbcType=VARCHAR},
+      </if>
+      <if test="unitCh != null" >
+        UNIT_CH = #{unitCh,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        FLAG = #{flag,jdbcType=BIT},
+      </if>
+      <if test="unitType != null" >
+        UNIT_TYPE = #{unitType,jdbcType=INTEGER},
+      </if>
+      <if test="insuranceCode != null" >
+        INSURANCE_CODE = #{insuranceCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gistandard.transport.base.entity.bean.ComUnit" >
+    update COM_UNIT
+    set UNIT_CODE = #{unitCode,jdbcType=CHAR},
+      UNIT_EN = #{unitEn,jdbcType=VARCHAR},
+      UNIT_CH = #{unitCh,jdbcType=VARCHAR},
+      FLAG = #{flag,jdbcType=BIT},
+      UNIT_TYPE = #{unitType,jdbcType=INTEGER},
+      INSURANCE_CODE = #{insuranceCode,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

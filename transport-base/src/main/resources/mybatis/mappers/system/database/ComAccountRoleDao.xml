@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ComAccountRoleDao" >
+  <resultMap id="BaseResultMap" type="com.gistandard.transport.base.entity.bean.ComAccountRole" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="CUSTOM_ROLE_CODE" property="customRoleCode" jdbcType="VARCHAR" />
+    <result column="CUSTOM_ROLE_NAME" property="customRoleName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, CUSTOM_ROLE_CODE, CUSTOM_ROLE_NAME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from COM_ACCOUNT_ROLE
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from COM_ACCOUNT_ROLE
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gistandard.transport.base.entity.bean.ComAccountRole" >
+    insert into COM_ACCOUNT_ROLE (ID, CUSTOM_ROLE_CODE, CUSTOM_ROLE_NAME
+      )
+    values (#{id,jdbcType=INTEGER}, #{customRoleCode,jdbcType=VARCHAR}, #{customRoleName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gistandard.transport.base.entity.bean.ComAccountRole" >
+    insert into COM_ACCOUNT_ROLE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="customRoleCode != null" >
+        CUSTOM_ROLE_CODE,
+      </if>
+      <if test="customRoleName != null" >
+        CUSTOM_ROLE_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="customRoleCode != null" >
+        #{customRoleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="customRoleName != null" >
+        #{customRoleName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gistandard.transport.base.entity.bean.ComAccountRole" >
+    update COM_ACCOUNT_ROLE
+    <set >
+      <if test="customRoleCode != null" >
+        CUSTOM_ROLE_CODE = #{customRoleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="customRoleName != null" >
+        CUSTOM_ROLE_NAME = #{customRoleName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gistandard.transport.base.entity.bean.ComAccountRole" >
+    update COM_ACCOUNT_ROLE
+    set CUSTOM_ROLE_CODE = #{customRoleCode,jdbcType=VARCHAR},
+      CUSTOM_ROLE_NAME = #{customRoleName,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

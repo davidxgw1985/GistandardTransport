@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.system.common.station.dao.CustomerStationDao" >
+  <resultMap id="BaseResultMap" type="com.gistandard.transport.system.common.station.bean.Station" >
+    <result column="ID" property="id" jdbcType="INTEGER" />
+    <result column="STATIONCODE" property="stationCode" jdbcType="VARCHAR" />
+    <result column="STA_LONGITUDE" property="staLongitude" jdbcType="DECIMAL" />
+    <result column="STA_LATITUDE" property="staLatitude" jdbcType="DECIMAL" />
+    <result column="FWORK_TEL" property="custTel" jdbcType="VARCHAR" />
+    <result column="CUST_ADD" property="custAdd" jdbcType="VARCHAR" />
+    <result column="CUST_NAME" property="custName" jdbcType="VARCHAR" />
+    <result column="ATTENTION_STATUS" property="attentionStatus" jdbcType="TINYINT" />
+    <result column="ACCOUNT_ID" property="accountId" jdbcType="TINYINT" />
+    <result column="ROLE_ID" property="roleId" jdbcType="TINYINT" />
+    <result column="ACCT_USERNAME" property="acctUsername" jdbcType="VARCHAR" />
+    <result column="CATEGORY_CODE" property="categoryCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="query" parameterType="com.gistandard.transport.system.common.station.bean.StationQueryReq" resultMap="BaseResultMap">
+    SELECT
+      S.ID,S.CUST_TTL AS STATIONCODE,S.CUST_NAME,S.CUST_ADD,S.STA_LATITUDE,S.STA_LONGITUDE,S.FWORK_TEL,S.CUSTINTRO, B.ROLE_ID ROLE_ID,
+      IFNULL(A.ATTENTION_STATUS,0) AS ATTENTION_STATUS,S.ACCOUNT_ID AS ACCOUNT_ID,account.ACCT_USERNAME ACCT_USERNAME,C.CATEGORY_CODE CATEGORY_CODE
+    FROM COM_CUSTOMER S
+    INNER JOIN COM_ACCOUNT account ON S.ACCOUNT_ID = account.ID
+    INNER JOIN COM_ACCOUNT_ROLE_REL B ON S.ID = B.REL_ID
+    LEFT JOIN ATTENTION_INFO A ON S.ID = A.STATION_ID AND A.ACCOUNT_ID = #{accountId} AND A.ATTENTION_STATUS=1
+    LEFT JOIN COM_ACCOUNT_CATEGORY C ON C.ACCOUNT_ID = S.ACCOUNT_ID AND C.STATUS =1 AND C.ROLE_ID = 5
+    WHERE  <![CDATA[
+      ROUND(6378.138 * 2 * ASIN(SQRT(POW(SIN((#{latitude} * PI() / 180 - S.STA_LATITUDE * PI() / 180) / 2), 2 ) + COS(#{latitude} * PI() / 180) * COS(S.STA_LATITUDE * PI() / 180) * POW(SIN((#{longitude} * PI() / 180 - S.sta_longitude * PI() / 180) / 2),2))) * 1000) <= #{distance}
+      ]]>
+    AND B.ROLE_ID in (5)
+    AND account.ACCT_STATUS = 2
+    <!--<if test="startRoute != null" >
+    and(  S.PROVINCE = #{startRoute}
+      OR S.CITY = #{startRoute}
+      OR S.COUNTY = #{startRoute})
+    </if>-->
+    <!--<if test="pageSize != null and pageSize != 0">-->
+        <!--limit #{startRecord},#{pageSize}-->
+    <!--</if>-->
+  </select>
+
+  <select id="queryCount" parameterType="com.gistandard.transport.system.common.station.bean.StationQueryReq" resultType="int">
+    select count(*) from COM_CUSTOMER  INNER JOIN COM_ACCOUNT account ON COM_CUSTOMER.ACCOUNT_ID = account.ID
+   WHERE  <![CDATA[
+      ROUND(6378.138 * 2 * ASIN(SQRT(POW(SIN((#{latitude} * PI() / 180 - STA_LATITUDE * PI() / 180) / 2), 2 ) + COS(#{latitude} * PI() / 180) * COS(STA_LATITUDE * PI() / 180) * POW(SIN((#{longitude} * PI() / 180 - sta_longitude * PI() / 180) / 2),2))) * 1000) <= #{distance}
+      ]]>
+    AND EXISTS (SELECT 1 FROM  COM_ACCOUNT_ROLE_REL B WHERE COM_CUSTOMER.ID = B.REL_ID AND B.ROLE_ID in (5))
+    AND account.ACCT_STATUS = 2
+   <!-- <if test="startRoute != null" >
+      and(PROVINCE = #{startRoute}
+      OR CITY = #{startRoute}
+      OR COUNTY = #{startRoute})
+    </if>-->
+  </select>
+
+  <select id="queryNearby" parameterType="com.gistandard.transport.system.common.station.bean.StationQueryNearbyReq" resultMap="BaseResultMap">
+    SELECT
+      S.ID,S.CUST_TTL AS STATIONCODE,S.CUST_NAME,S.CUST_ADD,S.STA_LATITUDE,S.STA_LONGITUDE,S.FWORK_TEL,S.CUSTINTRO, IFNULL(A.ATTENTION_STATUS,0) AS ATTENTION_STATUS
+    FROM COM_CUSTOMER S
+    LEFT JOIN ATTENTION_INFO A ON S.ID = A.STATION_ID AND A.ACCOUNT_ID = #{accountId}
+    <where>
+      <![CDATA[
+      ROUND(6378.138 * 2 * ASIN(SQRT(POW(SIN((#{latitude} * PI() / 180 - STA_LATITUDE * PI() / 180) / 2), 2 ) + COS(#{latitude} * PI() / 180) * COS(STA_LATITUDE * PI() / 180) * POW(SIN((#{longitude} * PI() / 180 - sta_longitude * PI() / 180) / 2),2))) * 1000) <= #{distance}
+      ]]>
+    </where>
+  </select>
+
+  <select id="queryNearbyCount" parameterType="com.gistandard.transport.system.common.station.bean.StationQueryNearbyReq" resultType="int">
+    select count(*) from COM_CUSTOMER
+    <where>
+      <![CDATA[
+      ROUND(6378.138 * 2 * ASIN(SQRT(POW(SIN((#{latitude} * PI() / 180 - STA_LATITUDE * PI() / 180) / 2), 2 ) + COS(#{latitude} * PI() / 180) * COS(STA_LATITUDE * PI() / 180) * POW(SIN((#{longitude} * PI() / 180 - sta_longitude * PI() / 180) / 2),2))) * 1000) <= #{distance}
+      ]]>
+    </where>
+  </select>
+
+  <select id="queryFollow" parameterType="com.gistandard.platform.pojo.req.AppBasePagerRequest" resultMap="BaseResultMap">
+    SELECT S.*,S.CUST_TTL AS STATIONCODE,IFNULL(A.ATTENTION_STATUS,0) AS ATTENTION_STATUS,account.ACCT_USERNAME ACCT_USERNAME,
+    A.ROLE_ID ROLE_ID,C.CATEGORY_CODE CATEGORY_CODE
+    FROM COM_CUSTOMER S
+    INNER JOIN COM_ACCOUNT account ON S.ACCOUNT_ID = account.ID
+    INNER JOIN ATTENTION_INFO A ON S.ID = A.STATION_ID AND A.ATTENTION_STATUS = 1 AND A.ACCOUNT_ID = #{accountId}
+    LEFT JOIN COM_ACCOUNT_CATEGORY C ON C.ACCOUNT_ID = S.ACCOUNT_ID AND C.STATUS =1 AND C.ROLE_ID = 5
+    <if test="pageSize != null and pageSize != 0">
+      limit #{startRecord},#{pageSize}
+    </if>
+  </select>
+
+  <select id="queryFollowCount" parameterType="com.gistandard.platform.pojo.req.AppBasePagerRequest" resultType="int">
+    SELECT count(*) FROM COM_CUSTOMER S
+    INNER JOIN ATTENTION_INFO A ON S.ID = A.STATION_ID AND A.ATTENTION_STATUS = 1 AND A.ACCOUNT_ID = #{accountId}
+  </select>
+
+  <select id="queryByStationCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT * FROM COM_CUSTOMER
+    WHERE CUST_TTL = #{stationCode}
+  </select>
+  <select id="queryByStationO2id" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT cc.* FROM COM_CUSTOMER cc INNER  JOIN  COM_ACCOUNT ca on ca.ID = cc.ACCOUNT_ID
+    WHERE  ca.ACCT_USERNAME = #{o2id} limit 1
+  </select>
+</mapper>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd"
+        >
+
+    <!-- 操作日志的消息监听适配器对应的监听容器 -->
+    <!--
+    <bean id="operateLogMessageListenerAdapterContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+        <property name="connectionFactory" ref="pooledConnectionFactory"/>
+        <property name="destination" ref="operateLogDestination"/>
+        <property name="messageListener" ref="operateLogMessageListenerAdapter"/>
+        <property name="transactionManager" ref="sysTransactionManager"/>
+    </bean>
+    -->
+    <!-- 消息监听适配器 -->
+    <!--
+    <bean id="operateLogMessageListenerAdapter" class="org.springframework.jms.listener.adapter.MessageListenerAdapter">
+        <property name="delegate">
+            <bean class="com.gistandard.transport.system.jms.listener.OperateLogMessageListener"/>
+        </property>
+        <property name="defaultListenerMethod" value="receiveMessage"/>
+    </bean>
+    -->
+    <!-- OTCYSEX和ITCYS订单状态的消息监听适配器对应的监听容器 -->
+    <bean id="statsBusinessOrderMessageListenerAdapterContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+        <property name="connectionFactory" ref="pooledConnectionFactory"/>
+        <property name="destination" ref="orderBusiCtrlQueue"/>
+        <property name="messageListener" ref="orderBusiCtrlMessageListenerAdapter"/>
+        <property name="transactionManager" ref="sysTransactionManager"/>
+        <property name="maxConcurrentConsumers" value="10"/>
+        <property name="concurrentConsumers" value="5"/>
+    </bean>
+
+    <!-- 消息监听适配器 -->
+    <bean id="orderBusiCtrlMessageListenerAdapter" class="org.springframework.jms.listener.adapter.MessageListenerAdapter">
+        <property name="delegate">
+            <bean class="com.gistandard.transport.app.system.jms.listener.OrderBusiCtrlMessageListener"/>
+        </property>
+        <property name="defaultListenerMethod" value="receiveMessage"/>
+    </bean>
+
+
+</beans>

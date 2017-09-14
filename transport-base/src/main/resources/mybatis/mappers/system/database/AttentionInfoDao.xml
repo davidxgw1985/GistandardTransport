@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.AttentionInfoDao" >
+  <resultMap id="BaseResultMap" type="com.gistandard.transport.base.entity.bean.AttentionInfo" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="ACCOUNT_ID" property="accountId" jdbcType="INTEGER" />
+    <result column="TRANSPORT_TYPE" property="transportType" jdbcType="INTEGER" />
+    <result column="ATTENTION_TYPE" property="attentionType" jdbcType="INTEGER" />
+    <result column="STATION_ID" property="stationId" jdbcType="INTEGER" />
+    <result column="ATTENTION_STATUS" property="attentionStatus" jdbcType="INTEGER" />
+    <result column="ATTENTION_TIME" property="attentionTime" jdbcType="TIMESTAMP" />
+    <result column="ATTENTION_SYSTEM" property="attentionSystem" jdbcType="VARCHAR" />
+    <result column="ROLE_ID" property="roleId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ACCOUNT_ID, TRANSPORT_TYPE, ATTENTION_TYPE, STATION_ID, ATTENTION_STATUS, ATTENTION_TIME, 
+    ATTENTION_SYSTEM, ROLE_ID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ATTENTION_INFO
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ATTENTION_INFO
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gistandard.transport.base.entity.bean.AttentionInfo" >
+    insert into ATTENTION_INFO (ID, ACCOUNT_ID, TRANSPORT_TYPE, 
+      ATTENTION_TYPE, STATION_ID, ATTENTION_STATUS, 
+      ATTENTION_TIME, ATTENTION_SYSTEM, ROLE_ID
+      )
+    values (#{id,jdbcType=INTEGER}, #{accountId,jdbcType=INTEGER}, #{transportType,jdbcType=INTEGER}, 
+      #{attentionType,jdbcType=INTEGER}, #{stationId,jdbcType=INTEGER}, #{attentionStatus,jdbcType=INTEGER}, 
+      #{attentionTime,jdbcType=TIMESTAMP}, #{attentionSystem,jdbcType=VARCHAR}, #{roleId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gistandard.transport.base.entity.bean.AttentionInfo" >
+    insert into ATTENTION_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="accountId != null" >
+        ACCOUNT_ID,
+      </if>
+      <if test="transportType != null" >
+        TRANSPORT_TYPE,
+      </if>
+      <if test="attentionType != null" >
+        ATTENTION_TYPE,
+      </if>
+      <if test="stationId != null" >
+        STATION_ID,
+      </if>
+      <if test="attentionStatus != null" >
+        ATTENTION_STATUS,
+      </if>
+      <if test="attentionTime != null" >
+        ATTENTION_TIME,
+      </if>
+      <if test="attentionSystem != null" >
+        ATTENTION_SYSTEM,
+      </if>
+      <if test="roleId != null" >
+        ROLE_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="accountId != null" >
+        #{accountId,jdbcType=INTEGER},
+      </if>
+      <if test="transportType != null" >
+        #{transportType,jdbcType=INTEGER},
+      </if>
+      <if test="attentionType != null" >
+        #{attentionType,jdbcType=INTEGER},
+      </if>
+      <if test="stationId != null" >
+        #{stationId,jdbcType=INTEGER},
+      </if>
+      <if test="attentionStatus != null" >
+        #{attentionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="attentionTime != null" >
+        #{attentionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="attentionSystem != null" >
+        #{attentionSystem,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gistandard.transport.base.entity.bean.AttentionInfo" >
+    update ATTENTION_INFO
+    <set >
+      <if test="accountId != null" >
+        ACCOUNT_ID = #{accountId,jdbcType=INTEGER},
+      </if>
+      <if test="transportType != null" >
+        TRANSPORT_TYPE = #{transportType,jdbcType=INTEGER},
+      </if>
+      <if test="attentionType != null" >
+        ATTENTION_TYPE = #{attentionType,jdbcType=INTEGER},
+      </if>
+      <if test="stationId != null" >
+        STATION_ID = #{stationId,jdbcType=INTEGER},
+      </if>
+      <if test="attentionStatus != null" >
+        ATTENTION_STATUS = #{attentionStatus,jdbcType=INTEGER},
+      </if>
+      <if test="attentionTime != null" >
+        ATTENTION_TIME = #{attentionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="attentionSystem != null" >
+        ATTENTION_SYSTEM = #{attentionSystem,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        ROLE_ID = #{roleId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gistandard.transport.base.entity.bean.AttentionInfo" >
+    update ATTENTION_INFO
+    set ACCOUNT_ID = #{accountId,jdbcType=INTEGER},
+      TRANSPORT_TYPE = #{transportType,jdbcType=INTEGER},
+      ATTENTION_TYPE = #{attentionType,jdbcType=INTEGER},
+      STATION_ID = #{stationId,jdbcType=INTEGER},
+      ATTENTION_STATUS = #{attentionStatus,jdbcType=INTEGER},
+      ATTENTION_TIME = #{attentionTime,jdbcType=TIMESTAMP},
+      ATTENTION_SYSTEM = #{attentionSystem,jdbcType=VARCHAR},
+      ROLE_ID = #{roleId,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

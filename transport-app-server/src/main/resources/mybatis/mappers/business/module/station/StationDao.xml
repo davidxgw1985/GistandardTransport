@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.app.module.station.dao.StationDao">
+    <resultMap id="StationInfoResultMap" type="com.gistandard.transport.app.module.station.bean.StationInfo" >
+        <id column="ID" property="accountId" jdbcType="INTEGER" />
+        <result column="ACCT_USERNAME" property="acctUsername" jdbcType="VARCHAR" />
+        <result column="USER_IMG" property="userImg" jdbcType="VARCHAR" />
+        <result column="CUSTOMER_ID" property="customerId" jdbcType="INTEGER" />
+        <result column="ACCT_PASSWORD" property="custTtl" jdbcType="VARCHAR" />
+    </resultMap>
+    <select id="batchQueryStationInfo" resultMap="StationInfoResultMap" parameterType="java.util.List">
+        SELECT CA.ID, CA.ACCT_USERNAME, CA.USER_IMG, CC.ID AS CUSTOMER_ID, CC.CUST_TTL
+        FROM COM_ACCOUNT CA
+        LEFT JOIN COM_CUSTOMER CC ON CC.ACCOUNT_ID = CA.ID
+        WHERE 1=1
+        AND CA.ACCT_STATUS = 2
+        AND CA.ACCT_USERNAME IN (
+        <foreach collection="list" item="item" index="index" separator=",">
+            #{item}
+        </foreach>
+        )
+
+    </select>
+</mapper>

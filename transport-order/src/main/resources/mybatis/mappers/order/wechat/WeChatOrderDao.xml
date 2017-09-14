@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.order.wechat.dao.WeChatOrderDao">
+    <resultMap id="BaseResultMap" type="com.gistandard.transport.app.dubbo.wechat.bean.OrderQueryDetail">
+        <id column="ID" property="id" jdbcType="INTEGER"/>
+        <result column="BUSI_BOOK_NO" property="busiBookNo" jdbcType="VARCHAR"/>
+        <result column="BOOKING_DATE" property="bookingDate" jdbcType="TIMESTAMP"/>
+        <result column="SHIP_CUSTLINK_MAN" property="shipCustlinkMan" jdbcType="VARCHAR"/>
+        <result column="CNEE_CUST_LINK_MAN" property="cneeCustLinkMan" jdbcType="VARCHAR"/>
+        <result column="CARRIAGE_RECEI_ADDR" property="carriageReceiAddr" jdbcType="VARCHAR"/>
+        <result column="CARRIAGE_DELIV_ADDR" property="carriageDelivAddr" jdbcType="VARCHAR"/>
+        <result column="NARRATE" property="narrate" jdbcType="VARCHAR"/>
+        <result column="BUSI_CTRL" property="busiCtrl" jdbcType="INTEGER"/>
+        <result column="ACCESSTIME" property="accessTime" jdbcType="VARCHAR"/>
+        <result column="REV_USER_NAME" property="revUserName" jdbcType="VARCHAR"/>
+        <result column="CREATE_COMPANY_ID" property="staffAccountId" jdbcType="INTEGER"/>
+    </resultMap>
+    <select id="queryOrderListByWeChatId" resultMap="BaseResultMap"
+            parameterType="com.gistandard.transport.app.dubbo.wechat.bean.WeChatOrderQueryReq">
+        SELECT M.ID, M.BUSI_BOOK_NO, M.BOOKING_DATE, M.SHIP_CUSTLINK_MAN, M.CNEE_CUST_LINK_MAN, M.CARRIAGE_RECEI_ADDR,
+        M.CARRIAGE_DELIV_ADDR, M.NARRATE, M.BUSI_CTRL, M.ACCESSTIME, M.REV_USER_NAME,M.CREATE_COMPANY_ID
+        FROM BOOKING_FORM M
+        where
+        <if test="orderType != null and orderType == true">
+            ( M.WECHAT_ID = #{weChatId,jdbcType=VARCHAR}
+            <if test="o2id != null ">
+                or M.CREATE_USER = #{o2id}
+            </if>
+            )
+            <choose>
+                <when test="staffAccountId != null">
+                    and M.CREATE_COMPANY_ID = #{staffAccountId}
+                </when>
+                <otherwise>
+                    and M.CREATE_COMPANY_ID is NULL
+                </otherwise>
+            </choose>
+        </if>
+        <if test="orderType != null and orderType == false">
+            <choose>
+                <when test="telephone != null">
+                    M.CNEE_CUST_LINK_TEL =#{telephone,jdbcType=VARCHAR}
+                </when>
+                <otherwise>
+                    M.CNEE_CUST_LINK_TEL is NULL
+                </otherwise>
+            </choose>
+            <if test="o2id != null">
+                or M.RECEIVER_USER = #{o2id}
+            </if>
+        </if>
+        ORDER BY M.ID DESC
+    </select>
+</mapper>

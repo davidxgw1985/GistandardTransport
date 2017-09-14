@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ex.ComVehicleCarriageDaoEx" >
+
+	<select id="queryListByVehicleId" resultMap="com.gistandard.transport.base.entity.dao.ComVehicleCarriageDao.BaseResultMap" parameterType="java.lang.Integer">
+		SELECT
+			<include refid="com.gistandard.transport.base.entity.dao.ComVehicleCarriageDao.Base_Column_List"/>
+		FROM
+			COM_VEHICLE_CARRIAGE
+		WHERE
+			VEHICLE_ID=#{vehicleId}	
+	</select>
+
+</mapper>

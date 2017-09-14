@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ex.ComVehicleInfoRecordDaoEx" >
+  <select id="queryByAccountId" resultMap="com.gistandard.transport.base.entity.dao.ComVehicleInfoRecordDao.BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="com.gistandard.transport.base.entity.dao.ComVehicleInfoRecordDao.Base_Column_List" />
+    from COM_VEHICLE_INFO_RECORD
+    where ACCT_ID = #{accountId,jdbcType=INTEGER}
+    order by ID DESC
+  </select>
+
+  <delete id="deleteByAccountId" parameterType="java.lang.Integer" >
+    delete from COM_VEHICLE_INFO_RECORD
+    where ACCT_ID = #{accountId,jdbcType=INTEGER}
+  </delete>
+
+  <select id="queryVehicleByTruckCode" resultMap="com.gistandard.transport.base.entity.dao.ComVehicleInfoRecordDao.BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="com.gistandard.transport.base.entity.dao.ComVehicleInfoRecordDao.Base_Column_List" />
+    from COM_VEHICLE_INFO_RECORD
+    where TRUCKCODE = #{truckCode,jdbcType=VARCHAR}
+  </select>
+</mapper>

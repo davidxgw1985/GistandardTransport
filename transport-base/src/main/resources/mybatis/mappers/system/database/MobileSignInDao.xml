@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.MobileSignInDao" >
+
+  <resultMap id="BaseResultMap" type="com.gistandard.transport.base.entity.bean.MobileSignIn" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="ACCT_USERNAME" property="acctUsername" jdbcType="VARCHAR" />
+    <result column="COMPANY_ACCT_USERNAME" property="companyAcctUsername" jdbcType="VARCHAR" />
+    <result column="MW_ACCT_USERNAME" property="mwAcctUsername" jdbcType="VARCHAR" />
+    <result column="MW_COMPANY_ACCT_USERNAME" property="mwcompanyAcctUsername" jdbcType="VARCHAR" />
+    <result column="SCAN_TIME" property="scanTime" jdbcType="TIMESTAMP" />
+    <result column="MI_STATION_NO" property="miStationNo" jdbcType="VARCHAR" />
+    <result column="W_STATION_NO" property="wStationNo" jdbcType="VARCHAR" />
+    <result column="COMPANY_ACCT" property="companyAcct" jdbcType="VARCHAR" />
+    <result column="FLEET_ACCT" property="fleetAcct" jdbcType="VARCHAR" />
+    <result column="QR_CODE_INFO" property="qrCodeInfo" jdbcType="VARCHAR" />
+    <result column="DEST_ACCOUNT_ID" property="destAccountId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ACCT_USERNAME,COMPANY_ACCT_USERNAME,MW_ACCT_USERNAME,MW_COMPANY_ACCT_USERNAME, SCAN_TIME, MI_STATION_NO, W_STATION_NO, COMPANY_ACCT, FLEET_ACCT,
+    QR_CODE_INFO, DEST_ACCOUNT_ID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from MOBILE_SIGN_IN
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from MOBILE_SIGN_IN
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" useGeneratedKeys="true" parameterType="com.gistandard.transport.base.entity.bean.MobileSignIn" >
+    insert into MOBILE_SIGN_IN (ID, ACCT_USERNAME,COMPANY_ACCT_USERNAME,MW_ACCT_USERNAME,MW_COMPANY_ACCT_USERNAME, SCAN_TIME,
+    MI_STATION_NO, W_STATION_NO, COMPANY_ACCT,
+    FLEET_ACCT, QR_CODE_INFO, DEST_ACCOUNT_ID
+    )
+    values (#{id,jdbcType=INTEGER}, #{acctUsername,jdbcType=VARCHAR},#{companyAcctUsername,jdbcType=VARCHAR},
+     #{mwAcctUsername,jdbcType=VARCHAR},#{mwcompanyAcctUsername,jdbcType=VARCHAR},#{scanTime,jdbcType=TIMESTAMP},
+    #{miStationNo,jdbcType=VARCHAR}, #{wStationNo,jdbcType=VARCHAR}, #{companyAcct,jdbcType=VARCHAR},
+    #{fleetAcct,jdbcType=VARCHAR}, #{qrCodeInfo,jdbcType=VARCHAR}, #{destAccountId,jdbcType=INTEGER}
+    )
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true" parameterType="com.gistandard.transport.base.entity.bean.MobileSignIn" >
+    insert into MOBILE_SIGN_IN
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="acctUsername != null" >
+        ACCT_USERNAME,
+      </if>
+      <if test="companyAcctUsername != null" >
+        COMPANY_ACCT_USERNAME,
+      </if>
+      <if test="mwAcctUsername != null" >
+        MW_ACCT_USERNAME,
+      </if>
+      <if test="mwcompanyAcctUsername != null" >
+        MW_COMPANY_ACCT_USERNAME,
+      </if>
+      <if test="scanTime != null" >
+        SCAN_TIME,
+      </if>
+      <if test="miStationNo != null" >
+        MI_STATION_NO,
+      </if>
+      <if test="wStationNo != null" >
+        W_STATION_NO,
+      </if>
+      <if test="companyAcct != null" >
+        COMPANY_ACCT,
+      </if>
+      <if test="fleetAcct != null" >
+        FLEET_ACCT,
+      </if>
+      <if test="qrCodeInfo != null" >
+        QR_CODE_INFO,
+      </if>
+      <if test="destAccountId != null" >
+        DEST_ACCOUNT_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="acctUsername != null" >
+        #{acctUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAcctUsername != null" >
+        #{companyAcctUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="mwAcctUsername != null" >
+        #{mwAcctUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="mwcompanyAcctUsername != null" >
+        #{mwcompanyAcctUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="scanTime != null" >
+        #{scanTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="miStationNo != null" >
+        #{miStationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="wStationNo != null" >
+        #{wStationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAcct != null" >
+        #{companyAcct,jdbcType=VARCHAR},
+      </if>
+      <if test="fleetAcct != null" >
+        #{fleetAcct,jdbcType=VARCHAR},
+      </if>
+      <if test="qrCodeInfo != null" >
+        #{qrCodeInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="destAccountId != null" >
+        #{destAccountId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gistandard.transport.base.entity.bean.MobileSignIn" >
+    update MOBILE_SIGN_IN
+    <set >
+      <if test="acctUsername != null" >
+        ACCT_USERNAME = #{acctUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAcctUsername != null" >
+        COMPANY_ACCT_USERNAME = #{companyAcctUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="mwAcctUsername != null" >
+        MW_ACCT_USERNAME = #{mwAcctUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="mwcompanyAcctUsername != null" >
+        MW_COMPANY_ACCT_USERNAME =  #{mwcompanyAcctUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="scanTime != null" >
+        SCAN_TIME = #{scanTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="miStationNo != null" >
+        MI_STATION_NO = #{miStationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="wStationNo != null" >
+        W_STATION_NO = #{wStationNo,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAcct != null" >
+        COMPANY_ACCT = #{companyAcct,jdbcType=VARCHAR},
+      </if>
+      <if test="fleetAcct != null" >
+        FLEET_ACCT = #{fleetAcct,jdbcType=VARCHAR},
+      </if>
+      <if test="qrCodeInfo != null" >
+        QR_CODE_INFO = #{qrCodeInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="destAccountId != null" >
+        DEST_ACCOUNT_ID = #{destAccountId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gistandard.transport.base.entity.bean.MobileSignIn" >
+    update MOBILE_SIGN_IN
+    set ACCT_USERNAME = #{acctUsername,jdbcType=VARCHAR},
+    COMPANY_ACCT_USERNAME = #{companyAcctUsername,jdbcType=VARCHAR},
+    MW_ACCT_USERNAME = #{mwAcctUsername,jdbcType=VARCHAR},
+    MW_COMPANY_ACCT_USERNAME =  #{mwcompanyAcctUsername,jdbcType=VARCHAR},
+    SCAN_TIME = #{scanTime,jdbcType=TIMESTAMP},
+    MI_STATION_NO = #{miStationNo,jdbcType=VARCHAR},
+    W_STATION_NO = #{wStationNo,jdbcType=VARCHAR},
+    COMPANY_ACCT = #{companyAcct,jdbcType=VARCHAR},
+    FLEET_ACCT = #{fleetAcct,jdbcType=VARCHAR},
+    QR_CODE_INFO = #{qrCodeInfo,jdbcType=VARCHAR},
+    DEST_ACCOUNT_ID = #{destAccountId,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

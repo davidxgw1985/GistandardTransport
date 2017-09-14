@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ex.ComCustomerRelationDaoEx" >
+
+  <insert id="batchInsert" parameterType="java.util.List">
+    insert into COM_CUSTOMER_RELATION (
+    <include refid="com.gistandard.transport.base.entity.dao.ComCustomerRelationDao.Base_Column_List" />
+    ) values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.id,jdbcType=INTEGER}, #{item.customId,jdbcType=INTEGER}, #{item.parentCustomId,jdbcType=INTEGER},
+      #{item.parentPath,jdbcType=VARCHAR}
+      )
+    </foreach>
+  </insert>
+</mapper>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ComAccessoryRelationDao" >
+  <resultMap id="BaseResultMap" type="com.gistandard.transport.base.entity.bean.ComAccessoryRelation" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="RELA_ID" property="relaId" jdbcType="INTEGER" />
+    <result column="T_TAB" property="tTab" jdbcType="VARCHAR" />
+    <result column="ATTACH_ID" property="attachId" jdbcType="INTEGER" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    ID, RELA_ID, T_TAB, ATTACH_ID
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from COM_ACCESSORY_RELATION
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from COM_ACCESSORY_RELATION
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gistandard.transport.base.entity.bean.ComAccessoryRelation" >
+    insert into COM_ACCESSORY_RELATION (ID, RELA_ID, T_TAB,
+    ATTACH_ID)
+    values (#{id,jdbcType=INTEGER}, #{relaId,jdbcType=INTEGER}, #{tTab,jdbcType=VARCHAR},
+    #{attachId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gistandard.transport.base.entity.bean.ComAccessoryRelation" >
+    insert into COM_ACCESSORY_RELATION
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="relaId != null" >
+        RELA_ID,
+      </if>
+      <if test="tTab != null" >
+        T_TAB,
+      </if>
+      <if test="attachId != null" >
+        ATTACH_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="relaId != null" >
+        #{relaId,jdbcType=INTEGER},
+      </if>
+      <if test="tTab != null" >
+        #{tTab,jdbcType=VARCHAR},
+      </if>
+      <if test="attachId != null" >
+        #{attachId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gistandard.transport.base.entity.bean.ComAccessoryRelation" >
+    update COM_ACCESSORY_RELATION
+    <set >
+      <if test="relaId != null" >
+        RELA_ID = #{relaId,jdbcType=INTEGER},
+      </if>
+      <if test="tTab != null" >
+        T_TAB = #{tTab,jdbcType=VARCHAR},
+      </if>
+      <if test="attachId != null" >
+        ATTACH_ID = #{attachId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gistandard.transport.base.entity.bean.ComAccessoryRelation" >
+    update COM_ACCESSORY_RELATION
+    set RELA_ID = #{relaId,jdbcType=INTEGER},
+    T_TAB = #{tTab,jdbcType=VARCHAR},
+    ATTACH_ID = #{attachId,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <insert id="batchInsert" parameterType="java.util.List" >
+    insert into COM_ACCESSORY_RELATION (ID, RELA_ID, T_TAB,
+    ATTACH_ID)
+    values
+    <foreach collection="list" item="item" index="index"
+             separator=",">
+      (#{item.id,jdbcType=INTEGER}, #{item.relaId,jdbcType=INTEGER}, #{item.tTab,jdbcType=VARCHAR},
+      #{item.attachId,jdbcType=INTEGER})
+    </foreach>
+  </insert>
+</mapper>

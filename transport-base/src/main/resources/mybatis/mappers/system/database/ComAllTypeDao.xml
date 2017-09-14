@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ComAllTypeDao" >
+  <cache type="com.gistandard.transport.base.system.mybatis.cache.RedisCache" />
+  <resultMap id="BaseResultMap" type="com.gistandard.transport.base.entity.bean.ComAllType" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="T_TYPE" property="tType" jdbcType="VARCHAR" />
+    <result column="T_CODE" property="tCode" jdbcType="VARCHAR" />
+    <result column="T_NAME" property="tName" jdbcType="VARCHAR" />
+    <result column="T_REMARK" property="tRemark" jdbcType="VARCHAR" />
+    <result column="T_FALG" property="tFalg" jdbcType="BIT" />
+    <result column="T_SORT" property="tSort" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, T_TYPE, T_CODE, T_NAME, T_REMARK, T_FALG, T_SORT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from COM_ALL_TYPE
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from COM_ALL_TYPE
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gistandard.transport.base.entity.bean.ComAllType" >
+    insert into COM_ALL_TYPE (ID, T_TYPE, T_CODE, 
+      T_NAME, T_REMARK, T_FALG, 
+      T_SORT)
+    values (#{id,jdbcType=INTEGER}, #{tType,jdbcType=VARCHAR}, #{tCode,jdbcType=VARCHAR}, 
+      #{tName,jdbcType=VARCHAR}, #{tRemark,jdbcType=VARCHAR}, #{tFalg,jdbcType=BIT}, 
+      #{tSort,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gistandard.transport.base.entity.bean.ComAllType" >
+    insert into COM_ALL_TYPE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="tType != null" >
+        T_TYPE,
+      </if>
+      <if test="tCode != null" >
+        T_CODE,
+      </if>
+      <if test="tName != null" >
+        T_NAME,
+      </if>
+      <if test="tRemark != null" >
+        T_REMARK,
+      </if>
+      <if test="tFalg != null" >
+        T_FALG,
+      </if>
+      <if test="tSort != null" >
+        T_SORT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="tType != null" >
+        #{tType,jdbcType=VARCHAR},
+      </if>
+      <if test="tCode != null" >
+        #{tCode,jdbcType=VARCHAR},
+      </if>
+      <if test="tName != null" >
+        #{tName,jdbcType=VARCHAR},
+      </if>
+      <if test="tRemark != null" >
+        #{tRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="tFalg != null" >
+        #{tFalg,jdbcType=BIT},
+      </if>
+      <if test="tSort != null" >
+        #{tSort,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gistandard.transport.base.entity.bean.ComAllType" >
+    update COM_ALL_TYPE
+    <set >
+      <if test="tType != null" >
+        T_TYPE = #{tType,jdbcType=VARCHAR},
+      </if>
+      <if test="tCode != null" >
+        T_CODE = #{tCode,jdbcType=VARCHAR},
+      </if>
+      <if test="tName != null" >
+        T_NAME = #{tName,jdbcType=VARCHAR},
+      </if>
+      <if test="tRemark != null" >
+        T_REMARK = #{tRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="tFalg != null" >
+        T_FALG = #{tFalg,jdbcType=BIT},
+      </if>
+      <if test="tSort != null" >
+        T_SORT = #{tSort,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gistandard.transport.base.entity.bean.ComAllType" >
+    update COM_ALL_TYPE
+    set T_TYPE = #{tType,jdbcType=VARCHAR},
+      T_CODE = #{tCode,jdbcType=VARCHAR},
+      T_NAME = #{tName,jdbcType=VARCHAR},
+      T_REMARK = #{tRemark,jdbcType=VARCHAR},
+      T_FALG = #{tFalg,jdbcType=BIT},
+      T_SORT = #{tSort,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

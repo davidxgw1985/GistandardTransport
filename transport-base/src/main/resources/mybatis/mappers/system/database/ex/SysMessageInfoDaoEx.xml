@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ex.SysMessageInfoDaoEx" >
+    <select id="querySysMessageInfoByAccountIdCount" resultType="java.lang.Integer" parameterType="com.gistandard.transport.base.bean.message.MobileStationMessageListReq" >
+        SELECT COUNT(*)
+        FROM SYS_MESSAGE_INFO
+        WHERE ACCOUNT_ID = #{accountId}  AND MESSAGE_STATUS = 1
+    </select>
+
+    <select id="querySysMessageInfoByAccountId" resultMap="com.gistandard.transport.base.entity.dao.SysMessageInfoDao.BaseResultMap" parameterType="com.gistandard.transport.base.bean.message.MobileStationMessageListReq" >
+        SELECT
+        <include refid="com.gistandard.transport.base.entity.dao.SysMessageInfoDao.Base_Column_List" />
+        FROM SYS_MESSAGE_INFO
+        WHERE ACCOUNT_ID = #{accountId} AND MESSAGE_STATUS = 1
+        ORDER BY CREATE_TIME DESC
+        <if test="pageSize !=0">
+            limit #{startRecord}, #{pageSize}
+        </if>
+    </select>
+
+
+</mapper>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.dubbo.dao.RequestDubboDao" >
+    <resultMap id="BaseResultMap" type="com.gistandard.transport.app.dubbo.register.bean.RegComAccountRequest">
+        <id column="ID" property="id" jdbcType="INTEGER"/>
+        <result column="ACCOUNT_ID" property="accountId" jdbcType="INTEGER"/>
+        <result column="ROLE_ID" property="roleId" jdbcType="INTEGER"/>
+        <result column="REQ_TIME" property="reqTime" jdbcType="TIMESTAMP"/>
+        <result column="REQ_TYPE" property="reqType" jdbcType="INTEGER"/>
+        <result column="REQ_STATUS" property="reqStatus" jdbcType="INTEGER"/>
+        <result column="REQ_RESULT_DESC" property="reqResultDesc" jdbcType="VARCHAR"/>
+        <result column="RECOMMEND_FLAG" property="recommendFlag" jdbcType="BIT"/>
+        <result column="INVESTIGATOR" property="investigator" jdbcType="VARCHAR"/>
+        <result column="REFEREE" property="referee" jdbcType="VARCHAR"/>
+        <result column="BIZ_MANAGE_ACCOUNT" property="bizManageAccount" jdbcType="VARCHAR"/>
+        <result column="AUTH_REAL_NAME" property="authRealName" jdbcType="VARCHAR"/>
+        <result column="AUTH_IDENTITYNO" property="authIdentityno" jdbcType="VARCHAR"/>
+        <result column="INVESTIGATION_TIME" property="investigationTime" jdbcType="TIMESTAMP"/>
+        <result column="WECHAT_MERCHANT_ACCOUNT" property="wechatMerchantAccount" jdbcType="VARCHAR"/>
+        <result column="SHOP_NAME" property="shopName" jdbcType="VARCHAR"/>
+        <result column="SHOP_LINK" property="shopLink" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        ID, ACCOUNT_ID, ROLE_ID, REQ_TIME, REQ_TYPE, REQ_STATUS, REQ_RESULT_DESC, RECOMMEND_FLAG,
+        INVESTIGATOR, REFEREE, BIZ_MANAGE_ACCOUNT, AUTH_REAL_NAME, AUTH_IDENTITYNO, INVESTIGATION_TIME,
+        WECHAT_MERCHANT_ACCOUNT, SHOP_NAME, SHOP_LINK
+    </sql>
+    <select id="queryApplytoByAccountId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from COM_ACCOUNT_REQUEST
+        where ACCOUNT_ID = #{accountId,jdbcType=INTEGER}
+        AND ROLE_ID IN(24,25) AND REQ_STATUS NOT IN(3,5)
+        ORDER BY ROLE_ID ASC
+    </select>
+</mapper>

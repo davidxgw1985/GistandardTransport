@@ -1,0 +1,451 @@
+@charset "utf-8";
+
+/*
+    rest.css
+    ----------------------------------------------------------
+    -> 为了不滥用重置加快渲染速度 ，省去很多不常用的标签 。 ：）
+
+    Author                  : newzong
+    Email                   : zongjinxing@163.com
+    Date                    : 2016/8/16
+-------------------------------------------------------------------------------*/
+
+/* 重置标签 */
+
+html,
+body,
+span,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+em,
+img,
+small,
+strong,
+b,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+form,
+label,
+article,
+aside,
+figure,
+footer,
+header,
+menu,
+nav,
+section,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+}
+
+/* 重置列表样式 */
+
+ul {
+  list-style: none;
+}
+
+/* margin重置 */
+
+button,
+input,
+select,
+textarea {
+  margin: 0;
+}
+
+/* 清除浮动 */
+
+.clearfix {
+  zoom: 1;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.clearfix:before,
+.clearfix:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
+}
+
+.none {
+  display: none !important;
+}
+
+/* 修改移动端textArea、input默认样式 */
+
+textarea,
+input {
+  -webkit-appearance: none;
+}
+
+/* 去除ie10中input输入框中的 "X" */
+
+input::-ms-clear {
+  display: none;
+}
+
+/* 修改移动端按钮点击后出现的灰色背景 */
+
+html {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+img {
+  width: 100%;
+}
+
+/* 修改input中placeholder颜色 */
+
+:-moz-placeholder {
+  color: #b2acac;
+}
+
+::-moz-placeholder {
+  color: #b2acac;
+}
+
+:-ms-placeholder {
+  color: #b2acac;
+}
+
+::-webkit-placeholder {
+  color: #b2acac;
+}
+
+/* a标签选中样式 */
+
+a:visited {
+  text-decoration: none;
+}
+
+input[type=text],
+input[type=password] {
+  height: 1.111111rem;
+  width: 94%;
+  display: inline-block;
+  padding: 0.092593rem 0.277778rem;
+  color: #cccccc;
+  vertical-align: middle;
+  border: 0.018519rem solid #ccc;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  background-color: #ffffff;
+  outline: none;
+  font-size: 0.444444rem;
+}
+
+/*input[placeholder], [placeholder], *[placeholder] {
+    color: #666666;
+}*/
+
+input[type=text]:focus,
+input[type=password]:focus,
+textarea:focus {
+  color: #666666;
+}
+
+select {
+  background: url("../../images/arrow.png") no-repeat scroll 1.481481rem center;
+  background-position: right center;
+  background-size: 0.740741rem;
+  padding: 0.092593rem 0.277778rem;
+  font-size: 0.444444rem;
+  outline: none;
+  width: 94%;
+  border: 0.018519rem #cccccc solid;
+  height: 1.111111rem;
+  overflow: hidden;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  color: #cccccc;
+  background-color: #ffffff;
+}
+
+select:active,
+select:focus {
+  color: #666666;
+}
+
+option {
+  font-size: 0.296296rem;
+  height: 0.555556rem;
+  line-height: 0.555556rem;
+  padding: 0.092593rem 0;
+}
+
+.icon-addres {
+  position: relative;
+}
+
+.icon-addres::after {
+  content: " ";
+  color: red;
+  position: absolute;
+  vertical-align: middle;
+  background: url(../../images/icon_adress.png) center no-repeat !important;
+  background-position: center !important;
+  background-size: 0.648148rem !important;
+  height: 1.111111rem;
+  width: 1.111111rem;
+  right: 0.222222rem;
+  top: 0;
+}
+
+.required {
+  position: relative;
+}
+
+.required::after {
+  content: "*";
+  color: red;
+  position: absolute;
+  right: -0.277778rem;
+  vertical-align: middle;
+  margin: auto;
+  top: 25%;
+}
+
+.mycheckbox {
+  height: 0.740741rem;
+  line-height: 0.740741rem;
+  position: relative;
+  padding-left: 0.740741rem;
+}
+
+.mycheckbox::before {
+  content: " ";
+  width: 0.444444rem;
+  height: 0.444444rem;
+  display: inline-block;
+  vertical-align: middle;
+  background: url(../../images/icon-ckbox.png) center no-repeat !important;
+  background-position: center !important;
+  background-size: 100% !important;
+  position: absolute;
+  top: 0.148148rem;
+  left: 0;
+}
+
+.ckbox-active::before {
+  background: url(../../images/icon-ckbox-cd.png) center no-repeat !important;
+  background-position: center !important;
+  background-size: 100% !important;
+  color: #5CADD6 !important;
+  position: absolute;
+  top: 0.148148rem;
+  left: 0;
+}
+
+.hide {
+  display: none;
+}
+
+.anm-bounceInLeft {
+  -webkit-animation: bounceInLeft 1s .2s ease both;
+  -moz-animation: bounceInLeft 1s .2s ease both;
+}
+
+.anm-bounceInRight {
+  -webkit-animation: bounceInRight 1s .2s ease both;
+  -moz-animation: bounceInRight 1s .2s ease both;
+}
+
+.anm-bounceInRight1 {
+  -webkit-animation: bounceInRight 1s .5s ease both;
+  -moz-animation: bounceInRight 1s .5s ease both;
+}
+
+.anm-bounceInRight2 {
+  -webkit-animation: bounceInRight 1s .8s ease both;
+  -moz-animation: bounceInRight 1s .8s ease both;
+}
+
+.anm-bounceInRight3 {
+  -webkit-animation: bounceInRight 1s 1.1s ease both;
+  -moz-animation: bounceInRight 1s 1.1s ease both;
+}
+
+.anm-fadeInDownBig {
+  -webkit-animation: fadeInDownBig 1s .2s ease both;
+  -moz-animation: fadeInDownBig 1s .2s ease both;
+}
+
+.anm-rollIn {
+  -webkit-animation: rollIn 1s .2s ease both;
+  -moz-animation: rollIn 1s .2s ease both;
+}
+
+@-webkit-keyframes bounceInLeft {
+  0% {
+    -webkit-transform: translateX(-2000px);
+    opacity: 0;
+  }
+
+  60% {
+    -webkit-transform: translateX(30px);
+    opacity: 1;
+  }
+
+  80% {
+    -webkit-transform: translateX(-10px);
+  }
+
+  100% {
+    -webkit-transform: translateX(0);
+  }
+}
+
+@-moz-keyframes bounceInLeft {
+  0% {
+    -moz-transform: translateX(-2000px);
+    opacity: 0;
+  }
+
+  60% {
+    -moz-transform: translateX(30px);
+    opacity: 1;
+  }
+
+  80% {
+    -moz-transform: translateX(-10px);
+  }
+
+  100% {
+    -moz-transform: translateX(0);
+  }
+}
+
+@-webkit-keyframes bounceInRight {
+  0% {
+    -webkit-transform: translateX(2000px);
+    opacity: 0;
+  }
+
+  60% {
+    -webkit-transform: translateX(-30px);
+    opacity: 1;
+  }
+
+  80% {
+    -webkit-transform: translateX(10px);
+  }
+
+  100% {
+    -webkit-transform: translateX(0);
+  }
+}
+
+@-moz-keyframes bounceInRight {
+  0% {
+    -moz-transform: translateX(2000px);
+    opacity: 0;
+  }
+
+  60% {
+    -moz-transform: translateX(-30px);
+    opacity: 1;
+  }
+
+  80% {
+    -moz-transform: translateX(10px);
+  }
+
+  100% {
+    -moz-transform: translateX(0);
+  }
+}
+
+@-webkit-keyframes fadeInDownBig {
+  0% {
+    -webkit-transform: translateY(-2000px);
+    opacity: 0;
+  }
+
+  100% {
+    -webkit-transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes fadeInDownBig {
+  0% {
+    -moz-transform: translateY(-2000px);
+    opacity: 0;
+  }
+
+  100% {
+    -moz-transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes rotateIn {
+  0% {
+    -webkit-transform: rotate(-1000deg);
+    -webkit-transform-origin: center center;
+    opacity: 0;
+  }
+
+  100% {
+    -webkit-transform: rotate(0);
+    -webkit-transform-origin: center center;
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes rotateIn {
+  0% {
+    -moz-transform: rotate(-1000deg);
+    -moz-transform-origin: center center;
+    opacity: 0;
+  }
+
+  100% {
+    -moz-transform: rotate(0);
+    -moz-transform-origin: center center;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes rollIn {
+  0% {
+    opacity: 0.5;
+    -webkit-transform: translateX(-1000px) rotate(-2160deg);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: translateX(0px) rotate(0deg);
+  }
+}
+
+@-moz-keyframes rollIn {
+  0% {
+    opacity: 0.5;
+    -moz-transform: translateX(-1000px) rotate(-2160deg);
+  }
+
+  100% {
+    opacity: 1;
+    -moz-transform: translateX(0px) rotate(0deg);
+  }
+}

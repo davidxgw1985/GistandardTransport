@@ -1,0 +1,789 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.order.module.mobilestation.dao.MobileMyOrderDao">
+    <resultMap id="queryMyOrderListMap" type="com.gistandard.transport.order.module.mobilestation.bean.MobileStationOrderListBean">
+        <id column="ID" property="orderId" jdbcType="INTEGER"/>
+        <id column="BOOKING_FORM_ID" property="bookingFormId" jdbcType="INTEGER"/>
+        <result column="BUSI_BOOK_NO" property="busiBookNo" jdbcType="VARCHAR"/>
+        <result column="ETA_POP_DATE" property="etaPopDate" jdbcType="TIMESTAMP"/>
+        <result column="CREATE_USER_ID" property="createUserId" jdbcType="INTEGER"/>
+        <result column="CREATE_USER" property="createUser" jdbcType="VARCHAR"/>
+        <result column="REV_DATE" property="revDate" jdbcType="TIMESTAMP"/>
+        <result column="EDIT_DATE" property="finishDate" jdbcType="TIMESTAMP"/>
+        <result column="ORDER_TYPE" property="orderType" jdbcType="INTEGER"/>
+        <result column="SHIP_CUST_LINK_TEL" property="startTel" jdbcType="VARCHAR"/>
+        <result column="CNEE_CUST_LINK_TEL" property="destTel" jdbcType="VARCHAR"/>
+        <result column="PREDICT_VALUE" property="predictValue" jdbcType="DECIMAL"/>
+        <result column="PREDICT_CURR" property="predictCurr" jdbcType="CHAR"/>
+        <result column="PAY_TYPE" property="payType" jdbcType="INTEGER"/>
+        <result column="GOODS_PAYMENT" property="startPayment" jdbcType="DECIMAL"/>
+        <result column="GOODS_PAYMENT_CURR" property="startCurrency" jdbcType="CHAR"/>
+        <result column="DEST_PAYMENT" property="destPayment" jdbcType="DECIMAL"/>
+        <result column="DEST_PAYMENT_CURR" property="destCurrency" jdbcType="CHAR"/>
+        <result column="SHIP_CUST_PROVIDE" property="startProvide" jdbcType="VARCHAR"/>
+        <result column="SHIP_CUST_CITY" property="startCity" jdbcType="VARCHAR"/>
+        <result column="SHIP_CUST_COUNTY" property="startCounty" jdbcType="VARCHAR"/>
+        <result column="SHIP_CUST_ADDR" property="startAddress" jdbcType="VARCHAR"/>
+        <result column="SHIP_LONGITUDE" property="startLongitude" jdbcType="DECIMAL"/>
+        <result column="SHIP_LATITUDE" property="startLatitude" jdbcType="DECIMAL"/>
+        <result column="CNEE_CUST_PROVIDE" property="destProvide" jdbcType="VARCHAR"/>
+        <result column="CNEE_CUST_CITY" property="destCity" jdbcType="VARCHAR"/>
+        <result column="CNEE_CUST_COUNTY" property="destCounty" jdbcType="VARCHAR"/>
+        <result column="CNEE_CUST_ADDR" property="destAddress" jdbcType="VARCHAR"/>
+        <result column="CNEE_LONGITUDE" property="destLongitude" jdbcType="DECIMAL"/>
+        <result column="CNEE_LATITUDE" property="destLatitude" jdbcType="DECIMAL"/>
+        <result column="TRANSPORT_TYPE" property="transportType" jdbcType="INTEGER" />
+        <result column="ORDER_FROM" property="orderFrom" jdbcType="INTEGER" />
+        <result column="DISPATCH_ID" property="dispatchId" jdbcType="INTEGER" />
+        <result column="SCHEDUCARNO" property="scheducarno" jdbcType="VARCHAR" />
+        <result column="COM_QUOTE_ID" property="comQuoteId" jdbcType="VARCHAR" />
+        <result column="QUOTED_TYPE" property="quotedType" jdbcType="INTEGER" />
+        <result column="BUSI_CTRL" property="busiCtrl" jdbcType="INTEGER" />
+        <result column="FLAG" property="flag" jdbcType="INTEGER" />
+        <result column="START_LOCUS" property="startLocus" jdbcType="VARCHAR" />
+        <result column="DESTN_LOCUS" property="destnLocus" jdbcType="VARCHAR" />
+        <result column="CONNECTION_STATUS" property="connectionStatus" jdbcType="VARCHAR" />
+        <result column="CONNECTION_ORDER_NO" property="connectionOrderNo" jdbcType="VARCHAR" />
+        <result column="VALID_BILLNO" property="validBillno" jdbcType="VARCHAR" />
+        <result column="PRODUCT_TYPE" property="productType" jdbcType="VARCHAR" />
+        <result column="NARRATE" property="narrate" jdbcType="VARCHAR" />
+        <result column="ROLE_ID" property="roleId" jdbcType="INTEGER" />
+        <collection property="goodsInfoList" ofType="com.gistandard.transport.app.dubbo.order.bean.MobileGoodsInfo">
+            <result column="GOODS_ID" property="goodsId" jdbcType="INTEGER"/>
+            <result column="MOBILE_BOOKING_FORM_ID" property="mobileBookingFormId" jdbcType="INTEGER"/>
+            <result column="MOBILE_SCHEDU_ORDER_ID" property="mobileScheduOrderId" jdbcType="INTEGER" />
+            <result column="GOODS_TYPE" property="goodsType" jdbcType="VARCHAR"/>
+            <result column="GOODS_NAME" property="goodsName" jdbcType="VARCHAR"/>
+            <result column="GOODS_QTY" property="goodsQty" jdbcType="DECIMAL"/>
+            <result column="GOODS_QTY_UNIT" property="goodsQtyUnit" jdbcType="CHAR"/>
+            <result column="GOODS_LENGHT" property="goodsLength" jdbcType="DECIMAL"/>
+            <result column="GOODS_WIDE" property="goodsWide" jdbcType="DECIMAL"/>
+            <result column="GOODS_HEIGHT" property="goodsHeight" jdbcType="DECIMAL"/>
+            <result column="GOODS_VOLUME" property="goodsVolume" jdbcType="DECIMAL"/>
+            <result column="GOODS_VOLUME_UNIT" property="goodsVolumeUnit" jdbcType="CHAR"/>
+            <result column="GOODS_WEIGHT" property="goodsWeight" jdbcType="DECIMAL"/>
+            <result column="GOODS_WEIGHT_UNIT" property="goodsWeightUnit" jdbcType="CHAR"/>
+        </collection>
+    </resultMap>
+    <resultMap id="querySubOrderListMap" type="com.gistandard.transport.order.module.mobilestation.bean.MobileAcceptSubOrderQueryListBean">
+        <id column="ID" property="subOrderId" jdbcType="INTEGER"/>
+        <id column="BOOKING_FORM_ID" property="bookingFormId" jdbcType="INTEGER"/>
+        <result column="BUSI_BOOK_NO" property="busiBookNo" jdbcType="VARCHAR"/>
+        <result column="ETA_POP_DATE" property="etaPopDate" jdbcType="TIMESTAMP"/>
+        <result column="CREATE_USER_ID" property="createUserId" jdbcType="INTEGER"/>
+        <result column="CREATE_USER" property="createUser" jdbcType="VARCHAR"/>
+        <result column="REV_DATE" property="revDate" jdbcType="TIMESTAMP"/>
+        <result column="EDIT_DATE" property="finishDate" jdbcType="TIMESTAMP"/>
+        <result column="ORDER_TYPE" property="orderType" jdbcType="INTEGER"/>
+        <result column="SHIP_CUST_LINK_TEL" property="startTel" jdbcType="VARCHAR"/>
+        <result column="CNEE_CUST_LINK_TEL" property="destTel" jdbcType="VARCHAR"/>
+        <result column="PREDICT_VALUE" property="predictValue" jdbcType="DECIMAL"/>
+        <result column="PREDICT_CURR" property="predictCurr" jdbcType="CHAR"/>
+        <result column="PAY_TYPE" property="payType" jdbcType="INTEGER"/>
+        <result column="GOODS_PAYMENT" property="startPayment" jdbcType="DECIMAL"/>
+        <result column="GOODS_PAYMENT_CURR" property="startCurrency" jdbcType="CHAR"/>
+        <result column="DEST_PAYMENT" property="destPayment" jdbcType="DECIMAL"/>
+        <result column="DEST_PAYMENT_CURR" property="destCurrency" jdbcType="CHAR"/>
+        <result column="SHIP_CUST_PROVIDE" property="startProvide" jdbcType="VARCHAR"/>
+        <result column="SHIP_CUST_CITY" property="startCity" jdbcType="VARCHAR"/>
+        <result column="SHIP_CUST_COUNTY" property="startCounty" jdbcType="VARCHAR"/>
+        <result column="SHIP_CUST_ADDR" property="startAddress" jdbcType="VARCHAR"/>
+        <result column="SHIP_LONGITUDE" property="startLongitude" jdbcType="DECIMAL"/>
+        <result column="SHIP_LATITUDE" property="startLatitude" jdbcType="DECIMAL"/>
+        <result column="CNEE_CUST_PROVIDE" property="destProvide" jdbcType="VARCHAR"/>
+        <result column="CNEE_CUST_CITY" property="destCity" jdbcType="VARCHAR"/>
+        <result column="CNEE_CUST_COUNTY" property="destCounty" jdbcType="VARCHAR"/>
+        <result column="CNEE_CUST_ADDR" property="destAddress" jdbcType="VARCHAR"/>
+        <result column="CNEE_LONGITUDE" property="destLongitude" jdbcType="DECIMAL"/>
+        <result column="CNEE_LATITUDE" property="destLatitude" jdbcType="DECIMAL"/>
+        <result column="TRANSPORT_TYPE" property="transportType" jdbcType="INTEGER" />
+        <result column="ORDER_FROM" property="orderFrom" jdbcType="INTEGER" />
+        <result column="DISPATCH_ID" property="dispatchId" jdbcType="INTEGER" />
+        <result column="SCHEDUCARNO" property="scheducarno" jdbcType="VARCHAR" />
+        <result column="COM_QUOTE_ID" property="comQuoteId" jdbcType="VARCHAR" />
+        <result column="QUOTED_TYPE" property="quotedType" jdbcType="INTEGER" />
+        <result column="BUSI_CTRL" property="busiCtrl" jdbcType="INTEGER" />
+        <result column="FLAG" property="flag" jdbcType="INTEGER" />
+        <result column="START_LOCUS" property="startLocus" jdbcType="VARCHAR" />
+        <result column="DESTN_LOCUS" property="destnLocus" jdbcType="VARCHAR" />
+        <result column="NARRATE" property="narrate" jdbcType="VARCHAR" />
+        <collection property="goodsInfoList" ofType="com.gistandard.transport.app.dubbo.order.bean.MobileGoodsInfo">
+            <result column="GOODS_ID" property="goodsId" jdbcType="INTEGER"/>
+            <result column="MOBILE_BOOKING_FORM_ID" property="mobileBookingFormId" jdbcType="INTEGER"/>
+            <result column="MOBILE_SCHEDU_ORDER_ID" property="mobileScheduOrderId" jdbcType="INTEGER" />
+            <result column="GOODS_TYPE" property="goodsType" jdbcType="VARCHAR"/>
+            <result column="GOODS_NAME" property="goodsName" jdbcType="VARCHAR"/>
+            <result column="GOODS_QTY" property="goodsQty" jdbcType="DECIMAL"/>
+            <result column="GOODS_QTY_UNIT" property="goodsQtyUnit" jdbcType="CHAR"/>
+            <result column="GOODS_LENGHT" property="goodsLength" jdbcType="DECIMAL"/>
+            <result column="GOODS_WIDE" property="goodsWide" jdbcType="DECIMAL"/>
+            <result column="GOODS_HEIGHT" property="goodsHeight" jdbcType="DECIMAL"/>
+            <result column="GOODS_VOLUME" property="goodsVolume" jdbcType="DECIMAL"/>
+            <result column="GOODS_VOLUME_UNIT" property="goodsVolumeUnit" jdbcType="CHAR"/>
+            <result column="GOODS_WEIGHT" property="goodsWeight" jdbcType="DECIMAL"/>
+            <result column="GOODS_WEIGHT_UNIT" property="goodsWeightUnit" jdbcType="CHAR"/>
+        </collection>
+    </resultMap>
+    <resultMap id="queryMyOrderDetailMap" type="com.gistandard.transport.app.dubbo.order.bean.MobileStationOrderDetailBean">
+        <id column="ID" property="orderId" jdbcType="INTEGER"/>
+        <id column="BOOKING_FORM_ID" property="bookingFormId" jdbcType="INTEGER"/>
+        <result column="BUSI_BOOK_NO" property="busiBookNo" jdbcType="VARCHAR"/>
+        <result column="ETA_POP_DATE" property="etaPopDate" jdbcType="TIMESTAMP"/>
+        <result column="ORDER_TYPE" property="orderType" jdbcType="INTEGER"/>
+        <result column="SHIP_CUST_LINK_TEL" property="startTel" jdbcType="VARCHAR"/>
+        <result column="CNEE_CUST_LINK_TEL" property="destTel" jdbcType="VARCHAR"/>
+        <result column="PREDICT_VALUE" property="predictValue" jdbcType="DECIMAL" />
+        <result column="PREDICT_CURR" property="predictCurr" jdbcType="CHAR"/>
+        <result column="PAY_TYPE" property="payType" jdbcType="INTEGER"/>
+        <result column="GOODS_PAYMENT" property="startPayment" jdbcType="DECIMAL"/>
+        <result column="GOODS_PAYMENT_CURR" property="startCurrency" jdbcType="CHAR"/>
+        <result column="DEST_PAYMENT" property="destPayment" jdbcType="DECIMAL"/>
+        <result column="DEST_PAYMENT_CURR" property="destCurrency" jdbcType="CHAR"/>
+        <result column="SHIP_CUST_PROVIDE" property="startProvide" jdbcType="VARCHAR"/>
+        <result column="SHIP_CUST_CITY" property="startCity" jdbcType="VARCHAR"/>
+        <result column="SHIP_CUST_COUNTY" property="startCounty" jdbcType="VARCHAR"/>
+        <result column="SHIP_CUST_LINK_MAN" property="startLinkMan" jdbcType="VARCHAR" />
+        <result column="SHIP_CUST_ADDR" property="startAddress" jdbcType="VARCHAR"/>
+        <result column="SHIP_LONGITUDE" property="startLongitude" jdbcType="DECIMAL"/>
+        <result column="SHIP_LATITUDE" property="startLatitude" jdbcType="DECIMAL"/>
+        <result column="CNEE_CUST_PROVIDE" property="destProvide" jdbcType="VARCHAR"/>
+        <result column="CNEE_CUST_CITY" property="destCity" jdbcType="VARCHAR"/>
+        <result column="CNEE_CUST_COUNTY" property="destCounty" jdbcType="VARCHAR"/>
+        <result column="CNEE_CUST_LINK_MAN" property="destLinkMan" jdbcType="VARCHAR" />
+        <result column="CNEE_CUST_ADDR" property="destAddress" jdbcType="VARCHAR"/>
+        <result column="CNEE_LONGITUDE" property="destLongitude" jdbcType="DECIMAL"/>
+        <result column="CNEE_LATITUDE" property="destLatitude" jdbcType="DECIMAL"/>
+
+        <result column="BOOKING_DATE" property="bookingDate" jdbcType="TIMESTAMP" />
+        <result column="TEAM_COMSIX_NO" property="teamComsixNo" jdbcType="VARCHAR" />
+        <result column="BUSI_CTRL" property="busiCtrl" jdbcType="INTEGER" />
+        <result column="TRANSPORT_TYPE" property="transportType" jdbcType="INTEGER" />
+        <result column="NEED_INSURE" property="needInsure" jdbcType="BIT" />
+        <result column="PREMIUM_PROPORTION" property="premiumProportion" jdbcType="DECIMAL" />
+        <result column="PREMIUM_VALUE" property="premiumValue" jdbcType="DECIMAL" />
+        <result column="GOODS_VALUE" property="goodsValue" jdbcType="DECIMAL" />
+        <result column="REV_USER_ID" property="revUserId" jdbcType="INTEGER" />
+        <result column="REV_USER" property="revUser" jdbcType="VARCHAR" />
+        <result column="REV_DATE" property="revDate" jdbcType="TIMESTAMP" />
+        <result column="EDIT_DATE" property="finishDate" jdbcType="TIMESTAMP"/>
+        <result column="CREATE_USER_ID" property="createUserId" jdbcType="INTEGER" />
+        <result column="CREATE_USER" property="createUser" jdbcType="VARCHAR" />
+        <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+        <result column="IS_JS" property="isJs" jdbcType="INTEGER" />
+        <result column="VALID_BILLNO" property="validBillno" jdbcType="VARCHAR" />
+        <result column="COM_QUOTE_ID" property="comQuoteId" jdbcType="VARCHAR" />
+        <result column="QUOTED_TYPE" property="quotedType" jdbcType="INTEGER" />
+        <result column="DISPATCH_ID" property="dispatchId" jdbcType="INTEGER" />
+        <result column="SCHEDUCARNO" property="scheducarno" jdbcType="VARCHAR" />
+        <result column="ORDER_FROM" property="orderFrom" jdbcType="INTEGER" />
+        <result column="START_LOCUS" property="startLocus" jdbcType="VARCHAR" />
+        <result column="DESTN_LOCUS" property="destnLocus" jdbcType="VARCHAR" />
+        <result column="PRODUCT_TYPE" property="productType" jdbcType="VARCHAR" />
+        <result column="NARRATE" property="narrate" jdbcType="VARCHAR" />
+        <result column="ROLE_ID" property="roleId" jdbcType="INTEGER" />
+        <result column="CREATE_COMPANY_ID" property="createCompanyId" jdbcType="INTEGER" />
+        <collection property="goodsInfoList" ofType="com.gistandard.transport.app.dubbo.order.bean.MobileGoodsInfo">
+            <result column="GOODS_ID" property="goodsId" jdbcType="INTEGER"/>
+            <result column="MOBILE_BOOKING_FORM_ID" property="mobileBookingFormId" jdbcType="INTEGER"/>
+            <result column="MOBILE_SCHEDU_ORDER_ID" property="mobileScheduOrderId" jdbcType="INTEGER" />
+            <result column="GOODS_TYPE" property="goodsType" jdbcType="VARCHAR"/>
+            <result column="GOODS_NAME" property="goodsName" jdbcType="VARCHAR"/>
+            <result column="GOODS_QTY" property="goodsQty" jdbcType="DECIMAL"/>
+            <result column="GOODS_QTY_UNIT" property="goodsQtyUnit" jdbcType="CHAR"/>
+            <result column="GOODS_LENGHT" property="goodsLength" jdbcType="DECIMAL"/>
+            <result column="GOODS_WIDE" property="goodsWide" jdbcType="DECIMAL"/>
+            <result column="GOODS_HEIGHT" property="goodsHeight" jdbcType="DECIMAL"/>
+            <result column="GOODS_VOLUME" property="goodsVolume" jdbcType="DECIMAL"/>
+            <result column="GOODS_VOLUME_UNIT" property="goodsVolumeUnit" jdbcType="CHAR"/>
+            <result column="GOODS_WEIGHT" property="goodsWeight" jdbcType="DECIMAL"/>
+            <result column="GOODS_WEIGHT_UNIT" property="goodsWeightUnit" jdbcType="CHAR"/>
+        </collection>
+    </resultMap>
+
+    <!-- 查询全部订单、待执行订单、执行中订单、失败单-->
+    <sql id="My_Order_Column_List">
+        form.ID,form.BOOKING_FORM_ID, form.BUSI_BOOK_NO,form.ETA_POP_DATE,form.CREATE_USER_ID,form.CREATE_USER, form.ORDER_TYPE,form.SHIP_CUST_LINK_TEL,form.CNEE_CUST_LINK_TEL,form.PREDICT_VALUE,form.PREDICT_CURR,
+        form.PAY_TYPE, form.GOODS_PAYMENT_CURR,form.DEST_PAYMENT,form.DEST_PAYMENT_CURR,form.SHIP_CUST_PROVIDE,form.SHIP_CUST_CITY,form.SHIP_CUST_COUNTY,form.SHIP_CUST_ADDR,
+        form.SHIP_LONGITUDE, form.SHIP_LATITUDE,form.CNEE_CUST_PROVIDE,form.CNEE_CUST_CITY,form.CNEE_CUST_COUNTY, form.CNEE_CUST_ADDR, form.CNEE_LONGITUDE, form.CNEE_LATITUDE,
+        form.TRANSPORT_TYPE,form.ORDER_FROM,form.DISPATCH_ID,form.SCHEDUCARNO,form.COM_QUOTE_ID,form.QUOTED_TYPE,form.BUSI_CTRL,form.START_LOCUS,form.DESTN_LOCUS,(SELECT 1 FROM MOBILE_STOCK stock WHERE form.BUSI_BOOK_NO = stock.BUSI_BOOK_NO) AS FLAG,goodsDtl.ID as GOODS_ID,goodsDtl.MOBILE_BOOKING_FORM_ID,goodsDtl.MOBILE_SCHEDU_ORDER_ID,goodsDtl.GOODS_TYPE,goodsDtl.GOODS_NAME,goodsDtl.GOODS_QTY,goodsDtl.GOODS_QTY_UNIT,goodsDtl.GOODS_LENGHT,goodsDtl.GOODS_WIDE,
+        goodsDtl.GOODS_HEIGHT,goodsDtl.GOODS_VOLUME,goodsDtl.GOODS_VOLUME_UNIT,goodsDtl.GOODS_WEIGHT,goodsDtl.GOODS_WEIGHT_UNIT
+    </sql>
+    <select id="getMyOrderListCount" resultType="java.lang.Integer"
+            parameterType="com.gistandard.transport.app.dubbo.order.bean.MobileMyOrderListReq">
+        SELECT count(1) FROM (
+        select form.ID
+        FROM MOBILE_BOOKING_FORM form
+        where form.REV_USER = #{acctUsername,jdbcType=VARCHAR}
+        AND form.ORDER_FROM in(2,5,7,8)
+        <if test="roleId != null" >
+            AND form.ROLE_ID= #{roleId,jdbcType=INTEGER}
+        </if>
+        <if test="busiBookNo != null and busiBookNo != ''" >
+            AND form.BUSI_BOOK_NO= #{busiBookNo,jdbcType=VARCHAR}
+        </if>
+        <if test="orderStatue != null and orderStatue == 1" >
+            AND form.BUSI_CTRL in (1,40)
+        </if>
+        <if test="orderStatue != null and orderStatue == 2" >
+            AND form.BUSI_CTRL in (20,25)
+        </if>
+        <if test="orderStatue != null and orderStatue == 3" >
+            AND form.BUSI_CTRL = 30
+        </if>
+        <if test="orderStatue != null and orderStatue == 4" >
+            AND form.BUSI_CTRL in (1,40,20,30,5,-3,25)
+        </if>
+        <if test="orderType != null" >
+            AND form.ORDER_TYPE = #{orderType,jdbcType=INTEGER}
+        </if>
+        <if test="productType != null and productType != ''" >
+            AND form.PRODUCT_TYPE  in
+            <foreach collection="productTypeList" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        )as temp
+    </select>
+    <select id="queryMyOrderList" resultMap="queryMyOrderListMap"
+            parameterType="com.gistandard.transport.app.dubbo.order.bean.MobileMyOrderListReq">
+        SELECT temp.*,goodsDtl.ID as GOODS_ID,goodsDtl.MOBILE_BOOKING_FORM_ID,goodsDtl.MOBILE_SCHEDU_ORDER_ID,goodsDtl.GOODS_TYPE,goodsDtl.GOODS_NAME,goodsDtl.GOODS_QTY,goodsDtl.GOODS_QTY_UNIT,goodsDtl.GOODS_LENGHT,goodsDtl.GOODS_WIDE,
+        goodsDtl.GOODS_HEIGHT,goodsDtl.GOODS_VOLUME,goodsDtl.GOODS_VOLUME_UNIT,goodsDtl.GOODS_WEIGHT,goodsDtl.GOODS_WEIGHT_UNIT
+        FROM
+        (SELECT form.ID,form.BOOKING_FORM_ID, form.BUSI_BOOK_NO,form.ETA_POP_DATE,form.CREATE_USER_ID,form.CREATE_USER, form.ORDER_TYPE,form.SHIP_CUST_LINK_TEL,form.CNEE_CUST_LINK_TEL,form.PREDICT_VALUE,form.PREDICT_CURR,
+        form.PAY_TYPE, form.GOODS_PAYMENT_CURR,form.DEST_PAYMENT,form.DEST_PAYMENT_CURR,form.SHIP_CUST_PROVIDE,form.SHIP_CUST_CITY,form.SHIP_CUST_COUNTY,form.SHIP_CUST_ADDR,
+        form.SHIP_LONGITUDE, form.SHIP_LATITUDE,form.CNEE_CUST_PROVIDE,form.CNEE_CUST_CITY,form.CNEE_CUST_COUNTY, form.CNEE_CUST_ADDR, form.CNEE_LONGITUDE, form.CNEE_LATITUDE,
+        form.TRANSPORT_TYPE,form.ORDER_FROM,form.DISPATCH_ID,form.SCHEDUCARNO,form.COM_QUOTE_ID,form.QUOTED_TYPE,form.BUSI_CTRL,form.START_LOCUS,form.DESTN_LOCUS,form.VALID_BILLNO,form.PRODUCT_TYPE,
+        form.CONNECTION_STATUS,form.CONNECTION_ORDER_NO,form.REV_DATE,form.NARRATE,form.ROLE_ID
+        FROM MOBILE_BOOKING_FORM form
+        where form.REV_USER = #{acctUsername,jdbcType=VARCHAR}
+        AND form.ORDER_FROM in(2,5,7,8)
+        <if test="roleId != null" >
+            AND form.ROLE_ID= #{roleId,jdbcType=INTEGER}
+        </if>
+        <if test="busiBookNo != null and busiBookNo != ''" >
+            AND form.BUSI_BOOK_NO= #{busiBookNo,jdbcType=VARCHAR}
+        </if>
+        <if test="orderStatue != null and orderStatue == 1" >
+            AND form.BUSI_CTRL in (1,40)
+        </if>
+        <if test="orderStatue != null and orderStatue == 2" >
+            AND form.BUSI_CTRL in (20,25)
+        </if>
+        <if test="orderStatue != null and orderStatue == 3" >
+            AND form.BUSI_CTRL = 30
+        </if>
+        <if test="orderStatue != null and orderStatue == 4" >
+            AND form.BUSI_CTRL in (1,40,20,30,5,-3,25)
+        </if>
+        <if test="orderType != null" >
+            AND form.ORDER_TYPE = #{orderType,jdbcType=INTEGER}
+        </if>
+        <if test="productType != null and productType != ''" >
+            AND form.PRODUCT_TYPE  in
+            <foreach collection="productTypeList" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        ORDER BY form.REV_DATE DESC
+        <if test="pageSize !=0">
+            limit #{startRecord},#{pageSize}
+        </if>)as temp
+        LEFT JOIN MOBILE_GOODS_DTL goodsDtl ON temp.ID = goodsDtl.MOBILE_BOOKING_FORM_ID
+        ORDER BY temp.REV_DATE DESC
+    </select>
+
+    <!-- 查询咪站商户单条数 -->
+    <select id="getMiOrderListCount" resultType="java.lang.Integer"
+            parameterType="com.gistandard.transport.app.dubbo.order.bean.MobileMyOrderListReq">
+        SELECT count(1) FROM (
+        select form.ID
+        FROM MOBILE_BOOKING_FORM form
+        where form.REV_USER = #{acctUsername,jdbcType=VARCHAR}
+        AND form.ORDER_FROM in(2,5,7,8,9)
+        <if test="roleId != null" >
+            AND form.ROLE_ID= #{roleId,jdbcType=INTEGER}
+        </if>
+        <if test="busiBookNo != null and busiBookNo != ''" >
+            AND form.BUSI_BOOK_NO= #{busiBookNo,jdbcType=VARCHAR}
+        </if>
+        <if test="orderStatue != null and orderStatue == 1" >
+            AND form.BUSI_CTRL in (1)
+        </if>
+        <if test="orderStatue != null and orderStatue == 2" >
+            AND form.BUSI_CTRL in (40,25,26)
+        </if>
+        <if test="orderStatue != null and orderStatue == 4" >
+            AND form.BUSI_CTRL in (1,40,5,-3,25,26)
+        </if>
+        <if test="orderType != null" >
+            AND form.ORDER_TYPE = #{orderType,jdbcType=INTEGER}
+        </if>
+        <if test="productType != null and productType != ''" >
+            AND form.PRODUCT_TYPE  in
+            <foreach collection="productTypeList" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        )as temp
+    </select>
+
+    <!-- 查询咪站商户单列表 -->
+    <select id="queryMiOrderList" resultMap="queryMyOrderListMap"
+            parameterType="com.gistandard.transport.app.dubbo.order.bean.MobileMyOrderListReq">
+        SELECT temp.*,goodsDtl.ID as GOODS_ID,goodsDtl.MOBILE_BOOKING_FORM_ID,goodsDtl.MOBILE_SCHEDU_ORDER_ID,goodsDtl.GOODS_TYPE,goodsDtl.GOODS_NAME,goodsDtl.GOODS_QTY,goodsDtl.GOODS_QTY_UNIT,goodsDtl.GOODS_LENGHT,goodsDtl.GOODS_WIDE,
+        goodsDtl.GOODS_HEIGHT,goodsDtl.GOODS_VOLUME,goodsDtl.GOODS_VOLUME_UNIT,goodsDtl.GOODS_WEIGHT,goodsDtl.GOODS_WEIGHT_UNIT
+        FROM
+        (SELECT form.ID,form.BOOKING_FORM_ID, form.BUSI_BOOK_NO,form.ETA_POP_DATE,form.CREATE_USER_ID,form.CREATE_USER, form.ORDER_TYPE,form.SHIP_CUST_LINK_TEL,form.CNEE_CUST_LINK_TEL,form.PREDICT_VALUE,form.PREDICT_CURR,
+        form.PAY_TYPE, form.GOODS_PAYMENT_CURR,form.DEST_PAYMENT,form.DEST_PAYMENT_CURR,form.SHIP_CUST_PROVIDE,form.SHIP_CUST_CITY,form.SHIP_CUST_COUNTY,form.SHIP_CUST_ADDR,
+        form.SHIP_LONGITUDE, form.SHIP_LATITUDE,form.CNEE_CUST_PROVIDE,form.CNEE_CUST_CITY,form.CNEE_CUST_COUNTY, form.CNEE_CUST_ADDR, form.CNEE_LONGITUDE, form.CNEE_LATITUDE,
+        form.TRANSPORT_TYPE,form.ORDER_FROM,form.DISPATCH_ID,form.SCHEDUCARNO,form.COM_QUOTE_ID,form.QUOTED_TYPE,form.BUSI_CTRL,form.START_LOCUS,form.DESTN_LOCUS,form.VALID_BILLNO,form.PRODUCT_TYPE,
+        form.CONNECTION_STATUS,form.CONNECTION_ORDER_NO,form.REV_DATE,form.NARRATE,form.ROLE_ID
+        FROM MOBILE_BOOKING_FORM form
+        where form.REV_USER = #{acctUsername,jdbcType=VARCHAR}
+        AND form.ORDER_FROM in(2,5,7,8,9)
+        <if test="roleId != null" >
+            AND form.ROLE_ID= #{roleId,jdbcType=INTEGER}
+        </if>
+        <if test="busiBookNo != null and busiBookNo != ''" >
+            AND form.BUSI_BOOK_NO= #{busiBookNo,jdbcType=VARCHAR}
+        </if>
+        <if test="orderStatue != null and orderStatue == 1" >
+            AND form.BUSI_CTRL in (1)
+        </if>
+        <if test="orderStatue != null and orderStatue == 2" >
+            AND form.BUSI_CTRL in (40,25,26)
+        </if>
+        <if test="orderStatue != null and orderStatue == 4" >
+            AND form.BUSI_CTRL in (1,40,5,-3,25,26)
+        </if>
+        <if test="orderType != null" >
+            AND form.ORDER_TYPE = #{orderType,jdbcType=INTEGER}
+        </if>
+        <if test="productType != null and productType != ''" >
+            AND form.PRODUCT_TYPE  in
+            <foreach collection="productTypeList" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        ORDER BY form.REV_DATE DESC
+        <if test="pageSize !=0">
+            limit #{startRecord},#{pageSize}
+        </if>)as temp
+        LEFT JOIN MOBILE_GOODS_DTL goodsDtl ON temp.ID = goodsDtl.MOBILE_BOOKING_FORM_ID
+        ORDER BY temp.REV_DATE DESC
+    </select>
+
+    <select id="getTakeOutOrderListCount" resultType="java.lang.Integer"
+            parameterType="com.gistandard.transport.app.dubbo.order.bean.MobileMyOrderListReq">
+        select count(1)
+        FROM MOBILE_BOOKING_FORM form
+        INNER JOIN BILLING_FORM_SALM bil on form.BOOKING_FORM_ID = bil.BUSI_BOOKNO_ID
+        INNER JOIN COM_TACKOUT_GOODS_TYPE t on t.TYPE_CODE = bil.HSCODE_SPECS
+        where form.REV_USER = #{acctUsername,jdbcType=VARCHAR}
+        <if test="roleId != null" >
+            AND form.ROLE_ID= #{roleId,jdbcType=INTEGER}
+        </if>
+        <if test="orderStatue != null and orderStatue == 0" >
+            AND form.BUSI_CTRL = 0
+        </if>
+        <if test="orderStatue != null and orderStatue == 1" >
+            AND form.BUSI_CTRL = 1
+        </if>
+        <if test="orderStatue != null and orderStatue == 2" >
+            AND form.BUSI_CTRL = 20
+        </if>
+        <if test="orderStatue != null and orderStatue == 3" >
+            AND form.BUSI_CTRL = -1
+        </if>
+        <if test="orderStatue != null and orderStatue == 4" >
+            AND form.BUSI_CTRL in (0,1,20,5,6)
+        </if>
+        <if test="productType != null and productType != ''" >
+            AND form.PRODUCT_TYPE  = #{productType,jdbcType=VARCHAR}
+        </if>
+    </select>
+    <select id="queryTakeOutOrderList"
+            resultType="com.gistandard.transport.order.module.mobilestation.bean.takeout.TakeOutMobileOrderListRes"
+            parameterType="com.gistandard.transport.app.dubbo.order.bean.MobileMyOrderListReq">
+        SELECT temp.*,t.TYPE_CH hscodeNachs
+        FROM
+        (SELECT form.*
+        FROM MOBILE_BOOKING_FORM form
+        where form.REV_USER = #{acctUsername,jdbcType=VARCHAR}
+        <if test="roleId != null" >
+            AND form.ROLE_ID= #{roleId,jdbcType=INTEGER}
+        </if>
+        <if test="orderStatue != null and orderStatue == 0" >
+            AND form.BUSI_CTRL = 0
+        </if>
+        <if test="orderStatue != null and orderStatue == 1" >
+            AND form.BUSI_CTRL = 1
+        </if>
+        <if test="orderStatue != null and orderStatue == 2" >
+            AND form.BUSI_CTRL = 20
+        </if>
+        <if test="orderStatue != null and orderStatue == 3" >
+            AND form.BUSI_CTRL = -1
+        </if>
+        <if test="orderStatue != null and orderStatue == 4" >
+            AND form.BUSI_CTRL in (0,1,20,5,6)
+        </if>
+        <if test="productType != null and productType != ''" >
+            AND form.PRODUCT_TYPE  = #{productType,jdbcType=VARCHAR}
+        </if>
+        <if test="orderStatue != null and orderStatue == 0" >
+            ORDER BY form.REV_DATE DESC
+        </if>
+        <if test="orderStatue != null and orderStatue != 0" >
+            ORDER BY form.CREATE_DATE DESC
+        </if>
+        <if test="pageSize !=0">
+            limit #{startRecord},#{pageSize}
+        </if>)as temp
+        INNER JOIN BILLING_FORM_SALM bil on temp.BOOKING_FORM_ID = bil.BUSI_BOOKNO_ID
+        INNER JOIN COM_TACKOUT_GOODS_TYPE t on t.TYPE_CODE = bil.HSCODE_SPECS
+        <if test="orderStatue != null and orderStatue == 0" >
+            ORDER BY temp.REV_DATE DESC
+        </if>
+        <if test="orderStatue != null and orderStatue != 0" >
+            ORDER BY temp.CREATE_DATE DESC
+        </if>
+    </select>
+
+    <sql id="SubOrder_Column_Detail">
+        form.ID ,form.BOOKING_FORM_ID, form.BUSI_BOOK_NO,form.SHIP_CUST_LINK_TEL,form.SHIP_CUST_LINK_MAN,form.CNEE_CUST_LINK_MAN,form.CNEE_CUST_LINK_TEL,form.PREDICT_VALUE,form.PREDICT_CURR,
+        form.PAY_TYPE, form.GOODS_PAYMENT_CURR,form.DEST_PAYMENT,form.DEST_PAYMENT_CURR,form.SHIP_CUST_PROVIDE,form.SHIP_CUST_CITY,form.SHIP_CUST_COUNTY,form.SHIP_CUST_ADDR,
+        form.SHIP_LONGITUDE, form.SHIP_LATITUDE,form.CNEE_CUST_PROVIDE,form.CNEE_CUST_CITY,form.CNEE_CUST_COUNTY, form.CNEE_CUST_ADDR, form.CNEE_LONGITUDE, form.CNEE_LATITUDE,
+        form.BUSI_CTRL,form.NEED_INSURE,form.PREMIUM_PROPORTION,form.PREMIUM_VALUE,form.GOODS_VALUE,
+        form.IS_JS,form.VALID_BILLNO,form.COM_QUOTE_ID,form.QUOTED_TYPE,form.SCHEDUCARNO,form.NARRATE,form.PRODUCT_TYPE,
+        goodsDtl.ID as GOODS_ID,goodsDtl.MOBILE_BOOKING_FORM_ID,goodsDtl.MOBILE_SCHEDU_ORDER_ID,goodsDtl.GOODS_TYPE,goodsDtl.GOODS_NAME,goodsDtl.GOODS_QTY,goodsDtl.GOODS_QTY_UNIT,goodsDtl.GOODS_LENGHT,goodsDtl.GOODS_WIDE,
+        goodsDtl.GOODS_HEIGHT,goodsDtl.GOODS_VOLUME,goodsDtl.GOODS_VOLUME_UNIT,goodsDtl.GOODS_WEIGHT,goodsDtl.GOODS_WEIGHT_UNIT
+    </sql>
+    <select id="querySubOrderList" resultMap="querySubOrderListMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="SubOrder_Column_Detail" />
+        FROM MOBILE_SCHEDU_SUB_ORDER form
+        LEFT JOIN MOBILE_GOODS_DTL goodsDtl ON form.ID = goodsDtl.MOBILE_SCHEDU_ORDER_ID
+        where form.MOBILE_BOOKING_FORM_ID = #{orderId,jdbcType=INTEGER}
+    </select>
+    <!-- 查询派车单里面子订单条数 -->
+    <select id="getSubOrderListCount" resultType="java.lang.Integer" parameterType="java.lang.String">
+        SELECT count(1) FROM (
+        SELECT dtl.BUSIBOOKNO FROM SCHEDU_GOODS goods
+        LEFT JOIN SCHEDU_GOODS_DTL dtl ON goods.SCHEDU_GOODS_NO=dtl.SCHEDU_GOODS_NO
+        WHERE goods.SCHEDUCARNO = #{scheducarno}
+        )as temp
+    </select>
+
+    <!-- 查询订单详细-->
+    <sql id="My_Order_Column_Detail">
+        form.ID,form.BOOKING_FORM_ID, form.BUSI_BOOK_NO,form.ETA_POP_DATE, form.ORDER_TYPE,form.SHIP_CUST_LINK_TEL,form.SHIP_CUST_LINK_MAN,form.CNEE_CUST_LINK_MAN,form.CNEE_CUST_LINK_TEL,form.PREDICT_VALUE,form.PREDICT_CURR,
+        form.PAY_TYPE, form.GOODS_PAYMENT_CURR,form.DEST_PAYMENT,form.DEST_PAYMENT_CURR,form.SHIP_CUST_PROVIDE,form.SHIP_CUST_CITY,form.SHIP_CUST_COUNTY,form.SHIP_CUST_ADDR,
+        form.SHIP_LONGITUDE, form.SHIP_LATITUDE,form.CNEE_CUST_PROVIDE,form.CNEE_CUST_CITY,form.CNEE_CUST_COUNTY, form.CNEE_CUST_ADDR, form.CNEE_LONGITUDE, form.CNEE_LATITUDE,
+        form.TRANSPORT_TYPE,form.BOOKING_DATE,form.TEAM_COMSIX_NO,form.BUSI_CTRL,form.TRANSPORT_TYPE,form.NEED_INSURE,form.PREMIUM_PROPORTION,form.PREMIUM_VALUE,form.GOODS_VALUE,
+        form.REV_USER_ID,form.REV_USER,form.REV_DATE,form.EDIT_DATE,form.CREATE_USER_ID,form.CREATE_USER,form.CREATE_DATE,form.IS_JS,form.VALID_BILLNO,form.COM_QUOTE_ID,form.QUOTED_TYPE,form.DISPATCH_ID,form.SCHEDUCARNO,form.ORDER_FROM,form.START_LOCUS,form.DESTN_LOCUS,form.PRODUCT_TYPE,form.NARRATE,form.ROLE_ID,form.CREATE_COMPANY_ID,
+        goodsDtl.ID as GOODS_ID,goodsDtl.MOBILE_BOOKING_FORM_ID,goodsDtl.MOBILE_SCHEDU_ORDER_ID,goodsDtl.GOODS_TYPE,goodsDtl.GOODS_NAME,goodsDtl.GOODS_QTY,goodsDtl.GOODS_QTY_UNIT,goodsDtl.GOODS_LENGHT,goodsDtl.GOODS_WIDE,
+        goodsDtl.GOODS_HEIGHT,goodsDtl.GOODS_VOLUME,goodsDtl.GOODS_VOLUME_UNIT,goodsDtl.GOODS_WEIGHT,goodsDtl.GOODS_WEIGHT_UNIT
+    </sql>
+    <select id="queryMyOrderDetail" resultMap="queryMyOrderDetailMap"
+            parameterType="com.gistandard.transport.order.module.mobilestation.bean.MobileStationOrderDetailReq">
+        select
+        <include refid="My_Order_Column_Detail" />
+        FROM MOBILE_BOOKING_FORM form
+        LEFT JOIN MOBILE_GOODS_DTL goodsDtl ON form.ID = goodsDtl.MOBILE_BOOKING_FORM_ID
+        where form.ID = #{orderId,jdbcType=INTEGER}
+    </select>
+
+    <select id="queryOrderDetail"  resultMap="queryMyOrderDetailMap" parameterType="java.lang.Integer">
+        select
+        <include refid="My_Order_Column_Detail" />
+        FROM MOBILE_BOOKING_FORM form
+        LEFT JOIN MOBILE_GOODS_DTL goodsDtl ON form.ID = goodsDtl.MOBILE_BOOKING_FORM_ID
+        where form.ID = #{orderId,jdbcType=INTEGER}
+    </select>
+
+    <select id="queryOrderByBusiNoAndBusiCtrl"  resultMap="queryMyOrderDetailMap">
+        select
+        <include refid="My_Order_Column_Detail" />
+        FROM MOBILE_BOOKING_FORM form
+        LEFT JOIN MOBILE_GOODS_DTL goodsDtl ON form.ID = goodsDtl.MOBILE_BOOKING_FORM_ID
+        where form.BUSI_BOOK_NO= #{busiBookNo} and form.BUSI_CTRL= #{busiCtrl}
+    </select>
+
+
+    <!-- 放弃子订单 -->
+    <update id="updateSubOrderStatusByScheducarno" parameterType="com.gistandard.transport.order.module.mobilestation.bean.MobileOrderOperateBean" >
+        update MOBILE_SCHEDU_SUB_ORDER
+        set BUSI_CTRL = #{destStatus}
+        where SCHEDUCARNO = #{scheducarno}
+        AND BUSI_CTRL = #{oldStatus}
+    </update>
+
+    <!-- 放弃子订单 -->
+    <update id="updateSubOrderStatusBySubOrderId" parameterType="com.gistandard.transport.order.module.mobilestation.bean.MobileOrderOperateBean" >
+        update MOBILE_SCHEDU_SUB_ORDER
+        set BUSI_CTRL = #{destStatus}
+        where ID = #{subOrderId}
+        AND BUSI_CTRL = #{oldStatus}
+    </update>
+
+    <select id="selectMobileOrderByScheducarno" resultMap="com.gistandard.transport.base.entity.dao.MobileBookingFormDao.BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="com.gistandard.transport.base.entity.dao.MobileBookingFormDao.Base_Column_List" />
+        from MOBILE_BOOKING_FORM
+        where SCHEDUCARNO = #{scheducarno,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectMobileOrderById" resultMap="com.gistandard.transport.base.entity.dao.MobileBookingFormDao.BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="com.gistandard.transport.base.entity.dao.MobileBookingFormDao.Base_Column_List"/>
+        from MOBILE_BOOKING_FORM
+        where id= #{orderId}
+    </select>
+
+    <select id="selectMobileSubOrderByScheducarno" resultMap="com.gistandard.transport.base.entity.dao.MobileScheduSubOrderDao.BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="com.gistandard.transport.base.entity.dao.MobileScheduSubOrderDao.Base_Column_List" />
+        from MOBILE_SCHEDU_SUB_ORDER
+        where SCHEDUCARNO = #{scheducarno,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectMobileSubOrderByOrderId" resultMap="com.gistandard.transport.base.entity.dao.MobileScheduSubOrderDao.BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="com.gistandard.transport.base.entity.dao.MobileScheduSubOrderDao.Base_Column_List" />
+        from MOBILE_SCHEDU_SUB_ORDER
+        where BUSI_CTRL != -1 and MOBILE_BOOKING_FORM_ID = #{orderId}
+    </select>
+
+    <select id="selectMobileSubOrderByMobileId" resultMap="com.gistandard.transport.base.entity.dao.MobileScheduSubOrderDao.BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="com.gistandard.transport.base.entity.dao.MobileScheduSubOrderDao.Base_Column_List" />
+        from MOBILE_SCHEDU_SUB_ORDER
+        where MOBILE_BOOKING_FORM_ID = #{orderId,jdbcType=INTEGER}
+    </select>
+
+    <!-- 根据派车单号查询集包号和散件订单列表 -->
+    <select id="selectMobileSubOrderNoList" resultType="String" parameterType="java.lang.String" >
+        SELECT AA.BUSI_BOOK_NO
+        FROM
+          (SELECT
+            A.BUSI_BOOK_NO,A.SCHEDU_CAR_ID
+          FROM
+            EXPREESS_IORDER_BUSINESS A
+          UNION ALL
+          SELECT
+            B.PACKAGE_CODE AS BUSI_BOOK_NO,
+            B.SCHEDU_CAR_ID
+          FROM
+            EXPREESS_PACKAGE_BUSINESS B) AA
+        WHERE AA.SCHEDU_CAR_ID = #{scheducarno}
+    </select>
+
+    <delete id="deleteGoodsByOrderId" parameterType="java.lang.Integer" >
+        delete from MOBILE_GOODS_DTL
+        where MOBILE_BOOKING_FORM_ID = #{orderId,jdbcType=INTEGER}
+    </delete>
+    <select id="selectMobileOrderList" resultMap="com.gistandard.transport.base.entity.dao.MobileBookingFormDao.BaseResultMap" parameterType="com.gistandard.transport.order.module.mobilestation.bean.MobileAssignBean" >
+        select
+        <include refid="com.gistandard.transport.base.entity.dao.MobileBookingFormDao.Base_Column_List" />
+        from MOBILE_BOOKING_FORM
+        where BUSI_BOOK_NO = #{busiBookNo,jdbcType=VARCHAR}
+        <if test="revUser != null and revUser != ''">
+            AND REV_USER = #{revUser,jdbcType=VARCHAR}
+        </if>
+        <if test="createUser != null and createUser != ''">
+            AND CREATE_USER = #{createUser,jdbcType=VARCHAR}
+        </if>
+        <choose>
+            <when test="createCompanyId != null">
+                AND CREATE_COMPANY_ID = #{createCompanyId,jdbcType=INTEGER}
+            </when>
+            <otherwise>
+                and CREATE_COMPANY_ID is NULL
+            </otherwise>
+        </choose>
+        <if test="busiCtrl != null">
+            AND BUSI_CTRL = #{busiCtrl,jdbcType=INTEGER}
+        </if>
+        <if test="roleId != null">
+            AND ROLE_ID = #{roleId,jdbcType=INTEGER}
+        </if>
+        AND BUSI_CTRL >= 0
+    </select>
+    <select id="querySingleCenter" resultMap="com.gistandard.transport.base.entity.dao.MobileSingleCenterDao.BaseResultMap" >
+        select
+        <include refid="com.gistandard.transport.base.entity.dao.MobileSingleCenterDao.Base_Column_List" />
+        from MOBILE_SINGLE_CENTER
+        where MOBILE_BOOKING_FORM_ID = #{orderId}
+        AND BUSI_CTRL = #{busiCtrl,jdbcType=INTEGER}
+        AND CREATE_USER_ID = #{createUserId,jdbcType=INTEGER}
+    </select>
+    <select id="querySingleCenterByRev" resultMap="com.gistandard.transport.base.entity.dao.MobileSingleCenterDao.BaseResultMap" >
+        select
+        <include refid="com.gistandard.transport.base.entity.dao.MobileSingleCenterDao.Base_Column_List" />
+        from MOBILE_SINGLE_CENTER
+        where BUSI_BOOK_NO = #{busiBookNo}
+        AND BUSI_CTRL = #{busiCtrl,jdbcType=INTEGER}
+        AND CREATE_USER = #{createUser}
+        AND REV_USER = #{revUser}
+    </select>
+    <select id="selectMobileGoodsInfoByOrderId" resultMap="com.gistandard.transport.base.entity.dao.MobileGoodsDtlDao.BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="com.gistandard.transport.base.entity.dao.MobileGoodsDtlDao.Base_Column_List" />
+        from MOBILE_GOODS_DTL
+        where MOBILE_BOOKING_FORM_ID = #{orderId}
+    </select>
+
+    <select id="queryBusiBookNoByPkgNo" resultType="String" parameterType="java.lang.String">
+        SELECT B.BUSI_BOOK_NO FROM  EXPREESS_PACKAGE A
+            LEFT JOIN  EXPREESS_IN_SCATTER B ON A.PACKAGE_CODE = B.PACKAGE_CODE
+            WHERE  A.PACKAGE_STATUS = '2' AND A.PACKAGE_CODE = #{pkgNo, jdbcType=VARCHAR};
+    </select>
+
+
+    <select id="selectValidOrderList" resultMap="com.gistandard.transport.base.entity.dao.MobileBookingFormDao.BaseResultMap"
+            parameterType="com.gistandard.transport.order.module.mobilestation.bean.DeliVeryConfirmReq" >
+        select
+        <include refid="com.gistandard.transport.base.entity.dao.MobileBookingFormDao.Base_Column_List" />
+        from MOBILE_BOOKING_FORM
+        where BUSI_BOOK_NO = #{busiBookNo,jdbcType=VARCHAR}
+        AND REV_USER = #{revUser,jdbcType=VARCHAR}
+        AND BUSI_CTRL >= 0
+    </select>
+    <update id="updateByPrimaryKey2" parameterType="com.gistandard.transport.base.entity.bean.MobileBookingForm" >
+        update MOBILE_BOOKING_FORM
+        set BOOKING_FORM_ID = #{bookingFormId,jdbcType=INTEGER},
+        BUSI_BOOK_NO = #{busiBookNo,jdbcType=VARCHAR},
+        SHIP_CUST_PROVIDE = #{shipCustProvide,jdbcType=VARCHAR},
+        SHIP_CUST_CITY = #{shipCustCity,jdbcType=VARCHAR},
+        SHIP_CUST_COUNTY = #{shipCustCounty,jdbcType=VARCHAR},
+        SHIP_CUST_ADDR = #{shipCustAddr,jdbcType=VARCHAR},
+        SHIP_CUST_LINK_MAN = #{shipCustLinkMan,jdbcType=VARCHAR},
+        SHIP_CUST_LINK_TEL = #{shipCustLinkTel,jdbcType=VARCHAR},
+        SHIP_LONGITUDE = #{shipLongitude,jdbcType=DECIMAL},
+        SHIP_LATITUDE = #{shipLatitude,jdbcType=DECIMAL},
+        CNEE_CUST_PROVIDE = #{cneeCustProvide,jdbcType=VARCHAR},
+        CNEE_CUST_CITY = #{cneeCustCity,jdbcType=VARCHAR},
+        CNEE_CUST_COUNTY = #{cneeCustCounty,jdbcType=VARCHAR},
+        CNEE_CUST_ADDR = #{cneeCustAddr,jdbcType=VARCHAR},
+        CNEE_CUST_LINK_MAN = #{cneeCustLinkMan,jdbcType=VARCHAR},
+        CNEE_CUST_LINK_TEL = #{cneeCustLinkTel,jdbcType=VARCHAR},
+        CNEE_LONGITUDE = #{cneeLongitude,jdbcType=DECIMAL},
+        CNEE_LATITUDE = #{cneeLatitude,jdbcType=DECIMAL},
+        ETA_POP_DATE = #{etaPopDate,jdbcType=TIMESTAMP},
+        BOOKING_DATE = #{bookingDate,jdbcType=TIMESTAMP},
+        TEAM_COMSIX_NO = #{teamComsixNo,jdbcType=VARCHAR},
+        BUSI_CTRL = #{busiCtrl,jdbcType=INTEGER},
+        TRANSPORT_TYPE = #{transportType,jdbcType=INTEGER},
+        ORDER_TYPE = #{orderType,jdbcType=INTEGER},
+        PAY_TYPE = #{payType,jdbcType=INTEGER},
+        GOODS_PAYMENT = #{goodsPayment,jdbcType=DECIMAL},
+        GOODS_PAYMENT_CURR = #{goodsPaymentCurr,jdbcType=CHAR},
+        DEST_PAYMENT = #{destPayment,jdbcType=DECIMAL},
+        DEST_PAYMENT_CURR = #{destPaymentCurr,jdbcType=CHAR},
+        NEED_INSURE = #{needInsure,jdbcType=BIT},
+        PREMIUM_PROPORTION = #{premiumProportion,jdbcType=DECIMAL},
+        PREMIUM_VALUE = #{premiumValue,jdbcType=DECIMAL},
+        GOODS_VALUE = #{goodsValue,jdbcType=DECIMAL},
+        IS_JS = #{isJs,jdbcType=INTEGER},
+        VALID_BILLNO = #{validBillno,jdbcType=VARCHAR},
+        COM_QUOTE_ID = #{comQuoteId,jdbcType=VARCHAR},
+        QUOTED_TYPE = #{quotedType,jdbcType=INTEGER},
+        PREDICT_VALUE = #{predictValue,jdbcType=DECIMAL},
+        PREDICT_CURR = #{predictCurr,jdbcType=CHAR},
+        ORDER_FROM = #{orderFrom,jdbcType=INTEGER},
+        DISPATCH_ID = #{dispatchId,jdbcType=INTEGER},
+        SCHEDUCARNO = #{scheducarno,jdbcType=VARCHAR},
+        CREATE_USER_ID = #{createUserId,jdbcType=INTEGER},
+        CREATE_USER = #{createUser,jdbcType=VARCHAR},
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+        REV_USER_ID = #{revUserId,jdbcType=INTEGER},
+        REV_USER = #{revUser,jdbcType=VARCHAR},
+        REV_DATE = #{revDate,jdbcType=TIMESTAMP},
+        EDIT_USER_ID = #{editUserId,jdbcType=INTEGER},
+        EDIT_USER = #{editUser,jdbcType=VARCHAR},
+        EDIT_DATE = #{editDate,jdbcType=TIMESTAMP},
+        FORM_EDIT_FLAG = #{formEditFlag,jdbcType=BIT},
+        GOODS_EDIT_FLAG = #{goodsEditFlag,jdbcType=BIT},
+        START_LOCUS = #{startLocus,jdbcType=VARCHAR},
+        DESTN_LOCUS = #{destnLocus,jdbcType=VARCHAR},
+        NARRATE = #{narrate,jdbcType=VARCHAR},
+        PRODUCT_TYPE = #{productType,jdbcType=VARCHAR},
+        PARENT_BOOKING_FORM_ID = #{parentBookingFormId,jdbcType=INTEGER},
+        EMERGENCY_CUST_ADDR = #{emergencyCustAddr,jdbcType=VARCHAR},
+        EMERGENCY_CUST_LINK_MAN = #{emergencyCustLinkMan,jdbcType=VARCHAR},
+        EMERGENCY_CUST_LINK_TEL = #{emergencyCustLinkTel,jdbcType=VARCHAR},
+        EMERGENCY_LONGITUDE = #{emergencyLongitude,jdbcType=DECIMAL},
+        EMERGENCY_LATITUDE = #{emergencyLatitude,jdbcType=DECIMAL},
+        IS_EMERGENCY = #{isEmergency,jdbcType=INTEGER},
+        CONNECTION_STATUS = #{connectionStatus,jdbcType=INTEGER},
+        CONNECTION_ORDER_NO = #{connectionOrderNo,jdbcType=VARCHAR},
+        ROLE_ID = #{roleId,jdbcType=INTEGER}
+        where ID = #{id,jdbcType=INTEGER} and BUSI_CTRL != #{busiCtrl,jdbcType=INTEGER}
+
+    </update>
+
+    <update id="batchUpdateByPrimaryKey2">
+        update MOBILE_BOOKING_FORM
+        set
+        BUSI_CTRL = #{busiCtrl,jdbcType=INTEGER}
+        where ID IN (${ids})
+        and BUSI_CTRL != #{busiCtrl,jdbcType=INTEGER}
+
+    </update>
+
+    <!-- 更新咪站的M-POD状态为已接单 -->
+    <delete id="updateMiOrderStatus" parameterType="java.lang.String" >
+        update MOBILE_BOOKING_FORM
+        set BUSI_CTRL = 1
+        where BUSI_BOOK_NO = #{busiBookNo}
+        AND START_LOCUS = 'M'
+        AND DESTN_LOCUS = 'POD'
+        AND ROLE_ID = 23
+        AND BUSI_CTRL = 11
+    </delete>
+
+    <!-- 根据蛙站简称查询蛙站账号 -->
+    <select id="queryAcctUsernameByCustTtl" resultType="String" parameterType="java.lang.String">
+        SELECT a.ACCT_USERNAME FROM COM_CUSTOMER c
+        LEFT JOIN COM_ACCOUNT a ON c.ACCOUNT_ID = a.ID AND a.ACCT_STATUS = 2
+        WHERE c.CUST_TTL =  #{custTtl};
+    </select>
+
+    <!-- 根据busi号查询咪站订单 M-POD，当前已接单 -->
+    <select id="queryMiOrderByBusiBookNo" resultMap="com.gistandard.transport.base.entity.dao.MobileBookingFormDao.BaseResultMap" parameterType="java.lang.String">
+        SELECT
+        <include refid="com.gistandard.transport.base.entity.dao.MobileBookingFormDao.Base_Column_List" />
+        FROM MOBILE_BOOKING_FORM m
+        WHERE m.ROLE_ID = 23
+        AND m.START_LOCUS = 'M'
+        AND m.DESTN_LOCUS = 'POD'
+        AND m.BUSI_BOOK_NO= #{busiBookNo}
+        ORDER BY m.ID DESC
+        limit 1
+    </select>
+    <select id="selectMobileOrderListByCondition" resultMap="com.gistandard.transport.base.entity.dao.MobileBookingFormDao.BaseResultMap" parameterType="com.gistandard.transport.order.module.mobilestation.bean.MobileAssignBean" >
+        select
+        <include refid="com.gistandard.transport.base.entity.dao.MobileBookingFormDao.Base_Column_List" />
+        from MOBILE_BOOKING_FORM
+        where BUSI_BOOK_NO = #{busiBookNo,jdbcType=VARCHAR}
+        <choose>
+            <when test="revUser != null">
+                AND REV_USER = #{revUser,jdbcType=VARCHAR}
+            </when>
+            <otherwise>
+                and REV_USER is NULL
+            </otherwise>
+        </choose>
+        <if test="createUser != null and createUser != ''">
+            AND CREATE_USER = #{createUser,jdbcType=VARCHAR}
+        </if>
+        <if test="busiCtrl != null">
+            AND BUSI_CTRL = #{busiCtrl,jdbcType=INTEGER}
+        </if>
+        <if test="roleId != null">
+            AND ROLE_ID = #{roleId,jdbcType=INTEGER}
+        </if>
+        AND BUSI_CTRL >= 0
+    </select>
+</mapper>

@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.MobileGoodsDtlDao" >
+  <resultMap id="BaseResultMap" type="com.gistandard.transport.base.entity.bean.MobileGoodsDtl" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="MOBILE_BOOKING_FORM_ID" property="mobileBookingFormId" jdbcType="INTEGER" />
+    <result column="GOODS_TYPE" property="goodsType" jdbcType="VARCHAR" />
+    <result column="GOODS_NAME" property="goodsName" jdbcType="VARCHAR" />
+    <result column="GOODS_QTY" property="goodsQty" jdbcType="DECIMAL" />
+    <result column="GOODS_QTY_UNIT" property="goodsQtyUnit" jdbcType="CHAR" />
+    <result column="GOODS_LENGHT" property="goodsLenght" jdbcType="DECIMAL" />
+    <result column="GOODS_WIDE" property="goodsWide" jdbcType="DECIMAL" />
+    <result column="GOODS_HEIGHT" property="goodsHeight" jdbcType="DECIMAL" />
+    <result column="GOODS_VOLUME" property="goodsVolume" jdbcType="DECIMAL" />
+    <result column="GOODS_VOLUME_UNIT" property="goodsVolumeUnit" jdbcType="CHAR" />
+    <result column="GOODS_WEIGHT" property="goodsWeight" jdbcType="DECIMAL" />
+    <result column="GOODS_WEIGHT_UNIT" property="goodsWeightUnit" jdbcType="CHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="CREATE_USER" property="createUser" jdbcType="VARCHAR" />
+    <result column="MOBILE_SCHEDU_ORDER_ID" property="mobileScheduOrderId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, MOBILE_BOOKING_FORM_ID, GOODS_TYPE, GOODS_NAME, GOODS_QTY, GOODS_QTY_UNIT, GOODS_LENGHT, 
+    GOODS_WIDE, GOODS_HEIGHT, GOODS_VOLUME, GOODS_VOLUME_UNIT, GOODS_WEIGHT, GOODS_WEIGHT_UNIT, 
+    CREATE_DATE, CREATE_USER, MOBILE_SCHEDU_ORDER_ID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from MOBILE_GOODS_DTL
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from MOBILE_GOODS_DTL
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gistandard.transport.base.entity.bean.MobileGoodsDtl" >
+    insert into MOBILE_GOODS_DTL (ID, MOBILE_BOOKING_FORM_ID, GOODS_TYPE, 
+      GOODS_NAME, GOODS_QTY, GOODS_QTY_UNIT, 
+      GOODS_LENGHT, GOODS_WIDE, GOODS_HEIGHT, 
+      GOODS_VOLUME, GOODS_VOLUME_UNIT, GOODS_WEIGHT, 
+      GOODS_WEIGHT_UNIT, CREATE_DATE, CREATE_USER, 
+      MOBILE_SCHEDU_ORDER_ID)
+    values (#{id,jdbcType=INTEGER}, #{mobileBookingFormId,jdbcType=INTEGER}, #{goodsType,jdbcType=VARCHAR}, 
+      #{goodsName,jdbcType=VARCHAR}, #{goodsQty,jdbcType=DECIMAL}, #{goodsQtyUnit,jdbcType=CHAR}, 
+      #{goodsLenght,jdbcType=DECIMAL}, #{goodsWide,jdbcType=DECIMAL}, #{goodsHeight,jdbcType=DECIMAL}, 
+      #{goodsVolume,jdbcType=DECIMAL}, #{goodsVolumeUnit,jdbcType=CHAR}, #{goodsWeight,jdbcType=DECIMAL}, 
+      #{goodsWeightUnit,jdbcType=CHAR}, #{createDate,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
+      #{mobileScheduOrderId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gistandard.transport.base.entity.bean.MobileGoodsDtl" >
+    insert into MOBILE_GOODS_DTL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="mobileBookingFormId != null" >
+        MOBILE_BOOKING_FORM_ID,
+      </if>
+      <if test="goodsType != null" >
+        GOODS_TYPE,
+      </if>
+      <if test="goodsName != null" >
+        GOODS_NAME,
+      </if>
+      <if test="goodsQty != null" >
+        GOODS_QTY,
+      </if>
+      <if test="goodsQtyUnit != null" >
+        GOODS_QTY_UNIT,
+      </if>
+      <if test="goodsLenght != null" >
+        GOODS_LENGHT,
+      </if>
+      <if test="goodsWide != null" >
+        GOODS_WIDE,
+      </if>
+      <if test="goodsHeight != null" >
+        GOODS_HEIGHT,
+      </if>
+      <if test="goodsVolume != null" >
+        GOODS_VOLUME,
+      </if>
+      <if test="goodsVolumeUnit != null" >
+        GOODS_VOLUME_UNIT,
+      </if>
+      <if test="goodsWeight != null" >
+        GOODS_WEIGHT,
+      </if>
+      <if test="goodsWeightUnit != null" >
+        GOODS_WEIGHT_UNIT,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="createUser != null" >
+        CREATE_USER,
+      </if>
+      <if test="mobileScheduOrderId != null" >
+        MOBILE_SCHEDU_ORDER_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mobileBookingFormId != null" >
+        #{mobileBookingFormId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsType != null" >
+        #{goodsType,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null" >
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsQty != null" >
+        #{goodsQty,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsQtyUnit != null" >
+        #{goodsQtyUnit,jdbcType=CHAR},
+      </if>
+      <if test="goodsLenght != null" >
+        #{goodsLenght,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsWide != null" >
+        #{goodsWide,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsHeight != null" >
+        #{goodsHeight,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsVolume != null" >
+        #{goodsVolume,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsVolumeUnit != null" >
+        #{goodsVolumeUnit,jdbcType=CHAR},
+      </if>
+      <if test="goodsWeight != null" >
+        #{goodsWeight,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsWeightUnit != null" >
+        #{goodsWeightUnit,jdbcType=CHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileScheduOrderId != null" >
+        #{mobileScheduOrderId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gistandard.transport.base.entity.bean.MobileGoodsDtl" >
+    update MOBILE_GOODS_DTL
+    <set >
+      <if test="mobileBookingFormId != null" >
+        MOBILE_BOOKING_FORM_ID = #{mobileBookingFormId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsType != null" >
+        GOODS_TYPE = #{goodsType,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null" >
+        GOODS_NAME = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsQty != null" >
+        GOODS_QTY = #{goodsQty,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsQtyUnit != null" >
+        GOODS_QTY_UNIT = #{goodsQtyUnit,jdbcType=CHAR},
+      </if>
+      <if test="goodsLenght != null" >
+        GOODS_LENGHT = #{goodsLenght,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsWide != null" >
+        GOODS_WIDE = #{goodsWide,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsHeight != null" >
+        GOODS_HEIGHT = #{goodsHeight,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsVolume != null" >
+        GOODS_VOLUME = #{goodsVolume,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsVolumeUnit != null" >
+        GOODS_VOLUME_UNIT = #{goodsVolumeUnit,jdbcType=CHAR},
+      </if>
+      <if test="goodsWeight != null" >
+        GOODS_WEIGHT = #{goodsWeight,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsWeightUnit != null" >
+        GOODS_WEIGHT_UNIT = #{goodsWeightUnit,jdbcType=CHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileScheduOrderId != null" >
+        MOBILE_SCHEDU_ORDER_ID = #{mobileScheduOrderId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gistandard.transport.base.entity.bean.MobileGoodsDtl" >
+    update MOBILE_GOODS_DTL
+    set MOBILE_BOOKING_FORM_ID = #{mobileBookingFormId,jdbcType=INTEGER},
+      GOODS_TYPE = #{goodsType,jdbcType=VARCHAR},
+      GOODS_NAME = #{goodsName,jdbcType=VARCHAR},
+      GOODS_QTY = #{goodsQty,jdbcType=DECIMAL},
+      GOODS_QTY_UNIT = #{goodsQtyUnit,jdbcType=CHAR},
+      GOODS_LENGHT = #{goodsLenght,jdbcType=DECIMAL},
+      GOODS_WIDE = #{goodsWide,jdbcType=DECIMAL},
+      GOODS_HEIGHT = #{goodsHeight,jdbcType=DECIMAL},
+      GOODS_VOLUME = #{goodsVolume,jdbcType=DECIMAL},
+      GOODS_VOLUME_UNIT = #{goodsVolumeUnit,jdbcType=CHAR},
+      GOODS_WEIGHT = #{goodsWeight,jdbcType=DECIMAL},
+      GOODS_WEIGHT_UNIT = #{goodsWeightUnit,jdbcType=CHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      MOBILE_SCHEDU_ORDER_ID = #{mobileScheduOrderId,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <insert id="batchInsert" parameterType="java.util.List">
+    insert into MOBILE_GOODS_DTL(MOBILE_BOOKING_FORM_ID, GOODS_TYPE,
+    GOODS_NAME, GOODS_QTY, GOODS_QTY_UNIT,
+    GOODS_LENGHT, GOODS_WIDE, GOODS_HEIGHT,
+    GOODS_VOLUME, GOODS_VOLUME_UNIT, GOODS_WEIGHT,
+    GOODS_WEIGHT_UNIT, CREATE_DATE, CREATE_USER, MOBILE_SCHEDU_ORDER_ID
+    )
+    values
+    <foreach collection="list" item="item" index="index" separator="," >
+      (#{item.mobileBookingFormId}, #{item.goodsType},
+      #{item.goodsName}, #{item.goodsQty}, #{item.goodsQtyUnit},
+      #{item.goodsLenght}, #{item.goodsWide}, #{item.goodsHeight},
+      #{item.goodsVolume}, #{item.goodsVolumeUnit}, #{item.goodsWeight},
+      #{item.goodsWeightUnit}, #{item.createDate}, #{item.createUser},
+      #{item.mobileScheduOrderId}
+      )
+    </foreach>
+  </insert>
+
+  <select id="selectByMobileBookingFormId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from MOBILE_GOODS_DTL
+    where MOBILE_BOOKING_FORM_ID = #{mobileBookingFormId}
+  </select>
+</mapper>

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.AppVersionInfoDao" >
+  <cache type="com.gistandard.transport.base.system.mybatis.cache.RedisCache" flushInterval="300000"/>
+  <resultMap id="BaseResultMap" type="com.gistandard.transport.base.entity.bean.AppVersionInfo" >
+    <id column="APP_VERSION_ID" property="appVersionId" jdbcType="INTEGER" />
+    <result column="OS" property="os" jdbcType="VARCHAR" />
+    <result column="PROJECT" property="project" jdbcType="VARCHAR" />
+    <result column="VERSION" property="version" jdbcType="VARCHAR" />
+    <result column="FILE_PATH" property="filePath" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="SMALLINT" />
+    <result column="FORCE_UPDATE" property="forceUpdate" jdbcType="SMALLINT" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="MODIFY_TIME" property="modifyTime" jdbcType="DATE" />
+    <result column="MODIFY_USER" property="modifyUser" jdbcType="VARCHAR" />
+    <result column="VERSION_CODE" property="versionCode" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    APP_VERSION_ID, OS, PROJECT, VERSION, FILE_PATH, STATUS, FORCE_UPDATE, REMARK, MODIFY_TIME,
+    MODIFY_USER, VERSION_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from APP_VERSION_INFO
+    where APP_VERSION_ID = #{appVersionId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from APP_VERSION_INFO
+    where APP_VERSION_ID = #{appVersionId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gistandard.transport.base.entity.bean.AppVersionInfo" >
+    insert into APP_VERSION_INFO (APP_VERSION_ID, OS, PROJECT,
+    VERSION, FILE_PATH, STATUS,
+    FORCE_UPDATE, REMARK, MODIFY_TIME,
+    MODIFY_USER, VERSION_CODE)
+    values (#{appVersionId,jdbcType=INTEGER}, #{os,jdbcType=VARCHAR}, #{project,jdbcType=VARCHAR},
+    #{version,jdbcType=VARCHAR}, #{filePath,jdbcType=VARCHAR}, #{status,jdbcType=SMALLINT},
+    #{forceUpdate,jdbcType=SMALLINT}, #{remark,jdbcType=VARCHAR}, #{modifyTime,jdbcType=DATE},
+    #{modifyUser,jdbcType=VARCHAR}, #{versionCode,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gistandard.transport.base.entity.bean.AppVersionInfo" >
+    insert into APP_VERSION_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="appVersionId != null" >
+        APP_VERSION_ID,
+      </if>
+      <if test="os != null" >
+        OS,
+      </if>
+      <if test="project != null" >
+        PROJECT,
+      </if>
+      <if test="version != null" >
+        VERSION,
+      </if>
+      <if test="filePath != null" >
+        FILE_PATH,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="forceUpdate != null" >
+        FORCE_UPDATE,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="modifyTime != null" >
+        MODIFY_TIME,
+      </if>
+      <if test="modifyUser != null" >
+        MODIFY_USER,
+      </if>
+      <if test="versionCode != null" >
+        VERSION_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="appVersionId != null" >
+        #{appVersionId,jdbcType=INTEGER},
+      </if>
+      <if test="os != null" >
+        #{os,jdbcType=VARCHAR},
+      </if>
+      <if test="project != null" >
+        #{project,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="filePath != null" >
+        #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="forceUpdate != null" >
+        #{forceUpdate,jdbcType=SMALLINT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=DATE},
+      </if>
+      <if test="modifyUser != null" >
+        #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="versionCode != null" >
+        #{versionCode,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gistandard.transport.base.entity.bean.AppVersionInfo" >
+    update APP_VERSION_INFO
+    <set >
+      <if test="os != null" >
+        OS = #{os,jdbcType=VARCHAR},
+      </if>
+      <if test="project != null" >
+        PROJECT = #{project,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        VERSION = #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="filePath != null" >
+        FILE_PATH = #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=SMALLINT},
+      </if>
+      <if test="forceUpdate != null" >
+        FORCE_UPDATE = #{forceUpdate,jdbcType=SMALLINT},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null" >
+        MODIFY_TIME = #{modifyTime,jdbcType=DATE},
+      </if>
+      <if test="modifyUser != null" >
+        MODIFY_USER = #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="versionCode != null" >
+        VERSION_CODE = #{versionCode,jdbcType=INTEGER},
+      </if>
+    </set>
+    where APP_VERSION_ID = #{appVersionId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gistandard.transport.base.entity.bean.AppVersionInfo" >
+    update APP_VERSION_INFO
+    set OS = #{os,jdbcType=VARCHAR},
+      PROJECT = #{project,jdbcType=VARCHAR},
+      VERSION = #{version,jdbcType=VARCHAR},
+      FILE_PATH = #{filePath,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=SMALLINT},
+      FORCE_UPDATE = #{forceUpdate,jdbcType=SMALLINT},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      MODIFY_TIME = #{modifyTime,jdbcType=DATE},
+      MODIFY_USER = #{modifyUser,jdbcType=VARCHAR},
+      VERSION_CODE = #{versionCode,jdbcType=INTEGER}
+    where APP_VERSION_ID = #{appVersionId,jdbcType=INTEGER}
+  </update>
+</mapper>

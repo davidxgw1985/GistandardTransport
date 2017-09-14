@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ex.ComCustomerDaoEx" >
+
+	<delete id="deleteByAccountId" parameterType="java.lang.Integer">
+		DELETE FROM COM_CUSTOMER
+		WHERE ACCOUNT_ID=#{accountId}
+	</delete>
+
+	<select id="queryGisNoByCustomerId" parameterType="java.lang.Integer" resultType="java.lang.String">
+		SELECT
+			CA.ACCT_USERNAME
+		FROM
+			COM_ACCOUNT CA INNER JOIN COM_CUSTOMER CC ON CA.ID=CC.ACCOUNT_ID
+		WHERE
+			CC.ID=#{customerId}
+	</select>
+
+	<select id="queryCustomerInfoByAcctId" resultMap="com.gistandard.transport.base.entity.dao.ComCustomerDao.BaseResultMap" parameterType="java.lang.Integer" >
+		select
+		<include refid="com.gistandard.transport.base.entity.dao.ComCustomerDao.Base_Column_List" />
+		from COM_CUSTOMER
+		where ACCOUNT_ID = #{acctId}
+	</select>
+	
+	<select id="queryCompanyByParams" resultMap="com.gistandard.transport.base.entity.dao.ComCustomerDao.BaseResultMap" >
+		select
+		<include refid="com.gistandard.transport.base.entity.dao.ComCustomerDao.Base_Column_List" />
+		from COM_CUSTOMER
+		where 1=1
+		<if test="custTtl!= null and custTtl!= ''">
+			AND CUST_TTL = TRIM(#{custTtl})
+		</if>
+		<if test="customNo!= null and customNo!= ''">
+			AND CUSTOM_NO = TRIM(#{customNo})
+		</if>
+	</select>
+	
+	<select id="getComCustomerByCustTtl" resultMap="com.gistandard.transport.base.entity.dao.ComCustomerDao.BaseResultMap" parameterType="java.lang.String" >
+		select
+		<include refid="com.gistandard.transport.base.entity.dao.ComCustomerDao.Base_Column_List" />
+		from COM_CUSTOMER a
+		where a.CUST_TTL = #{custTtl} limit 1
+	</select>
+
+	<select id="getAcctUserNameByCustTtl" parameterType="java.lang.String" resultType="java.lang.String">
+		SELECT
+		CA.ACCT_USERNAME
+		FROM
+		COM_ACCOUNT CA INNER JOIN COM_CUSTOMER CC ON CA.ID=CC.ACCOUNT_ID
+		WHERE
+		CC.CUST_TTL=#{custTtl} limit 1
+	</select>
+</mapper>

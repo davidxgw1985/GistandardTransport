@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd"
+        >
+
+    <!-- Spring提供的JMS工具类，它可以进行消息发送、接收等 -->
+    <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+        <!-- 这个connectionFactory对应的是我们定义的Spring提供的那个ConnectionFactory对象 -->
+        <property name="connectionFactory" ref="pooledConnectionFactory"/>
+        <!-- <property name="explicitQosEnabled" value="true" /> 
+        <property name="pubSubDomain" value="true" />
+        <property name="deliveryMode" value="2"></property> -->
+    </bean>
+
+    <!-- 真正可以产生Connection的ConnectionFactory，由对应的 JMS服务厂商提供-->
+    <bean id="targetConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+        <property name="brokerURL" value="${jms.producter}"/>
+    </bean>
+
+     <bean id="pooledConnectionFactory" class="org.apache.activemq.pool.PooledConnectionFactory">
+        <property name="connectionFactory" ref="targetConnectionFactory"/>
+        <property name="maxConnections" value="20"/>
+    </bean>
+    
+   <!-- <bean id="pooledConnectionFactory" class="org.springframework.jms.connection.CachingConnectionFactory">
+        <property name="targetConnectionFactory" ref="targetConnectionFactory"/>
+        <property name="sessionCacheSize" value="15"/>
+    </bean>-->
+
+    <!--记录操作日志-->
+    <bean id="operateLogDestination" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg>
+            <value>pscOperateLogQueue</value>
+        </constructor-arg>
+    </bean>
+    
+    <!-- 订阅/分发模式，各个系统备案过来的账号数据发送消息中间件的主题目的地 -->
+    <!-- <bean id="recordDataDestination" class="org.apache.activemq.command.ActiveMQTopic">
+        <constructor-arg>
+            <value>VirtualTopic.record_data_topic</value>
+        </constructor-arg>
+    </bean> -->
+    
+    <!-- 账号状态变化推送数据 -->
+    <!-- <bean id="recordDataTransportDestination" class="org.apache.activemq.command.ActiveMQTopic">
+        <constructor-arg>
+            <value>VirtualTopic.record_data_topic</value>
+        </constructor-arg>
+    </bean> -->
+
+	<!-- 订阅/分发模式，各个系统备案过来的账号数据发送消息中间件的主题目的地 -->
+	<!-- 运输平台队列 -->
+    <bean id="recordDataTransportDestination" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg>
+            <value>transport_record_data_mq</value>
+        </constructor-arg>
+    </bean>
+    
+    <!-- 即时通讯队列 -->
+    <bean id="recordDataIMDestination" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg>
+            <value>im_record_data_mq</value>
+        </constructor-arg>
+    </bean>
+    
+    <!-- 工作任务空间队列 -->
+    <bean id="recordDataWorkspaceDestination" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg>
+            <value>workspace_record_data_mq</value>
+        </constructor-arg>
+    </bean>
+    
+    <!-- 嘀讯队列地址 -->
+    <bean id="recordDataDDWorldDestination" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg>
+            <value>ddworld_record_data_mq</value>
+        </constructor-arg>
+    </bean>
+    
+    <!-- 账号状态变化推送数据 -->
+    <!-- <bean id="accountChangeDestination" class="org.apache.activemq.command.ActiveMQTopic">
+        <constructor-arg>
+            <value>VirtualTopic.account_change_topic</value>
+        </constructor-arg>
+    </bean> -->
+    <!-- 运输平台队列 -->
+    <bean id="transportAccountChangeDestination" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg>
+            <value>transport_account_change_mq</value>
+        </constructor-arg>
+    </bean>
+    
+    <!-- 即时通讯队列 -->
+    <bean id="imAccountChangeDestination" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg>
+            <value>im_account_change_mq</value>
+        </constructor-arg>
+    </bean>
+    
+    <!-- 工作任务空间队列 -->
+    <bean id="workspaceAccountChangeDestination" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg>
+            <value>workspace_account_change_mq</value>
+        </constructor-arg>
+    </bean>
+    
+    <!-- 嘀讯队列修改地址 -->
+    <bean id="ddworldAccountChangeDestination" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg>
+            <value>ddworld_account_change_mq</value>
+        </constructor-arg>
+    </bean>
+
+    <!-- GPS队列 -->
+    <bean id="jmsTemplateGps" class="org.springframework.jms.core.JmsTemplate">
+        <!-- 这个connectionFactory对应的是我们定义的Spring提供的那个ConnectionFactory对象 -->
+        <property name="connectionFactory" ref="pooledConnectionFactory_gps"/>
+    </bean>
+    <bean id="targetConnectionFactory_gps" class="org.apache.activemq.ActiveMQConnectionFactory">
+        <property name="brokerURL" value="${jms.gps.producter}"/>
+    </bean>
+    <bean id="pooledConnectionFactory_gps" class="org.apache.activemq.pool.PooledConnectionFactory">
+        <property name="connectionFactory" ref="targetConnectionFactory_gps"/>
+        <property name="maxConnections" value="20"/>
+    </bean>
+    <bean id="gpsResyncOrderTraceQueue" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg>
+            <value>gpsResyncOrderTraceQueue</value>
+        </constructor-arg>
+    </bean>
+    <bean id="gpsResyncAllGiBizOrderQueue" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg>
+            <value>gpsResyncAllGiBizOrderQueue</value>
+        </constructor-arg>
+    </bean>
+    <bean id="gpsUserLoginCompanyQueue" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg>
+            <value>gpsUserLoginCompanyQueue</value>
+        </constructor-arg>
+    </bean>
+
+    <!-- 结算队列 -->
+    <bean id="jmsTemplateCalc" class="org.springframework.jms.core.JmsTemplate">
+        <!-- 这个connectionFactory对应的是我们定义的Spring提供的那个ConnectionFactory对象 -->
+        <property name="connectionFactory" ref="pooledConnectionFactory_calc"/>
+        <property name="sessionTransacted" value="true"/>
+    </bean>
+    <bean id="targetConnectionFactory_calc" class="org.apache.activemq.ActiveMQConnectionFactory">
+        <property name="brokerURL" value="${jms.calc.producter}"/>
+    </bean>
+    <bean id="pooledConnectionFactory_calc" class="org.apache.activemq.pool.PooledConnectionFactory">
+        <property name="connectionFactory" ref="targetConnectionFactory_calc"/>
+        <property name="maxConnections" value="20"/>
+    </bean>
+    <bean id="calcForPriceQueueMq" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg>
+            <value>calc_forprice_queue_mq</value>
+        </constructor-arg>
+    </bean>
+    <bean id="calcForPrice2QueueMq" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg>
+            <value>calc_forprice2_queue_mq</value>
+        </constructor-arg>
+    </bean>
+
+    <bean id="orderConfirmPayQueue" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg>
+            <value>order_confirmpay_mq</value>
+        </constructor-arg>
+    </bean>
+
+
+    <!-- GPS位置上传队列 -->
+    <bean id="gpsAndroidUploadGiLocationBd2Queue" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg>
+            <value>gpsAndroidUploadGiLocationBd2Queue</value>
+        </constructor-arg>
+    </bean>
+
+    <!--业务员订单统计队列-->
+    <bean id="statsBusinessOrderQueue" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg>
+            <value>statsBusinessOrderQueue</value>
+        </constructor-arg>
+    </bean>
+
+
+    <!--同城运输订单队列-->
+    <bean id="orderBusiCtrlQueue" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg>
+            <value>orderBusiCtrlQueue</value>
+        </constructor-arg>
+    </bean>
+
+</beans>

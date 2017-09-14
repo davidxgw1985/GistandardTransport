@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ex.MobileMoudleRelDaoEx" >
+    <select id="queryAllModule" resultMap="com.gistandard.transport.base.entity.dao.MobileMoudleRelDao.BaseResultMap"
+            parameterType="com.gistandard.transport.base.entity.bean.MobileMoudleRel" >
+        select
+        <include refid="com.gistandard.transport.base.entity.dao.MobileMoudleRelDao.Base_Column_List" />
+        from MOBILE_MOUDLE_REL
+        where  1=1
+        <if test="id != null">
+            AND  ID = #{id,jdbcType=INTEGER}
+        </if>
+        <if test="moudleCode != null and moudleCode != ''">
+            AND  MOUDLE_CODE = #{moudleCode,jdbcType=VARCHAR}
+        </if>
+        <if test="moudleName != null and moudleName != ''">
+            AND MOUDLE_NAME = #{moudleName,jdbcType=VARCHAR}
+        </if>
+        <if test="moudleStatus != null">
+            AND  MOUDLE_STATUS = #{moudleStatus,jdbcType=INTEGER}
+        </if>
+        <if test="accountId != null">
+            AND ACCOUNT_ID = #{accountId,jdbcType=INTEGER}
+        </if>
+        <if test="acctUsername != null and acctUsername != ''">
+            AND ACCT_USERNAME = #{acctUsername,jdbcType=VARCHAR}
+        </if>
+    </select>
+    <select id="queryMobileMoudleRelByCondition" resultMap="com.gistandard.transport.base.entity.dao.MobileMoudleRelDao.BaseResultMap" 
+            parameterType="com.gistandard.transport.base.entity.bean.MobileMoudleRel" >
+        select
+        <include refid="com.gistandard.transport.base.entity.dao.MobileMoudleRelDao.Base_Column_List" />
+        from MOBILE_MOUDLE_REL
+        where  1=1
+        <if test="id != null">
+            AND  ID = #{id,jdbcType=INTEGER}
+        </if>
+        <if test="moudleCode != null and moudleCode != ''">
+            AND  MOUDLE_CODE = #{moudleCode,jdbcType=VARCHAR}
+        </if>
+        <if test="moudleName != null and moudleName != ''">
+            AND MOUDLE_NAME = #{moudleName,jdbcType=VARCHAR}
+        </if>
+        <if test="moudleStatus != null">
+            AND  MOUDLE_STATUS = #{moudleStatus,jdbcType=INTEGER}
+        </if>
+        <if test="accountId != null">
+            AND ACCOUNT_ID = #{accountId,jdbcType=INTEGER}
+        </if>
+        <if test="acctUsername != null and acctUsername != ''">
+            AND ACCT_USERNAME = #{acctUsername,jdbcType=VARCHAR}
+        </if>
+        <choose>
+            <when test="companyCode != null and companyCode != ''">
+                AND COMPANY_CODE = #{companyCode,jdbcType=VARCHAR}
+            </when>
+            <otherwise>
+                AND COMPANY_CODE is NULL
+            </otherwise>
+        </choose>
+    </select>
+
+    <!--查询企业下的KPP模块列表 -->
+    <select id="queryMobileMoudleRelCompanyList" resultMap="com.gistandard.transport.base.entity.dao.MobileMoudleRelDao.BaseResultMap"
+            parameterType="com.gistandard.transport.base.entity.bean.MobileMoudleRel" >
+        select
+        <include refid="com.gistandard.transport.base.entity.dao.MobileMoudleRelDao.Base_Column_List" />
+        from MOBILE_MOUDLE_REL
+        where  ACCOUNT_ID = #{accountId,jdbcType=INTEGER}
+          AND COMPANY_CODE IS NOT NULL
+    </select>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.gistandard.transport.base.entity.bean.MobileMoudleRel" >
+        update MOBILE_MOUDLE_REL
+        <set >
+            <if test="moudleName != null" >
+                MOUDLE_NAME = #{moudleName,jdbcType=VARCHAR},
+            </if>
+            <if test="moudleStatus != null" >
+                MOUDLE_STATUS = #{moudleStatus,jdbcType=INTEGER},
+            </if>
+            <if test="accountId != null" >
+                ACCOUNT_ID = #{accountId,jdbcType=INTEGER},
+            </if>
+            <if test="createDate != null" >
+                CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where MOUDLE_CODE = #{moudleCode,jdbcType=VARCHAR}
+        AND ACCT_USERNAME = #{acctUsername,jdbcType=VARCHAR}
+        <choose>
+            <when test="companyCode != null and companyCode != ''">
+                AND COMPANY_CODE = #{companyCode,jdbcType=VARCHAR}
+            </when>
+            <otherwise>
+                AND COMPANY_CODE is NULL
+            </otherwise>
+        </choose>
+    </update>
+
+    <update id="updateMobileMoudleRelStatus" parameterType="com.gistandard.transport.base.entity.bean.MobileMoudleRel" >
+        update MOBILE_MOUDLE_REL
+        <set >
+              IS_ON = #{isOn,jdbcType=INTEGER}
+        </set>
+        where ACCT_USERNAME = #{acctUsername,jdbcType=VARCHAR}
+        <if test="companyCode != null" >
+          AND COMPANY_CODE = #{companyCode,jdbcType=VARCHAR}
+        </if>
+    </update>
+
+    <delete id="deleteByPrimaryKeySelective" parameterType="com.gistandard.transport.base.entity.bean.MobileMoudleRel" >
+        delete from MOBILE_MOUDLE_REL
+        where MOUDLE_CODE = #{moudleCode,jdbcType=VARCHAR}
+        AND ACCT_USERNAME = #{acctUsername,jdbcType=VARCHAR}
+        <if test="companyId != null and companyId != ''">
+            AND COMPANY_ID = #{companyId}
+        </if>
+    </delete>
+
+    <!-- 删除企业员工角色 -->
+    <delete id="removeStaffRole" parameterType="com.gistandard.transport.base.entity.bean.MobileMoudleRel" >
+        delete from MOBILE_MOUDLE_REL
+        where ACCOUNT_ID = #{accountId,jdbcType=INTEGER}
+        AND COMPANY_ID = #{companyId,jdbcType=INTEGER}
+        <if test="moudleCode != null and moudleCode != ''">
+            AND  MOUDLE_CODE = #{moudleCode,jdbcType=VARCHAR}
+        </if>
+    </delete>
+</mapper>

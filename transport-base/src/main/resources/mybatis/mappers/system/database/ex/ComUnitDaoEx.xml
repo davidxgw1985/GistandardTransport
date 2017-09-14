@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ex.ComUnitDaoEx" >
+    <cache-ref namespace="com.gistandard.transport.base.entity.dao.ComUnitDao"/>
+    <select id="queryComUnitforTaiBao" resultMap="com.gistandard.transport.base.entity.dao.ComUnitDao.BaseResultMap">
+        select
+        <include refid="com.gistandard.transport.base.entity.dao.ComUnitDao.Base_Column_List"/>
+        from COM_UNIT where INSURANCE_CODE  IS  NOT NULL
+        ORDER BY FLAG DESC
+    </select>
+
+    <select id="queryComUnitByUnitType" resultMap="com.gistandard.transport.base.entity.dao.ComUnitDao.BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="com.gistandard.transport.base.entity.dao.ComUnitDao.Base_Column_List"/>
+        from COM_UNIT
+        where UNIT_TYPE = #{unitType}
+        ORDER BY FLAG DESC
+    </select>
+
+    <select id="queryAll" resultMap="com.gistandard.transport.base.entity.dao.ComUnitDao.BaseResultMap">
+        select
+        <include refid="com.gistandard.transport.base.entity.dao.ComUnitDao.Base_Column_List"/>
+        from COM_UNIT
+        ORDER BY FLAG DESC
+    </select>
+</mapper>

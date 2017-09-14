@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ex.ComAccessoryRelationDaoEx" >
+  
+   <delete id="deleteByCond" >
+    delete from COM_ACCESSORY_RELATION
+    where RELA_ID = #{relaId,jdbcType=INTEGER} AND T_TAB = #{tTab,jdbcType=VARCHAR} 
+    <if test="attachId != null" >
+         AND ATTACH_ID = #{attachId,jdbcType=INTEGER}
+      </if>
+  </delete>
+
+  <insert id="batchInsert" parameterType="java.util.List" >
+    insert into COM_ACCESSORY_RELATION (ID, RELA_ID, T_TAB,
+    ATTACH_ID)
+    values
+    <foreach collection="list" item="item" index="index"
+             separator=",">
+      (#{item.id,jdbcType=INTEGER}, #{item.relaId,jdbcType=INTEGER}, #{item.tTab,jdbcType=VARCHAR},
+      #{item.attachId,jdbcType=INTEGER})
+    </foreach>
+  </insert>
+
+  <delete id="batchDelByRelationIdList"  >
+    delete from COM_ACCESSORY_RELATION
+    where ID IN
+    <foreach item="item" collection="list" separator="," open="(" close=")" index="index">
+      #{item}
+    </foreach>
+  </delete>
+
+  <update id="updateAttachIdById" >
+    update COM_ACCESSORY_RELATION
+    set  ATTACH_ID = #{attachId,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+
+  <delete id="deleteAttachID" parameterType="java.lang.Integer" >
+    delete from COM_ACCESSORY_RELATION
+    where ATTACH_ID = #{attachId,jdbcType=INTEGER}
+  </delete>
+
+   <select id="getAccessoryRelation" resultMap="com.gistandard.transport.base.entity.dao.ComAccessoryRelationDao.BaseResultMap" >
+    select
+    <include refid="com.gistandard.transport.base.entity.dao.ComAccessoryRelationDao.Base_Column_List" />
+    from COM_ACCESSORY_RELATION
+    WHERE 1=1 
+    <if test="relaId != null" >
+        AND RELA_ID = #{relaId,jdbcType=INTEGER}
+     </if>
+     <if test="tTab != null and tTab!= ''" >
+        AND T_TAB = #{tTab,jdbcType=VARCHAR}
+     </if>
+     ORDER BY T_TAB
+  </select>
+</mapper>

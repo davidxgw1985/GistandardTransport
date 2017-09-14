@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ComVehicleTrayDao" >
+  <resultMap id="BaseResultMap" type="com.gistandard.transport.base.entity.bean.ComVehicleTray" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="TRAY_NO" property="trayNo" jdbcType="VARCHAR" />
+    <result column="TRAY_TYPE_CODE" property="trayTypeCode" jdbcType="VARCHAR" />
+    <result column="TRAY_WEIGHT" property="trayWeight" jdbcType="INTEGER" />
+    <result column="VEHICLE_ID" property="vehicleId" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, TRAY_NO, TRAY_TYPE_CODE, TRAY_WEIGHT, VEHICLE_ID, CREATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from COM_VEHICLE_TRAY
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from COM_VEHICLE_TRAY
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.gistandard.transport.base.entity.bean.ComVehicleTray" >
+    insert into COM_VEHICLE_TRAY (ID, TRAY_NO, TRAY_TYPE_CODE, 
+      TRAY_WEIGHT, VEHICLE_ID, CREATE_TIME
+      )
+    values (#{id,jdbcType=INTEGER}, #{trayNo,jdbcType=VARCHAR}, #{trayTypeCode,jdbcType=VARCHAR}, 
+      #{trayWeight,jdbcType=INTEGER}, #{vehicleId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.gistandard.transport.base.entity.bean.ComVehicleTray" >
+    insert into COM_VEHICLE_TRAY
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="trayNo != null" >
+        TRAY_NO,
+      </if>
+      <if test="trayTypeCode != null" >
+        TRAY_TYPE_CODE,
+      </if>
+      <if test="trayWeight != null" >
+        TRAY_WEIGHT,
+      </if>
+      <if test="vehicleId != null" >
+        VEHICLE_ID,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="trayNo != null" >
+        #{trayNo,jdbcType=VARCHAR},
+      </if>
+      <if test="trayTypeCode != null" >
+        #{trayTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="trayWeight != null" >
+        #{trayWeight,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleId != null" >
+        #{vehicleId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gistandard.transport.base.entity.bean.ComVehicleTray" >
+    update COM_VEHICLE_TRAY
+    <set >
+      <if test="trayNo != null" >
+        TRAY_NO = #{trayNo,jdbcType=VARCHAR},
+      </if>
+      <if test="trayTypeCode != null" >
+        TRAY_TYPE_CODE = #{trayTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="trayWeight != null" >
+        TRAY_WEIGHT = #{trayWeight,jdbcType=INTEGER},
+      </if>
+      <if test="vehicleId != null" >
+        VEHICLE_ID = #{vehicleId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gistandard.transport.base.entity.bean.ComVehicleTray" >
+    update COM_VEHICLE_TRAY
+    set TRAY_NO = #{trayNo,jdbcType=VARCHAR},
+      TRAY_TYPE_CODE = #{trayTypeCode,jdbcType=VARCHAR},
+      TRAY_WEIGHT = #{trayWeight,jdbcType=INTEGER},
+      VEHICLE_ID = #{vehicleId,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

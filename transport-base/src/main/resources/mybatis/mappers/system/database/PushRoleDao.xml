@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.PushRoleDao" >
+  <resultMap id="BaseResultMap" type="com.gistandard.transport.base.entity.bean.PushRole" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="ACCOUNT_ID" property="accountId" jdbcType="INTEGER" />
+    <result column="START_ADDRESS" property="startAddress" jdbcType="VARCHAR" />
+    <result column="START_LONGITUDE" property="startLongitude" jdbcType="DECIMAL" />
+    <result column="START_LATITUDE" property="startLatitude" jdbcType="DECIMAL" />
+    <result column="DEST_ADDRESS" property="destAddress" jdbcType="VARCHAR" />
+    <result column="DEST_LONGITUDE" property="destLongitude" jdbcType="DECIMAL" />
+    <result column="DEST_LATITUDE" property="destLatitude" jdbcType="DECIMAL" />
+    <result column="LENGTH_VALUE" property="lengthValue" jdbcType="INTEGER" />
+    <result column="LENGTH_UNIT" property="lengthUnit" jdbcType="CHAR" />
+    <result column="WEIGHT_MIN" property="weightMin" jdbcType="DECIMAL" />
+    <result column="WEIGHT_MAX" property="weightMax" jdbcType="DECIMAL" />
+    <result column="WEIGHT_UNIT" property="weightUnit" jdbcType="CHAR" />
+    <result column="PRICE_MIN" property="priceMin" jdbcType="DECIMAL" />
+    <result column="PRICE_MAX" property="priceMax" jdbcType="DECIMAL" />
+    <result column="CURRENCY_CODE" property="currencyCode" jdbcType="CHAR" />
+    <result column="VOLUME_MIN" property="volumeMin" jdbcType="DECIMAL" />
+    <result column="VOLUME_MAX" property="volumeMax" jdbcType="DECIMAL" />
+    <result column="VOLUME_UNIT" property="volumeUnit" jdbcType="CHAR" />
+    <result column="CREATE_USER" property="createUser" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="PUSH_STATUS" property="pushStatus" jdbcType="BIT" />
+    <result column="TRANSPORT_STATUS" property="transportStatus" jdbcType="BIT" />
+    <result column="EXPRESS_STATUS" property="expressStatus" jdbcType="BIT" />
+    <result column="LOGISTICS_STATUS" property="logisticsStatus" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ACCOUNT_ID, START_ADDRESS, START_LONGITUDE, START_LATITUDE, DEST_ADDRESS, DEST_LONGITUDE, 
+    DEST_LATITUDE, LENGTH_VALUE, LENGTH_UNIT, WEIGHT_MIN, WEIGHT_MAX, WEIGHT_UNIT, PRICE_MIN, 
+    PRICE_MAX, CURRENCY_CODE, VOLUME_MIN, VOLUME_MAX, VOLUME_UNIT, CREATE_USER, CREATE_DATE, 
+    PUSH_STATUS, TRANSPORT_STATUS, EXPRESS_STATUS, LOGISTICS_STATUS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from PUSH_ROLE
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from PUSH_ROLE
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gistandard.transport.base.entity.bean.PushRole" >
+    insert into PUSH_ROLE (ID, ACCOUNT_ID, START_ADDRESS, 
+      START_LONGITUDE, START_LATITUDE, DEST_ADDRESS, 
+      DEST_LONGITUDE, DEST_LATITUDE, LENGTH_VALUE, 
+      LENGTH_UNIT, WEIGHT_MIN, WEIGHT_MAX, 
+      WEIGHT_UNIT, PRICE_MIN, PRICE_MAX, 
+      CURRENCY_CODE, VOLUME_MIN, VOLUME_MAX, 
+      VOLUME_UNIT, CREATE_USER, CREATE_DATE, 
+      PUSH_STATUS, TRANSPORT_STATUS, EXPRESS_STATUS, 
+      LOGISTICS_STATUS)
+    values (#{id,jdbcType=INTEGER}, #{accountId,jdbcType=INTEGER}, #{startAddress,jdbcType=VARCHAR}, 
+      #{startLongitude,jdbcType=DECIMAL}, #{startLatitude,jdbcType=DECIMAL}, #{destAddress,jdbcType=VARCHAR}, 
+      #{destLongitude,jdbcType=DECIMAL}, #{destLatitude,jdbcType=DECIMAL}, #{lengthValue,jdbcType=INTEGER}, 
+      #{lengthUnit,jdbcType=CHAR}, #{weightMin,jdbcType=DECIMAL}, #{weightMax,jdbcType=DECIMAL}, 
+      #{weightUnit,jdbcType=CHAR}, #{priceMin,jdbcType=DECIMAL}, #{priceMax,jdbcType=DECIMAL}, 
+      #{currencyCode,jdbcType=CHAR}, #{volumeMin,jdbcType=DECIMAL}, #{volumeMax,jdbcType=DECIMAL}, 
+      #{volumeUnit,jdbcType=CHAR}, #{createUser,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{pushStatus,jdbcType=BIT}, #{transportStatus,jdbcType=BIT}, #{expressStatus,jdbcType=BIT}, 
+      #{logisticsStatus,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gistandard.transport.base.entity.bean.PushRole" >
+    insert into PUSH_ROLE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="accountId != null" >
+        ACCOUNT_ID,
+      </if>
+      <if test="startAddress != null" >
+        START_ADDRESS,
+      </if>
+      <if test="startLongitude != null" >
+        START_LONGITUDE,
+      </if>
+      <if test="startLatitude != null" >
+        START_LATITUDE,
+      </if>
+      <if test="destAddress != null" >
+        DEST_ADDRESS,
+      </if>
+      <if test="destLongitude != null" >
+        DEST_LONGITUDE,
+      </if>
+      <if test="destLatitude != null" >
+        DEST_LATITUDE,
+      </if>
+      <if test="lengthValue != null" >
+        LENGTH_VALUE,
+      </if>
+      <if test="lengthUnit != null" >
+        LENGTH_UNIT,
+      </if>
+      <if test="weightMin != null" >
+        WEIGHT_MIN,
+      </if>
+      <if test="weightMax != null" >
+        WEIGHT_MAX,
+      </if>
+      <if test="weightUnit != null" >
+        WEIGHT_UNIT,
+      </if>
+      <if test="priceMin != null" >
+        PRICE_MIN,
+      </if>
+      <if test="priceMax != null" >
+        PRICE_MAX,
+      </if>
+      <if test="currencyCode != null" >
+        CURRENCY_CODE,
+      </if>
+      <if test="volumeMin != null" >
+        VOLUME_MIN,
+      </if>
+      <if test="volumeMax != null" >
+        VOLUME_MAX,
+      </if>
+      <if test="volumeUnit != null" >
+        VOLUME_UNIT,
+      </if>
+      <if test="createUser != null" >
+        CREATE_USER,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="pushStatus != null" >
+        PUSH_STATUS,
+      </if>
+      <if test="transportStatus != null" >
+        TRANSPORT_STATUS,
+      </if>
+      <if test="expressStatus != null" >
+        EXPRESS_STATUS,
+      </if>
+      <if test="logisticsStatus != null" >
+        LOGISTICS_STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="accountId != null" >
+        #{accountId,jdbcType=INTEGER},
+      </if>
+      <if test="startAddress != null" >
+        #{startAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="startLongitude != null" >
+        #{startLongitude,jdbcType=DECIMAL},
+      </if>
+      <if test="startLatitude != null" >
+        #{startLatitude,jdbcType=DECIMAL},
+      </if>
+      <if test="destAddress != null" >
+        #{destAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="destLongitude != null" >
+        #{destLongitude,jdbcType=DECIMAL},
+      </if>
+      <if test="destLatitude != null" >
+        #{destLatitude,jdbcType=DECIMAL},
+      </if>
+      <if test="lengthValue != null" >
+        #{lengthValue,jdbcType=INTEGER},
+      </if>
+      <if test="lengthUnit != null" >
+        #{lengthUnit,jdbcType=CHAR},
+      </if>
+      <if test="weightMin != null" >
+        #{weightMin,jdbcType=DECIMAL},
+      </if>
+      <if test="weightMax != null" >
+        #{weightMax,jdbcType=DECIMAL},
+      </if>
+      <if test="weightUnit != null" >
+        #{weightUnit,jdbcType=CHAR},
+      </if>
+      <if test="priceMin != null" >
+        #{priceMin,jdbcType=DECIMAL},
+      </if>
+      <if test="priceMax != null" >
+        #{priceMax,jdbcType=DECIMAL},
+      </if>
+      <if test="currencyCode != null" >
+        #{currencyCode,jdbcType=CHAR},
+      </if>
+      <if test="volumeMin != null" >
+        #{volumeMin,jdbcType=DECIMAL},
+      </if>
+      <if test="volumeMax != null" >
+        #{volumeMax,jdbcType=DECIMAL},
+      </if>
+      <if test="volumeUnit != null" >
+        #{volumeUnit,jdbcType=CHAR},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pushStatus != null" >
+        #{pushStatus,jdbcType=BIT},
+      </if>
+      <if test="transportStatus != null" >
+        #{transportStatus,jdbcType=BIT},
+      </if>
+      <if test="expressStatus != null" >
+        #{expressStatus,jdbcType=BIT},
+      </if>
+      <if test="logisticsStatus != null" >
+        #{logisticsStatus,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gistandard.transport.base.entity.bean.PushRole" >
+    update PUSH_ROLE
+    <set >
+      <if test="accountId != null" >
+        ACCOUNT_ID = #{accountId,jdbcType=INTEGER},
+      </if>
+      <if test="startAddress != null" >
+        START_ADDRESS = #{startAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="startLongitude != null" >
+        START_LONGITUDE = #{startLongitude,jdbcType=DECIMAL},
+      </if>
+      <if test="startLatitude != null" >
+        START_LATITUDE = #{startLatitude,jdbcType=DECIMAL},
+      </if>
+      <if test="destAddress != null" >
+        DEST_ADDRESS = #{destAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="destLongitude != null" >
+        DEST_LONGITUDE = #{destLongitude,jdbcType=DECIMAL},
+      </if>
+      <if test="destLatitude != null" >
+        DEST_LATITUDE = #{destLatitude,jdbcType=DECIMAL},
+      </if>
+      <if test="lengthValue != null" >
+        LENGTH_VALUE = #{lengthValue,jdbcType=INTEGER},
+      </if>
+      <if test="lengthUnit != null" >
+        LENGTH_UNIT = #{lengthUnit,jdbcType=CHAR},
+      </if>
+      <if test="weightMin != null" >
+        WEIGHT_MIN = #{weightMin,jdbcType=DECIMAL},
+      </if>
+      <if test="weightMax != null" >
+        WEIGHT_MAX = #{weightMax,jdbcType=DECIMAL},
+      </if>
+      <if test="weightUnit != null" >
+        WEIGHT_UNIT = #{weightUnit,jdbcType=CHAR},
+      </if>
+      <if test="priceMin != null" >
+        PRICE_MIN = #{priceMin,jdbcType=DECIMAL},
+      </if>
+      <if test="priceMax != null" >
+        PRICE_MAX = #{priceMax,jdbcType=DECIMAL},
+      </if>
+      <if test="currencyCode != null" >
+        CURRENCY_CODE = #{currencyCode,jdbcType=CHAR},
+      </if>
+      <if test="volumeMin != null" >
+        VOLUME_MIN = #{volumeMin,jdbcType=DECIMAL},
+      </if>
+      <if test="volumeMax != null" >
+        VOLUME_MAX = #{volumeMax,jdbcType=DECIMAL},
+      </if>
+      <if test="volumeUnit != null" >
+        VOLUME_UNIT = #{volumeUnit,jdbcType=CHAR},
+      </if>
+      <if test="createUser != null" >
+        CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pushStatus != null" >
+        PUSH_STATUS = #{pushStatus,jdbcType=BIT},
+      </if>
+      <if test="transportStatus != null" >
+        TRANSPORT_STATUS = #{transportStatus,jdbcType=BIT},
+      </if>
+      <if test="expressStatus != null" >
+        EXPRESS_STATUS = #{expressStatus,jdbcType=BIT},
+      </if>
+      <if test="logisticsStatus != null" >
+        LOGISTICS_STATUS = #{logisticsStatus,jdbcType=BIT},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gistandard.transport.base.entity.bean.PushRole" >
+    update PUSH_ROLE
+    set ACCOUNT_ID = #{accountId,jdbcType=INTEGER},
+      START_ADDRESS = #{startAddress,jdbcType=VARCHAR},
+      START_LONGITUDE = #{startLongitude,jdbcType=DECIMAL},
+      START_LATITUDE = #{startLatitude,jdbcType=DECIMAL},
+      DEST_ADDRESS = #{destAddress,jdbcType=VARCHAR},
+      DEST_LONGITUDE = #{destLongitude,jdbcType=DECIMAL},
+      DEST_LATITUDE = #{destLatitude,jdbcType=DECIMAL},
+      LENGTH_VALUE = #{lengthValue,jdbcType=INTEGER},
+      LENGTH_UNIT = #{lengthUnit,jdbcType=CHAR},
+      WEIGHT_MIN = #{weightMin,jdbcType=DECIMAL},
+      WEIGHT_MAX = #{weightMax,jdbcType=DECIMAL},
+      WEIGHT_UNIT = #{weightUnit,jdbcType=CHAR},
+      PRICE_MIN = #{priceMin,jdbcType=DECIMAL},
+      PRICE_MAX = #{priceMax,jdbcType=DECIMAL},
+      CURRENCY_CODE = #{currencyCode,jdbcType=CHAR},
+      VOLUME_MIN = #{volumeMin,jdbcType=DECIMAL},
+      VOLUME_MAX = #{volumeMax,jdbcType=DECIMAL},
+      VOLUME_UNIT = #{volumeUnit,jdbcType=CHAR},
+      CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      PUSH_STATUS = #{pushStatus,jdbcType=BIT},
+      TRANSPORT_STATUS = #{transportStatus,jdbcType=BIT},
+      EXPRESS_STATUS = #{expressStatus,jdbcType=BIT},
+      LOGISTICS_STATUS = #{logisticsStatus,jdbcType=BIT}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ComWaybillTraceDao" >
+  <resultMap id="BaseResultMap" type="com.gistandard.transport.base.entity.bean.ComWaybillTrace" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="WAYBILL_NO" property="waybillNo" jdbcType="VARCHAR" />
+    <result column="START_LOCUS" property="startLocus" jdbcType="VARCHAR" />
+    <result column="DESTN_LOCUS" property="destnLocus" jdbcType="VARCHAR" />
+    <result column="STA_CODE" property="staCode" jdbcType="VARCHAR" />
+    <result column="REAL_NAME" property="realName" jdbcType="VARCHAR" />
+    <result column="STA_DATE" property="staDate" jdbcType="TIMESTAMP" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="ACCT_USERNAME" property="acctUsername" jdbcType="VARCHAR" />
+    <result column="BUSI_BOOK_NO" property="busiBookNo" jdbcType="VARCHAR" />
+    <result column="EXEC_CODE" property="execCode" jdbcType="INTEGER" />
+    <result column="GRADE" property="grade" jdbcType="INTEGER" />
+    <result column="HUB_NO" property="hubNo" jdbcType="VARCHAR" />
+    <result column="SEND_SMS_STATUS" property="sendSmsStatus" jdbcType="INTEGER" />
+    <result column="RECEIVER_FOLLOW_STATUS" property="receiverFollowStatus" jdbcType="INTEGER" />
+    <result column="SENDER_FOLLOW_STATUS" property="senderFollowStatus" jdbcType="INTEGER" />
+    <result column="STA_STATUS" property="staStatus" jdbcType="INTEGER" />
+    <result column="ROLE_ID" property="roleId" jdbcType="INTEGER" />
+    <result column="FIRST_CNT_MAN" property="firstCntMan" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, WAYBILL_NO, START_LOCUS, DESTN_LOCUS, STA_CODE, REAL_NAME, STA_DATE, REMARK, 
+    ACCT_USERNAME, BUSI_BOOK_NO, EXEC_CODE, GRADE, HUB_NO, SEND_SMS_STATUS, RECEIVER_FOLLOW_STATUS, 
+    SENDER_FOLLOW_STATUS, STA_STATUS, ROLE_ID, FIRST_CNT_MAN
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from COM_WAYBILL_TRACE
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from COM_WAYBILL_TRACE
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gistandard.transport.base.entity.bean.ComWaybillTrace" >
+    insert into COM_WAYBILL_TRACE (ID, WAYBILL_NO, START_LOCUS, 
+      DESTN_LOCUS, STA_CODE, REAL_NAME, 
+      STA_DATE, REMARK, ACCT_USERNAME, 
+      BUSI_BOOK_NO, EXEC_CODE, GRADE, 
+      HUB_NO, SEND_SMS_STATUS, RECEIVER_FOLLOW_STATUS, 
+      SENDER_FOLLOW_STATUS, STA_STATUS, ROLE_ID,FIRST_CNT_MAN
+      )
+    values (#{id,jdbcType=INTEGER}, #{waybillNo,jdbcType=VARCHAR}, #{startLocus,jdbcType=VARCHAR}, 
+      #{destnLocus,jdbcType=VARCHAR}, #{staCode,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, 
+      #{staDate,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, #{acctUsername,jdbcType=VARCHAR}, 
+      #{busiBookNo,jdbcType=VARCHAR}, #{execCode,jdbcType=INTEGER}, #{grade,jdbcType=INTEGER}, 
+      #{hubNo,jdbcType=VARCHAR}, #{sendSmsStatus,jdbcType=INTEGER}, #{receiverFollowStatus,jdbcType=INTEGER}, 
+      #{senderFollowStatus,jdbcType=INTEGER}, #{staStatus,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER},#{firstCntMan,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gistandard.transport.base.entity.bean.ComWaybillTrace" >
+    insert into COM_WAYBILL_TRACE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="waybillNo != null" >
+        WAYBILL_NO,
+      </if>
+      <if test="startLocus != null" >
+        START_LOCUS,
+      </if>
+      <if test="destnLocus != null" >
+        DESTN_LOCUS,
+      </if>
+      <if test="staCode != null" >
+        STA_CODE,
+      </if>
+      <if test="realName != null" >
+        REAL_NAME,
+      </if>
+      <if test="staDate != null" >
+        STA_DATE,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="acctUsername != null" >
+        ACCT_USERNAME,
+      </if>
+      <if test="busiBookNo != null" >
+        BUSI_BOOK_NO,
+      </if>
+      <if test="execCode != null" >
+        EXEC_CODE,
+      </if>
+      <if test="grade != null" >
+        GRADE,
+      </if>
+      <if test="hubNo != null" >
+        HUB_NO,
+      </if>
+      <if test="sendSmsStatus != null" >
+        SEND_SMS_STATUS,
+      </if>
+      <if test="receiverFollowStatus != null" >
+        RECEIVER_FOLLOW_STATUS,
+      </if>
+      <if test="senderFollowStatus != null" >
+        SENDER_FOLLOW_STATUS,
+      </if>
+      <if test="staStatus != null" >
+        STA_STATUS,
+      </if>
+      <if test="roleId != null" >
+        ROLE_ID,
+      </if>
+      <if test="firstCntMan != null" >
+        FIRST_CNT_MAN,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="waybillNo != null" >
+        #{waybillNo,jdbcType=VARCHAR},
+      </if>
+      <if test="startLocus != null" >
+        #{startLocus,jdbcType=VARCHAR},
+      </if>
+      <if test="destnLocus != null" >
+        #{destnLocus,jdbcType=VARCHAR},
+      </if>
+      <if test="staCode != null" >
+        #{staCode,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="staDate != null" >
+        #{staDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="acctUsername != null" >
+        #{acctUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="busiBookNo != null" >
+        #{busiBookNo,jdbcType=VARCHAR},
+      </if>
+      <if test="execCode != null" >
+        #{execCode,jdbcType=INTEGER},
+      </if>
+      <if test="grade != null" >
+        #{grade,jdbcType=INTEGER},
+      </if>
+      <if test="hubNo != null" >
+        #{hubNo,jdbcType=VARCHAR},
+      </if>
+      <if test="sendSmsStatus != null" >
+        #{sendSmsStatus,jdbcType=INTEGER},
+      </if>
+      <if test="receiverFollowStatus != null" >
+        #{receiverFollowStatus,jdbcType=INTEGER},
+      </if>
+      <if test="senderFollowStatus != null" >
+        #{senderFollowStatus,jdbcType=INTEGER},
+      </if>
+      <if test="staStatus != null" >
+        #{staStatus,jdbcType=INTEGER},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="firstCntMan != null" >
+        #{firstCntMan,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gistandard.transport.base.entity.bean.ComWaybillTrace" >
+    update COM_WAYBILL_TRACE
+    <set >
+      <if test="waybillNo != null" >
+        WAYBILL_NO = #{waybillNo,jdbcType=VARCHAR},
+      </if>
+      <if test="startLocus != null" >
+        START_LOCUS = #{startLocus,jdbcType=VARCHAR},
+      </if>
+      <if test="destnLocus != null" >
+        DESTN_LOCUS = #{destnLocus,jdbcType=VARCHAR},
+      </if>
+      <if test="staCode != null" >
+        STA_CODE = #{staCode,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        REAL_NAME = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="staDate != null" >
+        STA_DATE = #{staDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="acctUsername != null" >
+        ACCT_USERNAME = #{acctUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="busiBookNo != null" >
+        BUSI_BOOK_NO = #{busiBookNo,jdbcType=VARCHAR},
+      </if>
+      <if test="execCode != null" >
+        EXEC_CODE = #{execCode,jdbcType=INTEGER},
+      </if>
+      <if test="grade != null" >
+        GRADE = #{grade,jdbcType=INTEGER},
+      </if>
+      <if test="hubNo != null" >
+        HUB_NO = #{hubNo,jdbcType=VARCHAR},
+      </if>
+      <if test="sendSmsStatus != null" >
+        SEND_SMS_STATUS = #{sendSmsStatus,jdbcType=INTEGER},
+      </if>
+      <if test="receiverFollowStatus != null" >
+        RECEIVER_FOLLOW_STATUS = #{receiverFollowStatus,jdbcType=INTEGER},
+      </if>
+      <if test="senderFollowStatus != null" >
+        SENDER_FOLLOW_STATUS = #{senderFollowStatus,jdbcType=INTEGER},
+      </if>
+      <if test="staStatus != null" >
+        STA_STATUS = #{staStatus,jdbcType=INTEGER},
+      </if>
+      <if test="roleId != null" >
+        ROLE_ID = #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="firstCntMan != null" >
+        FIRST_CNT_MAN = #{firstCntMan,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gistandard.transport.base.entity.bean.ComWaybillTrace" >
+    update COM_WAYBILL_TRACE
+    set WAYBILL_NO = #{waybillNo,jdbcType=VARCHAR},
+      START_LOCUS = #{startLocus,jdbcType=VARCHAR},
+      DESTN_LOCUS = #{destnLocus,jdbcType=VARCHAR},
+      STA_CODE = #{staCode,jdbcType=VARCHAR},
+      REAL_NAME = #{realName,jdbcType=VARCHAR},
+      STA_DATE = #{staDate,jdbcType=TIMESTAMP},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      ACCT_USERNAME = #{acctUsername,jdbcType=VARCHAR},
+      BUSI_BOOK_NO = #{busiBookNo,jdbcType=VARCHAR},
+      EXEC_CODE = #{execCode,jdbcType=INTEGER},
+      GRADE = #{grade,jdbcType=INTEGER},
+      HUB_NO = #{hubNo,jdbcType=VARCHAR},
+      SEND_SMS_STATUS = #{sendSmsStatus,jdbcType=INTEGER},
+      RECEIVER_FOLLOW_STATUS = #{receiverFollowStatus,jdbcType=INTEGER},
+      SENDER_FOLLOW_STATUS = #{senderFollowStatus,jdbcType=INTEGER},
+      STA_STATUS = #{staStatus,jdbcType=INTEGER},
+      ROLE_ID = #{roleId,jdbcType=INTEGER},
+      FIRST_CNT_MAN = #{firstCntMan,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

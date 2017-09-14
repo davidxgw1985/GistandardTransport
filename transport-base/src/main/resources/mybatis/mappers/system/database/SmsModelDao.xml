@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.SmsModelDao">
+    <resultMap id="BaseResultMap" type="com.gistandard.transport.base.entity.bean.SmsModel">
+        <id column="ID" property="id" jdbcType="INTEGER"/>
+        <result column="SYSTEM" property="system" jdbcType="VARCHAR"/>
+        <result column="MODEL" property="model" jdbcType="INTEGER"/>
+        <result column="CONTENT" property="content" jdbcType="VARCHAR"/>
+        <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP"/>
+        <result column="CREATE_USER" property="createUser" jdbcType="INTEGER"/>
+        <result column="VALID_TIME" property="validTime" jdbcType="INTEGER"/>
+        <result column="SMS_MODEL_CODE" property="smsModelCode" jdbcType="VARCHAR"/>
+        <result column="CONTENT_HK" property="contentHk" jdbcType="VARCHAR"/>
+        <result column="CONTENT_CN" property="contentCn" jdbcType="VARCHAR"/>
+    <result column="SMS_HK_CODE" property="smsHkCode" jdbcType="BIGINT" />
+    <result column="SMS_CN_CODE" property="smsCnCode" jdbcType="BIGINT" />
+    <result column="API_KEY" property="apiKey" jdbcType="VARCHAR" />
+    <result column="ROAD_WAY" property="roadWay" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, SYSTEM, MODEL, CONTENT, CREATE_DATE, CREATE_USER, VALID_TIME, SMS_MODEL_CODE, 
+    CONTENT_HK, CONTENT_CN, SMS_HK_CODE, SMS_CN_CODE, API_KEY, ROAD_WAY
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+        from SMS_MODEL
+        where ID = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from SMS_MODEL
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.gistandard.transport.base.entity.bean.SmsModel">
+    insert into SMS_MODEL (ID, SYSTEM, MODEL, 
+      CONTENT, CREATE_DATE, CREATE_USER, 
+      VALID_TIME, SMS_MODEL_CODE, CONTENT_HK, 
+      CONTENT_CN, SMS_HK_CODE, SMS_CN_CODE, 
+      API_KEY, ROAD_WAY)
+    values (#{id,jdbcType=INTEGER}, #{system,jdbcType=VARCHAR}, #{model,jdbcType=INTEGER}, 
+      #{content,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{createUser,jdbcType=INTEGER}, 
+      #{validTime,jdbcType=INTEGER}, #{smsModelCode,jdbcType=VARCHAR}, #{contentHk,jdbcType=VARCHAR}, 
+      #{contentCn,jdbcType=VARCHAR}, #{smsHkCode,jdbcType=BIGINT}, #{smsCnCode,jdbcType=BIGINT}, 
+      #{apiKey,jdbcType=VARCHAR}, #{roadWay,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gistandard.transport.base.entity.bean.SmsModel" >
+    insert into SMS_MODEL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="system != null" >
+        SYSTEM,
+      </if>
+            <if test="model != null">
+                MODEL,
+            </if>
+            <if test="content != null">
+                CONTENT,
+            </if>
+            <if test="createDate != null">
+                CREATE_DATE,
+            </if>
+            <if test="createUser != null">
+                CREATE_USER,
+            </if>
+            <if test="validTime != null">
+                VALID_TIME,
+            </if>
+            <if test="smsModelCode != null">
+                SMS_MODEL_CODE,
+            </if>
+            <if test="contentHk != null">
+                CONTENT_HK,
+            </if>
+            <if test="contentCn != null">
+                CONTENT_CN,
+            </if>
+            <if test="smsHkCode != null">
+                SMS_HK_CODE,
+            </if>
+            <if test="smsCnCode != null">
+        SMS_CN_CODE,
+      </if>
+      <if test="apiKey != null" >
+        API_KEY,
+      </if>
+      <if test="roadWay != null" >
+        ROAD_WAY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="system != null" >
+        #{system,jdbcType=VARCHAR},
+      </if>
+            <if test="model != null">
+                #{model,jdbcType=INTEGER},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+                #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createUser != null">
+                #{createUser,jdbcType=INTEGER},
+            </if>
+            <if test="validTime != null">
+                #{validTime,jdbcType=INTEGER},
+            </if>
+            <if test="smsModelCode != null">
+                #{smsModelCode,jdbcType=VARCHAR},
+            </if>
+            <if test="contentHk != null">
+                #{contentHk,jdbcType=VARCHAR},
+            </if>
+            <if test="contentCn != null">
+                #{contentCn,jdbcType=VARCHAR},
+            </if>
+            <if test="smsHkCode != null">
+        #{smsHkCode,jdbcType=BIGINT},
+      </if>
+      <if test="smsCnCode != null" >
+        #{smsCnCode,jdbcType=BIGINT},
+      </if>
+      <if test="apiKey != null" >
+        #{apiKey,jdbcType=VARCHAR},
+      </if>
+      <if test="roadWay != null" >
+        #{roadWay,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gistandard.transport.base.entity.bean.SmsModel" >
+    update SMS_MODEL
+    <set >
+      <if test="system != null" >
+        SYSTEM = #{system,jdbcType=VARCHAR},
+      </if>
+            <if test="model != null">
+                MODEL = #{model,jdbcType=INTEGER},
+            </if>
+            <if test="content != null">
+                CONTENT = #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null">
+                CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createUser != null">
+                CREATE_USER = #{createUser,jdbcType=INTEGER},
+            </if>
+            <if test="validTime != null">
+                VALID_TIME = #{validTime,jdbcType=INTEGER},
+            </if>
+            <if test="smsModelCode != null">
+                SMS_MODEL_CODE = #{smsModelCode,jdbcType=VARCHAR},
+            </if>
+            <if test="contentHk != null">
+                CONTENT_HK = #{contentHk,jdbcType=VARCHAR},
+            </if>
+            <if test="contentCn != null">
+                CONTENT_CN = #{contentCn,jdbcType=VARCHAR},
+            </if>
+            <if test="smsHkCode != null">
+                SMS_HK_CODE = #{smsHkCode,jdbcType=BIGINT},
+      </if>
+      <if test="smsCnCode != null" >
+        SMS_CN_CODE = #{smsCnCode,jdbcType=BIGINT},
+      </if>
+      <if test="apiKey != null" >
+        API_KEY = #{apiKey,jdbcType=VARCHAR},
+      </if>
+      <if test="roadWay != null" >
+        ROAD_WAY = #{roadWay,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gistandard.transport.base.entity.bean.SmsModel" >
+    update SMS_MODEL
+    set SYSTEM = #{system,jdbcType=VARCHAR},
+      MODEL = #{model,jdbcType=INTEGER},
+      CONTENT = #{content,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      CREATE_USER = #{createUser,jdbcType=INTEGER},
+      VALID_TIME = #{validTime,jdbcType=INTEGER},
+      SMS_MODEL_CODE = #{smsModelCode,jdbcType=VARCHAR},
+      CONTENT_HK = #{contentHk,jdbcType=VARCHAR},
+      CONTENT_CN = #{contentCn,jdbcType=VARCHAR},
+      SMS_HK_CODE = #{smsHkCode,jdbcType=BIGINT},
+      SMS_CN_CODE = #{smsCnCode,jdbcType=BIGINT},
+      API_KEY = #{apiKey,jdbcType=VARCHAR},
+      ROAD_WAY = #{roadWay,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

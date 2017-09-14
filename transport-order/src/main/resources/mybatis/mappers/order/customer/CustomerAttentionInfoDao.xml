@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.system.common.station.dao.CustomerAttentionInfoDao" >
+  <resultMap id="BaseResultMap" type="com.gistandard.transport.base.entity.bean.AttentionInfo" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="ACCOUNT_ID" property="accountId" jdbcType="INTEGER" />
+    <result column="TRANSPORT_TYPE" property="transportType" jdbcType="INTEGER" />
+    <result column="ATTENTION_TYPE" property="attentionType" jdbcType="INTEGER" />
+    <result column="STATION_ID" property="stationId" jdbcType="INTEGER" />
+    <result column="ATTENTION_STATUS" property="attentionStatus" jdbcType="INTEGER" />
+    <result column="ATTENTION_TIME" property="attentionTime" jdbcType="TIMESTAMP" />
+    <result column="ATTENTION_SYSTEM" property="attentionSystem" jdbcType="VARCHAR" />
+    <result column="ROLE_ID" property="roleId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ACCOUNT_ID, TRANSPORT_TYPE, ATTENTION_TYPE, STATION_ID, ATTENTION_STATUS, ATTENTION_TIME,
+    ATTENTION_SYSTEM, ROLE_ID
+  </sql>
+  <update id="updateStatus" parameterType="com.gistandard.transport.base.entity.bean.AttentionInfo" >
+    update ATTENTION_INFO set ATTENTION_STATUS = #{attentionStatus,jdbcType=INTEGER}
+    where STATION_ID = #{stationId,jdbcType=INTEGER}
+    AND ACCOUNT_ID = #{accountId,jdbcType=INTEGER}
+    AND ROLE_ID = #{roleId,jdbcType=INTEGER}
+  </update>
+  <select id="count" parameterType="com.gistandard.transport.base.entity.bean.AttentionInfo" resultType="int">
+    select count(*) from ATTENTION_INFO
+    <where>
+      <if test="accountId != null" >
+        ACCOUNT_ID = #{accountId,jdbcType=INTEGER}
+      </if>
+      <if test="stationId != null" >
+        AND STATION_ID = #{stationId,jdbcType=INTEGER}
+      </if>
+      <if test="roleId != null" >
+        AND ROLE_ID = #{roleId,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+  <select id="queryByAttionInfo" resultMap="BaseResultMap" parameterType="com.gistandard.transport.base.entity.bean.AttentionInfo">
+    select
+    <include refid="Base_Column_List" />
+    from ATTENTION_INFO
+    <where>
+      <if test="accountId != null" >
+        ACCOUNT_ID = #{accountId,jdbcType=INTEGER}
+      </if>
+      <if test="stationId != null" >
+        AND STATION_ID = #{stationId,jdbcType=INTEGER}
+      </if>
+      <if test="attentionStatus != null ">
+        AND ATTENTION_STATUS = #{attentionStatus,jdbcType=INTEGER}
+      </if>
+      <if test="roleId != null ">
+        AND ROLE_ID = #{roleId,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+</mapper>

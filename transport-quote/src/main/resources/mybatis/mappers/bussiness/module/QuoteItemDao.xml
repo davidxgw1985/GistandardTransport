@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.quote.system.database.dao.QuoteItemDao" >
+
+  <select id="selectByCondition" resultMap="com.gistandard.transport.base.entity.dao.ComQuoteItemDao.BaseResultMap"
+          parameterType="com.gistandard.transport.quote.system.common.bean.QuoteItemQueryBean" >
+    select 
+    <include refid="com.gistandard.transport.base.entity.dao.ComQuoteItemDao.Base_Column_List" />
+    from COM_QUOTE_ITEM
+    where  ITEM_STATUS = 1
+    <if test="itemType != null">
+     AND ITEM_TYPE = #{itemType}
+    </if>
+      <if test="itemTypeList != null  ">
+      AND ITEM_TYPE IN
+          <foreach item="itemType" index="index" collection="itemTypeList"
+                   open="(" separator="," close=")">
+              ${itemType}
+          </foreach>
+      </if>
+    <if test="itemCategory != null  ">
+          AND ITEM_CATEGORY = #{itemCategory}
+    </if>
+      ORDER BY ITEM_TYPE,ID
+  </select>
+
+    <select id="selectByItemCode" resultMap="com.gistandard.transport.base.entity.dao.ComQuoteItemDao.BaseResultMap"
+            parameterType="java.lang.String">
+        select
+        <include refid="com.gistandard.transport.base.entity.dao.ComQuoteItemDao.Base_Column_List" />
+        from COM_QUOTE_ITEM
+        where  ITEM_CODE = #{itemCode}
+    </select>
+
+    <select id="queryAll" resultMap="com.gistandard.transport.base.entity.dao.ComQuoteItemDao.BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="com.gistandard.transport.base.entity.dao.ComQuoteItemDao.Base_Column_List" />
+        from COM_QUOTE_ITEM
+        WHERE ITEM_STATUS = 1
+    </select>
+    
+</mapper>

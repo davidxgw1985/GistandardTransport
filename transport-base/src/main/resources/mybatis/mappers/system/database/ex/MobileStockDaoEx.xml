@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ex.MobileStockDaoEx">
+    <insert id="batchInsert" parameterType="java.util.List">
+        insert into MOBILE_STOCK (SCHEDUCARNO, BUSI_BOOK_NO,
+        ACCOUNT_ID, GOODS_TYPE, GOODS_NAME,
+        GOODS_QTY, GOODS_QTY_UNIT, OPER_DATE,
+        ORDER_FROM)
+        values
+        <foreach collection="list" item="item" index="index" separator="," >
+            (#{item.scheducarno,jdbcType=VARCHAR}, #{item.busiBookNo,jdbcType=VARCHAR},
+            #{item.accountId,jdbcType=INTEGER}, #{item.goodsType,jdbcType=VARCHAR}, #{item.goodsName,jdbcType=VARCHAR},
+            #{item.goodsQty,jdbcType=DECIMAL}, #{item.goodsQtyUnit,jdbcType=CHAR}, #{item.operDate,jdbcType=TIMESTAMP},
+            #{item.orderFrom,jdbcType=INTEGER})
+        </foreach>
+    </insert>
+</mapper>

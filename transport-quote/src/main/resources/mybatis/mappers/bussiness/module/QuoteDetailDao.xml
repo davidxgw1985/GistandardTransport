@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.quote.system.database.dao.QuoteDetailDao" >
+  <resultMap id="BaseResultMap" type="com.gistandard.transport.quote.system.common.bean.ComQuoteDetailBean" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="QUOTE_ID" property="quoteId" jdbcType="INTEGER" />
+    <result column="TABLE_HEAD" property="tableHead" jdbcType="BIT" />
+    <result column="SERVICE_TYPE" property="serviceType" jdbcType="VARCHAR" />
+    <result column="SERVICE_PROJECT" property="serviceProject" jdbcType="VARCHAR" />
+    <result column="CALC_UNIT" property="calcUnit" jdbcType="VARCHAR" />
+    <result column="PRICE" property="price" jdbcType="VARCHAR" />
+    <result column="CURRENCY_CODE" property="currencyCode" jdbcType="VARCHAR" />
+    <result column="TEXT1" property="text1" jdbcType="VARCHAR" />
+    <result column="TEXT2" property="text2" jdbcType="VARCHAR" />
+    <result column="TEXT3" property="text3" jdbcType="VARCHAR" />
+    <result column="TEXT4" property="text4" jdbcType="VARCHAR" />
+    <result column="TEXT5" property="text5" jdbcType="VARCHAR" />
+    <result column="TEXT6" property="text6" jdbcType="VARCHAR" />
+    <result column="TEXT7" property="text7" jdbcType="VARCHAR" />
+    <result column="TEXT8" property="text8" jdbcType="VARCHAR" />
+    <result column="TEXT9" property="text9" jdbcType="VARCHAR" />
+    <result column="TEXT10" property="text10" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="batchInsert" parameterType="com.gistandard.transport.quote.system.common.bean.QuoteBean" >
+    insert into COM_QUOTE_DETAIL (QUOTE_ID, TABLE_HEAD,  SERVICE_TYPE,
+      SERVICE_PROJECT, CALC_UNIT, PRICE, CURRENCY_CODE, TEXT1, TEXT2, TEXT3, TEXT4, TEXT5,
+      TEXT6, TEXT7, TEXT8,TEXT9,TEXT10 )
+    values
+    <foreach collection="comQuoteDetailList" index="index" item="item" separator=",">
+      ( #{comQuote.id,jdbcType=INTEGER}, #{item.tableHead,jdbcType=BIT},
+      #{item.serviceType,jdbcType=VARCHAR},
+      #{item.serviceProject,jdbcType=VARCHAR}, #{item.calcUnit,jdbcType=VARCHAR}, #{item.price,jdbcType=VARCHAR},
+      #{item.currencyCode,jdbcType=VARCHAR}, #{item.text1,jdbcType=VARCHAR}, #{item.text2,jdbcType=VARCHAR},
+      #{item.text3,jdbcType=VARCHAR}, #{item.text4,jdbcType=VARCHAR}, #{item.text5,jdbcType=VARCHAR},
+      #{item.text6,jdbcType=VARCHAR}, #{item.text7,jdbcType=VARCHAR}, #{item.text8,jdbcType=VARCHAR},
+      #{item.text9,jdbcType=VARCHAR}, #{item.text10,jdbcType=VARCHAR}
+      )
+    </foreach>
+  </insert>
+
+  <select id="selectByQuoteId" resultMap="BaseResultMap"
+          parameterType="java.lang.Integer" >
+    select
+    <include refid="com.gistandard.transport.base.entity.dao.ComQuoteDetailDao.Base_Column_List" />
+    from COM_QUOTE_DETAIL
+    where QUOTE_ID = #{quoteId,jdbcType=INTEGER}
+      ORDER BY ID
+  </select>
+
+</mapper>

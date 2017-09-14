@@ -1,0 +1,962 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.order.module.customer.dao.CustomerBookingFormDao">
+    <resultMap id="BaseResultMap" type="com.gistandard.transport.order.module.customer.bean.BookingFormCustomer">
+        <id column="ID" property="id" jdbcType="INTEGER"/>
+        <result column="BUSI_BOOK_NO" property="busiBookNo" jdbcType="VARCHAR"/>
+        <result column="TRADE_TERM" property="tradeTerm" jdbcType="VARCHAR"/>
+        <result column="BOOKING_DATE" property="bookingDate" jdbcType="TIMESTAMP"/>
+        <result column="BUSI_DATE" property="busiDate" jdbcType="TIMESTAMP"/>
+        <result column="BOOKING_MODEL" property="bookingModel" jdbcType="VARCHAR"/>
+        <result column="BOOKMODEL_NAME" property="bookmodelName" jdbcType="VARCHAR"/>
+        <result column="BUSI_KIND" property="busiKind" jdbcType="VARCHAR"/>
+        <result column="FORM_KIND" property="formKind" jdbcType="VARCHAR"/>
+        <result column="BUSI_TYPE" property="busiType" jdbcType="VARCHAR"/>
+        <result column="ROUTE_BOOK" property="routeBook" jdbcType="VARCHAR"/>
+        <result column="ROUTE_BOOK_NA" property="routeBookNa" jdbcType="VARCHAR"/>
+        <result column="ROUTE_WAY" property="routeWay" jdbcType="VARCHAR"/>
+        <result column="ROUTE_NAME" property="routeName" jdbcType="VARCHAR"/>
+        <result column="POP_POD" property="popPod" jdbcType="VARCHAR"/>
+        <result column="NEED_HAIKWAN" property="needHaikwan" jdbcType="BIT"/>
+        <result column="NEED_INSURE" property="needInsure" jdbcType="BIT"/>
+        <result column="TEAM_COMSIX_NO" property="teamComsixNo" jdbcType="VARCHAR"/>
+        <result column="BOOK_CUSTOM_NO" property="bookCustomNo" jdbcType="VARCHAR"/>
+        <result column="BOOK_CUST_NAME" property="bookCustName" jdbcType="VARCHAR"/>
+        <result column="BOOK_CUST_ADDR" property="bookCustAddr" jdbcType="VARCHAR"/>
+        <result column="BOOK_CUSTLINK_MAN" property="bookCustlinkMan" jdbcType="VARCHAR"/>
+        <result column="BOOK_CUSTLINK_TEL" property="bookCustlinkTel" jdbcType="VARCHAR"/>
+        <result column="BOOK_CUSTLINK_MAIL" property="bookCustlinkMail" jdbcType="VARCHAR"/>
+        <result column="BOOK_CUSTLINK_FAX" property="bookCustlinkFax" jdbcType="VARCHAR"/>
+        <result column="SUPP_CUSTOM_NO" property="suppCustomNo" jdbcType="VARCHAR"/>
+        <result column="SUPP_CUST_NAME" property="suppCustName" jdbcType="VARCHAR"/>
+        <result column="SUPP_CUST_ADDR" property="suppCustAddr" jdbcType="VARCHAR"/>
+        <result column="SUPP_CUSTLINK_MAN" property="suppCustlinkMan" jdbcType="VARCHAR"/>
+        <result column="SUPP_CUSTLINK_TEL" property="suppCustlinkTel" jdbcType="VARCHAR"/>
+        <result column="SUPP_CUSTLINK_MAIL" property="suppCustlinkMail" jdbcType="VARCHAR"/>
+        <result column="SUPP_CUSTLINK_FAX" property="suppCustlinkFax" jdbcType="VARCHAR"/>
+        <result column="PURC_CUSTOM_NO" property="purcCustomNo" jdbcType="VARCHAR"/>
+        <result column="PURC_CUST_NAME" property="purcCustName" jdbcType="VARCHAR"/>
+        <result column="PURC_CUST_ADDR" property="purcCustAddr" jdbcType="VARCHAR"/>
+        <result column="PURC_CUSTLINK_MAN" property="purcCustlinkMan" jdbcType="VARCHAR"/>
+        <result column="PURC_CUSTLINK_TEL" property="purcCustlinkTel" jdbcType="VARCHAR"/>
+        <result column="PURC_CUSTLINK_MAIL" property="purcCustlinkMail" jdbcType="VARCHAR"/>
+        <result column="PURC_CUSTLINK_FAX" property="purcCustlinkFax" jdbcType="VARCHAR"/>
+        <result column="SHIP_CUSTOM_NO" property="shipCustomNo" jdbcType="VARCHAR"/>
+        <result column="SHIP_CUST_NAME" property="shipCustName" jdbcType="VARCHAR"/>
+        <result column="SHIP_CUSTA_DDR" property="shipCustaDdr" jdbcType="VARCHAR"/>
+        <result column="SHIP_CUSTLINK_MAN" property="shipCustlinkMan" jdbcType="VARCHAR"/>
+        <result column="SHIP_CUSTLINK_TEL" property="shipCustlinkTel" jdbcType="VARCHAR"/>
+        <result column="SHIP_CUSTLINK_MAIL" property="shipCustlinkMail" jdbcType="VARCHAR"/>
+        <result column="SHIP_CUSTLINK_FAX" property="shipCustlinkFax" jdbcType="VARCHAR"/>
+        <result column="CNEE_CUSTOM_NO" property="cneeCustomNo" jdbcType="VARCHAR"/>
+        <result column="CNEE_CUST_NAME" property="cneeCustName" jdbcType="VARCHAR"/>
+        <result column="CNEE_CUST_ADDR" property="cneeCustAddr" jdbcType="VARCHAR"/>
+        <result column="CNEE_CUST_LINK_MAN" property="cneeCustLinkMan" jdbcType="VARCHAR"/>
+        <result column="CNEE_CUST_LINK_TEL" property="cneeCustLinkTel" jdbcType="VARCHAR"/>
+        <result column="CNEE_CUST_LINK_MAIL" property="cneeCustLinkMail" jdbcType="VARCHAR"/>
+        <result column="CNEE_CUST_LINK_FAX" property="cneeCustLinkFax" jdbcType="VARCHAR"/>
+        <result column="NOTY_CUSTOM_NO" property="notyCustomNo" jdbcType="VARCHAR"/>
+        <result column="NOTY_CUST_NAME" property="notyCustName" jdbcType="VARCHAR"/>
+        <result column="NOTY_CUST_ADDR" property="notyCustAddr" jdbcType="VARCHAR"/>
+        <result column="NOTY_CUST_LINK_MAN" property="notyCustLinkMan" jdbcType="VARCHAR"/>
+        <result column="NOTY_CUST_LINK_TEL" property="notyCustLinkTel" jdbcType="VARCHAR"/>
+        <result column="NOTY_CUST_LINK_MAIL" property="notyCustLinkMail" jdbcType="VARCHAR"/>
+        <result column="NOTY_CUST_LINK_FAX" property="notyCustLinkFax" jdbcType="VARCHAR"/>
+        <result column="SALE_COMSIX_NO" property="saleComsixNo" jdbcType="VARCHAR"/>
+        <result column="BUSI_COMSIX_NO" property="busiComsixNo" jdbcType="VARCHAR"/>
+        <result column="SALES_NO" property="salesNo" jdbcType="VARCHAR"/>
+        <result column="TRADE_SITE" property="tradeSite" jdbcType="VARCHAR"/>
+        <result column="CARRI_AGERECEI" property="carriAgerecei" jdbcType="VARCHAR"/>
+        <result column="ETA_POP_DATE" property="etaPopDate" jdbcType="TIMESTAMP"/>
+        <result column="CARRIAGE_RECEI_TYPE" property="carriageReceiType" jdbcType="VARCHAR"/>
+        <result column="CARRIAGE_RECEI_ZONE" property="carriageReceiZone" jdbcType="VARCHAR"/>
+        <result column="CARRIAGE_RECEI_ADDR" property="carriageReceiAddr" jdbcType="VARCHAR"/>
+        <result column="CARRIAGE_DEIV" property="carriageDeiv" jdbcType="VARCHAR"/>
+        <result column="ETA_POD_DATE" property="etaPodDate" jdbcType="TIMESTAMP"/>
+        <result column="CARRIAGE_DELIV_TYPE" property="carriageDelivType" jdbcType="VARCHAR"/>
+        <result column="CARRIAGE_DELIV_ZONE" property="carriageDelivZone" jdbcType="VARCHAR"/>
+        <result column="CARRIAGE_DELIV_ADDR" property="carriageDelivAddr" jdbcType="VARCHAR"/>
+        <result column="GOODS_PALLET_QTY" property="goodsPalletQty" jdbcType="DECIMAL"/>
+        <result column="GOODS_PACKAGE_QTY" property="goodsPackageQty" jdbcType="DECIMAL"/>
+        <result column="GOODS_QTY" property="goodsQty" jdbcType="DECIMAL"/>
+        <result column="WHT_NETWHT" property="whtNetwht" jdbcType="DECIMAL"/>
+        <result column="WHT_GROSSWHT" property="whtGrosswht" jdbcType="DECIMAL"/>
+        <result column="WHT_VOLCBM" property="whtVolcbm" jdbcType="DECIMAL"/>
+        <result column="WHT_VOLWHT" property="whtVolwht" jdbcType="DECIMAL"/>
+        <result column="WHT_FEEWHT" property="whtFeewht" jdbcType="DECIMAL"/>
+        <result column="GOODS_VALUE" property="goodsValue" jdbcType="DECIMAL"/>
+        <result column="CARGO_LOADER" property="cargoLoader" jdbcType="VARCHAR"/>
+        <result column="CARGO_FEETYPE" property="cargoFeetype" jdbcType="VARCHAR"/>
+        <result column="GOODS_DESC" property="goodsDesc" jdbcType="VARCHAR"/>
+        <result column="PLUS_INSURE" property="plusInsure" jdbcType="DECIMAL"/>
+        <result column="BUSI_HAND" property="busiHand" jdbcType="VARCHAR"/>
+        <result column="BUSI_AUDIT" property="busiAudit" jdbcType="VARCHAR"/>
+        <result column="BUSI_AUDIT_DATE" property="busiAuditDate" jdbcType="TIMESTAMP"/>
+        <result column="BUSI_ABORT" property="busiAbort" jdbcType="VARCHAR"/>
+        <result column="BUSI_ABORT_CAUS" property="busiAbortCaus" jdbcType="VARCHAR"/>
+        <result column="BUSI_ABORT_DATE" property="busiAbortDate" jdbcType="TIMESTAMP"/>
+        <result column="BOOK_PICKED_CTRL" property="bookPickedCtrl" jdbcType="INTEGER"/>
+        <result column="BOOK_MAIL_CTRL" property="bookMailCtrl" jdbcType="INTEGER"/>
+        <result column="BOOKING_CTRL" property="bookingCtrl" jdbcType="INTEGER"/>
+        <result column="NARRATE" property="narrate" jdbcType="VARCHAR"/>
+        <result column="BUSI_STS" property="busiSts" jdbcType="VARCHAR"/>
+        <result column="BUSI_CTRL" property="busiCtrl" jdbcType="INTEGER"/>
+        <result column="VEHICLE_ORDER_ID" property="vehicleOrderId" jdbcType="INTEGER"/>
+        <result column="PREDICT_VALUE" property="predictValue" jdbcType="DECIMAL"/>
+        <result column="PREDICT_VALUE_HUB" property="predictValueHub" jdbcType="DECIMAL"/>
+        <result column="TOT_VALUE" property="totValue" jdbcType="DECIMAL"/>
+        <result column="GET_VALUE" property="getValue" jdbcType="DECIMAL"/>
+        <result column="SENT_VALUE" property="sentValue" jdbcType="DECIMAL"/>
+        <result column="PREMIUM_VALUE" property="premiumValue" jdbcType="DECIMAL"/>
+        <result column="WAYBILL_NO" property="waybillNo" jdbcType="VARCHAR"/>
+        <result column="QUOTED_TYPE" property="quotedType" jdbcType="INTEGER"/>
+        <result column="ORDER_TYPE" property="orderType" jdbcType="INTEGER"/>
+        <result column="IS_AGENT" property="isAgent" jdbcType="BIT"/>
+        <result column="START_LOCUS" property="startLocus" jdbcType="VARCHAR"/>
+        <result column="START_LOCUS_NA" property="startLocusNa" jdbcType="VARCHAR"/>
+        <result column="DESTN_LOCUS" property="destnLocus" jdbcType="VARCHAR"/>
+        <result column="DESTN_LOCUS_NA" property="destnLocusNa" jdbcType="VARCHAR"/>
+        <result column="CREATE_USER" property="createUser" jdbcType="VARCHAR"/>
+        <result column="IS_JS" property="isJs" jdbcType="INTEGER"/>
+        <result column="TRANSPORT_TYPE" property="transportType" jdbcType="VARCHAR"/>
+        <result column="DOCNO" property="docno" jdbcType="VARCHAR"/>
+        <result column="IS_DEL" property="isDel" jdbcType="INTEGER"/>
+        <result column="TEAM_COMSIX_NAME" property="teamComsixName" jdbcType="VARCHAR"/>
+        <result column="IS_LOCK" property="isLock" jdbcType="INTEGER"/>
+        <result column="PAY_TYPE" property="payType" jdbcType="INTEGER"/>
+        <result column="GOODS_PAYMENT" property="goodsPayment" jdbcType="DECIMAL"/>
+        <result column="LAST_BUSI_CTRL" property="lastBusiCtrl" jdbcType="INTEGER"/>
+        <result column="GOODS_PAYMENT_CURR" property="goodsPaymentCurr" jdbcType="CHAR"/>
+        <result column="DEST_PAYMENT" property="destPayment" jdbcType="DECIMAL"/>
+        <result column="DEST_PAYMENT_CURR" property="destPaymentCurr" jdbcType="CHAR"/>
+        <result column="REVEICE_NO" property="reveiceNo" jdbcType="VARCHAR"/>
+        <result column="ROUTEWAY" property="routeway" jdbcType="VARCHAR"/>
+        <result column="V_PN" property="vPn" jdbcType="VARCHAR"/>
+        <result column="TOT_GOODS_VALUE" property="totGoodsValue" jdbcType="DECIMAL"/>
+        <result column="REV_USER" property="revUser" jdbcType="VARCHAR"/>
+        <result column="REV_DATE" property="revDate" jdbcType="TIMESTAMP"/>
+        <result column="STATION_TEL" property="stationTel" jdbcType="VARCHAR"/>
+        <result column="STA_LONGITUDE" property="staLongitude" jdbcType="DECIMAL"/>
+        <result column="STA_LATITUDE" property="staLatitude" jdbcType="DECIMAL"/>
+        <result column="ITEM_NAME" property="itemName" jdbcType="VARCHAR"/>
+        <result column="CREATE_USER_ID" property="createUserId" jdbcType="INTEGER"/>
+        <result column="CARRIAGE_RECEI_PROVINCE" property="carriageReceiProvince" jdbcType="VARCHAR"/>
+        <result column="CARRIAGE_RECEI_CITY" property="carriageReceiCity" jdbcType="VARCHAR"/>
+        <result column="CARRIAGE_RECEI_COUNTY" property="carriageReceiCounty" jdbcType="VARCHAR"/>
+        <result column="CARRIAGE_RECEI_LONGITUDE" property="carriageReceiLongitude" jdbcType="DECIMAL"/>
+        <result column="CARRIAGE_RECEI_LATITUDE" property="carriageReceiLatitude" jdbcType="DECIMAL"/>
+        <result column="CARRIAGE_DELIV_PROVINCE" property="carriageDelivProvince" jdbcType="VARCHAR"/>
+        <result column="CARRIAGE_DELIV_CITY" property="carriageDelivCity" jdbcType="VARCHAR"/>
+        <result column="CARRIAGE_DELIV_COUNTY" property="carriageDelivCounty" jdbcType="VARCHAR"/>
+        <result column="CARRIAGE_DELIV_LONGITUDE" property="carriageDelivLongitude" jdbcType="DECIMAL"/>
+        <result column="CARRIAGE_DELIV_LATITUDE" property="carriageDelivLatitude" jdbcType="DECIMAL"/>
+        <result column="RECEIVER_USER" property="receiverUser" jdbcType="VARCHAR"/>
+        <result column="PREDICT_CURR" property="predictCurr" jdbcType="CHAR"/>
+        <result column="SMS_NOTY" property="smsNoty" jdbcType="INTEGER"/>
+        <result column="RECEIVER_FOLLOW" property="receiverFollow" jdbcType="INTEGER"/>
+        <result column="SENDER_FOLLOW" property="senderFollow" jdbcType="INTEGER"/>
+        <result column="RECEIVER_ZIP_CODE" property="receiverZipCode" jdbcType="VARCHAR"/>
+        <result column="SENDER_ZIP_CODE" property="senderZipCode" jdbcType="VARCHAR"/>
+        <result column="ACCESSTIME" property="accesstime" jdbcType="VARCHAR"/>
+        <result column="REV_USER_NAME" property="revUserName" jdbcType="VARCHAR"/>
+        <result column="ORDER_FORM" property="orderForm" jdbcType="VARCHAR"/>
+        <result column="PREMIUM_STATUS" property="premiumStatus" jdbcType="INTEGER"/>
+        <result column="PREMIUM_APPROVAL_STATUS" property="premiumApprovalStatus" jdbcType="INTEGER"/>
+        <result column="POLICYNO" property="policyno" jdbcType="VARCHAR"/>
+        <result column="UNITCODE" jdbcType="VARCHAR" property="unitcode"/>
+        <result column="APPLYNO" jdbcType="VARCHAR" property="applyno"/>
+        <result column="APPLYENDORSENO" property="applyendorseno" jdbcType="VARCHAR"/>
+        <result column="SHIP_CUST_HOUSE_NUMBER" property="shipCustHouseNumber" jdbcType="VARCHAR"/>
+        <result column="CNEE_CUST_HOUSE_NUMBER" property="cneeCustHouseNumber" jdbcType="VARCHAR"/>
+        <result column="PAY_USER" jdbcType="VARCHAR" property="payUser"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        b.ID, b.BUSI_BOOK_NO, b.TRADE_TERM, b.BOOKING_DATE, b.BUSI_DATE, b.BOOKING_MODEL, b.BOOKMODEL_NAME,
+        BUSI_KIND, b.FORM_KIND, b.BUSI_TYPE, b.ROUTE_BOOK, b.ROUTE_BOOK_NA, b.ROUTE_WAY, b.ROUTE_NAME,
+        POP_POD, b.NEED_HAIKWAN, b.NEED_INSURE, b.TEAM_COMSIX_NO, b.BOOK_CUSTOM_NO, b.BOOK_CUST_NAME,
+        BOOK_CUST_ADDR, b.BOOK_CUSTLINK_MAN, b.BOOK_CUSTLINK_TEL, b.BOOK_CUSTLINK_MAIL, b.BOOK_CUSTLINK_FAX,
+        SUPP_CUSTOM_NO, /*b.SUPP_CUST_NAME, b.SUPP_CUST_ADDR,*/ b.SUPP_CUSTLINK_MAN, b.SUPP_CUSTLINK_TEL,
+        SUPP_CUSTLINK_MAIL, b.SUPP_CUSTLINK_FAX, b.PURC_CUSTOM_NO, b.PURC_CUST_NAME, b.PURC_CUST_ADDR,
+        PURC_CUSTLINK_MAN, b.PURC_CUSTLINK_TEL, b.PURC_CUSTLINK_MAIL, b.PURC_CUSTLINK_FAX, b.SHIP_CUSTOM_NO,
+        SHIP_CUST_NAME, b.SHIP_CUSTA_DDR, b.SHIP_CUSTLINK_MAN, b.SHIP_CUSTLINK_TEL, b.SHIP_CUSTLINK_MAIL,
+        SHIP_CUSTLINK_FAX, b.CNEE_CUSTOM_NO, b.CNEE_CUST_NAME, b.CNEE_CUST_ADDR, b.CNEE_CUST_LINK_MAN,
+        CNEE_CUST_LINK_TEL, b.CNEE_CUST_LINK_MAIL, b.CNEE_CUST_LINK_FAX, b.NOTY_CUSTOM_NO, b.NOTY_CUST_NAME,
+        NOTY_CUST_ADDR, b.NOTY_CUST_LINK_MAN, b.NOTY_CUST_LINK_TEL, b.NOTY_CUST_LINK_MAIL, b.NOTY_CUST_LINK_FAX,
+        SALE_COMSIX_NO, b.BUSI_COMSIX_NO, b.SALES_NO, b.TRADE_SITE, b.CARRI_AGERECEI, b.ETA_POP_DATE,
+        CARRIAGE_RECEI_TYPE, b.CARRIAGE_RECEI_ZONE, b.CARRIAGE_RECEI_ADDR, b.CARRIAGE_DEIV, b.ETA_POD_DATE,
+        CARRIAGE_DELIV_TYPE, b.CARRIAGE_DELIV_ZONE, b.CARRIAGE_DELIV_ADDR, b.GOODS_PALLET_QTY,
+        GOODS_PACKAGE_QTY, b.GOODS_QTY, b.WHT_NETWHT, b.WHT_GROSSWHT, b.WHT_VOLCBM, b.WHT_VOLWHT, b.WHT_FEEWHT,
+        GOODS_VALUE, b.CARGO_LOADER, b.CARGO_FEETYPE, b.GOODS_DESC, b.PLUS_INSURE, b.BUSI_HAND, b.BUSI_AUDIT,
+        BUSI_AUDIT_DATE, b.BUSI_ABORT, b.BUSI_ABORT_CAUS, b.BUSI_ABORT_DATE, b.BOOK_PICKED_CTRL,
+        BOOK_MAIL_CTRL, b.BOOKING_CTRL, b.NARRATE, b.BUSI_STS, b.BUSI_CTRL, b.VEHICLE_ORDER_ID, b.PREDICT_VALUE,
+        PREDICT_VALUE_HUB, b.TOT_VALUE, b.GET_VALUE, b.SENT_VALUE, b.PREMIUM_VALUE, b.WAYBILL_NO, b.QUOTED_TYPE,
+        ORDER_TYPE, b.IS_AGENT, b.START_LOCUS, b.START_LOCUS_NA, b.DESTN_LOCUS, b.DESTN_LOCUS_NA, b.CREATE_USER,
+        IS_JS, b.TRANSPORT_TYPE, b.DOCNO, b.IS_DEL, b.TEAM_COMSIX_NAME, b.IS_LOCK, b.PAY_TYPE, b.GOODS_PAYMENT,
+        LAST_BUSI_CTRL, b.GOODS_PAYMENT_CURR, b.DEST_PAYMENT, b.DEST_PAYMENT_CURR, b.REVEICE_NO,
+        ROUTEWAY, b.V_PN, b.TOT_GOODS_VALUE, b.REV_USER, b.REV_DATE, CREATE_USER_ID, CARRIAGE_RECEI_PROVINCE, CARRIAGE_RECEI_CITY,
+        CARRIAGE_RECEI_COUNTY, CARRIAGE_RECEI_LONGITUDE, CARRIAGE_RECEI_LATITUDE, CARRIAGE_DELIV_PROVINCE,
+        CARRIAGE_DELIV_CITY, CARRIAGE_DELIV_COUNTY, CARRIAGE_DELIV_LONGITUDE, CARRIAGE_DELIV_LATITUDE,
+        RECEIVER_USER, PREDICT_CURR, SMS_NOTY, RECEIVER_FOLLOW, SENDER_FOLLOW, RECEIVER_ZIP_CODE,
+        SENDER_ZIP_CODE,ACCESSTIME,REV_USER_NAME,ORDER_FORM,PREMIUM_STATUS,PREMIUM_APPROVAL_STATUS,POLICYNO,UNITCODE,APPLYNO, APPLYENDORSENO,SHIP_CUST_HOUSE_NUMBER,CNEE_CUST_HOUSE_NUMBER
+    </sql>
+
+
+    <select id="queryList" resultMap="BaseResultMap"
+            parameterType="com.gistandard.transport.order.module.customer.bean.OrderQueryReq">
+        select
+        <include refid="Base_Column_List"/>,
+        a.FWORK_TEL as STATION_TEL,
+        a.CUST_NAME as SUPP_CUST_NAME,
+        a.STA_LONGITUDE as STA_LONGITUDE,
+        a.STA_LATITUDE as STA_LATITUDE,
+        IFNULL(cqi.ITEM_NAME,'') as ITEM_NAME,
+        CONCAT(
+        IFNULL(province.province_name, ''),
+        IFNULL(city.NAME, ''),
+        IFNULL(county.AREA_NAME, ''),
+        IFNULL(a.CUST_ADD, '')
+        ) AS SUPP_CUST_ADDR
+        from BOOKING_FORM b
+        left join COM_CUSTOMER a on b.TEAM_COMSIX_NO = a.CUST_TTL
+        left join COM_PROVINCE province on province.id = a.province
+        left join COM_CITY city on city.id = a.city
+        left join COM_COUNTY county on county.id = a.county
+        left join COM_QUOTE_ITEM cqi on cqi.ITEM_CODE = b.TRANSPORT_TYPE
+        <where>
+            <if test="itemId != null  and itemId != -1">
+                cqi.ID = #{itemId}
+            </if>
+            <if test="itemId == null  or itemId == -1">
+                1 = 1
+            </if>
+            AND BUSI_CTRL != -9 AND ORDER_TYPE in (1,2)
+            <if test="orderType == null and acctUsername != null">
+                AND (CREATE_USER = #{acctUsername} or RECEIVER_USER = #{acctUsername})
+            </if>
+            <if test="orderType != null and orderType==true">
+                <if test="acctUsername != null">
+                    AND CREATE_USER = #{acctUsername}
+                </if>
+            </if>
+            <if test="orderType != null and orderType==false">
+                and (RECEIVER_USER = #{acctUsername} or CNEE_CUST_LINK_TEL = #{receiverTelephone})
+                AND BUSI_CTRL != 0
+            </if>
+            <if test="busiBookNo != null">
+                and BUSI_BOOK_NO = #{busiBookNo}
+            </if>
+            <if test="areaId != null">
+                and (CARRIAGE_DELIV_COUNTY = #{areaId} or CARRIAGE_DELIV_CITY = #{areaId} or CARRIAGE_DELIV_PROVINCE =
+                #{areaId})
+            </if>
+            <if test="receiverName != null">
+                and CNEE_CUST_LINK_MAN like CONCAT('%', #{receiverName},'%')
+            </if>
+
+            <if test="startTime != null and endTime != null">
+                and BOOKING_DATE between #{startTime} and #{endTime}
+            </if>
+
+            <if test="receiverTelephone != null">
+                and CNEE_CUST_LINK_TEL = #{receiverTelephone}
+            </if>
+            <if test="searchCondition != null">
+                and (BUSI_BOOK_NO LIKE CONCAT('%',#{searchCondition,jdbcType=VARCHAR},'%') or SHIP_CUSTLINK_MAN LIKE
+                CONCAT('%',#{searchCondition,jdbcType=VARCHAR},'%') OR CNEE_CUST_LINK_MAN LIKE
+                CONCAT('%',#{searchCondition,jdbcType=VARCHAR},'%') OR CARRIAGE_RECEI_ADDR LIKE
+                CONCAT('%',#{searchCondition,jdbcType=VARCHAR},'%') OR CARRIAGE_DELIV_ADDR LIKE
+                CONCAT('%',#{searchCondition,jdbcType=VARCHAR},'%') OR ROUTE_BOOK_NA LIKE
+                CONCAT('%',#{searchCondition,jdbcType=VARCHAR},'%'))
+            </if>
+            <choose>
+                <when test="staffAccountId != null">
+                    and CREATE_COMPANY_ID = #{staffAccountId}
+                </when>
+                <otherwise>
+                    and CREATE_COMPANY_ID is NULL
+                </otherwise>
+            </choose>
+            <choose>
+                <when test="orderState != null and orderState == 2 and  orderType != null and orderType==true">
+                    and (IS_JS = 1 or IS_JS = 2) and BUSI_CTRL != -4
+                </when>
+                <when test="orderState != null and orderState == 2 and orderType != null and orderType==false">
+                    and (IS_JS = 1 or IS_JS = 2) and BUSI_CTRL != -4 and PAY_TYPE = 1
+                </when>
+                <when test="orderState != null and orderState == 3">
+                    and BUSI_CTRL = -4
+                </when>
+            </choose>
+            order by b.BOOKING_DATE DESC
+            <if test="pageSize != null and pageSize != 0">
+                limit #{startRecord},#{pageSize}
+            </if>
+        </where>
+    </select>
+
+
+    <!-- 客户下单查询订单列表 edit by xgw start -->
+    <resultMap id="CustomerOrderResultMap" type="com.gistandard.transport.order.module.customer.bean.CustomerOrderListBean">
+        <id column="ID" property="id" jdbcType="INTEGER"/>
+        <result column="BUSI_BOOK_NO" property="busiBookNo" jdbcType="VARCHAR"/>
+        <result column="TRADE_TERM" property="tradeTerm" jdbcType="VARCHAR"/>
+        <result column="BOOKING_DATE" property="bookingDate" jdbcType="TIMESTAMP"/>
+        <result column="BUSI_DATE" property="busiDate" jdbcType="TIMESTAMP"/>
+        <result column="BOOKING_MODEL" property="bookingModel" jdbcType="VARCHAR"/>
+        <result column="BOOKMODEL_NAME" property="bookmodelName" jdbcType="VARCHAR"/>
+        <result column="BUSI_KIND" property="busiKind" jdbcType="VARCHAR"/>
+        <result column="FORM_KIND" property="formKind" jdbcType="VARCHAR"/>
+        <result column="BUSI_TYPE" property="busiType" jdbcType="VARCHAR"/>
+        <result column="ROUTE_BOOK" property="routeBook" jdbcType="VARCHAR"/>
+        <result column="ROUTE_BOOK_NA" property="routeBookNa" jdbcType="VARCHAR"/>
+        <result column="ROUTE_WAY" property="routeWay" jdbcType="VARCHAR"/>
+        <result column="ROUTE_NAME" property="routeName" jdbcType="VARCHAR"/>
+        <result column="POP_POD" property="popPod" jdbcType="VARCHAR"/>
+        <result column="NEED_HAIKWAN" property="needHaikwan" jdbcType="BIT"/>
+        <result column="NEED_INSURE" property="needInsure" jdbcType="BIT"/>
+        <result column="TEAM_COMSIX_NO" property="teamComsixNo" jdbcType="VARCHAR"/>
+        <result column="BOOK_CUSTOM_NO" property="bookCustomNo" jdbcType="VARCHAR"/>
+        <result column="BOOK_CUST_NAME" property="bookCustName" jdbcType="VARCHAR"/>
+        <result column="BOOK_CUST_ADDR" property="bookCustAddr" jdbcType="VARCHAR"/>
+        <result column="BOOK_CUSTLINK_MAN" property="bookCustlinkMan" jdbcType="VARCHAR"/>
+        <result column="BOOK_CUSTLINK_TEL" property="bookCustlinkTel" jdbcType="VARCHAR"/>
+        <result column="BOOK_CUSTLINK_MAIL" property="bookCustlinkMail" jdbcType="VARCHAR"/>
+        <result column="BOOK_CUSTLINK_FAX" property="bookCustlinkFax" jdbcType="VARCHAR"/>
+        <result column="SUPP_CUSTOM_NO" property="suppCustomNo" jdbcType="VARCHAR"/>
+        <result column="SUPP_CUST_NAME" property="suppCustName" jdbcType="VARCHAR"/>
+        <result column="SUPP_CUST_ADDR" property="suppCustAddr" jdbcType="VARCHAR"/>
+        <result column="SUPP_CUSTLINK_MAN" property="suppCustlinkMan" jdbcType="VARCHAR"/>
+        <result column="SUPP_CUSTLINK_TEL" property="suppCustlinkTel" jdbcType="VARCHAR"/>
+        <result column="SUPP_CUSTLINK_MAIL" property="suppCustlinkMail" jdbcType="VARCHAR"/>
+        <result column="SUPP_CUSTLINK_FAX" property="suppCustlinkFax" jdbcType="VARCHAR"/>
+        <result column="PURC_CUSTOM_NO" property="purcCustomNo" jdbcType="VARCHAR"/>
+        <result column="PURC_CUST_NAME" property="purcCustName" jdbcType="VARCHAR"/>
+        <result column="PURC_CUST_ADDR" property="purcCustAddr" jdbcType="VARCHAR"/>
+        <result column="PURC_CUSTLINK_MAN" property="purcCustlinkMan" jdbcType="VARCHAR"/>
+        <result column="PURC_CUSTLINK_TEL" property="purcCustlinkTel" jdbcType="VARCHAR"/>
+        <result column="PURC_CUSTLINK_MAIL" property="purcCustlinkMail" jdbcType="VARCHAR"/>
+        <result column="PURC_CUSTLINK_FAX" property="purcCustlinkFax" jdbcType="VARCHAR"/>
+        <result column="SHIP_CUSTOM_NO" property="shipCustomNo" jdbcType="VARCHAR"/>
+        <result column="SHIP_CUST_NAME" property="shipCustName" jdbcType="VARCHAR"/>
+        <result column="SHIP_CUSTA_DDR" property="shipCustaDdr" jdbcType="VARCHAR"/>
+        <result column="SHIP_CUSTLINK_MAN" property="shipCustlinkMan" jdbcType="VARCHAR"/>
+        <result column="SHIP_CUSTLINK_TEL" property="shipCustlinkTel" jdbcType="VARCHAR"/>
+        <result column="SHIP_CUSTLINK_MAIL" property="shipCustlinkMail" jdbcType="VARCHAR"/>
+        <result column="SHIP_CUSTLINK_FAX" property="shipCustlinkFax" jdbcType="VARCHAR"/>
+        <result column="CNEE_CUSTOM_NO" property="cneeCustomNo" jdbcType="VARCHAR"/>
+        <result column="CNEE_CUST_NAME" property="cneeCustName" jdbcType="VARCHAR"/>
+        <result column="CNEE_CUST_ADDR" property="cneeCustAddr" jdbcType="VARCHAR"/>
+        <result column="CNEE_CUST_LINK_MAN" property="cneeCustLinkMan" jdbcType="VARCHAR"/>
+        <result column="CNEE_CUST_LINK_TEL" property="cneeCustLinkTel" jdbcType="VARCHAR"/>
+        <result column="CNEE_CUST_LINK_MAIL" property="cneeCustLinkMail" jdbcType="VARCHAR"/>
+        <result column="CNEE_CUST_LINK_FAX" property="cneeCustLinkFax" jdbcType="VARCHAR"/>
+        <result column="NOTY_CUSTOM_NO" property="notyCustomNo" jdbcType="VARCHAR"/>
+        <result column="NOTY_CUST_NAME" property="notyCustName" jdbcType="VARCHAR"/>
+        <result column="NOTY_CUST_ADDR" property="notyCustAddr" jdbcType="VARCHAR"/>
+        <result column="NOTY_CUST_LINK_MAN" property="notyCustLinkMan" jdbcType="VARCHAR"/>
+        <result column="NOTY_CUST_LINK_TEL" property="notyCustLinkTel" jdbcType="VARCHAR"/>
+        <result column="NOTY_CUST_LINK_MAIL" property="notyCustLinkMail" jdbcType="VARCHAR"/>
+        <result column="NOTY_CUST_LINK_FAX" property="notyCustLinkFax" jdbcType="VARCHAR"/>
+        <result column="SALE_COMSIX_NO" property="saleComsixNo" jdbcType="VARCHAR"/>
+        <result column="BUSI_COMSIX_NO" property="busiComsixNo" jdbcType="VARCHAR"/>
+        <result column="SALES_NO" property="salesNo" jdbcType="VARCHAR"/>
+        <result column="TRADE_SITE" property="tradeSite" jdbcType="VARCHAR"/>
+        <result column="CARRI_AGERECEI" property="carriAgerecei" jdbcType="VARCHAR"/>
+        <result column="ETA_POP_DATE" property="etaPopDate" jdbcType="TIMESTAMP"/>
+        <result column="CARRIAGE_RECEI_TYPE" property="carriageReceiType" jdbcType="VARCHAR"/>
+        <result column="CARRIAGE_RECEI_ZONE" property="carriageReceiZone" jdbcType="VARCHAR"/>
+        <result column="CARRIAGE_RECEI_ADDR" property="carriageReceiAddr" jdbcType="VARCHAR"/>
+        <result column="CARRIAGE_DEIV" property="carriageDeiv" jdbcType="VARCHAR"/>
+        <result column="ETA_POD_DATE" property="etaPodDate" jdbcType="TIMESTAMP"/>
+        <result column="CARRIAGE_DELIV_TYPE" property="carriageDelivType" jdbcType="VARCHAR"/>
+        <result column="CARRIAGE_DELIV_ZONE" property="carriageDelivZone" jdbcType="VARCHAR"/>
+        <result column="CARRIAGE_DELIV_ADDR" property="carriageDelivAddr" jdbcType="VARCHAR"/>
+        <result column="GOODS_PALLET_QTY" property="goodsPalletQty" jdbcType="DECIMAL"/>
+        <result column="GOODS_PACKAGE_QTY" property="goodsPackageQty" jdbcType="DECIMAL"/>
+        <result column="GOODS_QTY" property="goodsQty" jdbcType="DECIMAL"/>
+        <result column="WHT_NETWHT" property="whtNetwht" jdbcType="DECIMAL"/>
+        <result column="WHT_GROSSWHT" property="whtGrosswht" jdbcType="DECIMAL"/>
+        <result column="WHT_VOLCBM" property="whtVolcbm" jdbcType="DECIMAL"/>
+        <result column="WHT_VOLWHT" property="whtVolwht" jdbcType="DECIMAL"/>
+        <result column="WHT_FEEWHT" property="whtFeewht" jdbcType="DECIMAL"/>
+        <result column="GOODS_VALUE" property="goodsValue" jdbcType="DECIMAL"/>
+        <result column="CARGO_LOADER" property="cargoLoader" jdbcType="VARCHAR"/>
+        <result column="CARGO_FEETYPE" property="cargoFeetype" jdbcType="VARCHAR"/>
+        <result column="GOODS_DESC" property="goodsDesc" jdbcType="VARCHAR"/>
+        <result column="PLUS_INSURE" property="plusInsure" jdbcType="DECIMAL"/>
+        <result column="BUSI_HAND" property="busiHand" jdbcType="VARCHAR"/>
+        <result column="BUSI_AUDIT" property="busiAudit" jdbcType="VARCHAR"/>
+        <result column="BUSI_AUDIT_DATE" property="busiAuditDate" jdbcType="TIMESTAMP"/>
+        <result column="BUSI_ABORT" property="busiAbort" jdbcType="VARCHAR"/>
+        <result column="BUSI_ABORT_CAUS" property="busiAbortCaus" jdbcType="VARCHAR"/>
+        <result column="BUSI_ABORT_DATE" property="busiAbortDate" jdbcType="TIMESTAMP"/>
+        <result column="BOOK_PICKED_CTRL" property="bookPickedCtrl" jdbcType="INTEGER"/>
+        <result column="BOOK_MAIL_CTRL" property="bookMailCtrl" jdbcType="INTEGER"/>
+        <result column="BOOKING_CTRL" property="bookingCtrl" jdbcType="INTEGER"/>
+        <result column="NARRATE" property="narrate" jdbcType="VARCHAR"/>
+        <result column="BUSI_STS" property="busiSts" jdbcType="VARCHAR"/>
+        <result column="BUSI_CTRL" property="busiCtrl" jdbcType="INTEGER"/>
+        <result column="VEHICLE_ORDER_ID" property="vehicleOrderId" jdbcType="INTEGER"/>
+        <result column="PREDICT_VALUE" property="predictValue" jdbcType="DECIMAL"/>
+        <result column="PREDICT_VALUE_HUB" property="predictValueHub" jdbcType="DECIMAL"/>
+        <result column="TOT_VALUE" property="totValue" jdbcType="DECIMAL"/>
+        <result column="GET_VALUE" property="getValue" jdbcType="DECIMAL"/>
+        <result column="SENT_VALUE" property="sentValue" jdbcType="DECIMAL"/>
+        <result column="PREMIUM_VALUE" property="premiumValue" jdbcType="DECIMAL"/>
+        <result column="WAYBILL_NO" property="waybillNo" jdbcType="VARCHAR"/>
+        <result column="QUOTED_TYPE" property="quotedType" jdbcType="INTEGER"/>
+        <result column="ORDER_TYPE" property="orderType" jdbcType="INTEGER"/>
+        <result column="IS_AGENT" property="isAgent" jdbcType="BIT"/>
+        <result column="START_LOCUS" property="startLocus" jdbcType="VARCHAR"/>
+        <result column="START_LOCUS_NA" property="startLocusNa" jdbcType="VARCHAR"/>
+        <result column="DESTN_LOCUS" property="destnLocus" jdbcType="VARCHAR"/>
+        <result column="DESTN_LOCUS_NA" property="destnLocusNa" jdbcType="VARCHAR"/>
+        <result column="CREATE_USER" property="createUser" jdbcType="VARCHAR"/>
+        <result column="IS_JS" property="isJs" jdbcType="INTEGER"/>
+        <result column="TRANSPORT_TYPE" property="transportType" jdbcType="VARCHAR"/>
+        <result column="DOCNO" property="docno" jdbcType="VARCHAR"/>
+        <result column="IS_DEL" property="isDel" jdbcType="INTEGER"/>
+        <result column="TEAM_COMSIX_NAME" property="teamComsixName" jdbcType="VARCHAR"/>
+        <result column="IS_LOCK" property="isLock" jdbcType="INTEGER"/>
+        <result column="PAY_TYPE" property="payType" jdbcType="INTEGER"/>
+        <result column="GOODS_PAYMENT" property="goodsPayment" jdbcType="DECIMAL"/>
+        <result column="LAST_BUSI_CTRL" property="lastBusiCtrl" jdbcType="INTEGER"/>
+        <result column="GOODS_PAYMENT_CURR" property="goodsPaymentCurr" jdbcType="CHAR"/>
+        <result column="DEST_PAYMENT" property="destPayment" jdbcType="DECIMAL"/>
+        <result column="DEST_PAYMENT_CURR" property="destPaymentCurr" jdbcType="CHAR"/>
+        <result column="REVEICE_NO" property="reveiceNo" jdbcType="VARCHAR"/>
+        <result column="ROUTEWAY" property="routeway" jdbcType="VARCHAR"/>
+        <result column="V_PN" property="vPn" jdbcType="VARCHAR"/>
+        <result column="TOT_GOODS_VALUE" property="totGoodsValue" jdbcType="DECIMAL"/>
+        <result column="REV_USER_ID" property="revUserId" jdbcType="INTEGER"/>
+        <result column="REV_USER" property="revUser" jdbcType="VARCHAR"/>
+        <result column="REV_DATE" property="revDate" jdbcType="TIMESTAMP"/>
+        <result column="REVEICE_NO_OLD" property="reveiceNoOld" jdbcType="VARCHAR"/>
+        <result column="MERGE_FLAG" property="mergeFlag" jdbcType="INTEGER"/>
+        <result column="CREATE_USER_ID" property="createUserId" jdbcType="INTEGER"/>
+        <result column="DISPATCHER_STATUS" property="dispatcherStatus" jdbcType="INTEGER"/>
+        <result column="CARRIAGE_RECEI_PROVINCE" property="carriageReceiProvince" jdbcType="VARCHAR"/>
+        <result column="CARRIAGE_RECEI_CITY" property="carriageReceiCity" jdbcType="VARCHAR"/>
+        <result column="CARRIAGE_RECEI_COUNTY" property="carriageReceiCounty" jdbcType="VARCHAR"/>
+        <result column="CARRIAGE_RECEI_LONGITUDE" property="carriageReceiLongitude" jdbcType="DECIMAL"/>
+        <result column="CARRIAGE_RECEI_LATITUDE" property="carriageReceiLatitude" jdbcType="DECIMAL"/>
+        <result column="CARRIAGE_DELIV_PROVINCE" property="carriageDelivProvince" jdbcType="VARCHAR"/>
+        <result column="CARRIAGE_DELIV_CITY" property="carriageDelivCity" jdbcType="VARCHAR"/>
+        <result column="CARRIAGE_DELIV_COUNTY" property="carriageDelivCounty" jdbcType="VARCHAR"/>
+        <result column="CARRIAGE_DELIV_LONGITUDE" property="carriageDelivLongitude" jdbcType="DECIMAL"/>
+        <result column="CARRIAGE_DELIV_LATITUDE" property="carriageDelivLatitude" jdbcType="DECIMAL"/>
+        <result column="RECEIVER_USER" property="receiverUser" jdbcType="VARCHAR"/>
+        <result column="PREDICT_CURR" property="predictCurr" jdbcType="CHAR"/>
+        <result column="SMS_NOTY" property="smsNoty" jdbcType="INTEGER"/>
+        <result column="RECEIVER_FOLLOW" property="receiverFollow" jdbcType="INTEGER"/>
+        <result column="SENDER_FOLLOW" property="senderFollow" jdbcType="INTEGER"/>
+        <result column="RECEIVER_ZIP_CODE" property="receiverZipCode" jdbcType="VARCHAR"/>
+        <result column="SENDER_ZIP_CODE" property="senderZipCode" jdbcType="VARCHAR"/>
+        <result column="ACCESSTIME" property="accesstime" jdbcType="VARCHAR"/>
+        <result column="REV_USER_NAME" property="revUserName" jdbcType="VARCHAR"/>
+        <result column="ORDER_FORM" property="orderForm" jdbcType="VARCHAR"/>
+        <result column="PREMIUM_STATUS" property="premiumStatus" jdbcType="INTEGER"/>
+        <result column="PREMIUM_APPROVAL_STATUS" property="premiumApprovalStatus" jdbcType="INTEGER"/>
+        <result column="POLICYNO" property="policyno" jdbcType="VARCHAR"/>
+        <result column="UNITCODE" property="unitcode" jdbcType="VARCHAR"/>
+        <result column="APPLYNO" property="applyno" jdbcType="VARCHAR"/>
+        <result column="APPLYENDORSENO" property="applyendorseno" jdbcType="VARCHAR"/>
+        <result column="ROUTE_SCHEMA_ID" property="routeSchemaId" jdbcType="INTEGER"/>
+        <result column="CREATE_COMPANY_ID" property="createCompanyId" jdbcType="INTEGER"/>
+        <result column="REV_COMPANY_ID" property="revCompanyId" jdbcType="INTEGER"/>
+        <result column="SHIP_CUST_HOUSE_NUMBER" property="shipCustHouseNumber" jdbcType="VARCHAR"/>
+        <result column="CNEE_CUST_HOUSE_NUMBER" property="cneeCustHouseNumber" jdbcType="VARCHAR"/>
+        <result column="EXPRESS_NAME" property="expressName" jdbcType="VARCHAR"/>
+        <result column="EXPRESS_ORDER_NO" property="expressOrderNo" jdbcType="VARCHAR"/>
+        <result column="WECHAT_ID" property="wechatId" jdbcType="VARCHAR"/>
+        <result column="PAY_USER" property="payUser" jdbcType="VARCHAR"/>
+        <result column="PAY_USER_REAL_NAME" property="payUserRealName" jdbcType="VARCHAR"/>
+        <result column="PAY_USER_TELEPHONE" property="payUserTelephone" jdbcType="VARCHAR"/>
+        <result column="SELF_QUOTE_VALUE" property="selfQuoteValue" jdbcType="DECIMAL" />
+        <result column="SELF_QUOTE_CURR" property="selfQuoteCurr" jdbcType="CHAR" />
+        <result column="VEHICLE_TYPE_ID" property="vehicleTypeId" jdbcType="INTEGER" />
+        <result column="FOCUS_ACCESS_TIME" property="isFocusAccessTime" jdbcType="BIT" />
+        <result column="FOCUS_DELIVERY_TIME" property="isFocusDeliveryTime" jdbcType="BIT" />
+        <result column="CODE" property="code" jdbcType="VARCHAR" />
+        <result column="RECEIVE_NO" property="receiveNo" jdbcType="VARCHAR" />
+        <result column="DELIVER_NAME" property="deliverName" jdbcType="VARCHAR" />
+        <result column="DELIVER_TEL" property="deliverTel" jdbcType="VARCHAR" />
+        <result column="DELIVER_O2ID" property="deliverO2id" jdbcType="VARCHAR" />
+        <result column="SMS_CONTENT" property="smsContent" jdbcType="VARCHAR" />
+        <collection property="goodsList" ofType="com.gistandard.transport.base.entity.bean.BillingFormSalm">
+            <id column="GOODS_ID" property="id" jdbcType="INTEGER"/>
+            <result column="BUSI_BOOKNO_ID" property="busiBooknoId" jdbcType="INTEGER"/>
+            <result column="CTRLID_NO" property="ctrlidNo" jdbcType="INTEGER"/>
+            <result column="SUPP_PARTNO" property="suppPartno" jdbcType="VARCHAR"/>
+            <result column="SUPP_INVOICE_NO" property="suppInvoiceNo" jdbcType="VARCHAR"/>
+            <result column="SUPP_PRODNAME_CHS" property="suppProdnameChs" jdbcType="VARCHAR"/>
+            <result column="SUPP_PRODNAME_ENG" property="suppProdnameEng" jdbcType="VARCHAR"/>
+            <result column="SUPP_BUSINESS_GR" property="suppBusinessGr" jdbcType="VARCHAR"/>
+            <result column="PRIM_STOCKINN_DATE" property="primStockinnDate" jdbcType="TIMESTAMP"/>
+            <result column="PURC_PARTNO" property="purcPartno" jdbcType="VARCHAR"/>
+            <result column="PURC_INVOICE_NO" property="purcInvoiceNo" jdbcType="VARCHAR"/>
+            <result column="PURC_INDENT_NO" property="purcIndentNo" jdbcType="VARCHAR"/>
+            <result column="PURC_INDENT_TYPE" property="purcIndentType" jdbcType="VARCHAR"/>
+            <result column="PURC_INVENTORY" property="purcInventory" jdbcType="VARCHAR"/>
+            <result column="PURC_GOODS_OWNER" property="purcGoodsOwner" jdbcType="VARCHAR"/>
+            <result column="PURC_PRODNAME_CHS" property="purcProdnameChs" jdbcType="VARCHAR"/>
+            <result column="PURC_PRODNAME_ENG" property="purcProdnameEng" jdbcType="VARCHAR"/>
+            <result column="PURC_BUSINESS_GR" property="purcBusinessGr" jdbcType="VARCHAR"/>
+            <result column="PURC_REPORT_NO" property="purcReportNo" jdbcType="VARCHAR"/>
+            <result column="PURC_END_CUSTOMER" property="purcEndCustomer" jdbcType="VARCHAR"/>
+            <result column="PURC_END_CUSTOMNO" property="purcEndCustomno" jdbcType="VARCHAR"/>
+            <result column="THRD_PARTNO" property="thrdPartno" jdbcType="VARCHAR"/>
+            <result column="PO_ITEM_NO" property="poItemNo" jdbcType="VARCHAR"/>
+            <result column="SUPP_PURC_CUSTOMNO" property="suppPurcCustomno" jdbcType="VARCHAR"/>
+            <result column="PURC_SUPP_CUSTNAME" property="purcSuppCustname" jdbcType="VARCHAR"/>
+            <result column="TRADE_TERM" property="tradeTerm" jdbcType="VARCHAR"/>
+            <result column="TRADE_SITE" property="tradeSite" jdbcType="VARCHAR"/>
+            <result column="MADEIN_COUNCO" property="madeinCounco" jdbcType="VARCHAR"/>
+            <result column="HAIK_GOODSNA" property="haikGoodsna" jdbcType="VARCHAR"/>
+            <result column="HSCODE_NO" property="hscodeNo" jdbcType="VARCHAR"/>
+            <result column="HSCODE_NACHS" property="hscodeNachs" jdbcType="VARCHAR"/>
+            <result column="HSCODE_SPECS" property="hscodeSpecs" jdbcType="VARCHAR"/>
+            <result column="GOODS_PALLET_QTY" property="goodsPalletQty" jdbcType="DECIMAL"/>
+            <result column="GOODS_QTY" property="goodsQty" jdbcType="DECIMAL"/>
+            <result column="GOODS_QTY_UNIT_CO" property="goodsQtyUnitCo" jdbcType="CHAR"/>
+            <result column="GOODS_PACKAGE_BOXNO" property="goodsPackageBoxno" jdbcType="VARCHAR"/>
+            <result column="GOODS_PACKAGE_QTY" property="goodsPackageQty" jdbcType="DECIMAL"/>
+            <result column="PACKAGE_UNIT_CO" property="packageUnitCo" jdbcType="CHAR"/>
+            <result column="PACKAGE_UOM" property="packageUom" jdbcType="DECIMAL"/>
+            <result column="GOODS_PRICE" property="goodsPrice" jdbcType="DECIMAL"/>
+            <result column="GOODS_VALUE" property="goodsValue" jdbcType="DECIMAL"/>
+            <result column="GOODS_CURRENCY_CO" property="goodsCurrencyCo" jdbcType="VARCHAR"/>
+            <result column="GOODS_NETWHT" property="goodsNetwht" jdbcType="DECIMAL"/>
+            <result column="GOODS_GROSSWHT" property="goodsGrosswht" jdbcType="DECIMAL"/>
+            <result column="WEIGHT_UNIT_CO" property="weightUnitCo" jdbcType="CHAR"/>
+            <result column="MAKE_NOTICE_NO" property="makeNoticeNo" jdbcType="VARCHAR"/>
+            <result column="MAKE_FORM_NO" property="makeFormNo" jdbcType="VARCHAR"/>
+            <result column="MAKE_FORM_PCS" property="makeFormPcs" jdbcType="DECIMAL"/>
+            <result column="GOODS_VOLCBM" property="goodsVolcbm" jdbcType="DECIMAL"/>
+            <result column="GOODS_VOLWHT" property="goodsVolwht" jdbcType="DECIMAL"/>
+            <result column="GOODS_FEEWHT" property="goodsFeewht" jdbcType="DECIMAL"/>
+            <result column="GOODS_DIMENDESC" property="goodsDimendesc" jdbcType="VARCHAR"/>
+            <result column="DATE_CODE" property="dateCode" jdbcType="VARCHAR"/>
+            <result column="VMI_HUBID_NO" property="vmiHubidNo" jdbcType="VARCHAR"/>
+            <result column="DESTN_VMI_WHNO" property="destnVmiWhno" jdbcType="VARCHAR"/>
+            <result column="SCHEDU_TRACE_NO" property="scheduTraceNo" jdbcType="VARCHAR"/>
+            <result column="EML_ID" property="emlId" jdbcType="VARCHAR"/>
+            <result column="G_NO" property="gNo" jdbcType="VARCHAR"/>
+            <result column="GOODS_STATUS" property="goodsStatus" jdbcType="VARCHAR"/>
+            <result column="PO_DTLID" property="poDtlid" jdbcType="VARCHAR"/>
+            <result column="DECLCONSHAND" property="declconshand" jdbcType="VARCHAR"/>
+            <result column="DECLAR_DATE" property="declarDate" jdbcType="TIMESTAMP"/>
+            <result column="JJS_GRADE" property="jjsGrade" jdbcType="VARCHAR"/>
+            <result column="PREDICT_VALUE" property="predictValue" jdbcType="DECIMAL"/>
+            <result column="JJS_VER" property="jjsVer" jdbcType="VARCHAR"/>
+            <result column="PREDICT_VALUE_HUB" property="predictValueHub" jdbcType="DECIMAL"/>
+            <result column="GOODS_VOLUME" property="goodsVolume" jdbcType="DECIMAL"/>
+            <result column="GOODS_VOLUME_UNIT" property="goodsVolumeUnit" jdbcType="CHAR"/>
+            <result column="REMARK" property="remark" jdbcType="VARCHAR"/>
+            <result column="T_CODE" property="tCode" jdbcType="VARCHAR"/>
+            <result column="HUB_HANDBOOK_NO" property="hubHandbookNo" jdbcType="VARCHAR"/>
+            <result column="HUB_CONTRACT_NO" property="hubContractNo" jdbcType="VARCHAR"/>
+            <result column="HUB_CONTRACT_NUM" property="hubContractNum" jdbcType="VARCHAR"/>
+            <result column="OLD_SALEBOOKNO" property="oldSalebookno" jdbcType="VARCHAR"/>
+            <result column="COMDITY_IDSCR" property="comdityIdscr" jdbcType="VARCHAR"/>
+            <result column="LOTNO" property="lotno" jdbcType="VARCHAR"/>
+            <result column="ACTUAL_WIGHT" property="actualWight" jdbcType="DECIMAL"/>
+            <result column="ACTUAL_VOLUME" property="actualVolume" jdbcType="DECIMAL"/>
+            <result column="V_PN" property="vPn" jdbcType="VARCHAR"/>
+            <result column="GOODS_LENGTH" property="goodsLength" jdbcType="DECIMAL"/>
+            <result column="GOODS_WIDTH" property="goodsWidth" jdbcType="DECIMAL"/>
+            <result column="GOODS_HEIGHT" property="goodsHeight" jdbcType="DECIMAL"/>
+        </collection>
+    </resultMap>
+    <sql id="Customer_Column_List">
+        b.ID, b.BUSI_BOOK_NO, b.TRADE_TERM, b.BOOKING_DATE, b.BUSI_DATE, b.BOOKING_MODEL, b.BOOKMODEL_NAME,
+        b.BUSI_KIND, b.FORM_KIND, b.BUSI_TYPE, b.ROUTE_BOOK, b.ROUTE_BOOK_NA, b.ROUTE_WAY, b.ROUTE_NAME,
+        b.POP_POD, b.NEED_HAIKWAN, b.NEED_INSURE, b.TEAM_COMSIX_NO, b.BOOK_CUSTOM_NO, b.BOOK_CUST_NAME,
+        b.BOOK_CUST_ADDR, b.BOOK_CUSTLINK_MAN, b.BOOK_CUSTLINK_TEL, b.BOOK_CUSTLINK_MAIL, b.BOOK_CUSTLINK_FAX,
+        b.SUPP_CUSTOM_NO, b.SUPP_CUST_NAME, b.SUPP_CUST_ADDR, b.SUPP_CUSTLINK_MAN, b.SUPP_CUSTLINK_TEL,
+        b.SUPP_CUSTLINK_MAIL, b.SUPP_CUSTLINK_FAX, b.PURC_CUSTOM_NO, b.PURC_CUST_NAME, b.PURC_CUST_ADDR,
+        b.PURC_CUSTLINK_MAN, b.PURC_CUSTLINK_TEL, b.PURC_CUSTLINK_MAIL, b.PURC_CUSTLINK_FAX, b.SHIP_CUSTOM_NO,
+        b.SHIP_CUST_NAME, b.SHIP_CUSTA_DDR, b.SHIP_CUSTLINK_MAN, b.SHIP_CUSTLINK_TEL, b.SHIP_CUSTLINK_MAIL,
+        b.SHIP_CUSTLINK_FAX, b.CNEE_CUSTOM_NO, b.CNEE_CUST_NAME, b.CNEE_CUST_ADDR, b.CNEE_CUST_LINK_MAN,
+        b.CNEE_CUST_LINK_TEL, b.CNEE_CUST_LINK_MAIL, b.CNEE_CUST_LINK_FAX, b.NOTY_CUSTOM_NO, b.NOTY_CUST_NAME,
+        b.NOTY_CUST_ADDR, b.NOTY_CUST_LINK_MAN, b.NOTY_CUST_LINK_TEL, b.NOTY_CUST_LINK_MAIL, b.NOTY_CUST_LINK_FAX,
+        b.SALE_COMSIX_NO, b.BUSI_COMSIX_NO, b.SALES_NO, b.TRADE_SITE, b.CARRI_AGERECEI, b.ETA_POP_DATE,
+        b.CARRIAGE_RECEI_TYPE, b.CARRIAGE_RECEI_ZONE, b.CARRIAGE_RECEI_ADDR, b.CARRIAGE_DEIV, b.ETA_POD_DATE,
+        b.CARRIAGE_DELIV_TYPE, b.CARRIAGE_DELIV_ZONE, b.CARRIAGE_DELIV_ADDR, b.GOODS_PALLET_QTY,
+        b.GOODS_PACKAGE_QTY, b.GOODS_QTY, b.WHT_NETWHT, b.WHT_GROSSWHT, b.WHT_VOLCBM, b.WHT_VOLWHT, b.WHT_FEEWHT,
+        b.GOODS_VALUE, b.CARGO_LOADER, b.CARGO_FEETYPE, b.GOODS_DESC, b.PLUS_INSURE, b.BUSI_HAND, b.BUSI_AUDIT,
+        b.BUSI_AUDIT_DATE, b.BUSI_ABORT, b.BUSI_ABORT_CAUS, b.BUSI_ABORT_DATE, b.BOOK_PICKED_CTRL,
+        b.BOOK_MAIL_CTRL, b.BOOKING_CTRL, b.NARRATE, b.BUSI_STS, b.BUSI_CTRL, b.VEHICLE_ORDER_ID, b.PREDICT_VALUE,
+        b.PREDICT_VALUE_HUB, b.TOT_VALUE, b.GET_VALUE, b.SENT_VALUE, b.PREMIUM_VALUE, b.WAYBILL_NO, b.QUOTED_TYPE,
+        b.ORDER_TYPE, b.IS_AGENT, b.START_LOCUS, b.START_LOCUS_NA, b.DESTN_LOCUS, b.DESTN_LOCUS_NA, b.CREATE_USER,
+        b.IS_JS, b.TRANSPORT_TYPE, b.DOCNO, b.IS_DEL, b.TEAM_COMSIX_NAME, b.IS_LOCK, b.PAY_TYPE, b.GOODS_PAYMENT,
+        b.LAST_BUSI_CTRL, b.GOODS_PAYMENT_CURR, b.DEST_PAYMENT, b.DEST_PAYMENT_CURR, b.REVEICE_NO,
+        b.ROUTEWAY, b.V_PN, b.TOT_GOODS_VALUE, b.REV_USER_ID, b.REV_USER, b.REV_DATE, b.REVEICE_NO_OLD,
+        b.MERGE_FLAG, b.CREATE_USER_ID, b.DISPATCHER_STATUS, b.CARRIAGE_RECEI_PROVINCE, b.CARRIAGE_RECEI_CITY,
+        b.CARRIAGE_RECEI_COUNTY, b.CARRIAGE_RECEI_LONGITUDE, b.CARRIAGE_RECEI_LATITUDE, b.CARRIAGE_DELIV_PROVINCE,
+        b.CARRIAGE_DELIV_CITY, b.CARRIAGE_DELIV_COUNTY, b.CARRIAGE_DELIV_LONGITUDE, b.CARRIAGE_DELIV_LATITUDE,
+        b.RECEIVER_USER, b.PREDICT_CURR, b.SMS_NOTY, b.RECEIVER_FOLLOW, b.SENDER_FOLLOW, b.RECEIVER_ZIP_CODE,
+        b.SENDER_ZIP_CODE, b.ACCESSTIME, b.REV_USER_NAME, b.ORDER_FORM, b.PREMIUM_STATUS, b.PREMIUM_APPROVAL_STATUS,
+        b.POLICYNO, b.UNITCODE, b.APPLYNO, b.APPLYENDORSENO, b.ROUTE_SCHEMA_ID, b.CREATE_COMPANY_ID,
+        b.REV_COMPANY_ID, b.SHIP_CUST_HOUSE_NUMBER, b.CNEE_CUST_HOUSE_NUMBER, b.EXPRESS_NAME, b.EXPRESS_ORDER_NO,
+        b.WECHAT_ID, b.PAY_USER, b.PAY_USER_REAL_NAME, b.PAY_USER_TELEPHONE,b.SELF_QUOTE_VALUE,b.SELF_QUOTE_CURR,b.VEHICLE_TYPE_ID,
+        b.FOCUS_ACCESS_TIME,b.FOCUS_DELIVERY_TIME,
+        bfs.ID as GOODS_ID, bfs.BUSI_BOOKNO_ID, bfs.CTRLID_NO, bfs.SUPP_PARTNO, bfs.SUPP_INVOICE_NO, bfs.SUPP_PRODNAME_CHS, bfs.SUPP_PRODNAME_ENG,
+        bfs.SUPP_BUSINESS_GR, bfs.PRIM_STOCKINN_DATE, bfs.PURC_PARTNO, bfs.PURC_INVOICE_NO, bfs.PURC_INDENT_NO,
+        bfs.PURC_INDENT_TYPE, bfs.PURC_INVENTORY, bfs.PURC_GOODS_OWNER, bfs.PURC_PRODNAME_CHS, bfs.PURC_PRODNAME_ENG,
+        bfs.PURC_BUSINESS_GR, bfs.PURC_REPORT_NO, bfs.PURC_END_CUSTOMER, bfs.PURC_END_CUSTOMNO, bfs.THRD_PARTNO,
+        bfs.PO_ITEM_NO, bfs.SUPP_PURC_CUSTOMNO, bfs.PURC_SUPP_CUSTNAME, bfs.TRADE_TERM, bfs.TRADE_SITE, bfs.MADEIN_COUNCO,
+        bfs.HAIK_GOODSNA, bfs.HSCODE_NO, bfs.HSCODE_NACHS, bfs.HSCODE_SPECS, bfs.GOODS_PALLET_QTY, bfs.GOODS_QTY,
+        bfs.GOODS_QTY_UNIT_CO, bfs.GOODS_PACKAGE_BOXNO, bfs.GOODS_PACKAGE_QTY, bfs.PACKAGE_UNIT_CO, bfs.PACKAGE_UOM,
+        bfs.GOODS_PRICE, bfs.GOODS_VALUE, bfs.GOODS_CURRENCY_CO, bfs.GOODS_NETWHT, bfs.GOODS_GROSSWHT, bfs.WEIGHT_UNIT_CO,
+        bfs.MAKE_NOTICE_NO, bfs.MAKE_FORM_NO, bfs.MAKE_FORM_PCS, bfs.GOODS_VOLCBM, bfs.GOODS_VOLWHT, bfs.GOODS_FEEWHT,
+        bfs.GOODS_DIMENDESC, bfs.DATE_CODE, bfs.VMI_HUBID_NO, bfs.DESTN_VMI_WHNO, bfs.SCHEDU_TRACE_NO, bfs.EML_ID,
+        bfs.G_NO, bfs.GOODS_STATUS, bfs.PO_DTLID, bfs.DECLCONSHAND, bfs.DECLAR_DATE, bfs.JJS_GRADE, bfs.PREDICT_VALUE,
+        bfs.JJS_VER, bfs.PREDICT_VALUE_HUB, bfs.GOODS_VOLUME, bfs.GOODS_VOLUME_UNIT, bfs.REMARK, bfs.T_CODE, bfs.HUB_HANDBOOK_NO,
+        bfs.HUB_CONTRACT_NO, bfs.HUB_CONTRACT_NUM, bfs.OLD_SALEBOOKNO, bfs.COMDITY_IDSCR, bfs.LOTNO, bfs.ACTUAL_WIGHT,
+        bfs.ACTUAL_VOLUME, bfs.V_PN, bfs.goods_length, bfs.goods_width, bfs.goods_height
+    </sql>
+
+    <sql id="Customer_Order_Column_List">
+        b.ID, b.BUSI_BOOK_NO, b.TRADE_TERM, b.BOOKING_DATE, b.BUSI_DATE, b.BOOKING_MODEL, b.BOOKMODEL_NAME,
+        b.BUSI_KIND, b.FORM_KIND, b.BUSI_TYPE, b.ROUTE_BOOK, b.ROUTE_BOOK_NA, b.ROUTE_WAY, b.ROUTE_NAME,
+        b.POP_POD, b.NEED_HAIKWAN, b.NEED_INSURE, b.TEAM_COMSIX_NO, b.BOOK_CUSTOM_NO, b.BOOK_CUST_NAME,
+        b.BOOK_CUST_ADDR, b.BOOK_CUSTLINK_MAN, b.BOOK_CUSTLINK_TEL, b.BOOK_CUSTLINK_MAIL, b.BOOK_CUSTLINK_FAX,
+        b.SUPP_CUSTOM_NO, b.SUPP_CUST_NAME, b.SUPP_CUST_ADDR, b.SUPP_CUSTLINK_MAN, b.SUPP_CUSTLINK_TEL,
+        b.SUPP_CUSTLINK_MAIL, b.SUPP_CUSTLINK_FAX, b.PURC_CUSTOM_NO, b.PURC_CUST_NAME, b.PURC_CUST_ADDR,
+        b.PURC_CUSTLINK_MAN, b.PURC_CUSTLINK_TEL, b.PURC_CUSTLINK_MAIL, b.PURC_CUSTLINK_FAX, b.SHIP_CUSTOM_NO,
+        b.SHIP_CUST_NAME, b.SHIP_CUSTA_DDR, b.SHIP_CUSTLINK_MAN, b.SHIP_CUSTLINK_TEL, b.SHIP_CUSTLINK_MAIL,
+        b.SHIP_CUSTLINK_FAX, b.CNEE_CUSTOM_NO, b.CNEE_CUST_NAME, b.CNEE_CUST_ADDR, b.CNEE_CUST_LINK_MAN,
+        b.CNEE_CUST_LINK_TEL, b.CNEE_CUST_LINK_MAIL, b.CNEE_CUST_LINK_FAX, b.NOTY_CUSTOM_NO, b.NOTY_CUST_NAME,
+        b.NOTY_CUST_ADDR, b.NOTY_CUST_LINK_MAN, b.NOTY_CUST_LINK_TEL, b.NOTY_CUST_LINK_MAIL, b.NOTY_CUST_LINK_FAX,
+        b.SALE_COMSIX_NO, b.BUSI_COMSIX_NO, b.SALES_NO, b.TRADE_SITE, b.CARRI_AGERECEI, b.ETA_POP_DATE,
+        b.CARRIAGE_RECEI_TYPE, b.CARRIAGE_RECEI_ZONE, b.CARRIAGE_RECEI_ADDR, b.CARRIAGE_DEIV, b.ETA_POD_DATE,
+        b.CARRIAGE_DELIV_TYPE, b.CARRIAGE_DELIV_ZONE, b.CARRIAGE_DELIV_ADDR, b.GOODS_PALLET_QTY,
+        b.GOODS_PACKAGE_QTY, b.GOODS_QTY, b.WHT_NETWHT, b.WHT_GROSSWHT, b.WHT_VOLCBM, b.WHT_VOLWHT, b.WHT_FEEWHT,
+        b.GOODS_VALUE, b.CARGO_LOADER, b.CARGO_FEETYPE, b.GOODS_DESC, b.PLUS_INSURE, b.BUSI_HAND, b.BUSI_AUDIT,
+        b.BUSI_AUDIT_DATE, b.BUSI_ABORT, b.BUSI_ABORT_CAUS, b.BUSI_ABORT_DATE, b.BOOK_PICKED_CTRL,
+        b.BOOK_MAIL_CTRL, b.BOOKING_CTRL, b.NARRATE, b.BUSI_STS, b.BUSI_CTRL, b.VEHICLE_ORDER_ID, b.PREDICT_VALUE,
+        b.PREDICT_VALUE_HUB, b.TOT_VALUE, b.GET_VALUE, b.SENT_VALUE, b.PREMIUM_VALUE, b.WAYBILL_NO, b.QUOTED_TYPE,
+        b.ORDER_TYPE, b.IS_AGENT, b.START_LOCUS, b.START_LOCUS_NA, b.DESTN_LOCUS, b.DESTN_LOCUS_NA, b.CREATE_USER,
+        b.IS_JS, b.TRANSPORT_TYPE, b.DOCNO, b.IS_DEL, b.TEAM_COMSIX_NAME, b.IS_LOCK, b.PAY_TYPE, b.GOODS_PAYMENT,
+        b.LAST_BUSI_CTRL, b.GOODS_PAYMENT_CURR, b.DEST_PAYMENT, b.DEST_PAYMENT_CURR, b.REVEICE_NO,
+        b.ROUTEWAY, b.V_PN, b.TOT_GOODS_VALUE, b.REV_USER_ID, b.REV_USER, b.REV_DATE, b.REVEICE_NO_OLD,
+        b.MERGE_FLAG, b.CREATE_USER_ID, b.DISPATCHER_STATUS, b.CARRIAGE_RECEI_PROVINCE, b.CARRIAGE_RECEI_CITY,
+        b.CARRIAGE_RECEI_COUNTY, b.CARRIAGE_RECEI_LONGITUDE, b.CARRIAGE_RECEI_LATITUDE, b.CARRIAGE_DELIV_PROVINCE,
+        b.CARRIAGE_DELIV_CITY, b.CARRIAGE_DELIV_COUNTY, b.CARRIAGE_DELIV_LONGITUDE, b.CARRIAGE_DELIV_LATITUDE,
+        b.RECEIVER_USER, b.PREDICT_CURR, b.SMS_NOTY, b.RECEIVER_FOLLOW, b.SENDER_FOLLOW, b.RECEIVER_ZIP_CODE,
+        b.SENDER_ZIP_CODE, b.ACCESSTIME, b.REV_USER_NAME, b.ORDER_FORM, b.PREMIUM_STATUS, b.PREMIUM_APPROVAL_STATUS,
+        b.POLICYNO, b.UNITCODE, b.APPLYNO, b.APPLYENDORSENO, b.ROUTE_SCHEMA_ID, b.CREATE_COMPANY_ID,
+        b.REV_COMPANY_ID, b.SHIP_CUST_HOUSE_NUMBER, b.CNEE_CUST_HOUSE_NUMBER, b.EXPRESS_NAME, b.EXPRESS_ORDER_NO,
+        b.WECHAT_ID, b.PAY_USER, b.PAY_USER_REAL_NAME, b.PAY_USER_TELEPHONE,b.SELF_QUOTE_VALUE,b.SELF_QUOTE_CURR,b.VEHICLE_TYPE_ID,
+        b.FOCUS_ACCESS_TIME,b.FOCUS_DELIVERY_TIME,s.CODE,s.RECEIVE_NO,s.DELIVER_NAME,s.DELIVER_TEL,s.DELIVER_O2ID,s.SMS_CONTENT,
+        bfs.ID as GOODS_ID, bfs.BUSI_BOOKNO_ID, bfs.CTRLID_NO, bfs.SUPP_PARTNO, bfs.SUPP_INVOICE_NO, bfs.SUPP_PRODNAME_CHS, bfs.SUPP_PRODNAME_ENG,
+        bfs.SUPP_BUSINESS_GR, bfs.PRIM_STOCKINN_DATE, bfs.PURC_PARTNO, bfs.PURC_INVOICE_NO, bfs.PURC_INDENT_NO,
+        bfs.PURC_INDENT_TYPE, bfs.PURC_INVENTORY, bfs.PURC_GOODS_OWNER, bfs.PURC_PRODNAME_CHS, bfs.PURC_PRODNAME_ENG,
+        bfs.PURC_BUSINESS_GR, bfs.PURC_REPORT_NO, bfs.PURC_END_CUSTOMER, bfs.PURC_END_CUSTOMNO, bfs.THRD_PARTNO,
+        bfs.PO_ITEM_NO, bfs.SUPP_PURC_CUSTOMNO, bfs.PURC_SUPP_CUSTNAME, bfs.TRADE_TERM, bfs.TRADE_SITE, bfs.MADEIN_COUNCO,
+        bfs.HAIK_GOODSNA, bfs.HSCODE_NO, bfs.HSCODE_NACHS, bfs.HSCODE_SPECS, bfs.GOODS_PALLET_QTY, bfs.GOODS_QTY,
+        bfs.GOODS_QTY_UNIT_CO, bfs.GOODS_PACKAGE_BOXNO, bfs.GOODS_PACKAGE_QTY, bfs.PACKAGE_UNIT_CO, bfs.PACKAGE_UOM,
+        bfs.GOODS_PRICE, bfs.GOODS_VALUE, bfs.GOODS_CURRENCY_CO, bfs.GOODS_NETWHT, bfs.GOODS_GROSSWHT, bfs.WEIGHT_UNIT_CO,
+        bfs.MAKE_NOTICE_NO, bfs.MAKE_FORM_NO, bfs.MAKE_FORM_PCS, bfs.GOODS_VOLCBM, bfs.GOODS_VOLWHT, bfs.GOODS_FEEWHT,
+        bfs.GOODS_DIMENDESC, bfs.DATE_CODE, bfs.VMI_HUBID_NO, bfs.DESTN_VMI_WHNO, bfs.SCHEDU_TRACE_NO, bfs.EML_ID,
+        bfs.G_NO, bfs.GOODS_STATUS, bfs.PO_DTLID, bfs.DECLCONSHAND, bfs.DECLAR_DATE, bfs.JJS_GRADE, bfs.PREDICT_VALUE,
+        bfs.JJS_VER, bfs.PREDICT_VALUE_HUB, bfs.GOODS_VOLUME, bfs.GOODS_VOLUME_UNIT, bfs.REMARK, bfs.T_CODE, bfs.HUB_HANDBOOK_NO,
+        bfs.HUB_CONTRACT_NO, bfs.HUB_CONTRACT_NUM, bfs.OLD_SALEBOOKNO, bfs.COMDITY_IDSCR, bfs.LOTNO, bfs.ACTUAL_WIGHT,
+        bfs.ACTUAL_VOLUME, bfs.V_PN, bfs.goods_length, bfs.goods_width, bfs.goods_height
+    </sql>
+
+    <select id="count" resultType="java.lang.Integer" parameterType="com.gistandard.transport.order.module.customer.bean.OrderQueryReq">
+        select count(*) from BOOKING_FORM b
+        <where>
+            b.BUSI_CTRL != -9
+            <if test="itemCodeList != null">
+                AND b.TRANSPORT_TYPE IN
+                <foreach collection="itemCodeList" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="orderType == null and acctUsername != null">
+                AND (b.CREATE_USER = #{acctUsername} or b.RECEIVER_USER = #{acctUsername})
+            </if>
+            <if test="orderType != null and orderType == true and acctUsername != null">
+                AND (b.CREATE_USER = #{acctUsername} or b.SHIP_CUSTLINK_TEL = #{startLinkTelephone})
+            </if>
+            <if test="orderType != null and orderType == false">
+                and (b.RECEIVER_USER = #{acctUsername} or b.CNEE_CUST_LINK_TEL = #{receiverTelephone})
+                AND b.BUSI_CTRL != 0
+            </if>
+            <if test="busiBookNo != null">
+                and b.BUSI_BOOK_NO = #{busiBookNo}
+            </if>
+            <if test="areaId != null">
+                and (b.CARRIAGE_DELIV_COUNTY = #{areaId} or b.CARRIAGE_DELIV_CITY = #{areaId} or
+                b.CARRIAGE_DELIV_PROVINCE = #{areaId})
+            </if>
+            <if test="receiverName != null">
+                and b.CNEE_CUST_LINK_MAN like CONCAT('%', #{receiverName},'%')
+            </if>
+            <if test="startTime != null and endTime != null">
+                and b.BOOKING_DATE between #{startTime} and #{endTime}
+            </if>
+
+            <if test="receiverTelephone != null">
+                and b.CNEE_CUST_LINK_TEL = #{receiverTelephone}
+            </if>
+            <if test="searchCondition != null">
+                and (b.BUSI_BOOK_NO LIKE CONCAT('%',#{searchCondition,jdbcType=VARCHAR},'%') or b.SHIP_CUSTLINK_MAN LIKE
+                CONCAT('%',#{searchCondition,jdbcType=VARCHAR},'%') OR b.CNEE_CUST_LINK_MAN LIKE
+                CONCAT('%',#{searchCondition,jdbcType=VARCHAR},'%') OR b.CARRIAGE_RECEI_ADDR LIKE
+                CONCAT('%',#{searchCondition,jdbcType=VARCHAR},'%') OR b.CARRIAGE_DELIV_ADDR LIKE
+                CONCAT('%',#{searchCondition,jdbcType=VARCHAR},'%') OR b.ROUTE_BOOK_NA LIKE
+                CONCAT('%',#{searchCondition,jdbcType=VARCHAR},'%') OR b.CNEE_CUST_LINK_TEL LIKE
+                CONCAT('%',#{searchCondition,jdbcType=VARCHAR},'%') OR b.SHIP_CUSTLINK_TEL LIKE
+                CONCAT('%',#{searchCondition,jdbcType=VARCHAR},'%'))
+            </if>
+            <choose>
+                <when test="staffAccountId != null and orderType != null and orderType == true">
+                    and b.CREATE_COMPANY_ID = #{staffAccountId}
+                </when>
+                <when test="staffAccountId == null and orderType != null and orderType == true">
+                    and b.CREATE_COMPANY_ID is NULL
+                </when>
+            </choose>
+            <choose>
+                <when test="orderState != null and orderState == 2 and  orderType != null and orderType==true">
+                    and (b.IS_JS = 1 or b.IS_JS = 2) and b.BUSI_CTRL > 0
+                    and b.CREATE_USER = #{loginAcctUserName} and b.PAY_USER = #{loginAcctUserName}
+                </when>
+                <when test="orderState != null and orderState == 2 and orderType != null and orderType==false">
+                    and (b.IS_JS = 1 or b.IS_JS = 2) and b.BUSI_CTRL > 0 and b.PAY_TYPE = 1
+                </when>
+                <when test="orderState != null and orderState == 3">
+                    and b.BUSI_CTRL = -4
+                </when>
+            </choose>
+            order by b.BOOKING_DATE DESC
+        </where>
+    </select>
+
+    <select id="queryOrderList" resultMap="CustomerOrderResultMap" parameterType="com.gistandard.transport.order.module.customer.bean.OrderQueryReq">
+        select
+        <include refid="Customer_Order_Column_List"/>
+        from BOOKING_FORM b
+        left join BILLING_FORM_SALM bfs on b.ID = bfs.BUSI_BOOKNO_ID
+        <if test="orderType != null and orderType == true">
+            left join SMS_VERIFICATION_CODE s ON s.BUSI_BOOK_NO = b.BUSI_BOOK_NO AND b.SHIP_CUSTLINK_TEL = s.RECEIVE_NO
+            AND s.CREATE_DATE=(SELECT  MAX(SS.CREATE_DATE) FROM SMS_VERIFICATION_CODE SS WHERE SS.BUSI_BOOK_NO=b.BUSI_BOOK_NO)
+            AND s.MODEL = 7
+        </if>
+        <if test="orderType != null and orderType == false">
+            left join SMS_VERIFICATION_CODE s ON s.BUSI_BOOK_NO = b.BUSI_BOOK_NO AND b.CNEE_CUST_LINK_TEL = s.RECEIVE_NO
+            AND s.CREATE_DATE=(SELECT  MAX(SS.CREATE_DATE) FROM SMS_VERIFICATION_CODE SS WHERE SS.BUSI_BOOK_NO=b.BUSI_BOOK_NO)
+            AND s.MODEL = CASE b.TRANSPORT_TYPE
+            WHEN 'OTCYSEX' THEN 14 ELSE 9 END
+        </if>
+        <where>
+            b.BUSI_CTRL != -9
+            <if test="itemCodeList != null">
+                AND b.TRANSPORT_TYPE IN
+                <foreach collection="itemCodeList" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="orderType == null and acctUsername != null">
+                AND (b.CREATE_USER = #{acctUsername} or b.RECEIVER_USER = #{acctUsername})
+            </if>
+            <if test="orderType != null and orderType == true and acctUsername != null">
+                AND (b.CREATE_USER = #{acctUsername}  or b.SHIP_CUSTLINK_TEL = #{startLinkTelephone})
+            </if>
+            <if test="orderType != null and orderType == false">
+                and (b.RECEIVER_USER = #{acctUsername} or b.CNEE_CUST_LINK_TEL = #{receiverTelephone})
+                AND b.BUSI_CTRL != 0
+            </if>
+            <if test="busiBookNo != null">
+                and b.BUSI_BOOK_NO = #{busiBookNo}
+            </if>
+            <if test="areaId != null">
+                and (b.CARRIAGE_DELIV_COUNTY = #{areaId} or b.CARRIAGE_DELIV_CITY = #{areaId} or
+                b.CARRIAGE_DELIV_PROVINCE = #{areaId})
+            </if>
+            <if test="receiverName != null">
+                and b.CNEE_CUST_LINK_MAN like CONCAT('%', #{receiverName},'%')
+            </if>
+            <if test="startTime != null and endTime != null">
+                and b.BOOKING_DATE between #{startTime} and #{endTime}
+            </if>
+
+            <if test="receiverTelephone != null">
+                and b.CNEE_CUST_LINK_TEL = #{receiverTelephone}
+            </if>
+            <if test="searchCondition != null">
+                and (b.BUSI_BOOK_NO LIKE CONCAT('%',#{searchCondition,jdbcType=VARCHAR},'%') or b.SHIP_CUSTLINK_MAN LIKE
+                CONCAT('%',#{searchCondition,jdbcType=VARCHAR},'%') OR b.CNEE_CUST_LINK_MAN LIKE
+                CONCAT('%',#{searchCondition,jdbcType=VARCHAR},'%') OR b.CARRIAGE_RECEI_ADDR LIKE
+                CONCAT('%',#{searchCondition,jdbcType=VARCHAR},'%') OR b.CARRIAGE_DELIV_ADDR LIKE
+                CONCAT('%',#{searchCondition,jdbcType=VARCHAR},'%') OR b.CNEE_CUST_LINK_TEL LIKE
+                CONCAT('%',#{searchCondition,jdbcType=VARCHAR},'%') OR b.SHIP_CUSTLINK_TEL LIKE
+                CONCAT('%',#{searchCondition,jdbcType=VARCHAR},'%') OR b.ROUTE_BOOK_NA LIKE
+                CONCAT('%',#{searchCondition,jdbcType=VARCHAR},'%'))
+            </if>
+            <choose>
+                <when test="staffAccountId != null and orderType != null and orderType == true">
+                    and b.CREATE_COMPANY_ID = #{staffAccountId}
+                </when>
+                <when test="staffAccountId == null  and orderType != null and orderType == true">
+                    and b.CREATE_COMPANY_ID is NULL
+                </when>
+            </choose>
+            <choose>
+                <when test="orderState != null and orderState == 2 and  orderType != null and orderType==true">
+                    and (b.IS_JS = 1 or b.IS_JS = 2) and b.BUSI_CTRL > 0
+                    and b.CREATE_USER = #{loginAcctUserName} and b.PAY_USER = #{loginAcctUserName}
+                </when>
+                <when test="orderState != null and orderState == 2 and orderType != null and orderType==false">
+                    and (b.IS_JS = 1 or b.IS_JS = 2) and b.BUSI_CTRL > 0 and b.PAY_TYPE = 1
+                </when>
+                <when test="orderState != null and orderState == 3">
+                    and b.BUSI_CTRL = -4
+                </when>
+            </choose>
+            order by b.BOOKING_DATE DESC
+            <if test="pageSize != null and pageSize != 0">
+                limit #{startRecord},#{pageSize}
+            </if>
+
+        </where>
+    </select>
+    <!-- 客户下单查询订单列表 edit by xgw end -->
+
+    <!-- 根据订单号获取订单信息 add by xgw start-->
+    <select id="getOrderInfoByBusiNo" resultMap="CustomerOrderResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="Customer_Column_List" />
+        from BOOKING_FORM b
+        left join BILLING_FORM_SALM bfs on b.ID = bfs.BUSI_BOOKNO_ID
+        where b.BUSI_BOOK_NO = #{busiNo}
+    </select>
+    <!-- 根据订单号获取订单信息 add by xgw end-->
+
+
+    <!-- 根据订单号查询订单列表-->
+    <select id="queryOrderListByBusiNo" resultMap="CustomerOrderResultMap" parameterType="com.gistandard.transport.order.module.customer.bean.OrderQueryReq">
+        select
+        <include refid="Customer_Column_List"/>
+        from BOOKING_FORM b
+        left join BILLING_FORM_SALM bfs on b.ID = bfs.BUSI_BOOKNO_ID
+        <where>
+            b.BUSI_CTRL != -9
+            <if test="busiBookNo != null">
+                and b.BUSI_BOOK_NO = #{busiBookNo}
+            </if>
+            order by b.BOOKING_DATE DESC
+            <if test="pageSize != null and pageSize != 0">
+                limit #{startRecord},#{pageSize}
+            </if>
+        </where>
+    </select>
+
+    <!-- 客户下单查询订单列表 edit by yunwei -->
+    <resultMap id="OrderReportResultMap" type="com.gistandard.transport.order.module.customer.bean.OrderReportBean">
+        <result column="BUSI_BOOK_NO" property="busiBookNo" jdbcType="VARCHAR"/>
+        <result column="BOOKING_DATE" property="bookingDate" jdbcType="TIMESTAMP"/>
+        <result column="PAY_USER" property="payUser" jdbcType="VARCHAR"/>
+        <result column="PAY_USER_REAL_NAME" property="payUserRealName" jdbcType="VARCHAR"/>
+        <result column="TRANSPORT_TYPE" property="transportType" jdbcType="VARCHAR"/>
+        <result column="CREATE_USER" property="createUser" jdbcType="VARCHAR"/>
+        <result column="CARRIAGE_DELIV_ADDR" property="carriageDelivAddr" jdbcType="VARCHAR"/>
+        <result column="CARRIAGE_RECEI_ADDR" property="carriageReceiAddr" jdbcType="VARCHAR"/>
+        <result column="SHIP_CUSTLINK_MAN" property="shipCustlinkMan" jdbcType="VARCHAR"/>
+        <result column="SHIP_CUSTLINK_TEL" property="shipCustlinkTel" jdbcType="VARCHAR"/>
+        <result column="CNEE_CUST_LINK_MAN" property="cneeCustLinkMan" jdbcType="VARCHAR"/>
+        <result column="CNEE_CUST_LINK_TEL" property="cneeCustLinkTel" jdbcType="VARCHAR"/>
+        <result column="PREDICT_VALUE" property="predictValue" jdbcType="DECIMAL"/>
+        <result column="PREDICT_CURR" property="predictCurr" jdbcType="CHAR"/>
+        <result column="CREATE_USER_NAME" property="createUserName" jdbcType="VARCHAR"/>
+        <result column="ACCT_USERNAME" property="recommendAcctUser" jdbcType="VARCHAR"/>
+        <result column="REAL_NAME" property="recommendAcctUserName" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Order_Report_Column_List">
+        b.BUSI_BOOK_NO, b.BOOKING_DATE, b.PAY_USER,b.PAY_USER_REAL_NAME,
+        (CASE b.TRANSPORT_TYPE
+         WHEN 'OTCKD'   THEN '同城快递'
+         WHEN 'OTCZS'   THEN '同城专送'
+         WHEN 'OTCYSEX' THEN '同城运输' ELSE NULL END) AS TRANSPORT_TYPE,
+        b.CREATE_USER,b.CARRIAGE_DELIV_ADDR,b.CARRIAGE_RECEI_ADDR,b.SHIP_CUSTLINK_MAN,
+        b.SHIP_CUSTLINK_TEL,b.CNEE_CUST_LINK_MAN,b.CNEE_CUST_LINK_TEL,b.PREDICT_VALUE,
+        b.PREDICT_CURR,c.REAL_NAME as CREATE_USER_NAME,d.ACCT_USERNAME,d.REAL_NAME
+    </sql>
+
+    <!-- 根据参数查询订单报表信息 yunwei 2017-08-31 -->
+    <select id="queryOrderReport" resultMap="OrderReportResultMap" parameterType="com.gistandard.transport.order.module.customer.bean.OrderReportReq">
+        select
+        <include refid="Order_Report_Column_List"/>
+        from BOOKING_FORM b
+        LEFT JOIN COM_ACCOUNT c ON b.CREATE_USER_ID = c.id
+        LEFT JOIN COM_ACCOUNT d ON c.RECOMMEND_ACCOUNT_ID = d.ID
+        where 1 = 1 AND b.IS_JS = 3
+        <if test="busiBookNo != null and busiBookNo != ''" >
+            AND b.BUSI_BOOK_NO = #{busiBookNo}
+        </if>
+        <if test="startDate != null ">
+            <![CDATA[ AND b.BOOKING_DATE >= #{startDate} ]]>
+        </if>
+        <if test="endDate != null">
+            <![CDATA[ AND b.BOOKING_DATE <= #{endDate}]]>
+        </if>
+        <if test="payType != null" >
+            AND b.PAY_TYPE = #{payType}
+        </if>
+        <if test="transportType != null" >
+            AND b.TRANSPORT_TYPE = #{transportType}
+        </if>
+        <if test="carriageDelivProvince != null" >
+            AND b.CARRIAGE_DELIV_PROVINCE = #{carriageDelivProvince}
+        </if>
+        <if test="carriageDelivCity != null" >
+            AND b.CARRIAGE_DELIV_CITY = #{carriageDelivCity}
+        </if>
+        <if test="carriageDelivCounty != null" >
+            AND b.CARRIAGE_DELIV_COUNTY = #{carriageDelivCounty}
+        </if>
+        <if test="startRecord >= 0 and pageSize > 0">
+            limit #{startRecord},#{pageSize}
+        </if>
+    </select>
+
+    <!-- 根据参数查询订单报表信息 yunwei 2017-08-31 -->
+    <select id="queryOrderReportCount" resultType="java.lang.Integer" parameterType="com.gistandard.transport.order.module.customer.bean.OrderReportReq">
+        select
+        count(*)
+        from BOOKING_FORM b
+        LEFT JOIN COM_ACCOUNT c ON b.CREATE_USER_ID = c.id
+        LEFT JOIN COM_ACCOUNT d ON c.RECOMMEND_ACCOUNT_ID = d.ID
+        where 1 = 1 AND b.IS_JS = 3
+        <if test="busiBookNo != null and busiBookNo != ''" >
+            AND b.BUSI_BOOK_NO = #{busiBookNo}
+        </if>
+        <if test="startDate != null ">
+            <![CDATA[ AND b.BOOKING_DATE >= #{startDate} ]]>
+        </if>
+        <if test="endDate != null">
+            <![CDATA[ AND b.BOOKING_DATE <= #{endDate}]]>
+        </if>
+        <if test="payType != null" >
+            AND b.PAY_TYPE = #{payType}
+        </if>
+        <if test="transportType != null" >
+            AND b.TRANSPORT_TYPE = #{transportType}
+        </if>
+        <if test="carriageDelivProvince != null" >
+            AND b.CARRIAGE_DELIV_PROVINCE = #{carriageDelivProvince}
+        </if>
+        <if test="carriageDelivCity != null" >
+            AND b.CARRIAGE_DELIV_CITY = #{carriageDelivCity}
+        </if>
+        <if test="carriageDelivCounty != null" >
+            AND b.CARRIAGE_DELIV_COUNTY = #{carriageDelivCounty}
+        </if>
+    </select>
+
+
+</mapper>

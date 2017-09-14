@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ex.ComGoodsTypeDaoEx">
+    <cache-ref namespace="com.gistandard.transport.base.entity.dao.ComGoodsTypeDao"/>
+    <select id="selectByDicType" resultMap="com.gistandard.transport.base.entity.dao.ComGoodsTypeDao.BaseResultMap" >
+        select
+        <include refid="com.gistandard.transport.base.entity.dao.ComGoodsTypeDao.Base_Column_List"/>
+        from COM_GOODS_TYPE
+        where 1=1
+        AND STATUS = 1
+        <if test="dicType != null and dicType==3" >
+            AND (FLAG = 1 or FLAG is NULL )
+        </if>
+        <if test="dicType != null and dicType==6" >
+            AND( FLAG = 2 or FLAG is NULL )
+        </if>
+    </select>
+    <select id="queryAll" resultMap="com.gistandard.transport.base.entity.dao.ComGoodsTypeDao.BaseResultMap">
+        select
+        <include refid="com.gistandard.transport.base.entity.dao.ComGoodsTypeDao.Base_Column_List"/>
+        from COM_GOODS_TYPE
+        ORDER BY FLAG DESC
+    </select>
+    <select id="selectByTypeCode" resultMap="com.gistandard.transport.base.entity.dao.ComGoodsTypeDao.BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="com.gistandard.transport.base.entity.dao.ComGoodsTypeDao.Base_Column_List" />
+        from COM_GOODS_TYPE
+        where TYPE_CODE = #{typeCode,jdbcType=VARCHAR} limit 1
+    </select>
+</mapper>

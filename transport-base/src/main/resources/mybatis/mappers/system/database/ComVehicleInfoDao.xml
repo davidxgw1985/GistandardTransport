@@ -1,0 +1,577 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ComVehicleInfoDao" >
+  <resultMap id="BaseResultMap" type="com.gistandard.transport.base.entity.bean.ComVehicleInfo" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="TRUCKCODE" property="truckcode" jdbcType="VARCHAR" />
+    <result column="DRIVING_CODE" property="drivingCode" jdbcType="VARCHAR" />
+    <result column="TRUCKTYPE" property="trucktype" jdbcType="VARCHAR" />
+    <result column="TYPEDESC" property="typedesc" jdbcType="VARCHAR" />
+    <result column="TRUCKMODELCODE" property="truckmodelcode" jdbcType="VARCHAR" />
+    <result column="TRANSPORTTYPE" property="transporttype" jdbcType="VARCHAR" />
+    <result column="ENGINECODE" property="enginecode" jdbcType="VARCHAR" />
+    <result column="OWNERS" property="owners" jdbcType="VARCHAR" />
+    <result column="TRUCKCODEII" property="truckcodeii" jdbcType="VARCHAR" />
+    <result column="COMPANYCODE" property="companycode" jdbcType="VARCHAR" />
+    <result column="ICCARDNO" property="iccardno" jdbcType="VARCHAR" />
+    <result column="LENGTH" property="length" jdbcType="DECIMAL" />
+    <result column="WIDTH" property="width" jdbcType="DECIMAL" />
+    <result column="HEIGHT" property="height" jdbcType="DECIMAL" />
+    <result column="BOXLENGTH" property="boxlength" jdbcType="DECIMAL" />
+    <result column="BOXWIDTH" property="boxwidth" jdbcType="DECIMAL" />
+    <result column="BOXHEIGHT" property="boxheight" jdbcType="DECIMAL" />
+    <result column="TRANSCODE" property="transcode" jdbcType="VARCHAR" />
+    <result column="BRACKETCODE" property="bracketcode" jdbcType="VARCHAR" />
+    <result column="BRACKETTYPE" property="brackettype" jdbcType="VARCHAR" />
+    <result column="BRACKETDATE" property="bracketdate" jdbcType="TIMESTAMP" />
+    <result column="BTREGISTERCODE" property="btregistercode" jdbcType="VARCHAR" />
+    <result column="BTTAXCODE" property="bttaxcode" jdbcType="VARCHAR" />
+    <result column="LOCKED" property="locked" jdbcType="BIT" />
+    <result column="VEHICLEDATE" property="vehicledate" jdbcType="TIMESTAMP" />
+    <result column="BTBOXCODE" property="btboxcode" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="TRUCKBU" property="truckbu" jdbcType="VARCHAR" />
+    <result column="TRUCKCARBU" property="truckcarbu" jdbcType="VARCHAR" />
+    <result column="HASGPS" property="hasgps" jdbcType="BIT" />
+    <result column="MAX_WEIGHT" property="maxWeight" jdbcType="DECIMAL" />
+    <result column="VEHICLE_TYPE" property="vehicleType" jdbcType="VARCHAR" />
+    <result column="CUSTOMER_ID" property="customerId" jdbcType="INTEGER" />
+    <result column="ACCT_ID" property="acctId" jdbcType="INTEGER" />
+    <result column="VIN" property="vin" jdbcType="VARCHAR" />
+    <result column="HSCODE" property="hscode" jdbcType="VARCHAR" />
+    <result column="ARTICULATED_NO" property="articulatedNo" jdbcType="VARCHAR" />
+    <result column="WEIGHT" property="weight" jdbcType="DECIMAL" />
+    <result column="DGPSW" property="dgpsw" jdbcType="VARCHAR" />
+    <result column="QUICKQP" property="quickqp" jdbcType="VARCHAR" />
+    <result column="PSWONOFF" property="pswonoff" jdbcType="VARCHAR" />
+    <result column="TRUCK_CUSTOMS_CODE" property="truckCustomsCode" jdbcType="VARCHAR" />
+    <result column="COMPANY_ACCOUNT_ID" property="companyAccountId" jdbcType="INTEGER" />
+    <result column="DISPLACEMENT" property="displacement" jdbcType="VARCHAR" />
+    <result column="CARGOVOLUME" property="cargovolume" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, TRUCKCODE, DRIVING_CODE, TRUCKTYPE, TYPEDESC, TRUCKMODELCODE, TRANSPORTTYPE,
+    ENGINECODE, OWNERS, TRUCKCODEII, COMPANYCODE, ICCARDNO, LENGTH, WIDTH, HEIGHT, BOXLENGTH,
+    BOXWIDTH, BOXHEIGHT, TRANSCODE, BRACKETCODE, BRACKETTYPE, BRACKETDATE, BTREGISTERCODE,
+    BTTAXCODE, LOCKED, VEHICLEDATE, BTBOXCODE, REMARK, TRUCKBU, TRUCKCARBU, HASGPS, MAX_WEIGHT,
+    VEHICLE_TYPE, CUSTOMER_ID, ACCT_ID, VIN, HSCODE, ARTICULATED_NO, WEIGHT, DGPSW, QUICKQP,
+    PSWONOFF, TRUCK_CUSTOMS_CODE, COMPANY_ACCOUNT_ID, DISPLACEMENT, CARGOVOLUME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from COM_VEHICLE_INFO
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from COM_VEHICLE_INFO
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.gistandard.transport.base.entity.bean.ComVehicleInfo" >
+    insert into COM_VEHICLE_INFO (ID, TRUCKCODE, DRIVING_CODE,
+      TRUCKTYPE, TYPEDESC, TRUCKMODELCODE,
+      TRANSPORTTYPE, ENGINECODE, OWNERS,
+      TRUCKCODEII, COMPANYCODE, ICCARDNO,
+      LENGTH, WIDTH, HEIGHT,
+      BOXLENGTH, BOXWIDTH, BOXHEIGHT,
+      TRANSCODE, BRACKETCODE, BRACKETTYPE,
+      BRACKETDATE, BTREGISTERCODE, BTTAXCODE,
+      LOCKED, VEHICLEDATE, BTBOXCODE,
+      REMARK, TRUCKBU, TRUCKCARBU,
+      HASGPS, MAX_WEIGHT, VEHICLE_TYPE,
+      CUSTOMER_ID, ACCT_ID, VIN,
+      HSCODE, ARTICULATED_NO, WEIGHT,
+      DGPSW, QUICKQP, PSWONOFF,
+      TRUCK_CUSTOMS_CODE, COMPANY_ACCOUNT_ID, DISPLACEMENT,
+      CARGOVOLUME)
+    values (#{id,jdbcType=INTEGER}, #{truckcode,jdbcType=VARCHAR}, #{drivingCode,jdbcType=VARCHAR},
+      #{trucktype,jdbcType=VARCHAR}, #{typedesc,jdbcType=VARCHAR}, #{truckmodelcode,jdbcType=VARCHAR},
+      #{transporttype,jdbcType=VARCHAR}, #{enginecode,jdbcType=VARCHAR}, #{owners,jdbcType=VARCHAR},
+      #{truckcodeii,jdbcType=VARCHAR}, #{companycode,jdbcType=VARCHAR}, #{iccardno,jdbcType=VARCHAR},
+      #{length,jdbcType=DECIMAL}, #{width,jdbcType=DECIMAL}, #{height,jdbcType=DECIMAL},
+      #{boxlength,jdbcType=DECIMAL}, #{boxwidth,jdbcType=DECIMAL}, #{boxheight,jdbcType=DECIMAL},
+      #{transcode,jdbcType=VARCHAR}, #{bracketcode,jdbcType=VARCHAR}, #{brackettype,jdbcType=VARCHAR},
+      #{bracketdate,jdbcType=TIMESTAMP}, #{btregistercode,jdbcType=VARCHAR}, #{bttaxcode,jdbcType=VARCHAR},
+      #{locked,jdbcType=BIT}, #{vehicledate,jdbcType=TIMESTAMP}, #{btboxcode,jdbcType=VARCHAR},
+      #{remark,jdbcType=VARCHAR}, #{truckbu,jdbcType=VARCHAR}, #{truckcarbu,jdbcType=VARCHAR},
+      #{hasgps,jdbcType=BIT}, #{maxWeight,jdbcType=DECIMAL}, #{vehicleType,jdbcType=VARCHAR},
+      #{customerId,jdbcType=INTEGER}, #{acctId,jdbcType=INTEGER}, #{vin,jdbcType=VARCHAR},
+      #{hscode,jdbcType=VARCHAR}, #{articulatedNo,jdbcType=VARCHAR}, #{weight,jdbcType=DECIMAL},
+      #{dgpsw,jdbcType=VARCHAR}, #{quickqp,jdbcType=VARCHAR}, #{pswonoff,jdbcType=VARCHAR},
+      #{truckCustomsCode,jdbcType=VARCHAR}, #{companyAccountId,jdbcType=INTEGER}, #{displacement,jdbcType=VARCHAR},
+      #{cargovolume,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.gistandard.transport.base.entity.bean.ComVehicleInfo">
+    insert into COM_VEHICLE_INFO
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="truckcode != null">
+        TRUCKCODE,
+      </if>
+      <if test="drivingCode != null">
+        DRIVING_CODE,
+      </if>
+      <if test="trucktype != null">
+        TRUCKTYPE,
+      </if>
+      <if test="typedesc != null">
+        TYPEDESC,
+      </if>
+      <if test="truckmodelcode != null">
+        TRUCKMODELCODE,
+      </if>
+      <if test="transporttype != null">
+        TRANSPORTTYPE,
+      </if>
+      <if test="enginecode != null">
+        ENGINECODE,
+      </if>
+      <if test="owners != null">
+        OWNERS,
+      </if>
+      <if test="truckcodeii != null">
+        TRUCKCODEII,
+      </if>
+      <if test="companycode != null">
+        COMPANYCODE,
+      </if>
+      <if test="iccardno != null">
+        ICCARDNO,
+      </if>
+      <if test="length != null">
+        LENGTH,
+      </if>
+      <if test="width != null">
+        WIDTH,
+      </if>
+      <if test="height != null">
+        HEIGHT,
+      </if>
+      <if test="boxlength != null">
+        BOXLENGTH,
+      </if>
+      <if test="boxwidth != null">
+        BOXWIDTH,
+      </if>
+      <if test="boxheight != null">
+        BOXHEIGHT,
+      </if>
+      <if test="transcode != null">
+        TRANSCODE,
+      </if>
+      <if test="bracketcode != null">
+        BRACKETCODE,
+      </if>
+      <if test="brackettype != null">
+        BRACKETTYPE,
+      </if>
+      <if test="bracketdate != null">
+        BRACKETDATE,
+      </if>
+      <if test="btregistercode != null">
+        BTREGISTERCODE,
+      </if>
+      <if test="bttaxcode != null">
+        BTTAXCODE,
+      </if>
+      <if test="locked != null">
+        LOCKED,
+      </if>
+      <if test="vehicledate != null">
+        VEHICLEDATE,
+      </if>
+      <if test="btboxcode != null">
+        BTBOXCODE,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="truckbu != null">
+        TRUCKBU,
+      </if>
+      <if test="truckcarbu != null">
+        TRUCKCARBU,
+      </if>
+      <if test="hasgps != null">
+        HASGPS,
+      </if>
+      <if test="maxWeight != null">
+        MAX_WEIGHT,
+      </if>
+      <if test="vehicleType != null">
+        VEHICLE_TYPE,
+      </if>
+      <if test="customerId != null">
+        CUSTOMER_ID,
+      </if>
+      <if test="acctId != null">
+        ACCT_ID,
+      </if>
+      <if test="vin != null">
+        VIN,
+      </if>
+      <if test="hscode != null">
+        HSCODE,
+      </if>
+      <if test="articulatedNo != null">
+        ARTICULATED_NO,
+      </if>
+      <if test="weight != null">
+        WEIGHT,
+      </if>
+      <if test="dgpsw != null">
+        DGPSW,
+      </if>
+      <if test="quickqp != null">
+        QUICKQP,
+      </if>
+      <if test="pswonoff != null">
+        PSWONOFF,
+      </if>
+      <if test="truckCustomsCode != null">
+        TRUCK_CUSTOMS_CODE,
+      </if>
+      <if test="companyAccountId != null">
+        COMPANY_ACCOUNT_ID,
+      </if>
+      <if test="displacement != null">
+        DISPLACEMENT,
+      </if>
+      <if test="cargovolume != null">
+        CARGOVOLUME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="truckcode != null">
+        #{truckcode,jdbcType=VARCHAR},
+      </if>
+      <if test="drivingCode != null">
+        #{drivingCode,jdbcType=VARCHAR},
+      </if>
+      <if test="trucktype != null">
+        #{trucktype,jdbcType=VARCHAR},
+      </if>
+      <if test="typedesc != null">
+        #{typedesc,jdbcType=VARCHAR},
+      </if>
+      <if test="truckmodelcode != null">
+        #{truckmodelcode,jdbcType=VARCHAR},
+      </if>
+      <if test="transporttype != null">
+        #{transporttype,jdbcType=VARCHAR},
+      </if>
+      <if test="enginecode != null">
+        #{enginecode,jdbcType=VARCHAR},
+      </if>
+      <if test="owners != null">
+        #{owners,jdbcType=VARCHAR},
+      </if>
+      <if test="truckcodeii != null">
+        #{truckcodeii,jdbcType=VARCHAR},
+      </if>
+      <if test="companycode != null">
+        #{companycode,jdbcType=VARCHAR},
+      </if>
+      <if test="iccardno != null">
+        #{iccardno,jdbcType=VARCHAR},
+      </if>
+      <if test="length != null">
+        #{length,jdbcType=DECIMAL},
+      </if>
+      <if test="width != null">
+        #{width,jdbcType=DECIMAL},
+      </if>
+      <if test="height != null">
+        #{height,jdbcType=DECIMAL},
+      </if>
+      <if test="boxlength != null">
+        #{boxlength,jdbcType=DECIMAL},
+      </if>
+      <if test="boxwidth != null">
+        #{boxwidth,jdbcType=DECIMAL},
+      </if>
+      <if test="boxheight != null">
+        #{boxheight,jdbcType=DECIMAL},
+      </if>
+      <if test="transcode != null">
+        #{transcode,jdbcType=VARCHAR},
+      </if>
+      <if test="bracketcode != null">
+        #{bracketcode,jdbcType=VARCHAR},
+      </if>
+      <if test="brackettype != null">
+        #{brackettype,jdbcType=VARCHAR},
+      </if>
+      <if test="bracketdate != null">
+        #{bracketdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="btregistercode != null">
+        #{btregistercode,jdbcType=VARCHAR},
+      </if>
+      <if test="bttaxcode != null">
+        #{bttaxcode,jdbcType=VARCHAR},
+      </if>
+      <if test="locked != null">
+        #{locked,jdbcType=BIT},
+      </if>
+      <if test="vehicledate != null">
+        #{vehicledate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="btboxcode != null">
+        #{btboxcode,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="truckbu != null">
+        #{truckbu,jdbcType=VARCHAR},
+      </if>
+      <if test="truckcarbu != null">
+        #{truckcarbu,jdbcType=VARCHAR},
+      </if>
+      <if test="hasgps != null">
+        #{hasgps,jdbcType=BIT},
+      </if>
+      <if test="maxWeight != null">
+        #{maxWeight,jdbcType=DECIMAL},
+      </if>
+      <if test="vehicleType != null">
+        #{vehicleType,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="acctId != null">
+        #{acctId,jdbcType=INTEGER},
+      </if>
+      <if test="vin != null">
+        #{vin,jdbcType=VARCHAR},
+      </if>
+      <if test="hscode != null">
+        #{hscode,jdbcType=VARCHAR},
+      </if>
+      <if test="articulatedNo != null">
+        #{articulatedNo,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null">
+        #{weight,jdbcType=DECIMAL},
+      </if>
+      <if test="dgpsw != null">
+        #{dgpsw,jdbcType=VARCHAR},
+      </if>
+      <if test="quickqp != null">
+        #{quickqp,jdbcType=VARCHAR},
+      </if>
+      <if test="pswonoff != null">
+        #{pswonoff,jdbcType=VARCHAR},
+      </if>
+      <if test="truckCustomsCode != null">
+        #{truckCustomsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAccountId != null">
+        #{companyAccountId,jdbcType=INTEGER},
+      </if>
+      <if test="displacement != null">
+        #{displacement,jdbcType=VARCHAR},
+      </if>
+      <if test="cargovolume != null">
+        #{cargovolume,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gistandard.transport.base.entity.bean.ComVehicleInfo">
+    update COM_VEHICLE_INFO
+    <set>
+      <if test="truckcode != null">
+        TRUCKCODE = #{truckcode,jdbcType=VARCHAR},
+      </if>
+      <if test="drivingCode != null">
+        DRIVING_CODE = #{drivingCode,jdbcType=VARCHAR},
+      </if>
+      <if test="trucktype != null">
+        TRUCKTYPE = #{trucktype,jdbcType=VARCHAR},
+      </if>
+      <if test="typedesc != null">
+        TYPEDESC = #{typedesc,jdbcType=VARCHAR},
+      </if>
+      <if test="truckmodelcode != null">
+        TRUCKMODELCODE = #{truckmodelcode,jdbcType=VARCHAR},
+      </if>
+      <if test="transporttype != null">
+        TRANSPORTTYPE = #{transporttype,jdbcType=VARCHAR},
+      </if>
+      <if test="enginecode != null">
+        ENGINECODE = #{enginecode,jdbcType=VARCHAR},
+      </if>
+      <if test="owners != null">
+        OWNERS = #{owners,jdbcType=VARCHAR},
+      </if>
+      <if test="truckcodeii != null">
+        TRUCKCODEII = #{truckcodeii,jdbcType=VARCHAR},
+      </if>
+      <if test="companycode != null">
+        COMPANYCODE = #{companycode,jdbcType=VARCHAR},
+      </if>
+      <if test="iccardno != null">
+        ICCARDNO = #{iccardno,jdbcType=VARCHAR},
+      </if>
+      <if test="length != null">
+        LENGTH = #{length,jdbcType=DECIMAL},
+      </if>
+      <if test="width != null">
+        WIDTH = #{width,jdbcType=DECIMAL},
+      </if>
+      <if test="height != null">
+        HEIGHT = #{height,jdbcType=DECIMAL},
+      </if>
+      <if test="boxlength != null">
+        BOXLENGTH = #{boxlength,jdbcType=DECIMAL},
+      </if>
+      <if test="boxwidth != null">
+        BOXWIDTH = #{boxwidth,jdbcType=DECIMAL},
+      </if>
+      <if test="boxheight != null">
+        BOXHEIGHT = #{boxheight,jdbcType=DECIMAL},
+      </if>
+      <if test="transcode != null">
+        TRANSCODE = #{transcode,jdbcType=VARCHAR},
+      </if>
+      <if test="bracketcode != null">
+        BRACKETCODE = #{bracketcode,jdbcType=VARCHAR},
+      </if>
+      <if test="brackettype != null">
+        BRACKETTYPE = #{brackettype,jdbcType=VARCHAR},
+      </if>
+      <if test="bracketdate != null">
+        BRACKETDATE = #{bracketdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="btregistercode != null">
+        BTREGISTERCODE = #{btregistercode,jdbcType=VARCHAR},
+      </if>
+      <if test="bttaxcode != null">
+        BTTAXCODE = #{bttaxcode,jdbcType=VARCHAR},
+      </if>
+      <if test="locked != null">
+        LOCKED = #{locked,jdbcType=BIT},
+      </if>
+      <if test="vehicledate != null">
+        VEHICLEDATE = #{vehicledate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="btboxcode != null">
+        BTBOXCODE = #{btboxcode,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="truckbu != null">
+        TRUCKBU = #{truckbu,jdbcType=VARCHAR},
+      </if>
+      <if test="truckcarbu != null">
+        TRUCKCARBU = #{truckcarbu,jdbcType=VARCHAR},
+      </if>
+      <if test="hasgps != null">
+        HASGPS = #{hasgps,jdbcType=BIT},
+      </if>
+      <if test="maxWeight != null">
+        MAX_WEIGHT = #{maxWeight,jdbcType=DECIMAL},
+      </if>
+      <if test="vehicleType != null">
+        VEHICLE_TYPE = #{vehicleType,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null">
+        CUSTOMER_ID = #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="acctId != null">
+        ACCT_ID = #{acctId,jdbcType=INTEGER},
+      </if>
+      <if test="vin != null">
+        VIN = #{vin,jdbcType=VARCHAR},
+      </if>
+      <if test="hscode != null">
+        HSCODE = #{hscode,jdbcType=VARCHAR},
+      </if>
+      <if test="articulatedNo != null">
+        ARTICULATED_NO = #{articulatedNo,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null">
+        WEIGHT = #{weight,jdbcType=DECIMAL},
+      </if>
+      <if test="dgpsw != null">
+        DGPSW = #{dgpsw,jdbcType=VARCHAR},
+      </if>
+      <if test="quickqp != null">
+        QUICKQP = #{quickqp,jdbcType=VARCHAR},
+      </if>
+      <if test="pswonoff != null">
+        PSWONOFF = #{pswonoff,jdbcType=VARCHAR},
+      </if>
+      <if test="truckCustomsCode != null">
+        TRUCK_CUSTOMS_CODE = #{truckCustomsCode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAccountId != null">
+        COMPANY_ACCOUNT_ID = #{companyAccountId,jdbcType=INTEGER},
+      </if>
+      <if test="displacement != null">
+        DISPLACEMENT = #{displacement,jdbcType=VARCHAR},
+      </if>
+      <if test="cargovolume != null">
+        CARGOVOLUME = #{cargovolume,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gistandard.transport.base.entity.bean.ComVehicleInfo">
+    update COM_VEHICLE_INFO
+    set TRUCKCODE = #{truckcode,jdbcType=VARCHAR},
+    DRIVING_CODE = #{drivingCode,jdbcType=VARCHAR},
+    TRUCKTYPE = #{trucktype,jdbcType=VARCHAR},
+    TYPEDESC = #{typedesc,jdbcType=VARCHAR},
+    TRUCKMODELCODE = #{truckmodelcode,jdbcType=VARCHAR},
+    TRANSPORTTYPE = #{transporttype,jdbcType=VARCHAR},
+    ENGINECODE = #{enginecode,jdbcType=VARCHAR},
+    OWNERS = #{owners,jdbcType=VARCHAR},
+    TRUCKCODEII = #{truckcodeii,jdbcType=VARCHAR},
+    COMPANYCODE = #{companycode,jdbcType=VARCHAR},
+    ICCARDNO = #{iccardno,jdbcType=VARCHAR},
+    LENGTH = #{length,jdbcType=DECIMAL},
+    WIDTH = #{width,jdbcType=DECIMAL},
+    HEIGHT = #{height,jdbcType=DECIMAL},
+    BOXLENGTH = #{boxlength,jdbcType=DECIMAL},
+    BOXWIDTH = #{boxwidth,jdbcType=DECIMAL},
+    BOXHEIGHT = #{boxheight,jdbcType=DECIMAL},
+    TRANSCODE = #{transcode,jdbcType=VARCHAR},
+    BRACKETCODE = #{bracketcode,jdbcType=VARCHAR},
+    BRACKETTYPE = #{brackettype,jdbcType=VARCHAR},
+    BRACKETDATE = #{bracketdate,jdbcType=TIMESTAMP},
+    BTREGISTERCODE = #{btregistercode,jdbcType=VARCHAR},
+    BTTAXCODE = #{bttaxcode,jdbcType=VARCHAR},
+    LOCKED = #{locked,jdbcType=BIT},
+    VEHICLEDATE = #{vehicledate,jdbcType=TIMESTAMP},
+    BTBOXCODE = #{btboxcode,jdbcType=VARCHAR},
+    REMARK = #{remark,jdbcType=VARCHAR},
+    TRUCKBU = #{truckbu,jdbcType=VARCHAR},
+    TRUCKCARBU = #{truckcarbu,jdbcType=VARCHAR},
+    HASGPS = #{hasgps,jdbcType=BIT},
+    MAX_WEIGHT = #{maxWeight,jdbcType=DECIMAL},
+    VEHICLE_TYPE = #{vehicleType,jdbcType=VARCHAR},
+    CUSTOMER_ID = #{customerId,jdbcType=INTEGER},
+    ACCT_ID = #{acctId,jdbcType=INTEGER},
+    VIN = #{vin,jdbcType=VARCHAR},
+    HSCODE = #{hscode,jdbcType=VARCHAR},
+    ARTICULATED_NO = #{articulatedNo,jdbcType=VARCHAR},
+    WEIGHT = #{weight,jdbcType=DECIMAL},
+    DGPSW = #{dgpsw,jdbcType=VARCHAR},
+    QUICKQP = #{quickqp,jdbcType=VARCHAR},
+    PSWONOFF = #{pswonoff,jdbcType=VARCHAR},
+    TRUCK_CUSTOMS_CODE = #{truckCustomsCode,jdbcType=VARCHAR},
+    COMPANY_ACCOUNT_ID = #{companyAccountId,jdbcType=INTEGER},
+    DISPLACEMENT = #{displacement,jdbcType=VARCHAR},
+    CARGOVOLUME = #{cargovolume,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

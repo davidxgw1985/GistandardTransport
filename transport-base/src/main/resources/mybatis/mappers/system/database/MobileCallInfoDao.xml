@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.MobileCallInfoDao" >
+  <resultMap id="BaseResultMap" type="com.gistandard.transport.base.entity.bean.MobileCallInfo" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="CREATE_USER_ID" property="createUserId" jdbcType="INTEGER" />
+    <result column="CREATE_USER" property="createUser" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="CREATE_TEL" property="createTel" jdbcType="VARCHAR" />
+    <result column="ANSWER_USER_ID" property="answerUserId" jdbcType="INTEGER" />
+    <result column="ANSWER_USER" property="answerUser" jdbcType="VARCHAR" />
+    <result column="ANSWER_TEL" property="answerTel" jdbcType="VARCHAR" />
+    <result column="CALL_FROM" property="callFrom" jdbcType="INTEGER" />
+    <result column="PHONE_TYPE" property="phoneType" jdbcType="INTEGER" />
+    <result column="TALK_TIME" property="talkTime" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, CREATE_USER_ID, CREATE_USER, CREATE_DATE, CREATE_TEL, ANSWER_USER_ID, ANSWER_USER, 
+    ANSWER_TEL, CALL_FROM, PHONE_TYPE, TALK_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from MOBILE_CALL_INFO
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from MOBILE_CALL_INFO
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gistandard.transport.base.entity.bean.MobileCallInfo" >
+    insert into MOBILE_CALL_INFO (ID, CREATE_USER_ID, CREATE_USER, 
+      CREATE_DATE, CREATE_TEL, ANSWER_USER_ID, 
+      ANSWER_USER, ANSWER_TEL, CALL_FROM, 
+      PHONE_TYPE, TALK_TIME)
+    values (#{id,jdbcType=INTEGER}, #{createUserId,jdbcType=INTEGER}, #{createUser,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{createTel,jdbcType=VARCHAR}, #{answerUserId,jdbcType=INTEGER}, 
+      #{answerUser,jdbcType=VARCHAR}, #{answerTel,jdbcType=VARCHAR}, #{callFrom,jdbcType=INTEGER}, 
+      #{phoneType,jdbcType=INTEGER}, #{talkTime,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gistandard.transport.base.entity.bean.MobileCallInfo" >
+    insert into MOBILE_CALL_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="createUserId != null" >
+        CREATE_USER_ID,
+      </if>
+      <if test="createUser != null" >
+        CREATE_USER,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="createTel != null" >
+        CREATE_TEL,
+      </if>
+      <if test="answerUserId != null" >
+        ANSWER_USER_ID,
+      </if>
+      <if test="answerUser != null" >
+        ANSWER_USER,
+      </if>
+      <if test="answerTel != null" >
+        ANSWER_TEL,
+      </if>
+      <if test="callFrom != null" >
+        CALL_FROM,
+      </if>
+      <if test="phoneType != null" >
+        PHONE_TYPE,
+      </if>
+      <if test="talkTime != null" >
+        TALK_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTel != null" >
+        #{createTel,jdbcType=VARCHAR},
+      </if>
+      <if test="answerUserId != null" >
+        #{answerUserId,jdbcType=INTEGER},
+      </if>
+      <if test="answerUser != null" >
+        #{answerUser,jdbcType=VARCHAR},
+      </if>
+      <if test="answerTel != null" >
+        #{answerTel,jdbcType=VARCHAR},
+      </if>
+      <if test="callFrom != null" >
+        #{callFrom,jdbcType=INTEGER},
+      </if>
+      <if test="phoneType != null" >
+        #{phoneType,jdbcType=INTEGER},
+      </if>
+      <if test="talkTime != null" >
+        #{talkTime,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gistandard.transport.base.entity.bean.MobileCallInfo" >
+    update MOBILE_CALL_INFO
+    <set >
+      <if test="createUserId != null" >
+        CREATE_USER_ID = #{createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null" >
+        CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTel != null" >
+        CREATE_TEL = #{createTel,jdbcType=VARCHAR},
+      </if>
+      <if test="answerUserId != null" >
+        ANSWER_USER_ID = #{answerUserId,jdbcType=INTEGER},
+      </if>
+      <if test="answerUser != null" >
+        ANSWER_USER = #{answerUser,jdbcType=VARCHAR},
+      </if>
+      <if test="answerTel != null" >
+        ANSWER_TEL = #{answerTel,jdbcType=VARCHAR},
+      </if>
+      <if test="callFrom != null" >
+        CALL_FROM = #{callFrom,jdbcType=INTEGER},
+      </if>
+      <if test="phoneType != null" >
+        PHONE_TYPE = #{phoneType,jdbcType=INTEGER},
+      </if>
+      <if test="talkTime != null" >
+        TALK_TIME = #{talkTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gistandard.transport.base.entity.bean.MobileCallInfo" >
+    update MOBILE_CALL_INFO
+    set CREATE_USER_ID = #{createUserId,jdbcType=INTEGER},
+      CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      CREATE_TEL = #{createTel,jdbcType=VARCHAR},
+      ANSWER_USER_ID = #{answerUserId,jdbcType=INTEGER},
+      ANSWER_USER = #{answerUser,jdbcType=VARCHAR},
+      ANSWER_TEL = #{answerTel,jdbcType=VARCHAR},
+      CALL_FROM = #{callFrom,jdbcType=INTEGER},
+      PHONE_TYPE = #{phoneType,jdbcType=INTEGER},
+      TALK_TIME = #{talkTime,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

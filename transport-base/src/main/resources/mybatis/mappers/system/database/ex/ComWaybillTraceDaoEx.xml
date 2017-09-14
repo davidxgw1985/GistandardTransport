@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ex.ComWaybillTraceDaoEx">
+    <resultMap id="ComWaybillTraceMap" type="com.gistandard.transport.base.bean.CustomerOrderTaskBean" >
+        <id column="ID" property="id" jdbcType="INTEGER" />
+        <result column="WAYBILL_NO" property="waybillNo" jdbcType="VARCHAR" />
+        <result column="REAL_NAME" property="realName" jdbcType="VARCHAR" />
+        <result column="STA_DATE" property="staDate" jdbcType="TIMESTAMP" />
+        <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+        <result column="ACCT_USERNAME" property="acctUsername" jdbcType="VARCHAR" />
+        <result column="BUSI_BOOK_NO" property="busiBookNo" jdbcType="VARCHAR" />
+        <result column="EXEC_CODE" property="execCode" jdbcType="INTEGER" />
+        <result column="GRADE" property="grade" jdbcType="INTEGER" />
+        <result column="SEND_SMS_STATUS" property="sendSmsStatus" jdbcType="INTEGER" />
+        <result column="RECEIVER_FOLLOW_STATUS" property="receiverFollowStatus" jdbcType="INTEGER" />
+        <result column="SENDER_FOLLOW_STATUS" property="senderFollowStatus" jdbcType="INTEGER" />
+        <result column="BOOKING_FORM_ID" property="bookingFormid" jdbcType="INTEGER" />
+        <result column="BOOKING_DATE" property="bookingDate" jdbcType="TIMESTAMP" />
+        <result column="BUSI_CTRL" property="busiCtrl" jdbcType="INTEGER" />
+        <result column="SMS_NOTY" property="smsNoty" jdbcType="INTEGER" />
+        <result column="RECEIVER_FOLLOW" property="receiverFollow" jdbcType="INTEGER" />
+        <result column="SENDER_FOLLOW" property="senderFollow" jdbcType="INTEGER" />
+    </resultMap>
+    <select id="queryWaybillListByCondition" resultMap="com.gistandard.transport.base.entity.dao.ComWaybillTraceDao.BaseResultMap" parameterType="com.gistandard.transport.base.entity.bean.ComWaybillTrace" >
+        select
+        <include refid="com.gistandard.transport.base.entity.dao.ComWaybillTraceDao.Base_Column_List" />
+        from COM_WAYBILL_TRACE
+        where 1=1
+        <if test="acctUsername != null" >
+            AND ACCT_USERNAME = #{acctUsername}
+        </if>
+        <if test="execCode != null" >
+            AND EXEC_CODE = #{execCode,jdbcType=INTEGER}
+        </if>
+        <if test="hubNo != null" >
+            AND HUB_NO = #{hubNo,jdbcType=VARCHAR}
+        </if>
+    </select>
+    <select id="queryOrderWaybill" parameterType="java.lang.String" resultMap="ComWaybillTraceMap">
+        SELECT
+        trace.*, bf.ID as BOOKING_FORM_ID ,bf.BOOKING_DATE,bf.BUSI_CTRL ,bf.SMS_NOTY,bf.RECEIVER_FOLLOW,bf.SENDER_FOLLOW
+        FROM
+        COM_WAYBILL_TRACE trace left JOIN  BOOKING_FORM bf on trace.BUSI_BOOK_NO = bf.BUSI_BOOK_NO
+        WHERE bf.BUSI_CTRL != -9 AND bf.ORDER_TYPE in (1,2)
+        and (trace.SEND_SMS_STATUS is null or trace.SEND_SMS_STATUS >=0  or trace.RECEIVER_FOLLOW_STATUS is null  or trace.RECEIVER_FOLLOW_STATUS>=0 or trace.SENDER_FOLLOW_STATUS is NULL or trace.SENDER_FOLLOW_STATUS >=0)
+        order by trace.ID ASC
+    </select>
+    <select id="queryListByBusiBookNo" parameterType="java.lang.String" resultMap="com.gistandard.transport.base.entity.dao.ComWaybillTraceDao.BaseResultMap">
+        SELECT
+        <include refid="com.gistandard.transport.base.entity.dao.ComWaybillTraceDao.Base_Column_List"/>
+        FROM
+        COM_WAYBILL_TRACE
+        WHERE
+        BUSI_BOOK_NO=#{busiBookNo}
+        order by ID DESC
+    </select>
+    <insert id="batchInsert" parameterType="java.util.List">
+      insert into COM_WAYBILL_TRACE (ID, WAYBILL_NO, START_LOCUS, 
+      DESTN_LOCUS, STA_CODE, REAL_NAME, 
+      STA_DATE, REMARK, ACCT_USERNAME, 
+      BUSI_BOOK_NO, EXEC_CODE, GRADE, 
+      HUB_NO, SEND_SMS_STATUS, RECEIVER_FOLLOW_STATUS, 
+      SENDER_FOLLOW_STATUS, STA_STATUS, ROLE_ID
+      ) VALUES 
+      <foreach collection="list" item="item" index="index" separator=",">
+          (#{item.id,jdbcType=INTEGER}, #{item.waybillNo,jdbcType=VARCHAR}, #{item.startLocus,jdbcType=VARCHAR},
+          #{item.destnLocus,jdbcType=VARCHAR}, #{item.staCode,jdbcType=VARCHAR}, #{item.realName,jdbcType=VARCHAR},
+          #{item.staDate,jdbcType=TIMESTAMP}, #{item.remark,jdbcType=VARCHAR}, #{item.acctUsername,jdbcType=VARCHAR},
+          #{item.busiBookNo,jdbcType=VARCHAR}, #{item.execCode,jdbcType=INTEGER}, #{item.grade,jdbcType=INTEGER},
+          #{item.hubNo,jdbcType=VARCHAR}, #{item.sendSmsStatus,jdbcType=INTEGER}, #{item.receiverFollowStatus,jdbcType=INTEGER},
+          #{item.senderFollowStatus,jdbcType=INTEGER}, #{item.staStatus,jdbcType=INTEGER}, #{item.roleId,jdbcType=INTEGER}
+          )
+      </foreach>
+    </insert>
+</mapper>

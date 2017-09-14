@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.FeedbackInfoDao" >
+  <resultMap id="BaseResultMap" type="com.gistandard.transport.base.entity.bean.FeedbackInfo" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="FEEDBACK_CONTENT" property="feedbackContent" jdbcType="VARCHAR" />
+    <result column="FEEDBACK_SYSTEM" property="feedbackSystem" jdbcType="VARCHAR" />
+    <result column="FEEDBACK_DATE" property="feedbackDate" jdbcType="TIMESTAMP" />
+    <result column="FEEDBACK_USER" property="feedbackUser" jdbcType="INTEGER" />
+    <result column="FEEDBACK_STATUS" property="feedbackStatus" jdbcType="INTEGER" />
+    <result column="PROCESS_USER" property="processUser" jdbcType="INTEGER" />
+    <result column="PROCESS_DATE" property="processDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, FEEDBACK_CONTENT, FEEDBACK_SYSTEM, FEEDBACK_DATE, FEEDBACK_USER, FEEDBACK_STATUS, 
+    PROCESS_USER, PROCESS_DATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from FEEDBACK_INFO
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from FEEDBACK_INFO
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gistandard.transport.base.entity.bean.FeedbackInfo" >
+    insert into FEEDBACK_INFO (ID, FEEDBACK_CONTENT, FEEDBACK_SYSTEM, 
+      FEEDBACK_DATE, FEEDBACK_USER, FEEDBACK_STATUS, 
+      PROCESS_USER, PROCESS_DATE)
+    values (#{id,jdbcType=INTEGER}, #{feedbackContent,jdbcType=VARCHAR}, #{feedbackSystem,jdbcType=VARCHAR}, 
+      #{feedbackDate,jdbcType=TIMESTAMP}, #{feedbackUser,jdbcType=INTEGER}, #{feedbackStatus,jdbcType=INTEGER}, 
+      #{processUser,jdbcType=INTEGER}, #{processDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gistandard.transport.base.entity.bean.FeedbackInfo" >
+    insert into FEEDBACK_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="feedbackContent != null" >
+        FEEDBACK_CONTENT,
+      </if>
+      <if test="feedbackSystem != null" >
+        FEEDBACK_SYSTEM,
+      </if>
+      <if test="feedbackDate != null" >
+        FEEDBACK_DATE,
+      </if>
+      <if test="feedbackUser != null" >
+        FEEDBACK_USER,
+      </if>
+      <if test="feedbackStatus != null" >
+        FEEDBACK_STATUS,
+      </if>
+      <if test="processUser != null" >
+        PROCESS_USER,
+      </if>
+      <if test="processDate != null" >
+        PROCESS_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="feedbackContent != null" >
+        #{feedbackContent,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackSystem != null" >
+        #{feedbackSystem,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackDate != null" >
+        #{feedbackDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="feedbackUser != null" >
+        #{feedbackUser,jdbcType=INTEGER},
+      </if>
+      <if test="feedbackStatus != null" >
+        #{feedbackStatus,jdbcType=INTEGER},
+      </if>
+      <if test="processUser != null" >
+        #{processUser,jdbcType=INTEGER},
+      </if>
+      <if test="processDate != null" >
+        #{processDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gistandard.transport.base.entity.bean.FeedbackInfo" >
+    update FEEDBACK_INFO
+    <set >
+      <if test="feedbackContent != null" >
+        FEEDBACK_CONTENT = #{feedbackContent,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackSystem != null" >
+        FEEDBACK_SYSTEM = #{feedbackSystem,jdbcType=VARCHAR},
+      </if>
+      <if test="feedbackDate != null" >
+        FEEDBACK_DATE = #{feedbackDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="feedbackUser != null" >
+        FEEDBACK_USER = #{feedbackUser,jdbcType=INTEGER},
+      </if>
+      <if test="feedbackStatus != null" >
+        FEEDBACK_STATUS = #{feedbackStatus,jdbcType=INTEGER},
+      </if>
+      <if test="processUser != null" >
+        PROCESS_USER = #{processUser,jdbcType=INTEGER},
+      </if>
+      <if test="processDate != null" >
+        PROCESS_DATE = #{processDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gistandard.transport.base.entity.bean.FeedbackInfo" >
+    update FEEDBACK_INFO
+    set FEEDBACK_CONTENT = #{feedbackContent,jdbcType=VARCHAR},
+      FEEDBACK_SYSTEM = #{feedbackSystem,jdbcType=VARCHAR},
+      FEEDBACK_DATE = #{feedbackDate,jdbcType=TIMESTAMP},
+      FEEDBACK_USER = #{feedbackUser,jdbcType=INTEGER},
+      FEEDBACK_STATUS = #{feedbackStatus,jdbcType=INTEGER},
+      PROCESS_USER = #{processUser,jdbcType=INTEGER},
+      PROCESS_DATE = #{processDate,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd"
+        >
+    <context:property-placeholder location="classpath:/spring/spring.properties"/>
+
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <!-- 这里支持多种寻址方式：classpath和file -->
+                <value>classpath:/spring/spring.properties</value>
+                <!-- 推荐使用file的方式引入，这样可以将配置和代码分离 -->
+                <!--<value>file:/opt/demo/config/demo-mq.properties</value>-->
+            </list>
+        </property>
+    </bean>
+
+    <util:properties id="spring" location="classpath:/spring/spring.properties"/>
+    <util:properties id="operateLog" location="classpath:/spring/logMessage.properties"/>
+
+    <import resource="spring-datasource.xml"/>
+    <import resource="spring-mongo.xml"/>
+    <import resource="spring-quartz.xml"/>
+    <import resource="spring-cache.xml"/>
+    <import resource="spring-dubbo-consumer.xml"/>
+    <import resource="spring-dubbo-provide.xml"/>
+    <import resource="spring-jms-producter.xml"/>
+    <!--<import resource="spring-jms-consumer.xml"/>-->
+    <import resource="spring-task.xml"/>
+    <!--<import resource="spring-cxf.xml"/>-->
+
+    <!--初始化全局缓存-->
+    <bean class="com.gistandard.transport.system.init.TransportApplicationContextAware" />
+
+    <context:component-scan base-package="com.gistandard.transport.*"/>
+
+    <!--增加注解式校验-->
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>
+        <!--不设置则默认为classpath下的 ValidationMessages.properties -->
+        <property name="validationMessageSource" ref="messageSource"/>
+    </bean>
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean"/>
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basenames">
+            <list>
+                <value>classpath:messages/messages</value>
+            </list>
+        </property>
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="fallbackToSystemLocale" value="true"/>
+        <property name="fileEncodings" value="utf-8"/>
+        <!--默认为false，这样当Spring在ResourceBundle中找不到messageKey的话，就抛出NoSuchMessageException，   把它设置为True，则找不到不会抛出异常，而是使用messageKey作为返回值-->
+        <property name="useCodeAsDefaultMessage" value="false"/>
+        <!-- -1 表示不用刷新 -->
+        <property name="cacheSeconds" value="-1"/>
+    </bean>
+
+    <!-- 配置视图解析器 -->
+    <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/pages/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>-->
+
+    <!--org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer-->
+    <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="templateLoaderPath" value="/WEB-INF/pages/"/>
+        <property name="freemarkerSettings">
+            <props>
+                <!--template_update_delay 用来指定更新模版文件的间隔时间, 0 表示每次都重新加载，否则为多少毫秒钟检测一下模版是否更改 -->
+                <!--开发环境定义为 0 方便调试，生产环境根据实际需求修改-->
+                <prop key="template_update_delay">0</prop>
+                <prop key="default_encoding">UTF-8</prop>
+                <prop key="number_format">0.##########</prop>
+                <prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>
+                <prop key="classic_compatible">true</prop>
+                <prop key="template_exception_handler">ignore</prop>
+            </props>
+        </property>
+        <property name="freemarkerVariables">
+            <map>
+                <entry key="xml_escape" value-ref="fmXmlEscape"/>
+                <entry key="reqUrl" value="${reqUrl}" />
+                <entry key="staticUrl" value="${staticUrl}" />
+            </map>
+        </property>
+    </bean>
+    <bean id="fmXmlEscape" class="freemarker.template.utility.XmlEscape"/>
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView"/>
+        <property name="contentType" value="text/html; charset=utf-8"/>
+        <property name="cache" value="true"/>
+        <property name="suffix" value=".ftl"/>
+        <property name="order" value="1"/>
+    </bean>
+
+    <!--excel 导出视图配置 start-->
+    <!-- Bean解析器,级别高于默认解析器,寻找bean对象进行二次处理 -->
+    <bean id="beanNameViewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver" >
+        <property name="order" value="0" />
+    </bean>
+    <!-- Excel 处理 根据用户输入进行对象处理 -->
+    <bean id="jeecgExcelView" class="org.jeecgframework.poi.excel.view.JeecgSingleExcelView" />
+    <bean id="jeecgTemplateExcelView" class="org.jeecgframework.poi.excel.view.JeecgTemplateExcelView" />
+    <bean id="jeecgTemplateWordView" class="org.jeecgframework.poi.excel.view.JeecgTemplateWordView" />
+    <bean id="jeecgMapExcelView" class="org.jeecgframework.poi.excel.view.JeecgMapExcelView" />
+    <!--excel 导出视图配置 end-->
+
+    <!--文件上传-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="utf-8" />
+        <property name="maxUploadSize" value="10485760000" />
+        <property name="maxInMemorySize" value="40960" />
+    </bean>
+
+    <bean id="requestMappingHandlerMapping" class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />
+    <!-- 国际化操作 拦截器  -->
+    <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />
+    <!-- 基于Session的国际化配置 -->
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />
+
+</beans>

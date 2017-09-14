@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.app.module.fleet.dao.FleetDao">
+
+    <!--查询车队列表 -->
+    <resultMap id="FleetListResultMap" type="com.gistandard.transport.app.module.fleet.bean.QueryFleetListBean" >
+        <id column="FLEET_ACCOUNT_ID" property="fleetAccountId" jdbcType="INTEGER" />
+        <result column="FLEET_ACCOUNT" property="fleetAccount" jdbcType="VARCHAR" />
+        <result column="FLEET_NAME" property="fleetName" jdbcType="VARCHAR" />
+        <result column="USER_IMG" property="headImgUrl" jdbcType="VARCHAR" />
+        <result column="ATT_FLAG" property="attFlag" jdbcType="INTEGER" />
+    </resultMap>
+    <select id="queryFleetList" resultMap="FleetListResultMap" parameterType="com.gistandard.transport.app.module.fleet.bean.QueryFleetListReq" >
+        select
+        CA.ID as FLEET_ACCOUNT_ID,CA.ACCT_USERNAME as FLEET_ACCOUNT,CA.REAL_NAME as FLEET_NAME,CA.USER_IMG,0 as ATT_FLAG
+        FROM COM_ACCOUNT CA
+        LEFT JOIN COM_ACCOUNT_ROLE_REL CARL ON CA.ID = CARL.ACCOUNT_ID
+        WHERE CARL.ROLE_ID = 4
+        AND CA.ACCT_STATUS = 2
+        <if test="fleetName != null">
+            and CA.REAL_NAME LIKE CONCAT('%',#{fleetName},'%')
+        </if>
+    </select>
+
+</mapper>

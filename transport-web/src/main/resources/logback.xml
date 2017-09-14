@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="true">
+    <!--console 控制台调试日志  -->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder charset="UTF-8">
+            <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{40} %line %method - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="transport-all" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>./logs/transport/transport-all.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>./logs/transport/transport-all.%d{yyyy-MM-dd}.log.zip</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{40} %line %method - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="transport-info" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>./logs/transport/transport-info.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>./logs/transport/transport-info.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder charset="UTF-8">
+            <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{40} %line %method - %msg%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <appender name="transport-warn" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>./logs/transport/transport-warn.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>./logs/transport/transport-warn.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder charset="UTF-8">
+            <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{40} %line %method - %msg%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>WARN</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+    <appender name="transport-error" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>./logs/transport/transport-error.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>./logs/transport/transport-error.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder charset="UTF-8">
+            <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{40} %line %method - %msg%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <!-- 所有包的日志 -->
+    <logger name="com.gistandard.transport" level="INFO"/>
+    <!--log4jdbc:连SQL带执行时间打印出来 -->
+    <logger name="jdbc.sqlonly" level="WARN" />
+    <logger name="jdbc.sqltiming" level="WARN"/>
+    <logger name="jdbc.resultsettable" level="INFO"/>
+    <logger name="jdbc.resultset" level="WARN"/>
+    <logger name="jdbc.connection" level="WARN"/>
+    <logger name="jdbc.audit" level="WARN"/>
+    <root level="INFO">
+        <appender-ref ref="console" />
+        <appender-ref ref="transport-all" />
+        <appender-ref ref="transport-info" />
+        <appender-ref ref="transport-warn" />
+        <appender-ref ref="transport-error" />
+    </root>
+</configuration>

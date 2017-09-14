@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.SmsVerificationCodeDao" >
+  <resultMap id="BaseResultMap" type="com.gistandard.transport.base.entity.bean.SmsVerificationCode" >
+    <id column="TOKEN_ID" property="tokenId" jdbcType="VARCHAR" />
+    <result column="CODE" property="code" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="CREATE_USER" property="createUser" jdbcType="INTEGER" />
+    <result column="SYSTEM" property="system" jdbcType="VARCHAR" />
+    <result column="MODEL" property="model" jdbcType="INTEGER" />
+    <result column="RECEIVE_NO" property="receiveNo" jdbcType="VARCHAR" />
+    <result column="VALID_DATE" property="validDate" jdbcType="TIMESTAMP" />
+    <result column="BUSI_BOOK_NO" property="busiBookNo" jdbcType="VARCHAR" />
+    <result column="DELIVER_NAME" property="deliverName" jdbcType="VARCHAR" />
+    <result column="DELIVER_TEL" property="deliverTel" jdbcType="VARCHAR" />
+    <result column="DELIVER_O2ID" property="deliverO2id" jdbcType="VARCHAR" />
+    <result column="SMS_CONTENT" property="smsContent" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    TOKEN_ID, CODE, CREATE_DATE, CREATE_USER, SYSTEM, MODEL, RECEIVE_NO, VALID_DATE,
+    BUSI_BOOK_NO, DELIVER_NAME, DELIVER_TEL, DELIVER_O2ID, SMS_CONTENT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from SMS_VERIFICATION_CODE
+    where TOKEN_ID = #{tokenId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from SMS_VERIFICATION_CODE
+    where TOKEN_ID = #{tokenId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gistandard.transport.base.entity.bean.SmsVerificationCode" >
+    insert into SMS_VERIFICATION_CODE (TOKEN_ID, CODE, CREATE_DATE,
+    CREATE_USER, SYSTEM, MODEL,
+    RECEIVE_NO, VALID_DATE, BUSI_BOOK_NO,
+    DELIVER_NAME, DELIVER_TEL, DELIVER_O2ID,
+    SMS_CONTENT)
+    values (#{tokenId,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP},
+    #{createUser,jdbcType=INTEGER}, #{system,jdbcType=VARCHAR}, #{model,jdbcType=INTEGER},
+    #{receiveNo,jdbcType=VARCHAR}, #{validDate,jdbcType=TIMESTAMP}, #{busiBookNo,jdbcType=VARCHAR},
+    #{deliverName,jdbcType=VARCHAR}, #{deliverTel,jdbcType=VARCHAR}, #{deliverO2id,jdbcType=VARCHAR},
+    #{smsContent,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gistandard.transport.base.entity.bean.SmsVerificationCode" >
+    insert into SMS_VERIFICATION_CODE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tokenId != null" >
+        TOKEN_ID,
+      </if>
+      <if test="code != null" >
+        CODE,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="createUser != null" >
+        CREATE_USER,
+      </if>
+      <if test="system != null" >
+        SYSTEM,
+      </if>
+      <if test="model != null" >
+        MODEL,
+      </if>
+      <if test="receiveNo != null" >
+        RECEIVE_NO,
+      </if>
+      <if test="validDate != null" >
+        VALID_DATE,
+      </if>
+      <if test="busiBookNo != null" >
+        BUSI_BOOK_NO,
+      </if>
+      <if test="deliverName != null" >
+        DELIVER_NAME,
+      </if>
+      <if test="deliverTel != null" >
+        DELIVER_TEL,
+      </if>
+      <if test="deliverO2id != null" >
+        DELIVER_O2ID,
+      </if>
+      <if test="smsContent != null" >
+        SMS_CONTENT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tokenId != null" >
+        #{tokenId,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=INTEGER},
+      </if>
+      <if test="system != null" >
+        #{system,jdbcType=VARCHAR},
+      </if>
+      <if test="model != null" >
+        #{model,jdbcType=INTEGER},
+      </if>
+      <if test="receiveNo != null" >
+        #{receiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="validDate != null" >
+        #{validDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="busiBookNo != null" >
+        #{busiBookNo,jdbcType=VARCHAR},
+      </if>
+      <if test="deliverName != null" >
+        #{deliverName,jdbcType=VARCHAR},
+      </if>
+      <if test="deliverTel != null" >
+        #{deliverTel,jdbcType=VARCHAR},
+      </if>
+      <if test="deliverO2id != null" >
+        #{deliverO2id,jdbcType=VARCHAR},
+      </if>
+      <if test="smsContent != null" >
+        #{smsContent,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gistandard.transport.base.entity.bean.SmsVerificationCode" >
+    update SMS_VERIFICATION_CODE
+    <set >
+      <if test="code != null" >
+        CODE = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null" >
+        CREATE_USER = #{createUser,jdbcType=INTEGER},
+      </if>
+      <if test="system != null" >
+        SYSTEM = #{system,jdbcType=VARCHAR},
+      </if>
+      <if test="model != null" >
+        MODEL = #{model,jdbcType=INTEGER},
+      </if>
+      <if test="receiveNo != null" >
+        RECEIVE_NO = #{receiveNo,jdbcType=VARCHAR},
+      </if>
+      <if test="validDate != null" >
+        VALID_DATE = #{validDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="busiBookNo != null" >
+        BUSI_BOOK_NO = #{busiBookNo,jdbcType=VARCHAR},
+      </if>
+      <if test="deliverName != null" >
+        DELIVER_NAME = #{deliverName,jdbcType=VARCHAR},
+      </if>
+      <if test="deliverTel != null" >
+        DELIVER_TEL = #{deliverTel,jdbcType=VARCHAR},
+      </if>
+      <if test="deliverO2id != null" >
+        DELIVER_O2ID = #{deliverO2id,jdbcType=VARCHAR},
+      </if>
+      <if test="smsContent != null" >
+        SMS_CONTENT = #{smsContent,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where TOKEN_ID = #{tokenId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gistandard.transport.base.entity.bean.SmsVerificationCode" >
+    update SMS_VERIFICATION_CODE
+    set CODE = #{code,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      CREATE_USER = #{createUser,jdbcType=INTEGER},
+      SYSTEM = #{system,jdbcType=VARCHAR},
+      MODEL = #{model,jdbcType=INTEGER},
+      RECEIVE_NO = #{receiveNo,jdbcType=VARCHAR},
+      VALID_DATE = #{validDate,jdbcType=TIMESTAMP},
+      BUSI_BOOK_NO = #{busiBookNo,jdbcType=VARCHAR},
+      DELIVER_NAME = #{deliverName,jdbcType=VARCHAR},
+      DELIVER_TEL = #{deliverTel,jdbcType=VARCHAR},
+      DELIVER_O2ID = #{deliverO2id,jdbcType=VARCHAR},
+      SMS_CONTENT = #{smsContent,jdbcType=VARCHAR}
+    where TOKEN_ID = #{tokenId,jdbcType=VARCHAR}
+  </update>
+</mapper>

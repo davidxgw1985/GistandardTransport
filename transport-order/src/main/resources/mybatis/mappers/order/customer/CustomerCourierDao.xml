@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.system.common.courier.dao.CourierDao" >
+  <resultMap id="BaseResultMap" type="com.gistandard.transport.system.common.courier.bean.Courier">
+    <result column="COURIER_ID" property="id" jdbcType="INTEGER" />
+    <result column="ACCOUNT_ID" property="accountId" jdbcType="INTEGER" />
+    <result column="REAL_NAME" property="realname" jdbcType="VARCHAR" />
+    <result column="PROVINCE" property="provinceCode" jdbcType="VARCHAR" />
+    <result column="CITY" property="cityCode" jdbcType="VARCHAR" />
+    <result column="COUNTY" property="countyCode" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="DETAIL_ADD" property="detailAdd" jdbcType="VARCHAR" />
+    <result column="AVATAR" property="avatar" jdbcType="VARCHAR" />
+    <result column="ACCT_USERNAME" property="acctUsername" jdbcType="VARCHAR" />
+    <result column="TELEPHONE" property="telephone" jdbcType="VARCHAR" />
+    <result column="ATTENTION_STATUS" property="attentionStatus" jdbcType="TINYINT" />
+    <result column="ROLE_ID" property="roleId" jdbcType="TINYINT" />
+    <result column="STA_LONGITUDE" property="staLongitude" jdbcType="DECIMAL" />
+    <result column="STA_LATITUDE" property="staLatitude" jdbcType="DECIMAL" />
+    <result column="BUSINESS_HOURS_START" property="businessHoursStart" jdbcType="VARCHAR" />
+    <result column="BUSINESS_HOURS_END" property="businessHoursEnd" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="query" parameterType="com.gistandard.transport.system.common.courier.bean.CourierQueryReq" resultMap="BaseResultMap">
+	SELECT distinct
+      account.ID AS ACCOUNT_ID,
+      userInfo.ID AS COURIER_ID,
+      userInfo.REAL_NAME AS REAL_NAME,
+      userInfo.PROVINCE AS PROVINCE,
+      userInfo.CITY AS CITY,
+      userInfo.COUNTY AS COUNTY,
+      userInfo.ADDRESS AS ADDRESS,
+      userInfo.DETAIL_ADD AS DETAIL_ADD,
+      account.USER_IMG AS AVATAR,
+      userInfo.TELEPHONE AS TELEPHONE,
+      IFNULL(attentionInfo.ATTENTION_STATUS,0) AS ATTENTION_STATUS,
+      account.ACCT_USERNAME ACCT_USERNAME,
+      userInfo.STA_LONGITUDE STA_LONGITUDE,
+      userInfo.STA_LATITUDE STA_LATITUDE,
+      23 ROLE_ID,
+    userInfo.BUSINESS_HOURS_START AS BUSINESS_HOURS_START,
+    userInfo.BUSINESS_HOURS_END AS BUSINESS_HOURS_END
+    FROM COM_USERINFO userInfo
+    INNER JOIN COM_ACCOUNT account ON userInfo.ACCOUNT_ID = account.ID
+    LEFT JOIN  ATTENTION_INFO attentionInfo ON attentionInfo.STATION_ID = userInfo.ID
+    AND attentionInfo.ROLE_ID = 23
+    AND attentionInfo.ACCOUNT_ID = #{accountId}
+    AND attentionInfo.ATTENTION_STATUS = 1
+    WHERE  account.ACCT_USERNAME IN <![CDATA[(${miO2ids})]]>
+    and userInfo.STA_LATITUDE IS NOT NULL AND userInfo.sta_longitude IS NOT NULL
+    <if test="orderType== 1">
+        AND 1=0
+    </if>
+    AND account.ACCT_STATUS = 2
+    UNION ALL
+    SELECT distinct
+    account.ID AS ACCOUNT_ID,
+    userInfo.ID AS COURIER_ID,
+    userInfo.REAL_NAME AS REAL_NAME,
+    userInfo.PROVINCE AS PROVINCE,
+    userInfo.CITY AS CITY,
+    userInfo.COUNTY AS COUNTY,
+    userInfo.ADDRESS AS ADDRESS,
+    userInfo.DETAIL_ADD AS DETAIL_ADD,
+    account.USER_IMG AS AVATAR,
+    userInfo.TELEPHONE AS TELEPHONE,
+    IFNULL(attentionInfo.ATTENTION_STATUS,0) AS ATTENTION_STATUS,
+    account.ACCT_USERNAME ACCT_USERNAME,
+    userInfo.STA_LONGITUDE STA_LONGITUDE,
+    userInfo.STA_LATITUDE STA_LATITUDE,
+    <if test="orderType== 2">
+      <![CDATA[7 ]]>
+    </if>
+    <if test="orderType== 1">
+      <![CDATA[3 ]]>
+    </if>  ROLE_ID,
+    '' AS BUSINESS_HOURS_START,
+    '' AS BUSINESS_HOURS_END
+    FROM COM_USERINFO userInfo
+    INNER JOIN COM_ACCOUNT account ON userInfo.ACCOUNT_ID = account.ID
+    LEFT JOIN  ATTENTION_INFO attentionInfo ON attentionInfo.STATION_ID = userInfo.ID  and attentionInfo.ROLE_ID =
+    <if test="orderType== 2">
+      <![CDATA[7 ]]>
+    </if>
+    <if test="orderType== 1">
+      <![CDATA[3 ]]>
+    </if>
+    AND attentionInfo.ACCOUNT_ID = #{accountId} AND attentionInfo.ATTENTION_STATUS=1
+    INNER JOIN MOBILE_MOUDLE_REL mmr ON userInfo.ACCOUNT_ID = mmr.ACCOUNT_ID and mmr.IS_ON = 1
+    INNER JOIN COM_QUOTE_ITEM cqi ON cqi.ITEM_CODE = mmr.MOUDLE_CODE
+    WHERE account.ACCT_USERNAME IN <![CDATA[(${o2ids})]]>
+    AND account.ACCT_STATUS = 2
+    AND MOUDLE_STATUS = 1
+    AND cqi.ID = #{itemId}
+    <!--<if test="pageSize != null and pageSize != 0">-->
+      <!--limit #{startRecord},#{pageSize}-->
+    <!--</if>-->
+  </select>
+
+  <select id="queryCount" parameterType="com.gistandard.transport.system.common.courier.bean.CourierQueryReq" resultType="int">
+   SELECT
+	COUNT(1)
+    FROM
+        COM_USERINFO userInfo
+    INNER JOIN COM_ACCOUNT account ON userInfo.ACCOUNT_ID = account.ID
+    LEFT JOIN  ATTENTION_INFO attentionInfo ON attentionInfo.STATION_ID = userInfo.ID AND attentionInfo.ACCOUNT_ID = #{accountId} AND attentionInfo.ATTENTION_STATUS=1
+    WHERE EXISTS(select 1 FROM COM_ACCOUNT_ROLE_REL roleRel WHERE roleRel.ACCOUNT_ID = account.id AND roleRel.ROLE_ID IN
+    <if test="orderType== null || orderType== ''">
+      <![CDATA[ (7,23,3) ]]>
+    </if>
+    <if test="orderType== 2">
+      <![CDATA[(7,23) ]]>
+    </if>
+    <if test="orderType== 1">
+      <![CDATA[(3) ]]>
+    </if>
+    AND roleRel.REL_ID = userInfo.ID)
+  </select>
+
+  <select id="queryNearby" parameterType="com.gistandard.transport.system.common.courier.bean.CourierQueryNearbyReq" resultMap="BaseResultMap">
+    SELECT
+      account.ID AS ACCOUNT_ID,
+      userInfo.ID AS COURIER_ID,
+      account.ACCT_USERNAME as username,
+      userInfo.REAL_NAME AS REAL_NAME,
+      account.USER_IMG AS AVATAR,
+      userInfo.TELEPHONE AS TELEPHONE,
+      IFNULL(attentionInfo.ATTENTION_STATUS,0) AS ATTENTION_STATUS,
+    account.ACCT_USERNAME ACCT_USERNAME
+    FROM
+      COM_USERINFO userInfo
+    INNER JOIN COM_ACCOUNT account ON userInfo.ACCOUNT_ID = account.ID
+    LEFT JOIN ATTENTION_INFO attentionInfo ON attentionInfo.STATION_ID = account.ID AND attentionInfo.ACCOUNT_ID = #{accountId}
+    WHERE EXISTS (SELECT cq.ID FROM  COM_QUOTE cq  where  cq.USERINFO_ID = userInfo.ID  and cq.ITEM_ID=#{itemId})
+      and EXISTS (select 1 FROM COM_ACCOUNT_ROLE_REL roleRel WHERE roleRel.ACCOUNT_ID = account.id AND roleRel.ROLE_ID IN (7,3,23) AND roleRel.REL_ID = userInfo.ID)
+<!--     <if test="acctUsername != null"> -->
+<!--     	and account.ACCT_USERNAME in (#{acctUsername}) -->
+<!--     </if> -->
+    <if test="pageSize != null and pageSize != 0">
+      limit #{startRecord},#{pageSize}
+    </if>
+  </select>
+
+  <select id="queryNearbyCount" parameterType="com.gistandard.transport.system.common.courier.bean.CourierQueryNearbyReq" resultType="int">
+    SELECT count(*) FROM COM_USERINFO userInfo
+    INNER JOIN COM_ACCOUNT account ON userInfo.ACCOUNT_ID = account.ID
+    LEFT JOIN ATTENTION_INFO attentionInfo ON attentionInfo.STATION_ID = account.ID AND attentionInfo.ACCOUNT_ID = #{accountId}
+    WHERE EXISTS (SELECT cq.ID FROM  COM_QUOTE cq  where  cq.USERINFO_ID = userInfo.ID  and cq.ITEM_ID=#{itemId})
+      and EXISTS (SELECT 1 from  COM_ACCOUNT_ROLE_REL roleRel WHERE roleRel.ACCOUNT_ID = account.id AND roleRel.ROLE_ID IN (7,3,23) AND roleRel.REL_ID = userInfo.ID)
+<!--     <if test="acctUsername != null"> -->
+<!--     	and account.ACCT_USERNAME in (#{acctUsername}) -->
+<!--     </if> -->
+  </select>
+
+  <select id="queryFollow" parameterType="com.gistandard.platform.pojo.req.AppBasePagerRequest" resultMap="BaseResultMap">
+    SELECT
+    account.ID AS ACCOUNT_ID,
+    userInfo.ID AS COURIER_ID,
+    userInfo.REAL_NAME AS REAL_NAME,
+    account.USER_IMG AS AVATAR,
+    userInfo.TELEPHONE AS TELEPHONE,
+    IFNULL(attentionInfo.ATTENTION_STATUS,0) AS ATTENTION_STATUS,
+    account.ACCT_USERNAME ACCT_USERNAME,
+    userInfo.STA_LONGITUDE STA_LONGITUDE,
+    userInfo.STA_LATITUDE STA_LATITUDE,
+    attentionInfo.ROLE_ID ROLE_ID,
+    userInfo.PROVINCE,
+    userInfo.CITY,
+    userInfo.COUNTY,
+    userInfo.ADDRESS,
+    userInfo.DETAIL_ADD
+    FROM
+      COM_USERINFO userInfo
+    INNER JOIN COM_ACCOUNT account ON userInfo.ACCOUNT_ID = account.ID
+    INNER JOIN COM_ACCOUNT_ROLE_REL roleRel ON roleRel.ACCOUNT_ID = account.id
+    INNER JOIN ATTENTION_INFO attentionInfo ON attentionInfo.ATTENTION_STATUS = 1 AND attentionInfo.STATION_ID = userInfo.ID AND attentionInfo.ACCOUNT_ID = #{accountId}
+    WHERE  roleRel.ROLE_ID IN (7,3,23) AND roleRel.REL_ID = userInfo.ID and attentionInfo.ROLE_ID = roleRel.ROLE_ID
+    <if test="pageSize != null and pageSize != 0">
+      limit #{startRecord},#{pageSize}
+    </if>
+  </select>
+
+  <select id="queryFollowCount" parameterType="com.gistandard.platform.pojo.req.AppBasePagerRequest" resultType="int">
+    SELECT count(*) FROM COM_USERINFO userInfo
+    INNER JOIN COM_ACCOUNT account ON userInfo.ACCOUNT_ID = account.ID
+    INNER JOIN ATTENTION_INFO attentionInfo ON attentionInfo.ATTENTION_STATUS = 1 AND attentionInfo.STATION_ID = userInfo.ID AND attentionInfo.ACCOUNT_ID = #{accountId}
+    WHERE EXISTS ( SELECT 1 FROM    COM_ACCOUNT_ROLE_REL roleRel WHERE roleRel.ACCOUNT_ID = account.id AND roleRel.ROLE_ID  IN (7,3,23) AND roleRel.REL_ID = userInfo.ID)
+  </select>
+  <select id="queryCourierByO2id" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT
+    account.ID AS ACCOUNT_ID,
+    userInfo.ID AS COURIER_ID,
+    account.ACCT_USERNAME as username,
+    userInfo.REAL_NAME AS REAL_NAME,
+    account.USER_IMG AS AVATAR,
+    userInfo.TELEPHONE AS TELEPHONE,
+    IFNULL(attentionInfo.ATTENTION_STATUS,0) AS ATTENTION_STATUS,
+    account.ACCT_USERNAME ACCT_USERNAME,
+    userInfo.STA_LONGITUDE AS STA_LONGITUDE,
+    userInfo.STA_LATITUDE AS STA_LATITUDE
+    FROM
+    COM_USERINFO userInfo
+    INNER JOIN COM_ACCOUNT account ON userInfo.ACCOUNT_ID = account.ID
+    WHERE  account.ACCT_USERNAME = #{o2id}
+      limit  1
+  </select>
+</mapper>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.MobileTransportRelDao" >
+  <resultMap id="BaseResultMap" type="com.gistandard.transport.base.entity.bean.MobileTransportRel" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="WANT_ID" property="wantId" jdbcType="INTEGER" />
+    <result column="STATION_ID" property="stationId" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.gistandard.transport.base.entity.bean.MobileTransportRel" extends="BaseResultMap" >
+    <result column="STATION_TTL" property="stationTtl" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, WANT_ID, STATION_ID
+  </sql>
+  <sql id="Blob_Column_List" >
+    STATION_TTL
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from MOBILE_TRANSPORT_REL
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from MOBILE_TRANSPORT_REL
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gistandard.transport.base.entity.bean.MobileTransportRel" >
+    insert into MOBILE_TRANSPORT_REL (ID, WANT_ID, STATION_ID, 
+      STATION_TTL)
+    values (#{id,jdbcType=INTEGER}, #{wantId,jdbcType=INTEGER}, #{stationId,jdbcType=INTEGER}, 
+      #{stationTtl,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gistandard.transport.base.entity.bean.MobileTransportRel" >
+    insert into MOBILE_TRANSPORT_REL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="wantId != null" >
+        WANT_ID,
+      </if>
+      <if test="stationId != null" >
+        STATION_ID,
+      </if>
+      <if test="stationTtl != null" >
+        STATION_TTL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="wantId != null" >
+        #{wantId,jdbcType=INTEGER},
+      </if>
+      <if test="stationId != null" >
+        #{stationId,jdbcType=INTEGER},
+      </if>
+      <if test="stationTtl != null" >
+        #{stationTtl,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gistandard.transport.base.entity.bean.MobileTransportRel" >
+    update MOBILE_TRANSPORT_REL
+    <set >
+      <if test="wantId != null" >
+        WANT_ID = #{wantId,jdbcType=INTEGER},
+      </if>
+      <if test="stationId != null" >
+        STATION_ID = #{stationId,jdbcType=INTEGER},
+      </if>
+      <if test="stationTtl != null" >
+        STATION_TTL = #{stationTtl,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.gistandard.transport.base.entity.bean.MobileTransportRel" >
+    update MOBILE_TRANSPORT_REL
+    set WANT_ID = #{wantId,jdbcType=INTEGER},
+      STATION_ID = #{stationId,jdbcType=INTEGER},
+      STATION_TTL = #{stationTtl,jdbcType=LONGVARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gistandard.transport.base.entity.bean.MobileTransportRel" >
+    update MOBILE_TRANSPORT_REL
+    set WANT_ID = #{wantId,jdbcType=INTEGER},
+      STATION_ID = #{stationId,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

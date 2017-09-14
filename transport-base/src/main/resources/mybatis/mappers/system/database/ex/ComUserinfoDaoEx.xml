@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ex.ComUserinfoDaoEx" >
+
+	<insert id="batchInsert" parameterType="java.util.List">
+		insert into COM_USERINFO (
+		<include refid="com.gistandard.transport.base.entity.dao.ComUserinfoDao.Base_Column_List" />
+		) values
+		<foreach collection="list" item="item" index="index" separator=",">
+			(#{item.id}, #{item.accountId},#{item.userCode}, #{item.realName},
+			#{item.birthday}, #{item.sex,jdbcType=BIT}, #{item.nickName},
+			#{item.identno}, #{item.telephone}, #{item.email},
+			#{item.country}, #{item.province}, #{item.city},
+			#{item.county}, #{item.address}, #{item.zipcode},
+			#{item.userImg}, #{item.remark}, #{item.companyName},
+			#{item.legalPerson}, #{item.linkman},
+			#{item.customerId},#{item.urgentLinkUser},#{item.urgentLinkTel},
+			#{item.detailAdd},#{item.staLongitude},#{item.staLatitude})
+		</foreach>
+	</insert>
+
+	<select id="queryByAcctId" resultMap="com.gistandard.transport.base.entity.dao.ComUserinfoDao.BaseResultMap" parameterType="java.lang.Integer" >
+		select
+		<include refid="com.gistandard.transport.base.entity.dao.ComUserinfoDao.Base_Column_List" />
+		from COM_USERINFO
+		where ACCOUNT_ID = TRIM(#{acctId})
+	</select>
+	<select id="queryByIdentityNo" resultMap="com.gistandard.transport.base.entity.dao.ComUserinfoDao.BaseResultMap" parameterType="java.lang.String" >
+		select
+		<include refid="com.gistandard.transport.base.entity.dao.ComUserinfoDao.Base_Column_List" />
+		from COM_USERINFO
+		where IDENTNO = TRIM(#{identityNo})
+	</select>
+	<select id="queryByTelephone" resultMap="com.gistandard.transport.base.entity.dao.ComUserinfoDao.BaseResultMap" parameterType="java.lang.String" >
+		select
+		<include refid="com.gistandard.transport.base.entity.dao.ComUserinfoDao.Base_Column_List" />
+		from COM_USERINFO
+		where TELEPHONE = TRIM(#{telephone})
+	</select>
+
+	<delete id="deleteByAccountId" parameterType="java.lang.Integer">
+		DELETE FROM COM_USERINFO
+		WHERE ACCOUNT_ID=#{accountId}
+	</delete>
+	<update id="updateCustomerIdToNullById" parameterType="java.lang.Integer">
+		UPDATE COM_USERINFO SET CUSTOMER_ID = NULL WHERE id=#{id}
+	</update>
+
+</mapper>

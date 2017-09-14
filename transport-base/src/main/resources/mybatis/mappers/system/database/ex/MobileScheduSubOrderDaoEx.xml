@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ex.MobileScheduSubOrderDaoEx" >
+    <select id="selectMobiScheduSubOrderByBusibookno2" resultMap="com.gistandard.transport.base.entity.dao.MobileScheduSubOrderDao.BaseResultMap">
+        SELECT
+        <include refid="com.gistandard.transport.base.entity.dao.MobileScheduSubOrderDao.Base_Column_List2"/>
+        FROM
+        MOBILE_SCHEDU_SUB_ORDER a, MOBILE_BOOKING_FORM b
+        WHERE a.SCHEDUCARNO = b.BUSI_BOOK_NO
+        <if test="roleId != null">
+            AND b.ROLE_ID = #{roleId,jdbcType=INTEGER}
+        </if>
+        <choose>
+            <when test="busiCtrl != null">
+                AND b.BUSI_CTRL = #{busiCtrl,jdbcType=INTEGER}
+            </when>
+            <otherwise>
+                AND b.BUSI_CTRL >= 0
+            </otherwise>
+        </choose>
+        AND b.ID = a.MOBILE_BOOKING_FORM_ID
+        AND a.BUSI_BOOK_NO = #{busiBookNo,jdbcType=VARCHAR}
+        AND a.SCHEDUCARNO IS NOT NULL
+        limit 1
+    </select>
+
+    <select id="selectWaSubOrderByBusibookno" resultMap="com.gistandard.transport.base.entity.dao.MobileScheduSubOrderDao.BaseResultMap">
+        SELECT
+        <include refid="com.gistandard.transport.base.entity.dao.MobileScheduSubOrderDao.Base_Column_List2"/>
+        FROM
+        MOBILE_SCHEDU_SUB_ORDER a, MOBILE_BOOKING_FORM b
+        WHERE a.SCHEDUCARNO = b.BUSI_BOOK_NO
+        <if test="roleId != null">
+            AND b.ROLE_ID = #{roleId,jdbcType=INTEGER}
+        </if>
+        <choose>
+            <when test="busiCtrl != null">
+                AND b.BUSI_CTRL = #{busiCtrl,jdbcType=INTEGER}
+            </when>
+            <otherwise>
+                AND b.BUSI_CTRL >= 0
+            </otherwise>
+        </choose>
+        AND b.ID = a.MOBILE_BOOKING_FORM_ID
+        AND a.BUSI_BOOK_NO = #{busiBookNo,jdbcType=VARCHAR}
+        AND a.SCHEDUCARNO like 'S_%'
+        AND a.SCHEDUCARNO IS NOT NULL
+        limit 1
+    </select>
+
+    <select id="selectMobiScheduSubOrderByBusibookno3" resultMap="com.gistandard.transport.base.entity.dao.MobileScheduSubOrderDao.BaseResultMap">
+        SELECT
+        <include refid="com.gistandard.transport.base.entity.dao.MobileScheduSubOrderDao.Base_Column_List2"/>
+        FROM
+        MOBILE_SCHEDU_SUB_ORDER a
+        INNER JOIN MOBILE_BOOKING_FORM b
+        ON a.SCHEDUCARNO = b.BUSI_BOOK_NO
+        AND b.DESTN_LOCUS = #{destLocus,jdbcType=VARCHAR}
+        AND b.BUSI_CTRL IN (1, 20)
+        WHERE
+        a.BUSI_BOOK_NO = #{busiBookNo,jdbcType=VARCHAR}
+        AND a.SCHEDUCARNO IS NOT NULL
+        limit 1
+    </select>
+
+    <select id="selectMobiScheduSubOrderByBusibookno" parameterType="java.lang.String" resultMap="com.gistandard.transport.base.entity.dao.MobileScheduSubOrderDao.BaseResultMap">
+        SELECT
+        <include refid="com.gistandard.transport.base.entity.dao.MobileScheduSubOrderDao.Base_Column_List"/>
+        FROM
+        MOBILE_SCHEDU_SUB_ORDER
+        WHERE
+        BUSI_BOOK_NO = #{busiBookNo}
+        AND SCHEDUCARNO IS NOT NULL
+        limit 1
+    </select>
+
+    <update id="updateByMoblieBookingFormId" parameterType="com.gistandard.transport.base.entity.bean.MobileScheduSubOrder" >
+        update MOBILE_SCHEDU_SUB_ORDER
+        <set >
+            <if test="scheducarno != null" >
+                SCHEDUCARNO = #{scheducarno,jdbcType=VARCHAR},
+            </if>
+            <if test="busiBookNo != null" >
+                BUSI_BOOK_NO = #{busiBookNo,jdbcType=VARCHAR},
+            </if>
+            <if test="bookingFormId != null" >
+                BOOKING_FORM_ID = #{bookingFormId,jdbcType=INTEGER},
+            </if>
+            <if test="shipCustProvide != null" >
+                SHIP_CUST_PROVIDE = #{shipCustProvide,jdbcType=VARCHAR},
+            </if>
+            <if test="shipCustCity != null" >
+                SHIP_CUST_CITY = #{shipCustCity,jdbcType=VARCHAR},
+            </if>
+            <if test="shipCustCounty != null" >
+                SHIP_CUST_COUNTY = #{shipCustCounty,jdbcType=VARCHAR},
+            </if>
+            <if test="shipCustAddr != null" >
+                SHIP_CUST_ADDR = #{shipCustAddr,jdbcType=VARCHAR},
+            </if>
+            <if test="shipCustLinkMan != null" >
+                SHIP_CUST_LINK_MAN = #{shipCustLinkMan,jdbcType=VARCHAR},
+            </if>
+            <if test="shipCustLinkTel != null" >
+                SHIP_CUST_LINK_TEL = #{shipCustLinkTel,jdbcType=VARCHAR},
+            </if>
+            <if test="shipLongitude != null" >
+                SHIP_LONGITUDE = #{shipLongitude,jdbcType=DECIMAL},
+            </if>
+            <if test="shipLatitude != null" >
+                SHIP_LATITUDE = #{shipLatitude,jdbcType=DECIMAL},
+            </if>
+            <if test="cneeCustProvide != null" >
+                CNEE_CUST_PROVIDE = #{cneeCustProvide,jdbcType=VARCHAR},
+            </if>
+            <if test="cneeCustCity != null" >
+                CNEE_CUST_CITY = #{cneeCustCity,jdbcType=VARCHAR},
+            </if>
+            <if test="cneeCustCounty != null" >
+                CNEE_CUST_COUNTY = #{cneeCustCounty,jdbcType=VARCHAR},
+            </if>
+            <if test="cneeCustAddr != null" >
+                CNEE_CUST_ADDR = #{cneeCustAddr,jdbcType=VARCHAR},
+            </if>
+            <if test="cneeCustLinkMan != null" >
+                CNEE_CUST_LINK_MAN = #{cneeCustLinkMan,jdbcType=VARCHAR},
+            </if>
+            <if test="cneeCustLinkTel != null" >
+                CNEE_CUST_LINK_TEL = #{cneeCustLinkTel,jdbcType=VARCHAR},
+            </if>
+            <if test="cneeLongitude != null" >
+                CNEE_LONGITUDE = #{cneeLongitude,jdbcType=DECIMAL},
+            </if>
+            <if test="cneeLatitude != null" >
+                CNEE_LATITUDE = #{cneeLatitude,jdbcType=DECIMAL},
+            </if>
+            <if test="busiCtrl != null" >
+                BUSI_CTRL = #{busiCtrl,jdbcType=INTEGER},
+            </if>
+            <if test="payType != null" >
+                PAY_TYPE = #{payType,jdbcType=INTEGER},
+            </if>
+            <if test="goodsPayment != null" >
+                GOODS_PAYMENT = #{goodsPayment,jdbcType=DECIMAL},
+            </if>
+            <if test="goodsPaymentCurr != null" >
+                GOODS_PAYMENT_CURR = #{goodsPaymentCurr,jdbcType=CHAR},
+            </if>
+            <if test="destPayment != null" >
+                DEST_PAYMENT = #{destPayment,jdbcType=DECIMAL},
+            </if>
+            <if test="destPaymentCurr != null" >
+                DEST_PAYMENT_CURR = #{destPaymentCurr,jdbcType=CHAR},
+            </if>
+            <if test="needInsure != null" >
+                NEED_INSURE = #{needInsure,jdbcType=BIT},
+            </if>
+            <if test="premiumProportion != null" >
+                PREMIUM_PROPORTION = #{premiumProportion,jdbcType=DECIMAL},
+            </if>
+            <if test="premiumValue != null" >
+                PREMIUM_VALUE = #{premiumValue,jdbcType=DECIMAL},
+            </if>
+            <if test="goodsValue != null" >
+                GOODS_VALUE = #{goodsValue,jdbcType=DECIMAL},
+            </if>
+            <if test="isJs != null" >
+                IS_JS = #{isJs,jdbcType=INTEGER},
+            </if>
+            <if test="validBillno != null" >
+                VALID_BILLNO = #{validBillno,jdbcType=VARCHAR},
+            </if>
+            <if test="comQuoteId != null" >
+                COM_QUOTE_ID = #{comQuoteId,jdbcType=VARCHAR},
+            </if>
+            <if test="quotedType != null" >
+                QUOTED_TYPE = #{quotedType,jdbcType=INTEGER},
+            </if>
+            <if test="predictValue != null" >
+                PREDICT_VALUE = #{predictValue,jdbcType=DECIMAL},
+            </if>
+            <if test="predictCurr != null" >
+                PREDICT_CURR = #{predictCurr,jdbcType=CHAR},
+            </if>
+            <if test="narrate != null" >
+                NARRATE = #{narrate,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where MOBILE_BOOKING_FORM_ID = #{mobileBookingFormId,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.gistandard.transport.base.entity.bean.MobileScheduSubOrder" >
+        update MOBILE_SCHEDU_SUB_ORDER
+        set SCHEDUCARNO = #{scheducarno,jdbcType=VARCHAR},
+        BUSI_BOOK_NO = #{busiBookNo,jdbcType=VARCHAR},
+        BOOKING_FORM_ID = #{bookingFormId,jdbcType=INTEGER},
+        SHIP_CUST_PROVIDE = #{shipCustProvide,jdbcType=VARCHAR},
+        SHIP_CUST_CITY = #{shipCustCity,jdbcType=VARCHAR},
+        SHIP_CUST_COUNTY = #{shipCustCounty,jdbcType=VARCHAR},
+        SHIP_CUST_ADDR = #{shipCustAddr,jdbcType=VARCHAR},
+        SHIP_CUST_LINK_MAN = #{shipCustLinkMan,jdbcType=VARCHAR},
+        SHIP_CUST_LINK_TEL = #{shipCustLinkTel,jdbcType=VARCHAR},
+        SHIP_LONGITUDE = #{shipLongitude,jdbcType=DECIMAL},
+        SHIP_LATITUDE = #{shipLatitude,jdbcType=DECIMAL},
+        CNEE_CUST_PROVIDE = #{cneeCustProvide,jdbcType=VARCHAR},
+        CNEE_CUST_CITY = #{cneeCustCity,jdbcType=VARCHAR},
+        CNEE_CUST_COUNTY = #{cneeCustCounty,jdbcType=VARCHAR},
+        CNEE_CUST_ADDR = #{cneeCustAddr,jdbcType=VARCHAR},
+        CNEE_CUST_LINK_MAN = #{cneeCustLinkMan,jdbcType=VARCHAR},
+        CNEE_CUST_LINK_TEL = #{cneeCustLinkTel,jdbcType=VARCHAR},
+        CNEE_LONGITUDE = #{cneeLongitude,jdbcType=DECIMAL},
+        CNEE_LATITUDE = #{cneeLatitude,jdbcType=DECIMAL},
+        BUSI_CTRL = #{busiCtrl,jdbcType=INTEGER},
+        PAY_TYPE = #{payType,jdbcType=INTEGER},
+        GOODS_PAYMENT = #{goodsPayment,jdbcType=DECIMAL},
+        GOODS_PAYMENT_CURR = #{goodsPaymentCurr,jdbcType=CHAR},
+        DEST_PAYMENT = #{destPayment,jdbcType=DECIMAL},
+        DEST_PAYMENT_CURR = #{destPaymentCurr,jdbcType=CHAR},
+        NEED_INSURE = #{needInsure,jdbcType=BIT},
+        PREMIUM_PROPORTION = #{premiumProportion,jdbcType=DECIMAL},
+        PREMIUM_VALUE = #{premiumValue,jdbcType=DECIMAL},
+        GOODS_VALUE = #{goodsValue,jdbcType=DECIMAL},
+        IS_JS = #{isJs,jdbcType=INTEGER},
+        VALID_BILLNO = #{validBillno,jdbcType=VARCHAR},
+        COM_QUOTE_ID = #{comQuoteId,jdbcType=VARCHAR},
+        QUOTED_TYPE = #{quotedType,jdbcType=INTEGER},
+        PREDICT_VALUE = #{predictValue,jdbcType=DECIMAL},
+        PREDICT_CURR = #{predictCurr,jdbcType=CHAR},
+        NARRATE = #{narrate,jdbcType=VARCHAR}
+        where ID = #{id,jdbcType=INTEGER}
+    </update>
+
+    <insert id="batchInsert" parameterType="java.util.List">
+        insert into MOBILE_SCHEDU_SUB_ORDER (SCHEDUCARNO, BUSI_BOOK_NO,
+        BOOKING_FORM_ID, SHIP_CUST_PROVIDE, SHIP_CUST_CITY,
+        SHIP_CUST_COUNTY, SHIP_CUST_ADDR, SHIP_CUST_LINK_MAN,
+        SHIP_CUST_LINK_TEL, SHIP_LONGITUDE, SHIP_LATITUDE,
+        CNEE_CUST_PROVIDE, CNEE_CUST_CITY, CNEE_CUST_COUNTY,
+        CNEE_CUST_ADDR, CNEE_CUST_LINK_MAN, CNEE_CUST_LINK_TEL,
+        CNEE_LONGITUDE, CNEE_LATITUDE, BUSI_CTRL,
+        PAY_TYPE, GOODS_PAYMENT, GOODS_PAYMENT_CURR,
+        DEST_PAYMENT, DEST_PAYMENT_CURR, NEED_INSURE,
+        PREMIUM_PROPORTION, PREMIUM_VALUE, GOODS_VALUE,
+        IS_JS, VALID_BILLNO, COM_QUOTE_ID,
+        QUOTED_TYPE, PREDICT_VALUE, PREDICT_CURR,
+        NARRATE, MOBILE_BOOKING_FORM_ID)
+        values
+        <foreach collection="list" item="item" index="index" separator="," >
+            (#{item.scheducarno}, #{item.busiBookNo},
+            #{item.bookingFormId}, #{item.shipCustProvide}, #{item.shipCustCity},
+            #{item.shipCustCounty}, #{item.shipCustAddr}, #{item.shipCustLinkMan},
+            #{item.shipCustLinkTel}, #{item.shipLongitude}, #{item.shipLatitude},
+            #{item.cneeCustProvide}, #{item.cneeCustCity}, #{item.cneeCustCounty},
+            #{item.cneeCustAddr}, #{item.cneeCustLinkMan}, #{item.cneeCustLinkTel},
+            #{item.cneeLongitude}, #{item.cneeLatitude}, #{item.busiCtrl},
+            #{item.payType}, #{item.goodsPayment}, #{item.goodsPaymentCurr},
+            #{item.destPayment}, #{item.destPaymentCurr}, #{item.needInsure},
+            #{item.premiumProportion}, #{item.premiumValue}, #{item.goodsValue},
+            #{item.isJs}, #{item.validBillno}, #{item.comQuoteId},
+            #{item.quotedType}, #{item.predictValue}, #{item.predictCurr},
+            #{item.narrate}, #{item.mobileBookingFormId})
+        </foreach>
+    </insert>
+
+    <update id="updateStatusByMobileBookingFormId" >
+        update MOBILE_SCHEDU_SUB_ORDER set BUSI_CTRL = #{afStatus}  where MOBILE_BOOKING_FORM_ID = #{orderId} and  BUSI_CTRL = #{bfStatus}
+    </update>
+
+    <select id="selectByScheducarno" resultMap="com.gistandard.transport.base.entity.dao.MobileScheduSubOrderDao.BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="com.gistandard.transport.base.entity.dao.MobileScheduSubOrderDao.Base_Column_List2" />
+        from MOBILE_SCHEDU_SUB_ORDER a
+        <if test="(revUser != null and revUser != '') or roleId != null" >
+        INNER JOIN MOBILE_BOOKING_FORM m ON
+            m.BUSI_BOOK_NO = a.SCHEDUCARNO
+            AND m.BUSI_CTRL >= 0
+            <if test="revUser != null and revUser != ''" >
+              AND m.REV_USER = #{revUser,jdbcType=VARCHAR}
+            </if>
+            <if test="roleId != null" >
+              AND m.ROLE_ID = #{roleId,jdbcType=VARCHAR}
+            </if>
+        </if>
+        where a.SCHEDUCARNO = #{scheducarno}
+        GROUP BY a.BUSI_BOOK_NO
+    </select>
+
+    <select id="selectMobileSubOrderByMobileId" resultMap="com.gistandard.transport.base.entity.dao.MobileScheduSubOrderDao.BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="com.gistandard.transport.base.entity.dao.MobileScheduSubOrderDao.Base_Column_List" />
+        from MOBILE_SCHEDU_SUB_ORDER
+        where MOBILE_BOOKING_FORM_ID = #{orderId,jdbcType=INTEGER}
+    </select>
+</mapper>

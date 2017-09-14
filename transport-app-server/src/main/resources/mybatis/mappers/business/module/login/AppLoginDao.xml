@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.app.module.login.dao.AppLoginDao">
+    <resultMap id="CompanyInfoResultMap" type="com.gistandard.transport.app.module.login.bean.CompanyInfo" >
+        <result column="COMPANY_ACCOUNT_ID" property="companyAccountId" jdbcType="INTEGER" />
+        <result column="COMPANY_ACCOUNT_NAME" property="companyAccountName" jdbcType="VARCHAR" />
+        <result column="COMPANY_ID" property="companyID" jdbcType="INTEGER" />
+        <result column="COMPANY_NAME" property="companyName" jdbcType="VARCHAR" />
+        <result column="ROLE_TYPE" property="roleType" jdbcType="INTEGER" />
+        <result column="ROLE_IDS" property="roleIds" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="queryUserinfoByAcctId" resultMap="com.gistandard.transport.base.entity.dao.ComUserinfoDao.BaseResultMap" >
+        select
+        CU.ID, CU.ACCOUNT_ID, CU.USER_CODE, CU.REAL_NAME, CU.BIRTHDAY, CU.SEX, CU.NICK_NAME, CU.IDENTNO, CU.TELEPHONE,
+        CU.EMAIL, CU.COUNTRY, CU.PROVINCE, CU.CITY, CU.COUNTY, CU.ADDRESS, CU.ZIPCODE, CU.USER_IMG, CU.REMARK, CU.COMPANY_NAME,
+        CU.LEGAL_PERSON, CU.LINKMAN, CU.CUSTOMER_ID, CU.URGENT_LINK_USER, CU.URGENT_LINK_TEL, CU.DETAIL_ADD,
+        CU.STA_LONGITUDE, CU.STA_LATITUDE
+        FROM COM_ACCOUNT CA
+        LEFT JOIN COM_ACCOUNT_ROLE_REL CARR ON CARR.ACCOUNT_ID = CA.ID
+        LEFT JOIN COM_USERINFO CU ON CU.ID = CARR.REL_ID
+        where CA.ID = #{acctId,jdbcType=INTEGER}
+        AND CARR.ROLE_ID IN (${roleIds})
+        AND CU.ID IS NOT NULL
+        limit 1
+    </select>
+
+    <select id="queryVehicleByAcctId" resultMap="com.gistandard.transport.base.entity.dao.ComVehicleInfoDao.BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="com.gistandard.transport.base.entity.dao.ComVehicleInfoDao.Base_Column_List"/>
+        from COM_VEHICLE_INFO VEHICLE
+        WHERE VEHICLE.ACCT_ID = #{id,jdbcType=INTEGER}
+    </select>
+
+    <!-- 查询用户所属企业信息列表 -->
+    <select id="queryCompanyInfoListByAcctId" resultMap="CompanyInfoResultMap" parameterType="java.lang.Integer">
+        SELECT COMPANY_ACCOUNT_ID, a.ACCT_USERNAME AS COMPANY_ACCOUNT_NAME,c.ID AS COMPANY_ID,c.CUST_NAME AS COMPANY_NAME, ROLE_TYPE, ROLE_IDS
+        FROM COM_COMPANY_STAFF s
+        LEFT JOIN COM_ACCOUNT a ON a.ID = s.COMPANY_ACCOUNT_ID AND a.ACCT_STATUS = 2
+        LEFT JOIN COM_CUSTOMER c ON c.ACCOUNT_ID = a.ID
+        WHERE s.STAFF_ACCOUNT_ID = #{acctId}
+        AND s.STATUS = 1
+    </select>
+</mapper>

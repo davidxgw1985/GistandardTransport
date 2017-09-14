@@ -1,0 +1,857 @@
+@charset "utf-8";
+
+/**
+ *  newzong
+ *  
+ */
+
+/* 加载项目通用布局common.css */
+
+/**
+	less效果函数
+	NewZong 2016/07/15
+**/
+
+.cf {
+  overflow: hidden;
+}
+
+/** 高度计算 **/
+
+/** 宽度计算 **/
+
+/*
+定义圆角
+@radius 圆角大小
+*/
+
+/*
+盒子阴影
+@right_left 右边阴影为正数 左边负数
+@bottom_top 下边阴影为正数 上边负数
+@box  阴影大小
+@box_color 阴影颜色
+*/
+
+/*
+文字阴影,可以指定多组阴影
+@right_left1 右边阴影为正数 左边负数
+@bottom_top1 下边阴影为正数 上边负数
+@text  阴影大小
+@text_color 阴影颜色
+*/
+
+/*
+透明度 或渐变 1为不透明 0透明
+css3 rgba(110, 142, 185, .4)!important;前三个是颜色值 后一个是透明值
+用来兼容所有浏览器
+*/
+
+/*
+列布局
+@c1 列数
+@c2 列宽
+@c3 列间距
+@c4 边框样式
+*/
+
+/*背景渐变
+@start  渐变开始颜色
+@end  结束颜色
+*/
+
+/*
+画轮廓 就是内部框
+@outline 样式
+@outline1 间距 负数在内部
+*/
+
+/*
+旋转角度
+@ro定义度数 
+IE不支持 滤镜支持0，1，2，3
+*/
+
+/*
+菱形旋转角度
+@x横向缩放比例
+@y纵向缩放比例
+*/
+
+/* 全局字体大小 */
+
+/* 全局边框颜色 */
+
+.single {
+  height: auto;
+  min-height: 100%;
+}
+
+.single .wrapper {
+  height: auto;
+  width: 100%;
+}
+
+.single .wrapper .content {
+  width: 100%;
+  overflow: hidden;
+  margin-top: 3.148148rem;
+}
+
+input[type="date"]:before,
+input[type="datetime"]:before,
+input[type="time"]:before {
+  color: #A9A9A9;
+  content: attr(placeholder);
+}
+
+.wrapper .content {
+  margin-top: 3.148148rem;
+}
+
+.wrapper .content .con-type {
+  width: 3.888889rem;
+  margin: 1.296296rem auto;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.wrapper .content .con-type .tp-line {
+  width: 0.018519rem;
+  height: 1.296296rem;
+  border-left: 0.037037rem #151c52 dashed;
+  margin: auto;
+  margin-bottom: 0.185185rem;
+}
+
+.wrapper .content .con-type .tp-courier .cou-img {
+  width: 3.888889rem;
+  height: 3.888889rem;
+  background: url(/images/mobileApply/images/up-type-bg.png) no-repeat center;
+  background-size: contain;
+  text-align: center;
+  overflow: hidden;
+  color: #666666;
+}
+
+.wrapper .content .con-type .tp-courier .cou-img .flow1 {
+  margin-top: 1.203704rem;
+}
+
+.wrapper .content .con-type .tp-courier .cou-img .flow-exp {
+  text-align: center;
+  height: 0.740741rem;
+  line-height: 0.740741rem;
+  font-size: 0.555556rem;
+}
+
+.wrapper .content .con-exp {
+  text-align: center;
+}
+
+.wrapper .content .con-exp .tp-mes {
+  font-size: 0.444444rem;
+  color: #666666;
+  margin-top: 0.666667rem;
+}
+
+.wrapper .content .btn-next {
+  width: 90%;
+  height: 1.111111rem;
+  background: #5fbfe7;
+  color: #ffffff;
+  font-size: 0.555556rem;
+  line-height: 1.111111rem;
+  text-align: center;
+  margin: 1.481481rem auto 0.925926rem;
+}
+
+.wrapper .content .to-driver {
+  font-size: 0.555556rem;
+  color: #666666;
+  text-align: center;
+}
+
+.wrapper .content .to-driver .driver-img {
+  width: 6.296296rem;
+  text-align: center;
+  margin: 0.462963rem auto;
+}
+
+.wrapper .content .to-driver .driver-img img {
+  border-left: 0.018519rem #cccccc solid;
+  border-right: 0.018519rem #cccccc solid;
+}
+
+.wrapper .content .to-driver .driver-right {
+  width: 0.925926rem;
+  height: 0.925926rem;
+  background: url(/images/mobileApply/images/icon-tips-right.png) center no-repeat;
+  background-position: center;
+  text-align: center;
+  margin: auto;
+}
+
+.wrapper .content .to-driver .driver-num {
+  width: 94%;
+  /* margin-left: 3%; */
+  margin: auto;
+}
+
+.wrapper .content .to-driver .driver-num input {
+  height: 1.111111rem;
+  width: 90%;
+  display: inline-block;
+  padding: 0.185185rem 0.37037rem;
+  line-height: 0.740741rem;
+  font-size: 0.37037rem;
+  vertical-align: middle;
+  margin-top: 1.481481rem;
+  font-size: 0.444444rem;
+}
+
+.wrapper .content .to-driver .btn-submit {
+  width: 84%;
+  height: 1.111111rem;
+  background: #5fbfe7;
+  color: #ffffff;
+  font-size: 0.555556rem;
+  line-height: 1.111111rem;
+  text-align: center;
+  margin: 1.481481rem auto 0.925926rem;
+}
+
+.wrapper .content .con-site {
+  color: #666666;
+  margin: 0.555556rem 0.555556rem 0;
+  border: 0.018519rem #cccccc solid;
+  font-size: 0.444444rem;
+  position: relative;
+  background-color: #ffffff;
+}
+
+.wrapper .content .con-site .site-name {
+  margin-left: 0.185185rem;
+  float: left;
+  display: inline-block;
+  height: 0.740741rem;
+  line-height: 0.740741rem;
+  margin-top: 0.277778rem;
+  font-size: 0.481481rem;
+  width: 20%;
+  /* For old syntax, otherwise collapses. */
+  min-width: 1.666667rem;
+}
+
+.wrapper .content .con-site .btn-site-search {
+  margin-right: 0.185185rem;
+  float: right;
+  display: inline-block;
+  height: 0.925926rem;
+  line-height: 0.925926rem;
+  margin-top: 0.185185rem;
+  background-color: #5fbfe7;
+  color: #ffffff;
+  padding: 0 0.185185rem;
+  border-radius: 0.12963rem;
+  width: 20%;
+  /* For old syntax, otherwise collapses. */
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.wrapper .content .con-site input {
+  width: 100%;
+  height: 1.111111rem;
+  border: 0;
+  margin-top: 0.092593rem;
+  line-height: 0.925926rem;
+  padding: 0.092593rem 0.277778rem;
+}
+
+.wrapper .content .con-site .img-yzm {
+  height: 0.925926rem;
+  line-height: 0.925926rem;
+  display: inline-block;
+  height: 1.296296rem;
+  margin-left: 0.277778rem;
+  width: 25%;
+  /* For old syntax, otherwise collapses. */
+  float: left;
+}
+
+.wrapper .content .new-site {
+  border: 0;
+}
+
+.wrapper .content .new-site input {
+  border: 0.018519rem #cccccc solid;
+  margin-top: 0;
+  height: 1.296296rem;
+  line-height: 1.111111rem;
+}
+
+.wrapper .content .new-site.required::after {
+  top: auto;
+  bottom: 25%;
+}
+
+.wrapper .content .con-me {
+  border: 0;
+  background-color: #F8F8FA;
+  margin-bottom: 3.148148rem;
+}
+
+.wrapper .content .con-me .site-yzm {
+  background-color: #ffffff;
+  width: 72%;
+  /* For old syntax, otherwise collapses. */
+  border: 0.018519rem #cccccc solid;
+  float: left;
+}
+
+.wrapper .content .con-me .site-yzm .site-name {
+  width: 20%;
+  /* For old syntax, otherwise collapses. */
+}
+
+.wrapper .content .con-me .site-yzm input {
+  width: 100%;
+  /* For old syntax, otherwise collapses. */
+  height: 1.092593rem;
+  border: 0;
+  margin-top: 0.092593rem;
+  line-height: 0.925926rem;
+  padding: 0.092593rem 0.277778rem;
+}
+
+.wrapper .content .driver-items {
+  font-size: 0.555556rem;
+  color: #666666;
+  text-align: center;
+  width: 92%;
+  margin: 0 auto;
+}
+
+.wrapper .content .driver-items .item-title {
+  text-align: left;
+  padding-left: 0.37037rem;
+}
+
+.wrapper .content .driver-items .item-inp {
+  margin: 0.37037rem auto;
+}
+
+.wrapper .content .driver-items .item-inp small {
+  line-height: 1.111111rem;
+}
+
+.wrapper .content .driver-items .item-inp input {
+  width: 94%;
+  border: 0.018519rem #cccccc solid;
+}
+
+.wrapper .content .driver-items .item-inp .btn-site-search {
+  display: inline-block;
+  line-height: 0.740741rem;
+  margin: 0.148148rem 0.185185rem;
+  background-color: #5fbfe7;
+  color: #ffffff;
+  padding: 0 0.185185rem;
+  text-align: center;
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  right: 0.5rem;
+  font-size: 0.37037rem;
+  padding: 0.037037rem 0.555556rem;
+}
+
+.wrapper .content .driver-items .pos_rel {
+  position: relative;
+}
+
+.wrapper .content .driver-items .pos_rel input {
+  padding-right: 2.777778rem;
+}
+
+.wrapper .content .driver-items .is4gps {
+  font-size: 0.444444rem;
+  margin-bottom: 2.407407rem;
+}
+
+.wrapper .content .driver-items .is4gps label {
+  float: left;
+}
+
+.wrapper .content .driver-items .is4gps span {
+  float: left;
+}
+
+.wrapper .content .driver-items .is4gps span:nth-of-type(1) {
+  margin: 0 1.296296rem 0 0.925926rem;
+}
+
+.wrapper .content .driver-items .ckbox-active {
+  color: #1484D7;
+}
+
+.wrapper .content .driver-items .item-img {
+  color: #666666;
+  font-size: 0.444444rem;
+  margin-bottom: 0.925926rem;
+  width: 70%;
+  margin: 0.462963rem auto;
+}
+
+.wrapper .content .driver-items .item-img .upload-img {
+  width: 3.148148rem;
+  height: 3.148148rem;
+  margin: 0 auto;
+}
+
+.wrapper .content .driver-items .item-img .upload-img .up-status {
+  width: 0.740741rem;
+  height: 0.740741rem;
+  background: url(/images/mobileApply/images/icon-tips-error.png) center no-repeat;
+  background-position: center;
+  background-size: contain;
+  text-align: center;
+  display: inline-block;
+  float: right;
+  margin-right: -0.925926rem;
+  vertical-align: bottom;
+  margin-top: 2.037037rem;
+}
+
+.wrapper .content .driver-items .item-img .car-img {
+  background: url(/images/mobileApply/images/pho-car.png) center no-repeat;
+  background-position: center;
+  text-align: center;
+  background-size: contain;
+}
+
+.wrapper .content .driver-items .item-img .cardnum-img {
+  background: url(/images/mobileApply/images/pho-card.png) center no-repeat;
+  background-position: center;
+  text-align: center;
+  background-size: contain;
+}
+
+.wrapper .content .driver-items .item-img .up-right .up-status {
+  background: url(/images/mobileApply/images/icon-tips-right.png) center no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.wrapper .content .driver-items .item-img .car-img.up-right {
+  /*background: url(/images/mobileApply/images/pho-car-cd.png) center no-repeat;*/
+  background-position: center;
+  background-size: contain;
+}
+
+.wrapper .content .driver-items .item-img .hand-img {
+  background: url(/images/mobileApply/images/pho-up.png) center no-repeat;
+  background-position: center;
+  text-align: center;
+  background-size: contain;
+}
+
+.wrapper .content .driver-items .item-img .up-img {
+  background: url(/images/mobileApply/images/pho-card-zm.png) center no-repeat;
+  background-position: center;
+  text-align: center;
+  background-size: contain;
+}
+
+.wrapper .content .driver-items .item-img .cardnum-img.up-right {
+  /*background: url(/images/mobileApply/images/pho-card-cd.png) center no-repeat;*/
+  background-position: center;
+  text-align: center;
+  background-size: contain;
+}
+
+.wrapper .content .driver-items .item-img p {
+  margin-top: 0.185185rem;
+}
+
+.wrapper .content .driver-items .item-mes {
+  text-align: left;
+  padding-left: 0.37037rem;
+  margin: 0.888889rem auto;
+  height: 0.740741rem;
+  line-height: 0.740741rem;
+}
+
+.wrapper .content .driver-items .item-mes .fl {
+  float: left;
+  height: 0.740741rem;
+  line-height: 0.740741rem;
+}
+
+.wrapper .content .driver-items .item-arrow {
+  background: url(/images/mobileApply/images/icon-arrow.png) no-repeat;
+  background-size: 0.555556rem;
+  background-position: center;
+  display: inline-block;
+  height: 0.740741rem;
+  width: 0.740741rem;
+  transform: rotate(-90deg);
+}
+
+.wrapper .content .driver-items .item-mes.active-arrow .item-arrow {
+  transform: rotate(0deg);
+}
+
+.wrapper .content .driver-items .car-infos {
+  margin-top: 2.037037rem;
+}
+
+.wrapper .content .driver-items .item-yzm {
+  margin: 0.37037rem auto;
+}
+
+.wrapper .content .driver-items .item-yzm .yzm-dv {
+  width: 94%;
+  margin: 0 3%;
+  float: left;
+}
+
+.wrapper .content .driver-items .item-yzm .yzm-dv .yzm-num {
+  width: 63%;
+  border: 0.018519rem #ccc solid;
+  padding: 0 0.037037rem;
+  float: left;
+}
+
+.wrapper .content .driver-items .item-yzm .yzm-dv .yzm-num .yzm-tips {
+  display: inline-block;
+  box-sizing: border-box;
+  font-size: 0.444444rem;
+  background: #fff;
+  padding: 0.092593rem 0.185185rem;
+  line-height: 0.925926rem;
+  width: 32%;
+  float: left;
+}
+
+.wrapper .content .driver-items .item-yzm .yzm-dv .yzm-num input {
+  width: 68%;
+  float: left;
+  line-height: 0.925926rem;
+  border: 0;
+  padding: 0.092593rem 0.185185rem;
+}
+
+.wrapper .content .driver-items .item-yzm .yzm-dv .img-yzm {
+  line-height: 1.111111rem;
+  display: inline-block;
+  height: 1.111111rem;
+  width: 33%;
+  float: right;
+}
+
+.wrapper .content .driver-items .item-btn .btn-submit {
+  width: 94%;
+  height: 1.111111rem;
+  background: #5fbfe7;
+  color: #ffffff;
+  font-size: 0.555556rem;
+  line-height: 1.111111rem;
+  text-align: center;
+  margin: 3.37037rem auto 1.851852rem;
+}
+
+.wrapper .content .con-search {
+  position: relative;
+}
+
+.wrapper .content .con-search .ser-inp {
+  text-align: center;
+}
+
+.wrapper .content .con-search .ser-img {
+  line-height: 1.111111rem;
+  display: inline-block;
+  width: 0.925926rem;
+  height: 1.111111rem;
+  background: url(/images/mobileApply/images/icon-search.png) no-repeat center;
+  position: absolute;
+  right: 0.462963rem;
+  top: -0.018519rem;
+  border-top: 0.018519rem #cccccc solid;
+  border-bottom: 0.018519rem #cccccc solid;
+}
+
+.wrapper .content .con-search ul {
+  margin-top: 0.555556rem;
+  color: #666666;
+}
+
+.wrapper .content .con-search ul .ser-site {
+  width: 100%;
+  height: 1.111111rem;
+  line-height: 0.555556rem;
+  padding: 0.277778rem 0.740741rem;
+  font-size: 0.444444rem;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+.wrapper .content .con-search ul .ser-site:hover {
+  background: #F2F2F2;
+}
+
+.wrapper .content .con-search ul .ser-site.active {
+  background: #F2F2F2;
+}
+
+.wrapper .content .con-success {
+  width: 90%;
+  margin: auto;
+}
+
+.wrapper .content .con-success .suc-img {
+  background: url(/images/mobileApply/images/icon-success.png) no-repeat center;
+  height: 3.148148rem;
+  width: 3.148148rem;
+  text-align: center;
+  margin: auto;
+  margin-top: 0.555556rem;
+  margin-bottom: 1.111111rem;
+}
+
+.wrapper .content .con-success .wait.suc-img {
+  background: url(/images/mobileApply/images/icon-wait.png) no-repeat center;
+  margin-top: 1.851852rem;
+}
+
+.wrapper .content .con-success .remind.suc-img {
+  background: url(/images/mobileApply/images/icon-remind.png) no-repeat center;
+  margin-top: 1.851852rem;
+}
+
+.wrapper .content .con-success .suc-desc {
+  font-size: 0.444444rem;
+  color: #666666;
+  width: 86%;
+  margin: auto;
+  line-height: 0.666667rem;
+  text-align: center;
+}
+
+.wrapper .content .con-success .wait.suc-desc p,
+.wrapper .content .con-success .remind.suc-desc p {
+  font-size: 0.555556rem;
+  margin-top: 0.185185rem;
+  text-align: center;
+}
+
+.wrapper .content .upgrade-exp {
+  font-size: 0.444444rem;
+  color: #666666;
+  background-color: red;
+  width: 80%;
+  margin: auto;
+  background-color: #F8F8FA;
+}
+
+.wrapper .content .upgrade-exp p {
+  margin-bottom: 0.740741rem;
+  width: 100%;
+  line-height: 0.62963rem;
+  background: #F8F8FA;
+}
+
+.wrapper .content .upgrade-exp p span {
+  font-weight: 600;
+}
+
+.wrapper .content .upgrade-exp .exp-title {
+  margin-bottom: 0.185185rem;
+  font-weight: 600;
+}
+
+.wrapper .content .upgrade-exp .exp-green {
+  height: 0.740741rem;
+  line-height: 0.740741rem;
+}
+
+.wrapper .content .upgrade-exp .exp-green span {
+  color: #1484D7;
+  font-weight: 500;
+}
+
+.wrapper .content .upgrade-exp .btn-upgrade {
+  height: 1.111111rem;
+  background: #5fbfe7;
+  color: #ffffff;
+  font-size: 0.555556rem;
+  line-height: 1.111111rem;
+  text-align: center;
+  margin: 1.481481rem auto 0.925926rem;
+}
+
+.wrapper .btn-map {
+  margin-top: 3.148148rem;
+  background: #5fbfe7 none repeat scroll 0 0;
+  color: #ffffff;
+  font-size: 0.555556rem;
+  height: 1.111111rem;
+  margin: 1.111111rem auto 0.555556rem;
+  text-align: center;
+  width: 94%;
+}
+
+
+/** loading等待框 begin **/
+
+.gis-popup-backdrop {
+  position: fixed;
+  z-index: 998;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  -webkit-transition-duration: 400ms;
+  transition-duration: 400ms;
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.gis-loading {
+  position: fixed;
+  z-index: 9999;
+  width: 5.555556rem;
+  overflow: hidden;
+  min-height: 2.777778rem;
+  left: 50%;
+  color: #686868;
+  font-family: "Helvetica Neue", "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
+  font-size: 0.37037rem;
+  line-height: 0.362963rem;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 0.222222rem;
+  top: 50%;
+  margin-top: -1.388889rem;
+  margin-left: -2.777778rem;
+}
+
+.gis-loading .gis-loading-logo {
+  width: 4.62963rem;
+  padding: 0.148148rem auto;
+  height: 0.851852rem;
+  margin: 0.555556rem auto;
+}
+
+.gis-loading .gis-loading-logo .gis-logo {
+  float: left;
+  width: 0.37037rem;
+  height: 0.851852rem;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  margin-right: 0.055556rem;
+  opacity: 1;
+}
+
+.gis-loading .gis-loading-logo .gis-logo:nth-of-type(1) {
+  width: 1.407407rem;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEwAAAAuCAYAAACCq/96AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDY3IDc5LjE1Nzc0NywgMjAxNS8wMy8zMC0yMzo0MDo0MiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjdEMERCMjNDODA5ODExRTZBOTlBQzkxMUZCMDAyQ0Y5IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjdEMERCMjNEODA5ODExRTZBOTlBQzkxMUZCMDAyQ0Y5Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6N0QwREIyM0E4MDk4MTFFNkE5OUFDOTExRkIwMDJDRjkiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6N0QwREIyM0I4MDk4MTFFNkE5OUFDOTExRkIwMDJDRjkiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6mBR5YAAAFK0lEQVR42sxbYWscRRie20vN5Zom1zSGxFB7CGIRhEOwvabqpVh7bUVN6Q9I+gsaf4HfhErB5oufRHOIWhrEa0urqZbmQBAE8TAg1Q/12lCwpTWbNjW53O1dd45d2Wx39+Z5Z9a9FybZHDu7c88+zzvPvLOJNZtNFkFkzJZCO/0x9Cz1frrZyi/cvSVz/9Y1ulg08b7ZJtBOvZmXmqvlxRjhfrNmO+H4+xoBsDMcMC0iwM5TOqWOHl5TcL9xCrvNKPAfUQE2a1EcikR2L3W8C47jdwn9K5xdUQLGo4h2iGf3JLpS/Wg3/kV1R/4aJ4x1xj6IEjCSLPtf31+XuE/KSvjkhxs1w2BZbjuSr0rIcYIwzrIlyVZ0UadrB8Vlc9k00mFLds9WCcBy1GQvzTAOsoQv8hyMSGijoy17gUjJ8XAnZOSoRJKSwG2iu2j07R9bFzy1JGmWi+7xKcthEqDBs2Uy/2aMIEcKu56YmJQmfSJosCy5vRD1Tg455lQ8TOWzJEGiZdsUIrHjnaN1gF0pgv/ynMVDsxUgaDDLkmP72tmLkms5pIT5ofowADQ4jyXyB7cCDEOXQ7rfmEI3roISraCy5PaiJ70rcPaVWA75PsD/zekLgDaDXnP7W77ViwWXnUiDl/4mcsAEQMNluS/bDCF/cbZf6AjAePz09Cg73T8E5Q3fZdKhN5IC4KN2Ys763d0RgNnhAxpcwdiee7XhJUficsgw26dm6zHbRkcB5gMaLMveI/m1ANBRd79otuvWcbPjAPMATWf37kOgJbJ7uxVVJzhTP7aONzomhwVZD970U6chx6u9uLvLYS/cu0MIwzas2fEpS5qdC5gj0ncKX7zMHjyAOm17bazqwa40aCd+Mdu9IHbxkN1myzD6LkzZ+oL6xeo6e7s78R8jqt9fXeo+fmyncB7LHzLufv6VO3+hduJLkZOogPEn9xkyqLVmk/1p1Nktw3BbiQMOl9/KOStn53qGjh8TtxfZV5IKlkOXhFIAkVW/ImAtNeqstFF1g2VXEexN1ZTNsOXSj4ON27fFR9TXxwYOH6xILIf4RHMzDMCcX1Ao/m4YrFyrs1rwNafdX3B9/ocKVO758IPi87/97AQLSRPC/g8F7CNkILxgVa7VRE6ddEto+ey5QWi2HB4eNxtVjsUwAON5awoZxZIRyCz3tTdZgNXyYi8ky801e1SOehiATYFPjd1oGELn9Wsx5sXcR5/M3gBvOcHwzVqoeIkANonahn8bYrthO7W45+fLl757DrxnDjSr8IJfA+iO1pQKTLAoOOwD2FrlJmv8fr0KMiwHypGFAdhJgv0ounyRZyRNOfbE/HfNHs19jSSyFMiw82EBhq767Q3aUnt2BQ+BIMtUWHIUBWyKsPQp8OWOCMNG2gDGZVm7cvVOCOvWWUonEcAoL6AVrbWhHpTHtphtIBZve7HV+SvrIQBWCAOwtIQc2+aJkXhc6IL/XLy8SzFYFUbYPBYBjPw+giXJwJloQBN7RaKur6iWZZHasR1gk9TBWJK0Gad75y/xYsnKuTlDIWAzYQCWYfjrjX5Uf+KJDsY1qLZ0/8LlZ9DComDKUAbYpAzVHZL0zGPDMbyyxAuLUSX7doBlGPgqpZvqDknaQFZE3H1QPPx2Pq4AsKJqwDhY1wjXOtOG6jPOxXaQuw+SJVjBcMeCjBy9AJtm9H8rec/5gUuStlFsDXaHRt97QQuLKuXoBIy7+b8YViDULRAOuMEKOJ8X6isjEoChhUWVcuTxWIABAN5GiayLwxn8AAAAAElFTkSuQmCC");
+  margin-right: -0.037037rem;
+  -webkit-animation: sl 1.6s  .2s infinite ease;
+  animation: sl 1.6s .2s infinite ease;
+}
+
+.gis-loading .gis-loading-logo .gis-logo:nth-of-type(2) {
+  width: 0.666667rem;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAhCAYAAACxzQkrAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDY3IDc5LjE1Nzc0NywgMjAxNS8wMy8zMC0yMzo0MDo0MiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkY0MjFEQUQwODA5ODExRTZCODY2QTdDQTlDOEEzQzc5IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkY0MjFEQUQxODA5ODExRTZCODY2QTdDQTlDOEEzQzc5Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6RjQyMURBQ0U4MDk4MTFFNkI4NjZBN0NBOUM4QTNDNzkiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RjQyMURBQ0Y4MDk4MTFFNkI4NjZBN0NBOUM4QTNDNzkiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4BVkN1AAACJ0lEQVR42syXMUvDQBTHE41a0bYRNxeDilOhcVEQitUvYB2dbAdnKTgK9huon0Ad3ITY0a2j4KDgB7C7g7EdnDS+g1dJz0vv3SWpffAjbbne/fPu3XvvzCAIjFGyMWPEzFIcnwdcwJSM84HnNAQtAIdAGVG1nrAmcIXfBxuLIQEZ4AT4DJKzd6ARsd4voh+XgFugG6RjT4BNFbQLvCTsmShReZmgHaATDM9uRIJMzENTQAvYIJygpKwLLANvojy0DRQ0xPj4Ii2NY848UYw6ZffAt4K7PcAVuNzB+KCYD9REMZRTPFGXkqPrEOdh8XoMmOH/s8TYAUqADThILyMb+LRDW1SXbEUbx9mEspWJytSU/XdwEVm2rRJjaByYxbgNdGpZWyK2AhzhZ2pht+MWVwMncbG2LeLT0ZiHeWieP9kWYZvKeDxdLp7iGhMyR/GQjXFwEArstHqxLD6/ogQ1MA7sIWXrGb5JtEJe8TR7HlH2NogvlcNY+lM6zmKKaWMDtodxQS0jLA9N8h7aVMgdvIg74Fq3XUUxGV7QvoaQOooZdDq1BZUU42ONkK2pgiaAaT6GVhQEURp1lVRhYS/WJ2hSYYIPwphTjTjqE6RyWSxKtsnDmqaasftcpiKogotecFu0pSFErI51eCmXCJmtA4/hLWv+oxjWB63yMXROuuKmJyjLC2Jiagku4uMthmqFqLt9Fe/fccwLXZNfCePZTech3OT/CDAA0pXjEbzMnOIAAAAASUVORK5CYII=");
+  -webkit-animation: sl 1.6s  .4s infinite ease;
+  animation: sl 1.6s  .4s infinite ease;
+}
+
+.gis-loading .gis-loading-logo .gis-logo:nth-of-type(3) {
+  width: 0.240741rem;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAuCAYAAADz05PkAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDY3IDc5LjE1Nzc0NywgMjAxNS8wMy8zMC0yMzo0MDo0MiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjU5RTVCMUE3ODA5OTExRTY4MjE0QzVCNzVCOTJEM0M5IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjU5RTVCMUE4ODA5OTExRTY4MjE0QzVCNzVCOTJEM0M5Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NTlFNUIxQTU4MDk5MTFFNjgyMTRDNUI3NUI5MkQzQzkiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NTlFNUIxQTY4MDk5MTFFNjgyMTRDNUI3NUI5MkQzQzkiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4GcUbqAAAAUElEQVR42mL8//+/AAMDgwED8eACA1CTw3/SgAMTAxlgVNOoplFNg0DT/1FNEE2Mw1AT/VIE/Wz6N7g1DfKcO8iT0W9yNP2gW+Qyk6oJIMAAUJtFn2j2oU4AAAAASUVORK5CYII=");
+  -webkit-animation: sl 1.6s  .6s infinite ease;
+  animation: sl 1.6s  .6s infinite ease;
+}
+
+.gis-loading .gis-loading-logo .gis-logo:nth-of-type(4) {
+  width: 0.592593rem;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDY3IDc5LjE1Nzc0NywgMjAxNS8wMy8zMC0yMzo0MDo0MiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjVEQjJGNjNDODA5NzExRTY5RTI3Q0M5QjJEOTg3NDdGIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjVEQjJGNjNEODA5NzExRTY5RTI3Q0M5QjJEOTg3NDdGIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NURCMkY2M0E4MDk3MTFFNjlFMjdDQzlCMkQ5ODc0N0YiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NURCMkY2M0I4MDk3MTFFNjlFMjdDQzlCMkQ5ODc0N0YiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4L7nxHAAAA5UlEQVR42mL8//9/PwMDgwED8cCRgDwp5l1ggSp2YKAeIMk8JoYBBqMOGHXAqANGHTDqgFEHDEsHKIxoByjQIwrwWeJADwck4BAXAOJ6chzwgEQ9+Vh8CrJ8PjlRAGqUPiRRD8iy/aAWLRBvBGJ5IA6AijOQ44APFLR+DahRDlwY6ILoAAWhQLWScAMVzXxAjgMaqWQ5KCQDyXEAyNWFVLDckdQ0hVwQTYBicoPdkawEDewdo+MAIL7/nzjwHogbgFgAzQxiwX5GkAYcAFS4+ENLNxh+gIQPQhMvthz0n0j/HwAIMAD0fJynmJElVgAAAABJRU5ErkJggg==");
+  -webkit-animation: sl 1.6s  .8s infinite ease;
+  animation: sl 1.6s .8s infinite ease;
+}
+
+.gis-loading .gis-loading-logo .gis-logo:nth-of-type(5) {
+  width: 0.648148rem;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACMAAAAhCAYAAABTERJSAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDY3IDc5LjE1Nzc0NywgMjAxNS8wMy8zMC0yMzo0MDo0MiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkM3Mjk4OTIzODA5NjExRTY5RTI0OEM0NUQzRUU5MUJBIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkM3Mjk4OTI0ODA5NjExRTY5RTI0OEM0NUQzRUU5MUJBIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6QzcyOTg5MjE4MDk2MTFFNjlFMjQ4QzQ1RDNFRTkxQkEiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6QzcyOTg5MjI4MDk2MTFFNjlFMjQ4QzQ1RDNFRTkxQkEiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4zScsrAAABnUlEQVR42sxY0W2DMBA1KP/1CHQDd4I6E5QR6AbNBmwQdQK6ASMknQAyAekEYQPnLJ0jxwrB59qIJ70QKeF4Pt/57siUUowIASzw+ghnZA8cSZa1GA+WwAZ4UTQMwD1Q+DzHR8Sg4uAwJ2rqBw5sVRrUFDFaSKfSovERs4SQSUGumFYti9J+fmaldglsGR1HvPIn6T4FnfqvtyPAUjYEuJk7ni0wa4IC2hipYgSgRUrcXVwxHfEgmzufZEjs5AF7/e0ZRz3B5rv+0GJkYMDG+p+pd2wTkAHccwGcYFMaMS9EMQeWCHmAZ1JB5mxFWJ2YcS1idACfsC6xBClLqlObAM9sU24TdaVlSjE9dvO++EglxvQze+AX4b63mdoj8HDkTpzpRf/hdzPKjDdbVh+iiGV/qtMXASNN7XZ6DbAievYH+IsrFlh9qTF1xm7vTox26UAscDGwNduYO/3o58JCdnfZ/GDPq7WMKksJqqmztow4Z9v9swwd/I2X/jtldmjn6bMywvuZAtvDwjTQdstovZcxyXDCw+zoW/+uAgwAjBM51Gm0EloAAAAASUVORK5CYII=");
+  -webkit-animation: sl 1.6s  1s infinite ease;
+  animation: sl 1.6s  1s infinite ease;
+}
+
+.gis-loading .gis-loading-logo .gis-logo:nth-of-type(6) {
+  width: 0.574074rem;
+  height: 0.574074rem;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB8AAAAfCAYAAAAfrhY5AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDY3IDc5LjE1Nzc0NywgMjAxNS8wMy8zMC0yMzo0MDo0MiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjU2MEVGMERDODA5NjExRTZCODBFREFENTI2MUJFMUYwIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjU2MEVGMEREODA5NjExRTZCODBFREFENTI2MUJFMUYwIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NTYwRUYwREE4MDk2MTFFNkI4MEVEQUQ1MjYxQkUxRjAiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NTYwRUYwREI4MDk2MTFFNkI4MEVEQUQ1MjYxQkUxRjAiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5kmD4NAAAAbUlEQVR42mL8//8/AxFAAYqJAR+A+AJRKkGWE4Eb/hMP9hNpJgMTwwCCUctHLR+1nC6AEVQoDFAJVwiy/P8AedxxNMGNWj5q+ajlNAUsQNxIhDp7IHYg0swHQLyQKHWjDchRy0ctH7WclgAgwABayuKyNlFt9AAAAABJRU5ErkJggg==");
+  background-position: top center;
+  -webkit-animation: sl-rotate 1.6s 1.2s infinite ease;
+  animation: sl-rotate 1.6s 1.2s infinite ease;
+}
+
+.gis-loading .gis-loading-tips {
+  color: #fff;
+  font-size: 0.481481rem;
+  padding: 0 0.092593rem 0.092593rem;
+}
+
+@-webkit-keyframes sl {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes sl-rotate {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+    -webkit-transform: rotate(720deg);
+  }
+
+  100% {
+    opacity: 0;
+    -webkit-transform: rotate(720deg);
+  }
+}
+
+/*.gis-loading .gis-loading-logo .gis-logo{
+    display: inline-block;
+    margin:0 auto;
+    width: 240px;
+    height: 100px;
+    background-image: url(../../images/logo.png);
+    background-size: 200px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-x: 2px;
+    width: 66px;
+    -webkit-animation: logo1 6s infinite linear;
+    animation: logo1 6s infinite linear;
+    animation-direction:alternate;
+    -webkit-animation-duration:1s;
+}*/
+
+/** loading等待框 end **/

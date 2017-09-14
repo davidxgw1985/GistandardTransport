@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd"
+        >
+
+    <util:properties id="logToPsc" location="classpath:/messages/logToPscMessage.properties"/>
+
+    <!--开发环境-->
+    <beans profile="develop">
+        <context:property-placeholder location="classpath:/develop/spring_develop.properties,classpath:/develop/webservice_develop.properties"/>
+        <util:properties id="spring" location="classpath:/develop/spring_develop.properties"/>
+        <util:properties id="customerOrderIM" location="classpath:/develop/customerOrderIM_develop.properties"/>
+    </beans>
+    <!--预发布环境-->
+    <beans profile="preRelease">
+        <context:property-placeholder location="classpath:/preRelease/spring_preRelease.properties,classpath:/preRelease/webservice_preRelease.properties"/>
+        <util:properties id="spring" location="classpath:/preRelease/spring_preRelease.properties"/>
+        <util:properties id="customerOrderIM" location="classpath:/preRelease/customerOrderIM_preRelease.properties"/>
+        <util:properties id="webservice" location="classpath:"/>
+    </beans>
+    <!--培训环境-->
+    <beans profile="stu">
+        <context:property-placeholder location="classpath:/stu/spring_stu.properties,classpath:/stu/webservice_stu.properties"/>
+        <util:properties id="spring" location="classpath:/stu/spring_stu.properties"/>
+        <util:properties id="customerOrderIM" location="classpath:/stu/customerOrderIM_stu.properties"/>
+        <util:properties id="webservice" location="classpath:"/>
+    </beans>
+    <!--生产环境-->
+    <beans profile="production">
+        <context:property-placeholder location="classpath:/production/spring_production.properties,classpath:/production/webservice_production.properties"/>
+        <util:properties id="spring" location="classpath:/production/spring_production.properties"/>
+        <util:properties id="customerOrderIM" location="classpath:/production/customerOrderIM_production.properties"/>
+    </beans>
+</beans>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd"
+        >
+
+    <!--异步任务配置-->
+    <import resource="spring-async.xml"/>
+
+    <context:annotation-config/>
+    <aop:aspectj-autoproxy/>
+    <!-- 自动扫描bean，把作了注解的类转换为bean -->
+    <context:component-scan base-package="com.gistandard.transport.*">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+    <mvc:annotation-driven validator="validator" conversion-service="conversionService">
+        <mvc:argument-resolvers>
+            <!--OAuth2注入当前请求对象-->
+            <bean class="org.springframework.security.web.bind.support.AuthenticationPrincipalArgumentResolver"/>
+        </mvc:argument-resolvers>
+        <mvc:message-converters register-defaults="false">
+            <!-- 配置Fastjson支持 -->
+            <bean class="com.gistandard.transport.app.system.common.spring.MyHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/html;charset=UTF-8</value>
+                        <value>application/json;charset=UTF-8</value>
+                        <value>application/x-www-form-urlencoded;charset=UTF-8</value>
+                    </list>
+                </property>
+                <property name="fastJsonConfig" ref="fastJsonConfig"/>
+                <!--
+                <property name="features">
+                    <list>
+                        <value>WriteMapNullValue</value>
+                        <value>QuoteFieldNames</value>
+                        <value>WriteNullStringAsEmpty</value>
+                    </list>
+                </property>
+                -->
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <mvc:resources mapping="/images/**" location="/images/"/>
+    <mvc:resources mapping="/css/**" location="/css/"/>
+    <mvc:resources mapping="/script/**" location="/script/"/>
+    <mvc:resources mapping="/valuePlusUpload/**" location="/valuePlusUpload/"/>
+    <mvc:resources mapping="/swagger/**" location="/swagger/"/>
+
+    <!--系统拦截器定义-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!--需要被拦截的路径-->
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/script/**"/>
+            <mvc:exclude-mapping path="/images/**"/>
+            <mvc:exclude-mapping path="/css/**"/>
+            <mvc:exclude-mapping path="/valuePlusUpload/**"/>
+            <mvc:exclude-mapping path="/swagger/**"/>
+            <!--拦截处理的interceptor-->
+            <bean id="tokenInterceptor" class="com.gistandard.transport.system.common.interceptor.TokenInterceptor" />
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <!--  需要被拦截的路径 -->
+            <mvc:mapping path="/msApp/**"/>
+            <!-- 拦截处理的interceptor -->
+            <bean id="justOneInterceptor" class="com.gistandard.transport.system.common.interceptor.JustOneInterceptor"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <!--  需要被拦截的路径 -->
+            <mvc:mapping path="/msApp/**"/>
+            <mvc:exclude-mapping path="/msApp/appVersion/**"/>
+            <!-- 拦截处理的interceptor -->
+            <bean id="versionCheckInterceptor" class="com.gistandard.transport.app.system.common.interceptor.VersionCheckInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    <bean id="fastJsonConfig" class="com.alibaba.fastjson.support.config.FastJsonConfig">
+        <property name="serializerFeatures">
+            <array value-type="com.alibaba.fastjson.serializer.SerializerFeature">
+                <value>DisableCircularReferenceDetect</value>
+            </array>
+        </property>
+    </bean>
+
+    <bean class="com.gistandard.transport.app.system.swagger.SwaggerConfig" />
+</beans>

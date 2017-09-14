@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ex.MobileGpsInsertInfoDaoEx">
+    <!-- 根据地址查询gps记录 -->
+    <select id="getGpsInsertInfoByAddress"
+            resultMap="com.gistandard.transport.base.entity.dao.MobileGpsInsertInfoDao.BaseResultMap"
+            parameterType="java.lang.String">
+        select
+        <include refid="com.gistandard.transport.base.entity.dao.MobileGpsInsertInfoDao.Base_Column_List"/>
+        from MOBILE_GPS_INSERT_INFO
+        where ADDRESS = #{address}
+        limit 1
+    </select>
+</mapper>

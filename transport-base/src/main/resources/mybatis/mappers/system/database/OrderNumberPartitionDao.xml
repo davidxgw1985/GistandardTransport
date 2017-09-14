@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.OrderNumberPartitionDao" >
+  <resultMap id="BaseResultMap" type="com.gistandard.transport.base.entity.bean.OrderNumberPartition" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="CITY_ID" property="cityId" jdbcType="INTEGER" />
+    <result column="PARTITION_NO" property="partitionNo" jdbcType="INTEGER" />
+    <result column="NEXT_SEQ" property="nextSeq" jdbcType="INTEGER" />
+    <result column="NUMBER_SEQUENCE" property="numberSequence" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, CITY_ID, PARTITION_NO, NEXT_SEQ, NUMBER_SEQUENCE, CREATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from ORDER_NUMBER_PARTITION
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ORDER_NUMBER_PARTITION
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gistandard.transport.base.entity.bean.OrderNumberPartition" >
+    insert into ORDER_NUMBER_PARTITION (ID, CITY_ID, PARTITION_NO,
+    NEXT_SEQ, NUMBER_SEQUENCE, CREATE_TIME
+    )
+    values (#{id,jdbcType=INTEGER}, #{cityId,jdbcType=INTEGER}, #{partitionNo,jdbcType=INTEGER},
+    #{nextSeq,jdbcType=INTEGER}, #{numberSequence,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gistandard.transport.base.entity.bean.OrderNumberPartition" >
+    insert into ORDER_NUMBER_PARTITION
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="cityId != null" >
+        CITY_ID,
+      </if>
+      <if test="partitionNo != null" >
+        PARTITION_NO,
+      </if>
+      <if test="nextSeq != null" >
+        NEXT_SEQ,
+      </if>
+      <if test="numberSequence != null" >
+        NUMBER_SEQUENCE,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="partitionNo != null" >
+        #{partitionNo,jdbcType=INTEGER},
+      </if>
+      <if test="nextSeq != null" >
+        #{nextSeq,jdbcType=INTEGER},
+      </if>
+      <if test="numberSequence != null" >
+        #{numberSequence,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gistandard.transport.base.entity.bean.OrderNumberPartition" >
+    update ORDER_NUMBER_PARTITION
+    <set >
+      <if test="cityId != null" >
+        CITY_ID = #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="partitionNo != null" >
+        PARTITION_NO = #{partitionNo,jdbcType=INTEGER},
+      </if>
+      <if test="nextSeq != null" >
+        NEXT_SEQ = #{nextSeq,jdbcType=INTEGER},
+      </if>
+      <if test="numberSequence != null" >
+        NUMBER_SEQUENCE = #{numberSequence,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gistandard.transport.base.entity.bean.OrderNumberPartition" >
+    update ORDER_NUMBER_PARTITION
+    set CITY_ID = #{cityId,jdbcType=INTEGER},
+      PARTITION_NO = #{partitionNo,jdbcType=INTEGER},
+      NEXT_SEQ = #{nextSeq,jdbcType=INTEGER},
+      NUMBER_SEQUENCE = #{numberSequence,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

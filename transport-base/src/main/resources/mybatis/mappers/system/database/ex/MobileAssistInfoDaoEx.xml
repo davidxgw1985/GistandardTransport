@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ex.MobileAssistInfoDaoEx" >
+
+  <!-- 根据订单号查询该订单的援助信息 yunwei-->
+  <select id="queryMobileAssistInfo" resultMap="com.gistandard.transport.base.entity.dao.MobileAssistInfoDao.BaseResultMap">
+    select
+     <include refid="com.gistandard.transport.base.entity.dao.MobileAssistInfoDao.Base_Column_List" />
+    from MOBILE_ASSIST_INFO
+    where SCHEDU_FLAG = 0 AND BUSI_BOOK_NO = #{busiBookNo}
+    ORDER BY APPLY_TIME DESC
+    limit 1
+  </select>
+
+</mapper>

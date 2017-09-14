@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ex.ComTownDaoEx" >
+
+  <select id="selectByCountyId" resultMap="com.gistandard.transport.base.entity.dao.ComTownDao.BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="com.gistandard.transport.base.entity.dao.ComTownDao.Base_Column_List" />
+    from COM_TOWN
+    where COUNTY_ID = #{countyId,jdbcType=INTEGER} AND STATUS= 1
+    ORDER BY SORT_NO
+  </select>
+
+</mapper>

@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ComQuoteDetailDao" >
+  <resultMap id="BaseResultMap" type="com.gistandard.transport.base.entity.bean.ComQuoteDetail" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="QUOTE_ID" property="quoteId" jdbcType="INTEGER" />
+    <result column="TABLE_HEAD" property="tableHead" jdbcType="BIT" />
+    <result column="SERVICE_TYPE" property="serviceType" jdbcType="VARCHAR" />
+    <result column="SERVICE_PROJECT" property="serviceProject" jdbcType="VARCHAR" />
+    <result column="CALC_UNIT" property="calcUnit" jdbcType="VARCHAR" />
+    <result column="PRICE" property="price" jdbcType="VARCHAR" />
+    <result column="CURRENCY_CODE" property="currencyCode" jdbcType="VARCHAR" />
+    <result column="TEXT1" property="text1" jdbcType="VARCHAR" />
+    <result column="TEXT2" property="text2" jdbcType="VARCHAR" />
+    <result column="TEXT3" property="text3" jdbcType="VARCHAR" />
+    <result column="TEXT4" property="text4" jdbcType="VARCHAR" />
+    <result column="TEXT5" property="text5" jdbcType="VARCHAR" />
+    <result column="TEXT6" property="text6" jdbcType="VARCHAR" />
+    <result column="TEXT7" property="text7" jdbcType="VARCHAR" />
+    <result column="TEXT8" property="text8" jdbcType="VARCHAR" />
+    <result column="TEXT9" property="text9" jdbcType="VARCHAR" />
+    <result column="TEXT10" property="text10" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, QUOTE_ID, TABLE_HEAD, SERVICE_TYPE, SERVICE_PROJECT, CALC_UNIT, PRICE, CURRENCY_CODE, 
+    TEXT1, TEXT2, TEXT3, TEXT4, TEXT5, TEXT6, TEXT7, TEXT8, TEXT9, TEXT10
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from COM_QUOTE_DETAIL
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from COM_QUOTE_DETAIL
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gistandard.transport.base.entity.bean.ComQuoteDetail" >
+    insert into COM_QUOTE_DETAIL (ID, QUOTE_ID, TABLE_HEAD, 
+      SERVICE_TYPE, SERVICE_PROJECT, CALC_UNIT, 
+      PRICE, CURRENCY_CODE, TEXT1, 
+      TEXT2, TEXT3, TEXT4, 
+      TEXT5, TEXT6, TEXT7, 
+      TEXT8, TEXT9, TEXT10
+      )
+    values (#{id,jdbcType=INTEGER}, #{quoteId,jdbcType=INTEGER}, #{tableHead,jdbcType=BIT}, 
+      #{serviceType,jdbcType=VARCHAR}, #{serviceProject,jdbcType=VARCHAR}, #{calcUnit,jdbcType=VARCHAR}, 
+      #{price,jdbcType=VARCHAR}, #{currencyCode,jdbcType=VARCHAR}, #{text1,jdbcType=VARCHAR}, 
+      #{text2,jdbcType=VARCHAR}, #{text3,jdbcType=VARCHAR}, #{text4,jdbcType=VARCHAR}, 
+      #{text5,jdbcType=VARCHAR}, #{text6,jdbcType=VARCHAR}, #{text7,jdbcType=VARCHAR}, 
+      #{text8,jdbcType=VARCHAR}, #{text9,jdbcType=VARCHAR}, #{text10,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gistandard.transport.base.entity.bean.ComQuoteDetail" >
+    insert into COM_QUOTE_DETAIL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="quoteId != null" >
+        QUOTE_ID,
+      </if>
+      <if test="tableHead != null" >
+        TABLE_HEAD,
+      </if>
+      <if test="serviceType != null" >
+        SERVICE_TYPE,
+      </if>
+      <if test="serviceProject != null" >
+        SERVICE_PROJECT,
+      </if>
+      <if test="calcUnit != null" >
+        CALC_UNIT,
+      </if>
+      <if test="price != null" >
+        PRICE,
+      </if>
+      <if test="currencyCode != null" >
+        CURRENCY_CODE,
+      </if>
+      <if test="text1 != null" >
+        TEXT1,
+      </if>
+      <if test="text2 != null" >
+        TEXT2,
+      </if>
+      <if test="text3 != null" >
+        TEXT3,
+      </if>
+      <if test="text4 != null" >
+        TEXT4,
+      </if>
+      <if test="text5 != null" >
+        TEXT5,
+      </if>
+      <if test="text6 != null" >
+        TEXT6,
+      </if>
+      <if test="text7 != null" >
+        TEXT7,
+      </if>
+      <if test="text8 != null" >
+        TEXT8,
+      </if>
+      <if test="text9 != null" >
+        TEXT9,
+      </if>
+      <if test="text10 != null" >
+        TEXT10,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="quoteId != null" >
+        #{quoteId,jdbcType=INTEGER},
+      </if>
+      <if test="tableHead != null" >
+        #{tableHead,jdbcType=BIT},
+      </if>
+      <if test="serviceType != null" >
+        #{serviceType,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceProject != null" >
+        #{serviceProject,jdbcType=VARCHAR},
+      </if>
+      <if test="calcUnit != null" >
+        #{calcUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyCode != null" >
+        #{currencyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="text1 != null" >
+        #{text1,jdbcType=VARCHAR},
+      </if>
+      <if test="text2 != null" >
+        #{text2,jdbcType=VARCHAR},
+      </if>
+      <if test="text3 != null" >
+        #{text3,jdbcType=VARCHAR},
+      </if>
+      <if test="text4 != null" >
+        #{text4,jdbcType=VARCHAR},
+      </if>
+      <if test="text5 != null" >
+        #{text5,jdbcType=VARCHAR},
+      </if>
+      <if test="text6 != null" >
+        #{text6,jdbcType=VARCHAR},
+      </if>
+      <if test="text7 != null" >
+        #{text7,jdbcType=VARCHAR},
+      </if>
+      <if test="text8 != null" >
+        #{text8,jdbcType=VARCHAR},
+      </if>
+      <if test="text9 != null" >
+        #{text9,jdbcType=VARCHAR},
+      </if>
+      <if test="text10 != null" >
+        #{text10,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gistandard.transport.base.entity.bean.ComQuoteDetail" >
+    update COM_QUOTE_DETAIL
+    <set >
+      <if test="quoteId != null" >
+        QUOTE_ID = #{quoteId,jdbcType=INTEGER},
+      </if>
+      <if test="tableHead != null" >
+        TABLE_HEAD = #{tableHead,jdbcType=BIT},
+      </if>
+      <if test="serviceType != null" >
+        SERVICE_TYPE = #{serviceType,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceProject != null" >
+        SERVICE_PROJECT = #{serviceProject,jdbcType=VARCHAR},
+      </if>
+      <if test="calcUnit != null" >
+        CALC_UNIT = #{calcUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        PRICE = #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyCode != null" >
+        CURRENCY_CODE = #{currencyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="text1 != null" >
+        TEXT1 = #{text1,jdbcType=VARCHAR},
+      </if>
+      <if test="text2 != null" >
+        TEXT2 = #{text2,jdbcType=VARCHAR},
+      </if>
+      <if test="text3 != null" >
+        TEXT3 = #{text3,jdbcType=VARCHAR},
+      </if>
+      <if test="text4 != null" >
+        TEXT4 = #{text4,jdbcType=VARCHAR},
+      </if>
+      <if test="text5 != null" >
+        TEXT5 = #{text5,jdbcType=VARCHAR},
+      </if>
+      <if test="text6 != null" >
+        TEXT6 = #{text6,jdbcType=VARCHAR},
+      </if>
+      <if test="text7 != null" >
+        TEXT7 = #{text7,jdbcType=VARCHAR},
+      </if>
+      <if test="text8 != null" >
+        TEXT8 = #{text8,jdbcType=VARCHAR},
+      </if>
+      <if test="text9 != null" >
+        TEXT9 = #{text9,jdbcType=VARCHAR},
+      </if>
+      <if test="text10 != null" >
+        TEXT10 = #{text10,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gistandard.transport.base.entity.bean.ComQuoteDetail" >
+    update COM_QUOTE_DETAIL
+    set QUOTE_ID = #{quoteId,jdbcType=INTEGER},
+      TABLE_HEAD = #{tableHead,jdbcType=BIT},
+      SERVICE_TYPE = #{serviceType,jdbcType=VARCHAR},
+      SERVICE_PROJECT = #{serviceProject,jdbcType=VARCHAR},
+      CALC_UNIT = #{calcUnit,jdbcType=VARCHAR},
+      PRICE = #{price,jdbcType=VARCHAR},
+      CURRENCY_CODE = #{currencyCode,jdbcType=VARCHAR},
+      TEXT1 = #{text1,jdbcType=VARCHAR},
+      TEXT2 = #{text2,jdbcType=VARCHAR},
+      TEXT3 = #{text3,jdbcType=VARCHAR},
+      TEXT4 = #{text4,jdbcType=VARCHAR},
+      TEXT5 = #{text5,jdbcType=VARCHAR},
+      TEXT6 = #{text6,jdbcType=VARCHAR},
+      TEXT7 = #{text7,jdbcType=VARCHAR},
+      TEXT8 = #{text8,jdbcType=VARCHAR},
+      TEXT9 = #{text9,jdbcType=VARCHAR},
+      TEXT10 = #{text10,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

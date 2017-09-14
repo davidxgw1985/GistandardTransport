@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ExpreessScheduCarDao" >
+  <resultMap id="BaseResultMap" type="com.gistandard.transport.base.entity.bean.ExpreessScheduCar" >
+    <id column="SCHEDU_CAR_ID" property="scheduCarId" jdbcType="VARCHAR" />
+    <result column="DRIVER" property="driver" jdbcType="VARCHAR" />
+    <result column="DRIVER_PHONE" property="driverPhone" jdbcType="VARCHAR" />
+    <result column="VEHICLE_ID" property="vehicleId" jdbcType="INTEGER" />
+    <result column="CAR_NO" property="carNo" jdbcType="VARCHAR" />
+    <result column="SCHEDU_CAR_STATUS" property="scheduCarStatus" jdbcType="VARCHAR" />
+    <result column="ACTUAL_SEND_DATE" property="actualSendDate" jdbcType="TIMESTAMP" />
+    <result column="STATION_CODE" property="stationCode" jdbcType="VARCHAR" />
+    <result column="NEXT_STATION_CODE" property="nextStationCode" jdbcType="VARCHAR" />
+    <result column="LAST_STATION_CODE" property="lastStationCode" jdbcType="VARCHAR" />
+    <result column="WEIGHT" property="weight" jdbcType="DECIMAL" />
+    <result column="WEIGHT_UNIT" property="weightUnit" jdbcType="VARCHAR" />
+    <result column="VOLUME" property="volume" jdbcType="DECIMAL" />
+    <result column="VOLUME_UNIT" property="volumeUnit" jdbcType="VARCHAR" />
+    <result column="MS_ORDER_STATUS" property="msOrderStatus" jdbcType="VARCHAR" />
+    <result column="MS_TYPE" property="msType" jdbcType="VARCHAR" />
+    <result column="UNLOAD_CAR_DATE" property="unloadCarDate" jdbcType="TIMESTAMP" />
+    <result column="VALUATION" property="valuation" jdbcType="DECIMAL" />
+    <result column="VALUATION_UNIT" property="valuationUnit" jdbcType="VARCHAR" />
+    <result column="QUOTE_ID" property="quoteId" jdbcType="VARCHAR" />
+    <result column="CREATER" property="creater" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="IS_JS" property="isJs" jdbcType="VARCHAR" />
+    <result column="ORDER_TYPE" property="orderType" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="QUOTE_TYPE" property="quoteType" jdbcType="VARCHAR" />
+    <result column="CREATER_ID" property="createrId" jdbcType="INTEGER" />
+    <result column="SCHEDU_CAR_TYPE" property="scheduCarType" jdbcType="VARCHAR" />
+    <result column="IS_UNLOAD_PK" property="isUnloadPk" jdbcType="VARCHAR" />
+    <result column="MS_OPERATE_REMARK" property="msOperateRemark" jdbcType="VARCHAR" />
+    <result column="PRODUCT_TYPE" property="productType" jdbcType="VARCHAR" />
+    <result column="DRIVER_ID" property="driverId" jdbcType="INTEGER" />
+    <result column="PUSH_ORDER_DATE" property="pushOrderDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SCHEDU_CAR_ID, DRIVER, DRIVER_PHONE, VEHICLE_ID, CAR_NO, SCHEDU_CAR_STATUS, ACTUAL_SEND_DATE, 
+    STATION_CODE, NEXT_STATION_CODE, LAST_STATION_CODE, WEIGHT, WEIGHT_UNIT, VOLUME, 
+    VOLUME_UNIT, MS_ORDER_STATUS, MS_TYPE, UNLOAD_CAR_DATE, VALUATION, VALUATION_UNIT, 
+    QUOTE_ID, CREATER, CREATE_DATE, IS_JS, ORDER_TYPE, REMARK, QUOTE_TYPE, CREATER_ID, 
+    SCHEDU_CAR_TYPE, IS_UNLOAD_PK, MS_OPERATE_REMARK, PRODUCT_TYPE, DRIVER_ID, PUSH_ORDER_DATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from EXPREESS_SCHEDU_CAR
+    where SCHEDU_CAR_ID = #{scheduCarId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from EXPREESS_SCHEDU_CAR
+    where SCHEDU_CAR_ID = #{scheduCarId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gistandard.transport.base.entity.bean.ExpreessScheduCar" >
+    insert into EXPREESS_SCHEDU_CAR (SCHEDU_CAR_ID, DRIVER, DRIVER_PHONE, 
+      VEHICLE_ID, CAR_NO, SCHEDU_CAR_STATUS, 
+      ACTUAL_SEND_DATE, STATION_CODE, NEXT_STATION_CODE, 
+      LAST_STATION_CODE, WEIGHT, WEIGHT_UNIT, 
+      VOLUME, VOLUME_UNIT, MS_ORDER_STATUS, 
+      MS_TYPE, UNLOAD_CAR_DATE, VALUATION, 
+      VALUATION_UNIT, QUOTE_ID, CREATER, 
+      CREATE_DATE, IS_JS, ORDER_TYPE, 
+      REMARK, QUOTE_TYPE, CREATER_ID, 
+      SCHEDU_CAR_TYPE, IS_UNLOAD_PK, MS_OPERATE_REMARK, 
+      PRODUCT_TYPE, DRIVER_ID, PUSH_ORDER_DATE
+      )
+    values (#{scheduCarId,jdbcType=VARCHAR}, #{driver,jdbcType=VARCHAR}, #{driverPhone,jdbcType=VARCHAR}, 
+      #{vehicleId,jdbcType=INTEGER}, #{carNo,jdbcType=VARCHAR}, #{scheduCarStatus,jdbcType=VARCHAR}, 
+      #{actualSendDate,jdbcType=TIMESTAMP}, #{stationCode,jdbcType=VARCHAR}, #{nextStationCode,jdbcType=VARCHAR}, 
+      #{lastStationCode,jdbcType=VARCHAR}, #{weight,jdbcType=DECIMAL}, #{weightUnit,jdbcType=VARCHAR}, 
+      #{volume,jdbcType=DECIMAL}, #{volumeUnit,jdbcType=VARCHAR}, #{msOrderStatus,jdbcType=VARCHAR}, 
+      #{msType,jdbcType=VARCHAR}, #{unloadCarDate,jdbcType=TIMESTAMP}, #{valuation,jdbcType=DECIMAL}, 
+      #{valuationUnit,jdbcType=VARCHAR}, #{quoteId,jdbcType=VARCHAR}, #{creater,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{isJs,jdbcType=VARCHAR}, #{orderType,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{quoteType,jdbcType=VARCHAR}, #{createrId,jdbcType=INTEGER}, 
+      #{scheduCarType,jdbcType=VARCHAR}, #{isUnloadPk,jdbcType=VARCHAR}, #{msOperateRemark,jdbcType=VARCHAR}, 
+      #{productType,jdbcType=VARCHAR}, #{driverId,jdbcType=INTEGER}, #{pushOrderDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gistandard.transport.base.entity.bean.ExpreessScheduCar" >
+    insert into EXPREESS_SCHEDU_CAR
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="scheduCarId != null" >
+        SCHEDU_CAR_ID,
+      </if>
+      <if test="driver != null" >
+        DRIVER,
+      </if>
+      <if test="driverPhone != null" >
+        DRIVER_PHONE,
+      </if>
+      <if test="vehicleId != null" >
+        VEHICLE_ID,
+      </if>
+      <if test="carNo != null" >
+        CAR_NO,
+      </if>
+      <if test="scheduCarStatus != null" >
+        SCHEDU_CAR_STATUS,
+      </if>
+      <if test="actualSendDate != null" >
+        ACTUAL_SEND_DATE,
+      </if>
+      <if test="stationCode != null" >
+        STATION_CODE,
+      </if>
+      <if test="nextStationCode != null" >
+        NEXT_STATION_CODE,
+      </if>
+      <if test="lastStationCode != null" >
+        LAST_STATION_CODE,
+      </if>
+      <if test="weight != null" >
+        WEIGHT,
+      </if>
+      <if test="weightUnit != null" >
+        WEIGHT_UNIT,
+      </if>
+      <if test="volume != null" >
+        VOLUME,
+      </if>
+      <if test="volumeUnit != null" >
+        VOLUME_UNIT,
+      </if>
+      <if test="msOrderStatus != null" >
+        MS_ORDER_STATUS,
+      </if>
+      <if test="msType != null" >
+        MS_TYPE,
+      </if>
+      <if test="unloadCarDate != null" >
+        UNLOAD_CAR_DATE,
+      </if>
+      <if test="valuation != null" >
+        VALUATION,
+      </if>
+      <if test="valuationUnit != null" >
+        VALUATION_UNIT,
+      </if>
+      <if test="quoteId != null" >
+        QUOTE_ID,
+      </if>
+      <if test="creater != null" >
+        CREATER,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="isJs != null" >
+        IS_JS,
+      </if>
+      <if test="orderType != null" >
+        ORDER_TYPE,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="quoteType != null" >
+        QUOTE_TYPE,
+      </if>
+      <if test="createrId != null" >
+        CREATER_ID,
+      </if>
+      <if test="scheduCarType != null" >
+        SCHEDU_CAR_TYPE,
+      </if>
+      <if test="isUnloadPk != null" >
+        IS_UNLOAD_PK,
+      </if>
+      <if test="msOperateRemark != null" >
+        MS_OPERATE_REMARK,
+      </if>
+      <if test="productType != null" >
+        PRODUCT_TYPE,
+      </if>
+      <if test="driverId != null" >
+        DRIVER_ID,
+      </if>
+      <if test="pushOrderDate != null" >
+        PUSH_ORDER_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="scheduCarId != null" >
+        #{scheduCarId,jdbcType=VARCHAR},
+      </if>
+      <if test="driver != null" >
+        #{driver,jdbcType=VARCHAR},
+      </if>
+      <if test="driverPhone != null" >
+        #{driverPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="vehicleId != null" >
+        #{vehicleId,jdbcType=INTEGER},
+      </if>
+      <if test="carNo != null" >
+        #{carNo,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduCarStatus != null" >
+        #{scheduCarStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="actualSendDate != null" >
+        #{actualSendDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stationCode != null" >
+        #{stationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="nextStationCode != null" >
+        #{nextStationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="lastStationCode != null" >
+        #{lastStationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        #{weight,jdbcType=DECIMAL},
+      </if>
+      <if test="weightUnit != null" >
+        #{weightUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="volume != null" >
+        #{volume,jdbcType=DECIMAL},
+      </if>
+      <if test="volumeUnit != null" >
+        #{volumeUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="msOrderStatus != null" >
+        #{msOrderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="msType != null" >
+        #{msType,jdbcType=VARCHAR},
+      </if>
+      <if test="unloadCarDate != null" >
+        #{unloadCarDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="valuation != null" >
+        #{valuation,jdbcType=DECIMAL},
+      </if>
+      <if test="valuationUnit != null" >
+        #{valuationUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="quoteId != null" >
+        #{quoteId,jdbcType=VARCHAR},
+      </if>
+      <if test="creater != null" >
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isJs != null" >
+        #{isJs,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null" >
+        #{orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="quoteType != null" >
+        #{quoteType,jdbcType=VARCHAR},
+      </if>
+      <if test="createrId != null" >
+        #{createrId,jdbcType=INTEGER},
+      </if>
+      <if test="scheduCarType != null" >
+        #{scheduCarType,jdbcType=VARCHAR},
+      </if>
+      <if test="isUnloadPk != null" >
+        #{isUnloadPk,jdbcType=VARCHAR},
+      </if>
+      <if test="msOperateRemark != null" >
+        #{msOperateRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="productType != null" >
+        #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="driverId != null" >
+        #{driverId,jdbcType=INTEGER},
+      </if>
+      <if test="pushOrderDate != null" >
+        #{pushOrderDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gistandard.transport.base.entity.bean.ExpreessScheduCar" >
+    update EXPREESS_SCHEDU_CAR
+    <set >
+      <if test="driver != null" >
+        DRIVER = #{driver,jdbcType=VARCHAR},
+      </if>
+      <if test="driverPhone != null" >
+        DRIVER_PHONE = #{driverPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="vehicleId != null" >
+        VEHICLE_ID = #{vehicleId,jdbcType=INTEGER},
+      </if>
+      <if test="carNo != null" >
+        CAR_NO = #{carNo,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduCarStatus != null" >
+        SCHEDU_CAR_STATUS = #{scheduCarStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="actualSendDate != null" >
+        ACTUAL_SEND_DATE = #{actualSendDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stationCode != null" >
+        STATION_CODE = #{stationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="nextStationCode != null" >
+        NEXT_STATION_CODE = #{nextStationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="lastStationCode != null" >
+        LAST_STATION_CODE = #{lastStationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        WEIGHT = #{weight,jdbcType=DECIMAL},
+      </if>
+      <if test="weightUnit != null" >
+        WEIGHT_UNIT = #{weightUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="volume != null" >
+        VOLUME = #{volume,jdbcType=DECIMAL},
+      </if>
+      <if test="volumeUnit != null" >
+        VOLUME_UNIT = #{volumeUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="msOrderStatus != null" >
+        MS_ORDER_STATUS = #{msOrderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="msType != null" >
+        MS_TYPE = #{msType,jdbcType=VARCHAR},
+      </if>
+      <if test="unloadCarDate != null" >
+        UNLOAD_CAR_DATE = #{unloadCarDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="valuation != null" >
+        VALUATION = #{valuation,jdbcType=DECIMAL},
+      </if>
+      <if test="valuationUnit != null" >
+        VALUATION_UNIT = #{valuationUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="quoteId != null" >
+        QUOTE_ID = #{quoteId,jdbcType=VARCHAR},
+      </if>
+      <if test="creater != null" >
+        CREATER = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isJs != null" >
+        IS_JS = #{isJs,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null" >
+        ORDER_TYPE = #{orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="quoteType != null" >
+        QUOTE_TYPE = #{quoteType,jdbcType=VARCHAR},
+      </if>
+      <if test="createrId != null" >
+        CREATER_ID = #{createrId,jdbcType=INTEGER},
+      </if>
+      <if test="scheduCarType != null" >
+        SCHEDU_CAR_TYPE = #{scheduCarType,jdbcType=VARCHAR},
+      </if>
+      <if test="isUnloadPk != null" >
+        IS_UNLOAD_PK = #{isUnloadPk,jdbcType=VARCHAR},
+      </if>
+      <if test="msOperateRemark != null" >
+        MS_OPERATE_REMARK = #{msOperateRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="productType != null" >
+        PRODUCT_TYPE = #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="driverId != null" >
+        DRIVER_ID = #{driverId,jdbcType=INTEGER},
+      </if>
+      <if test="pushOrderDate != null" >
+        PUSH_ORDER_DATE = #{pushOrderDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where SCHEDU_CAR_ID = #{scheduCarId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gistandard.transport.base.entity.bean.ExpreessScheduCar" >
+    update EXPREESS_SCHEDU_CAR
+    set DRIVER = #{driver,jdbcType=VARCHAR},
+      DRIVER_PHONE = #{driverPhone,jdbcType=VARCHAR},
+      VEHICLE_ID = #{vehicleId,jdbcType=INTEGER},
+      CAR_NO = #{carNo,jdbcType=VARCHAR},
+      SCHEDU_CAR_STATUS = #{scheduCarStatus,jdbcType=VARCHAR},
+      ACTUAL_SEND_DATE = #{actualSendDate,jdbcType=TIMESTAMP},
+      STATION_CODE = #{stationCode,jdbcType=VARCHAR},
+      NEXT_STATION_CODE = #{nextStationCode,jdbcType=VARCHAR},
+      LAST_STATION_CODE = #{lastStationCode,jdbcType=VARCHAR},
+      WEIGHT = #{weight,jdbcType=DECIMAL},
+      WEIGHT_UNIT = #{weightUnit,jdbcType=VARCHAR},
+      VOLUME = #{volume,jdbcType=DECIMAL},
+      VOLUME_UNIT = #{volumeUnit,jdbcType=VARCHAR},
+      MS_ORDER_STATUS = #{msOrderStatus,jdbcType=VARCHAR},
+      MS_TYPE = #{msType,jdbcType=VARCHAR},
+      UNLOAD_CAR_DATE = #{unloadCarDate,jdbcType=TIMESTAMP},
+      VALUATION = #{valuation,jdbcType=DECIMAL},
+      VALUATION_UNIT = #{valuationUnit,jdbcType=VARCHAR},
+      QUOTE_ID = #{quoteId,jdbcType=VARCHAR},
+      CREATER = #{creater,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      IS_JS = #{isJs,jdbcType=VARCHAR},
+      ORDER_TYPE = #{orderType,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      QUOTE_TYPE = #{quoteType,jdbcType=VARCHAR},
+      CREATER_ID = #{createrId,jdbcType=INTEGER},
+      SCHEDU_CAR_TYPE = #{scheduCarType,jdbcType=VARCHAR},
+      IS_UNLOAD_PK = #{isUnloadPk,jdbcType=VARCHAR},
+      MS_OPERATE_REMARK = #{msOperateRemark,jdbcType=VARCHAR},
+      PRODUCT_TYPE = #{productType,jdbcType=VARCHAR},
+      DRIVER_ID = #{driverId,jdbcType=INTEGER},
+      PUSH_ORDER_DATE = #{pushOrderDate,jdbcType=TIMESTAMP}
+    where SCHEDU_CAR_ID = #{scheduCarId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ex.BizAttachmentDaoEx" >
+  
+  	<delete id="deleteByAcctId" parameterType="java.lang.Integer">
+  		DELETE FROM BIZ_ATTACHMENT WHERE UPLOAD_USER=#{acctId}
+  	</delete>
+  	
+  	
+  	<select id="selectUnUseAttachment" resultMap="com.gistandard.transport.base.entity.dao.BizAttachmentDao.BaseResultMap">
+  		SELECT
+  			<include refid="com.gistandard.transport.base.entity.dao.BizAttachmentDao.Base_Column_List"></include>
+  		FROM
+  			BIZ_ATTACHMENT
+  		WHERE
+  			UPLOAD_USER IS NULL
+  			<![CDATA[
+  				AND
+  					UPLOAD_TIME >= #{0}
+  				AND
+  					UPLOAD_TIME <= #{1}
+  			]]>
+  	</select>
+  
+  	<delete id="deleteUnUseAttachment">
+  		DELETE FROM BIZ_ATTACHMENT
+  		WHERE
+  			UPLOAD_USER IS NULL
+  			<![CDATA[
+  				AND
+  					UPLOAD_TIME >= #{0}
+  				AND
+  					UPLOAD_TIME <= #{1}
+  			]]>
+  	</delete>
+
+	<select id="queryAttachByAcctId" resultMap="com.gistandard.transport.base.entity.dao.BizAttachmentDao.BaseResultMap" >
+		select
+		ba.ATTACH_ID, ba.ATTACH_NAME, ba.ATTACH_OLD_NAME, ba.ATTACH_PATH, ba.PROJECT_PATH, ba.ATTACH_TYPE,
+		ba.ATTACH_STATE, ba.ATTACH_SIZE, ba.ATTACH_REL_ID, ba.ATTACH_SERVER_IP, ba.UPLOAD_USER, ba.UPLOAD_TIME,
+		ba.FILE_TYPE
+		from COM_ACCESSORY_RELATION rel,BIZ_ATTACHMENT ba
+		WHERE rel.ATTACH_ID=ba.ATTACH_ID
+		AND rel.RELA_ID = #{acctId,jdbcType=INTEGER}
+		AND rel.T_TAB = 'COM_ACCOUNT'
+	</select>
+	
+	
+	<select id="queryAttchList" resultMap="com.gistandard.transport.base.entity.dao.BizAttachmentDao.BaseResultMap">
+	
+		SELECT
+  			<include refid="com.gistandard.transport.base.entity.dao.BizAttachmentDao.Base_Column_List"></include>
+		FROM
+			BIZ_ATTACHMENT
+		WHERE
+				UPLOAD_USER=#{acctId}
+			AND
+				FILE_TYPE=#{fileType}
+		ORDER BY UPLOAD_TIME DESC
+		
+	</select>
+	
+	<delete id="deleteAttach">
+		
+		DELETE
+		FROM
+			BIZ_ATTACHMENT
+		WHERE
+				UPLOAD_USER=#{acctId}
+			AND
+				FILE_TYPE=#{fileType}
+				
+	</delete>
+	<select id="queryAttachByIds" resultMap="com.gistandard.transport.base.entity.dao.BizAttachmentDao.BaseResultMap" parameterType="java.util.List">
+		select
+		<include refid="com.gistandard.transport.base.entity.dao.BizAttachmentDao.Base_Column_List" />
+		from BIZ_ATTACHMENT
+		where ATTACH_ID IN (
+		<foreach collection="list" item="item" index="index" separator=",">
+			#{item}
+		</foreach>
+		)
+	</select>
+
+	<update id="updateAttachRelIdbyId" parameterType="com.gistandard.transport.base.entity.bean.BizAttachment" >
+		update BIZ_ATTACHMENT
+		set  ATTACH_REL_ID = #{attachRelId,jdbcType=INTEGER}
+		where ATTACH_ID = #{attachId,jdbcType=INTEGER}
+	</update>
+	<select id="querybyAttachRelId" resultMap="com.gistandard.transport.base.entity.dao.BizAttachmentDao.BaseResultMap" parameterType="java.lang.Integer" >
+		select
+		<include refid="com.gistandard.transport.base.entity.dao.BizAttachmentDao.Base_Column_List" />
+		from BIZ_ATTACHMENT
+		where 1=1
+		AND  ATTACH_REL_ID = #{attachRelId}
+	</select>
+
+	<select id="querybyAcctId" resultMap="com.gistandard.transport.base.entity.dao.BizAttachmentDao.BaseResultMap" parameterType="java.lang.Integer" >
+		select
+		<include refid="com.gistandard.transport.base.entity.dao.BizAttachmentDao.Base_Column_List" />
+		from BIZ_ATTACHMENT
+		where UPLOAD_USER = #{acctId}
+	</select>
+
+	<select id="querybyConditions" resultMap="com.gistandard.transport.base.entity.dao.BizAttachmentDao.BaseResultMap" parameterType="com.gistandard.transport.base.entity.bean.BizAttachment" >
+		select
+		<include refid="com.gistandard.transport.base.entity.dao.BizAttachmentDao.Base_Column_List" />
+		from BIZ_ATTACHMENT
+		where 1=1
+		<if test="uploadUser != null" >
+			AND UPLOAD_USER = #{uploadUser}
+		</if>
+		<if test="fileType != null" >
+			AND FILE_TYPE = #{fileType}
+		</if>
+	</select>
+
+	<select id="querybyAttachRelIdCount" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+		select
+		COUNT(1)
+		from BIZ_ATTACHMENT
+		where 1=1
+		AND  ATTACH_REL_ID = #{attachRelId}
+	</select>
+
+	<update id="batchUpdateUploadUser"  >
+		update BIZ_ATTACHMENT
+		set UPLOAD_USER = #{acctId}
+		where ATTACH_ID IN
+		<foreach item="item" collection="attachIdList" separator="," open="(" close=")" index="index">
+			#{item}
+		</foreach>
+	</update>
+
+	<select id="getbyRelCond" resultMap="com.gistandard.transport.base.entity.dao.BizAttachmentDao.BaseResultMap" >
+		select
+		ba.ATTACH_ID, ba.ATTACH_NAME, ba.ATTACH_OLD_NAME, ba.ATTACH_PATH, ba.PROJECT_PATH, ba.ATTACH_TYPE,
+		ba.ATTACH_STATE, ba.ATTACH_SIZE, ba.ATTACH_REL_ID, ba.ATTACH_SERVER_IP, ba.UPLOAD_USER, ba.UPLOAD_TIME,
+		ba.FILE_TYPE
+		from COM_ACCESSORY_RELATION rel,BIZ_ATTACHMENT ba
+		WHERE rel.ATTACH_ID=ba.ATTACH_ID
+		<if test="relaId != null" >
+			AND rel.RELA_ID = #{relaId,jdbcType=INTEGER}
+		</if>
+		<if test="tTab != null and tTab!= ''" >
+			AND rel.T_TAB = #{tTab,jdbcType=VARCHAR}
+		</if>
+	</select>
+</mapper>

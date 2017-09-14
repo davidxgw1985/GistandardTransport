@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ComQuotePriceDao" >
+  <resultMap id="BaseResultMap" type="com.gistandard.transport.base.entity.bean.ComQuotePrice" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="QUOTE_ID" property="quoteId" jdbcType="INTEGER" />
+    <result column="UNIT_CODE" property="unitCode" jdbcType="VARCHAR" />
+    <result column="UNIT_PRICE" property="unitPrice" jdbcType="DECIMAL" />
+    <result column="POINT_VALUE" property="pointValue" jdbcType="DECIMAL" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="RULE_TYPE" property="ruleType" jdbcType="INTEGER" />
+    <result column="SORT_NO" property="sortNo" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="ADD_SCALAR" property="addScalar" jdbcType="DECIMAL" />
+    <result column="SCALAR_UNIT" property="scalarUnit" jdbcType="INTEGER" />
+    <result column="TIME_CONTROL" property="timeControl" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, QUOTE_ID, UNIT_CODE, UNIT_PRICE, POINT_VALUE, STATUS, RULE_TYPE, SORT_NO, CREATE_TIME,
+    ADD_SCALAR, SCALAR_UNIT, TIME_CONTROL
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from COM_QUOTE_PRICE
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from COM_QUOTE_PRICE
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gistandard.transport.base.entity.bean.ComQuotePrice" >
+    insert into COM_QUOTE_PRICE (ID, QUOTE_ID, UNIT_CODE,
+    UNIT_PRICE, POINT_VALUE, STATUS,
+    RULE_TYPE, SORT_NO, CREATE_TIME,
+    ADD_SCALAR, SCALAR_UNIT, TIME_CONTROL
+    )
+    values (#{id,jdbcType=INTEGER}, #{quoteId,jdbcType=INTEGER}, #{unitCode,jdbcType=VARCHAR},
+    #{unitPrice,jdbcType=DECIMAL}, #{pointValue,jdbcType=DECIMAL}, #{status,jdbcType=INTEGER},
+    #{ruleType,jdbcType=INTEGER}, #{sortNo,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
+    #{addScalar,jdbcType=DECIMAL}, #{scalarUnit,jdbcType=INTEGER}, #{timeControl,jdbcType=INTEGER}
+    )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gistandard.transport.base.entity.bean.ComQuotePrice" >
+    insert into COM_QUOTE_PRICE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="quoteId != null" >
+        QUOTE_ID,
+      </if>
+      <if test="unitCode != null" >
+        UNIT_CODE,
+      </if>
+      <if test="unitPrice != null" >
+        UNIT_PRICE,
+      </if>
+      <if test="pointValue != null" >
+        POINT_VALUE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="ruleType != null" >
+        RULE_TYPE,
+      </if>
+      <if test="sortNo != null" >
+        SORT_NO,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="addScalar != null" >
+        ADD_SCALAR,
+      </if>
+      <if test="scalarUnit != null" >
+        SCALAR_UNIT,
+      </if>
+      <if test="timeControl != null" >
+        TIME_CONTROL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="quoteId != null" >
+        #{quoteId,jdbcType=INTEGER},
+      </if>
+      <if test="unitCode != null" >
+        #{unitCode,jdbcType=VARCHAR},
+      </if>
+      <if test="unitPrice != null" >
+        #{unitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="pointValue != null" >
+        #{pointValue,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="ruleType != null" >
+        #{ruleType,jdbcType=INTEGER},
+      </if>
+      <if test="sortNo != null" >
+        #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addScalar != null" >
+        #{addScalar,jdbcType=DECIMAL},
+      </if>
+      <if test="scalarUnit != null" >
+        #{scalarUnit,jdbcType=INTEGER},
+      </if>
+      <if test="timeControl != null" >
+        #{timeControl,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gistandard.transport.base.entity.bean.ComQuotePrice" >
+    update COM_QUOTE_PRICE
+    <set >
+      <if test="quoteId != null" >
+        QUOTE_ID = #{quoteId,jdbcType=INTEGER},
+      </if>
+      <if test="unitCode != null" >
+        UNIT_CODE = #{unitCode,jdbcType=VARCHAR},
+      </if>
+      <if test="unitPrice != null" >
+        UNIT_PRICE = #{unitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="pointValue != null" >
+        POINT_VALUE = #{pointValue,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="ruleType != null" >
+        RULE_TYPE = #{ruleType,jdbcType=INTEGER},
+      </if>
+      <if test="sortNo != null" >
+        SORT_NO = #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addScalar != null" >
+        ADD_SCALAR = #{addScalar,jdbcType=DECIMAL},
+      </if>
+      <if test="scalarUnit != null" >
+        SCALAR_UNIT = #{scalarUnit,jdbcType=INTEGER},
+      </if>
+      <if test="timeControl != null" >
+        TIME_CONTROL = #{timeControl,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gistandard.transport.base.entity.bean.ComQuotePrice" >
+    update COM_QUOTE_PRICE
+    set QUOTE_ID = #{quoteId,jdbcType=INTEGER},
+      UNIT_CODE = #{unitCode,jdbcType=VARCHAR},
+      UNIT_PRICE = #{unitPrice,jdbcType=DECIMAL},
+      POINT_VALUE = #{pointValue,jdbcType=DECIMAL},
+      STATUS = #{status,jdbcType=INTEGER},
+      RULE_TYPE = #{ruleType,jdbcType=INTEGER},
+      SORT_NO = #{sortNo,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      ADD_SCALAR = #{addScalar,jdbcType=DECIMAL},
+      SCALAR_UNIT = #{scalarUnit,jdbcType=INTEGER},
+      TIME_CONTROL = #{timeControl,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

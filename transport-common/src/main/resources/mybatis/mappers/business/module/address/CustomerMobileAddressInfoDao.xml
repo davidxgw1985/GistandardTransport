@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.system.common.address.dao.CustomerMobileAddressInfoDao" >
+    <resultMap id="BaseResultMap" type="com.gistandard.transport.system.common.bean.AddressQueryRes" >
+        <id column="ID" property="id" jdbcType="INTEGER" />
+        <result column="ACCOUNT_ID" property="accountId" jdbcType="INTEGER" />
+        <result column="NAME" property="name" jdbcType="VARCHAR" />
+        <result column="COMPANY_NAME" property="companyName" jdbcType="VARCHAR" />
+        <result column="TELEPHONE" property="telephone" jdbcType="VARCHAR" />
+        <result column="ADDRESS_TYPE" property="addressType" jdbcType="INTEGER" />
+        <result column="COUNTRY" property="country" jdbcType="VARCHAR" />
+        <result column="PROVINCE" property="province" jdbcType="VARCHAR" />
+        <result column="PROVINCE_NAME" property="provinceName" jdbcType="VARCHAR" />
+        <result column="CITY" property="city" jdbcType="VARCHAR" />
+        <result column="CITY_NAME" property="cityName" jdbcType="VARCHAR" />
+        <result column="COUNTY" property="county" jdbcType="VARCHAR" />
+        <result column="COUNTY_NAME" property="countyName" jdbcType="VARCHAR" />
+        <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+        <result column="STATUS" property="status" jdbcType="INTEGER" />
+        <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="DEFAULT_ADDRESS" property="defaultAddress" jdbcType="INTEGER" />
+        <result column="ADDRESS_LONGITUDE" property="addressLongitude" jdbcType="DECIMAL" />
+        <result column="ADDRESS_LATITUDE" property="addressLatitude" jdbcType="DECIMAL" />
+        <result column="DETAIL_ADDRESS" property="detailAddress" jdbcType="VARCHAR" />
+        <result column="ZIP_CODE" property="zipCode" jdbcType="VARCHAR" />
+        <result column="PREFIX_CODE" property="prefixCode" jdbcType="VARCHAR" />
+        <result column="SEX" property="sex" jdbcType="INTEGER" />
+    </resultMap>
+    <select id="queryByAccountId" resultMap="BaseResultMap" parameterType="com.gistandard.transport.system.common.bean.QueryAddressReq" >
+        SELECT M.ID, M.ACCOUNT_ID, M.NAME, M.COMPANY_NAME, M.TELEPHONE, M.ADDRESS_TYPE, M.COUNTRY, M.PROVINCE, M.CITY, M.COUNTY, M.ADDRESS,
+        M.STATUS, M.CREATE_TIME,M.DEFAULT_ADDRESS, P.PROVINCE_NAME,C.NAME CITY_NAME ,A.AREA_NAME COUNTY_NAME, M.ADDRESS_LONGITUDE, M.ADDRESS_LATITUDE, M.DETAIL_ADDRESS, M.ZIP_CODE, M.PREFIX_CODE, M.SEX
+        FROM MOBILE_ADDRESS_INFO M
+        LEFT JOIN COM_PROVINCE P ON M.PROVINCE = P.ID
+        LEFT JOIN COM_CITY C ON M.CITY = C.ID
+
+        LEFT JOIN COM_COUNTY A ON M.COUNTY = A.ID
+        where 1 = 1
+        <choose>
+            <when test="companyAccountId != null">
+                AND  M.ACCOUNT_ID = #{companyAccountId,jdbcType=INTEGER}
+            </when>
+            <otherwise>
+                AND  M.ACCOUNT_ID = #{accountId,jdbcType=INTEGER}
+            </otherwise>
+        </choose>
+        <if test="addressType != null">
+            AND M.ADDRESS_TYPE = #{addressType,jdbcType=INTEGER}
+        </if>
+        <if test="name != null">
+            AND M.NAME  like CONCAT('%',#{name},'%')
+        </if>
+        <if test="telephone != null">
+            AND M.TELEPHONE  like CONCAT('%',#{telephone},'%')
+        </if>
+        <if test="areaId != null and areaId != ''">
+            AND (M.PROVINCE = #{areaId,jdbcType=VARCHAR} OR M.CITY = #{areaId,jdbcType=VARCHAR} OR M.COUNTY = #{areaId,jdbcType=VARCHAR})
+        </if>
+        <if test="description != null">
+            AND (P.province_name LIKE CONCAT('%',#{description,jdbcType=VARCHAR},'%') OR C.NAME LIKE CONCAT('%',#{description,jdbcType=VARCHAR},'%') OR A.AREA_NAME LIKE CONCAT('%',#{description,jdbcType=VARCHAR},'%')
+            OR M.ADDRESS LIKE CONCAT('%',#{description,jdbcType=VARCHAR},'%') OR M.TELEPHONE LIKE CONCAT('%',#{description,jdbcType=VARCHAR},'%') OR M.NAME LIKE CONCAT('%',#{description,jdbcType=VARCHAR},'%') OR M.DETAIL_ADDRESS LIKE CONCAT('%',#{description,jdbcType=VARCHAR},'%'))
+        </if>
+        AND M.STATUS = 1
+        <if test="pageSize != null and pageSize != 0">
+            limit #{startRecord},#{pageSize}
+        </if>
+    </select>
+
+    <select id="queryByCondition" resultMap="BaseResultMap" parameterType="com.gistandard.transport.system.common.bean.AddressReq" >
+    SELECT M.ID, M.ACCOUNT_ID, M.NAME, M.COMPANY_NAME, M.TELEPHONE, M.ADDRESS_TYPE, M.COUNTRY, M.PROVINCE, M.CITY, M.COUNTY, M.ADDRESS,
+    M.STATUS, M.CREATE_TIME,M.DEFAULT_ADDRESS, M.ADDRESS_LONGITUDE, M.ADDRESS_LATITUDE, M.DETAIL_ADDRESS, M.ZIP_CODE, M.PREFIX_CODE, M.SEX
+    FROM MOBILE_ADDRESS_INFO M
+    where  1 = 1
+    <choose>
+        <when test="companyAccountId != null">
+            AND  M.ACCOUNT_ID = #{companyAccountId,jdbcType=INTEGER}
+        </when>
+        <otherwise>
+            AND  M.ACCOUNT_ID = #{accountId,jdbcType=INTEGER}
+        </otherwise>
+    </choose>
+    <if test="addressType != null">
+        AND M.ADDRESS_TYPE = #{addressType,jdbcType=INTEGER}
+    </if>
+    AND M.STATUS = 1
+    </select>
+
+    <select id="queryByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        SELECT M.ID, M.ACCOUNT_ID, M.NAME, M.COMPANY_NAME, M.TELEPHONE, M.ADDRESS_TYPE, M.COUNTRY, M.PROVINCE, M.CITY, M.COUNTY, M.ADDRESS,
+        M.STATUS, M.CREATE_TIME,M.DEFAULT_ADDRESS, P.PROVINCE_NAME,C.NAME CITY_NAME ,A.AREA_NAME COUNTY_NAME, M.ADDRESS_LONGITUDE, M.ADDRESS_LATITUDE, M.DETAIL_ADDRESS, M.ZIP_CODE, M.PREFIX_CODE, M.SEX
+        FROM MOBILE_ADDRESS_INFO M
+        LEFT JOIN COM_PROVINCE P ON M.PROVINCE = P.ID
+        LEFT JOIN COM_CITY C ON M.CITY = C.ID
+        LEFT JOIN COM_COUNTY A ON M.COUNTY = A.ID
+        where M.ID = #{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="totalCount" resultType="java.lang.Integer" parameterType="com.gistandard.transport.system.common.bean.QueryAddressReq" >
+        select count(*)
+        from MOBILE_ADDRESS_INFO M
+        LEFT JOIN COM_PROVINCE P ON M.PROVINCE = P.ID
+        LEFT JOIN COM_CITY C ON M.CITY = C.ID
+        LEFT JOIN COM_COUNTY A ON M.COUNTY = A.ID
+        where 1 = 1
+        <choose>
+            <when test="companyAccountId != null">
+                AND  M.ACCOUNT_ID = #{companyAccountId,jdbcType=INTEGER}
+            </when>
+            <otherwise>
+                AND  M.ACCOUNT_ID = #{accountId,jdbcType=INTEGER}
+            </otherwise>
+        </choose>
+        <if test="addressType != null">
+            AND M.ADDRESS_TYPE = #{addressType,jdbcType=INTEGER}
+        </if>
+        <if test="areaId != null and areaId != ''">
+            AND (M.PROVINCE = #{areaId,jdbcType=VARCHAR} OR M.CITY = #{areaId,jdbcType=VARCHAR} OR M.COUNTY = #{areaId,jdbcType=VARCHAR})
+        </if>
+        <if test="description != null">
+            AND (P.province_name LIKE CONCAT('%',#{description,jdbcType=VARCHAR},'%') OR C.NAME LIKE CONCAT('%',#{description,jdbcType=VARCHAR},'%') OR A.AREA_NAME LIKE CONCAT('%',#{description,jdbcType=VARCHAR},'%')
+            OR M.ADDRESS LIKE CONCAT('%',#{description,jdbcType=VARCHAR},'%') OR M.TELEPHONE LIKE CONCAT('%',#{description,jdbcType=VARCHAR},'%') OR M.NAME LIKE CONCAT('%',#{description,jdbcType=VARCHAR},'%') OR M.DETAIL_ADDRESS LIKE CONCAT('%',#{description,jdbcType=VARCHAR},'%'))
+        </if>
+        AND STATUS = 1
+    </select>
+
+</mapper>

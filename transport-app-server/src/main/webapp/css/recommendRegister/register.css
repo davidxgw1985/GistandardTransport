@@ -1,0 +1,848 @@
+@charset "utf-8";
+
+/**
+ *  newzong
+ *  
+ */
+
+/* 加载项目通用布局common.css */
+
+/**
+	less效果函数
+	NewZong 2016/07/15
+**/
+
+.cf {
+  overflow: hidden;
+}
+
+/** 高度计算 **/
+
+/** 宽度计算 **/
+
+/*
+定义圆角
+@radius 圆角大小
+*/
+
+/*
+盒子阴影
+@right_left 右边阴影为正数 左边负数
+@bottom_top 下边阴影为正数 上边负数
+@box  阴影大小
+@box_color 阴影颜色
+*/
+
+/*
+文字阴影,可以指定多组阴影
+@right_left1 右边阴影为正数 左边负数
+@bottom_top1 下边阴影为正数 上边负数
+@text  阴影大小
+@text_color 阴影颜色
+*/
+
+/*
+透明度 或渐变 1为不透明 0透明
+css3 rgba(110, 142, 185, .4)!important;前三个是颜色值 后一个是透明值
+用来兼容所有浏览器
+*/
+
+/*
+列布局
+@c1 列数
+@c2 列宽
+@c3 列间距
+@c4 边框样式
+*/
+
+/*背景渐变
+@start  渐变开始颜色
+@end  结束颜色
+*/
+
+/*
+画轮廓 就是内部框
+@outline 样式
+@outline1 间距 负数在内部
+*/
+
+/*
+旋转角度
+@ro定义度数 
+IE不支持 滤镜支持0，1，2，3
+*/
+
+/*
+菱形旋转角度
+@x横向缩放比例
+@y纵向缩放比例
+*/
+
+/* 全局字体大小 */
+
+/* 全局边框颜色 */
+
+.bluecl {
+  color: #5FC0E6 !important;
+}
+
+.single {
+  height: auto;
+  min-height: 100%;
+}
+
+.single .wrapper {
+  height: auto;
+  width: 100%;
+}
+
+.single .wrapper .content {
+  width: 100%;
+  overflow: hidden;
+  margin-top: 3.148148rem;
+}
+
+input[type="date"]:before,
+input[type="datetime"]:before,
+input[type="time"]:before {
+  color: #A9A9A9;
+  content: attr(placeholder);
+}
+
+.wrapper .content {
+  margin-top: 3.148148rem;
+}
+
+.wrapper .content .con-type {
+  width: 3.888889rem;
+  margin: 1.296296rem auto;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.wrapper .content .con-type .tp-line {
+  width: 0.018519rem;
+  height: 1.296296rem;
+  border-left: 0.037037rem #151c52 dashed;
+  margin: auto;
+  margin-bottom: 0.185185rem;
+}
+
+.wrapper .content .con-type .tp-courier .cou-img {
+  width: 3.888889rem;
+  height: 3.888889rem;
+  background: url(/images/recommendRegister/up-type-bg.png) no-repeat center;
+  text-align: center;
+  overflow: hidden;
+  color: #666666;
+}
+
+.wrapper .content .con-type .tp-courier .cou-img .flow1 {
+  margin-top: 1.203704rem;
+}
+
+.wrapper .content .con-type .tp-courier .cou-img .flow-exp {
+  text-align: center;
+  height: 0.740741rem;
+  line-height: 0.740741rem;
+  font-size: 0.555556rem;
+}
+
+.wrapper .content .con-exp {
+  text-align: center;
+}
+
+.wrapper .content .con-exp .tp-mes {
+  font-size: 0.444444rem;
+  color: #666666;
+  margin-top: 0.666667rem;
+}
+
+.wrapper .content .btn-next {
+  margin: auto;
+  width: 90%;
+  height: 1.111111rem;
+  background: #5fbfe7;
+  color: #ffffff;
+  font-size: 0.555556rem;
+  line-height: 1.111111rem;
+  text-align: center;
+  margin-top: 1.481481rem;
+  margin-bottom: 0.925926rem;
+}
+
+.wrapper .content .btn-down-app span {
+  background: url(/images/recommendRegister/icon-down-ios.png) no-repeat;
+  background-size: 0.648148rem !important;
+  background-position: center left !important;
+  padding-left: 1.111111rem;
+  display: inline-block;
+  height: 1.111111rem;
+  line-height: 1.111111rem;
+  letter-spacing: 0.037037rem;
+}
+
+.wrapper .content .btn-down-app .ios {
+  background: url(/images/recommendRegister/icon-down-ios.png) no-repeat;
+}
+
+.wrapper .content .btn-down-app .andr {
+  background: url(/images/recommendRegister/icon-down-andr.png) no-repeat;
+}
+
+.wrapper .content .con-site {
+  color: #666666;
+  width: 94%;
+  margin: auto;
+  margin-top: 0.555556rem;
+  height: 1.296296rem;
+  border: 0.018519rem #cccccc solid;
+  font-size: 0.444444rem;
+  position: relative;
+  display: -webkit-box;
+  /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;
+  /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;
+  /* TWEENER - IE 10 */
+  display: -webkit-flex;
+  /* NEW - Chrome */
+  display: flex;
+  /* NEW, Spec - Opera 12.1, Firefox 20+ */
+  background-color: #ffffff;
+}
+
+.wrapper .content .con-site .site-name {
+  margin-left: 0.185185rem;
+  float: left;
+  display: inline-block;
+  height: 0.740741rem;
+  line-height: 0.740741rem;
+  margin-top: 0.277778rem;
+  font-size: 0.481481rem;
+  -webkit-box-flex: 2;
+  /* OLD - iOS 6-, Safari 3.1-6 */
+  -moz-box-flex: 2;
+  /* OLD - Firefox 19- */
+  width: 20%;
+  /* For old syntax, otherwise collapses. */
+  -webkit-flex: 2;
+  /* Chrome */
+  -ms-flex: 2;
+  /* IE 10 */
+  flex: 2;
+  /* NEW, Spec - Opera 12.1, Firefox 20+ */
+  min-width: 1.666667rem;
+}
+
+.wrapper .content .con-site .btn-site-search {
+  margin-right: 0.185185rem;
+  float: right;
+  display: inline-block;
+  height: 0.925926rem;
+  line-height: 0.925926rem;
+  margin-top: 0.185185rem;
+  background-color: #5fbfe7;
+  color: #ffffff;
+  padding: 0 0.185185rem;
+  border-radius: 0.12963rem;
+  -webkit-box-flex: 2;
+  /* OLD - iOS 6-, Safari 3.1-6 */
+  -moz-box-flex: 2;
+  /* OLD - Firefox 19- */
+  width: 20%;
+  /* For old syntax, otherwise collapses. */
+  -webkit-flex: 2;
+  /* Chrome */
+  -ms-flex: 2;
+  /* IE 10 */
+  flex: 2;
+  /* NEW, Spec - Opera 12.1, Firefox 20+ */
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.wrapper .content .con-site input {
+  width: 100%;
+  flex: 6;
+  height: 1.111111rem;
+  border: 0;
+  margin-top: 0.092593rem;
+  line-height: 0.925926rem;
+  padding: 0.092593rem 0.277778rem;
+}
+
+.wrapper .content .con-site .img-yzm {
+  height: 0.925926rem;
+  line-height: 0.925926rem;
+  display: inline-block;
+  height: 1.296296rem;
+  margin-left: 2%;
+  -webkit-box-flex: 3;
+  /* OLD - iOS 6-, Safari 3.1-6 */
+  -moz-box-flex: 3;
+  /* OLD - Firefox 19- */
+  width: 25%;
+  /* For old syntax, otherwise collapses. */
+  -webkit-flex: 3;
+  /* Chrome */
+  -ms-flex: 3;
+  /* IE 10 */
+  flex: 3;
+  /* NEW, Spec - Opera 12.1, Firefox 20+ */
+  background: no-repeat center;
+  float: left;
+}
+
+.wrapper .content .new-site {
+  border: 0;
+}
+
+.wrapper .content .new-site input {
+  border: 0.018519rem #cccccc solid;
+  margin-top: 0;
+  height: 1.296296rem;
+  line-height: 1.111111rem;
+}
+
+.wrapper .content .new-site select {
+  border: 0.018519rem #cccccc solid;
+  margin-top: 0;
+  height: 1.296296rem;
+  line-height: 1.111111rem;
+  width: 100%;
+}
+
+.wrapper .content .new-site p {
+  color: #E82813;
+  font-size: 0.37037rem;
+}
+
+.wrapper .content .my-site {
+  border: 0.018519rem #cccccc solid;
+}
+
+.wrapper .content .my-site input {
+  border: 0;
+  border-right: 0.018519rem #cccccc solid;
+  margin: 0.185185rem auto;
+  height: 0.925926rem;
+  line-height: 0.925926rem;
+  text-align: center;
+  padding: 0 0.277778rem;
+}
+
+.wrapper .content .my-site input:nth-of-type(4) {
+  width: 3.703704rem;
+}
+
+.wrapper .content .pht-yzm {
+  position: relative;
+}
+
+.wrapper .content .pht-yzm a {
+  position: absolute;
+  height: 1.111111rem;
+  line-height: 1.111111rem;
+  top: 0.092593rem;
+  right: 0.185185rem;
+  color: #ffffff;
+  background: #5fbfe7;
+  padding: 0 0.37037rem;
+}
+
+.wrapper .content .new-site.required::after {
+  top: auto;
+  bottom: 25%;
+}
+
+.wrapper .content .con-me {
+  border: 0;
+  background-color: #F8F8FA;
+}
+
+.wrapper .content .con-me .site-yzm {
+  background-color: #ffffff;
+  -webkit-box-flex: 8;
+  /* OLD - iOS 6-, Safari 3.1-6 */
+  -moz-box-flex: 8;
+  /* OLD - Firefox 19- */
+  width: 72%;
+  /* For old syntax, otherwise collapses. */
+  -webkit-flex: 8;
+  /* Chrome */
+  -ms-flex: 8;
+  /* IE 10 */
+  flex: 8;
+  /* NEW, Spec - Opera 12.1, Firefox 20+ */
+  display: -webkit-box;
+  /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;
+  /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;
+  /* TWEENER - IE 10 */
+  display: -webkit-flex;
+  /* NEW - Chrome */
+  display: flex;
+  /* NEW, Spec - Opera 12.1, Firefox 20+ */
+  border: 0.018519rem #cccccc solid;
+  float: left;
+}
+
+.wrapper .content .con-me .site-yzm .site-name {
+  flex: 2;
+}
+
+.wrapper .content .con-me .site-yzm input {
+  height: 1.111111rem;
+  border: 0;
+  margin-top: 0.092593rem;
+  line-height: 0.925926rem;
+  -webkit-box-flex: 6;
+  /* OLD - iOS 6-, Safari 3.1-6 */
+  -moz-box-flex: 6;
+  /* OLD - Firefox 19- */
+  width: 100%;
+  /* For old syntax, otherwise collapses. */
+  -webkit-flex: 6;
+  /* Chrome */
+  -ms-flex: 6;
+  /* IE 10 */
+  flex: 6;
+  /* NEW, Spec - Opera 12.1, Firefox 20+ */
+  padding: 0.092593rem 0.277778rem;
+}
+
+.wrapper .content .driver-items {
+  font-size: 0.555556rem;
+  color: #666666;
+  text-align: center;
+  width: 92%;
+  margin: 0 auto;
+  margin-top: 1.296296rem;
+}
+
+.wrapper .content .driver-items .item-title {
+  text-align: left;
+  padding-left: 0.37037rem;
+}
+
+.wrapper .content .driver-items .item-inp {
+  margin: 0.37037rem auto;
+}
+
+.wrapper .content .driver-items .item-inp small {
+  line-height: 1.111111rem;
+}
+
+.wrapper .content .driver-items .item-inp input {
+  width: 94%;
+  border: 0.018519rem #cccccc solid;
+}
+
+.wrapper .content .driver-items .item-inp .btn-site-search {
+  display: inline-block;
+  line-height: 0.740741rem;
+  margin: 0.148148rem 0.185185rem;
+  background-color: #5fbfe7;
+  color: #ffffff;
+  padding: 0 0.185185rem;
+  text-align: center;
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  right: 0.5rem;
+  font-size: 0.37037rem;
+  padding: 0.037037rem 0.555556rem;
+}
+
+.wrapper .content .driver-items .pos_rel {
+  position: relative;
+}
+
+.wrapper .content .driver-items .pos_rel input {
+  padding-right: 2.777778rem;
+}
+
+.wrapper .content .driver-items .is4gps {
+  font-size: 0.444444rem;
+  margin-bottom: 2.407407rem;
+}
+
+.wrapper .content .driver-items .is4gps label {
+  float: left;
+}
+
+.wrapper .content .driver-items .is4gps span {
+  float: left;
+}
+
+.wrapper .content .driver-items .is4gps span:nth-of-type(1) {
+  margin: 0 1.296296rem 0 0.925926rem;
+}
+
+.wrapper .content .driver-items .ckbox-active {
+  color: #1484D7;
+}
+
+.wrapper .content .driver-items .item-img {
+  color: #666666;
+  font-size: 0.444444rem;
+  margin-bottom: 0.925926rem;
+  width: 70%;
+  margin: 0.462963rem auto;
+}
+
+.wrapper .content .driver-items .item-img .upload-img {
+  width: 3.703704rem;
+  height: 3.703704rem;
+  margin: 0 auto;
+  background-position: center !important;
+  text-align: center !important;
+  background-size: contain !important;
+}
+
+.wrapper .content .driver-items .item-img .upload-img .up-status {
+  width: 0.740741rem;
+  height: 0.740741rem;
+  background: url(/images/recommendRegister/icon-tips-error.png) center no-repeat;
+  background-position: center;
+  background-size: contain;
+  text-align: center;
+  display: inline-block;
+  float: right;
+  margin-right: -0.925926rem;
+  vertical-align: bottom;
+  margin-top: 2.037037rem;
+}
+
+.wrapper .content .driver-items .item-img .car-img {
+  background: url(/images/recommendRegister/pho-car.png) center no-repeat;
+}
+
+.wrapper .content .driver-items .item-img .card-zm-img {
+  background: url(/images/recommendRegister/pho-card-zm.png) center no-repeat;
+}
+
+.wrapper .content .driver-items .item-img .card-zm-img.up-right {
+  background: url(/images/recommendRegister/pho-card-zm-cd.png) center no-repeat;
+}
+
+.wrapper .content .driver-items .item-img .card-fm-img {
+  background: url(/images/recommendRegister/pho-card.png) center no-repeat;
+}
+
+.wrapper .content .driver-items .item-img .heard-img {
+  background: url(/images/recommendRegister/pho-up.png) center no-repeat;
+}
+
+.wrapper .content .driver-items .item-img .bs-img {
+  background: url(/images/recommendRegister/pho-up.png) center no-repeat;
+}
+
+.wrapper .content .driver-items .item-img .company-img {
+  background: url(/images/recommendRegister/pho-company.png) center no-repeat;
+}
+
+.wrapper .content .driver-items .item-img .up-right .up-status {
+  background: url(/images/recommendRegister/icon-tips-right.png) center no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.wrapper .content .driver-items .item-img p {
+  margin-top: 0.185185rem;
+}
+
+.wrapper .content .driver-items .item-mes {
+  text-align: left;
+  padding-left: 0.37037rem;
+  margin: 0.37037rem auto;
+  height: 1.111111rem;
+  line-height: 1.111111rem;
+}
+
+.wrapper .content .driver-items .item-mes .fl {
+  float: left;
+  height: 0.740741rem;
+  line-height: 0.740741rem;
+}
+
+.wrapper .content .driver-items .item-btn-ctr {
+  margin: 1.111111rem auto;
+}
+
+.wrapper .content .driver-items .item-btn-ctr span {
+  display: inline-block;
+  width: 1.296296rem;
+  height: 1.296296rem;
+  line-height: 1.296296rem;
+  background: #5fbfe7;
+  color: #ffffff;
+  border-radius: 1.111111rem;
+  margin: 0 0.555556rem;
+  font-size: 0.703704rem;
+}
+
+.wrapper .content .driver-items .item-arrow {
+  background: url(/images/recommendRegister/icon-arrow.png) no-repeat;
+  background-size: 0.555556rem;
+  background-position: center;
+  display: inline-block;
+  height: 0.740741rem;
+  width: 0.740741rem;
+  transform: rotate(-90deg);
+}
+
+.wrapper .content .driver-items .item-mes.active-arrow .item-arrow {
+  transform: rotate(0deg);
+}
+
+.wrapper .content .driver-items .car-infos {
+  margin-top: 2.037037rem;
+}
+
+.wrapper .content .driver-items .item-yzm {
+  margin: 0.37037rem auto;
+}
+
+.wrapper .content .driver-items .item-yzm .yzm-dv {
+  width: 94%;
+  margin: 0 3%;
+  float: left;
+}
+
+.wrapper .content .driver-items .item-yzm .yzm-dv .yzm-num {
+  width: 63%;
+  border: 0.018519rem #ccc solid;
+  padding: 0 0.037037rem;
+  float: left;
+}
+
+.wrapper .content .driver-items .item-yzm .yzm-dv .yzm-num .yzm-tips {
+  display: inline-block;
+  box-sizing: border-box;
+  font-size: 0.444444rem;
+  background: #fff;
+  padding: 0.092593rem 0.185185rem;
+  line-height: 0.925926rem;
+  width: 32%;
+  float: left;
+}
+
+.wrapper .content .driver-items .item-yzm .yzm-dv .yzm-num input {
+  width: 68%;
+  float: left;
+  line-height: 0.925926rem;
+  border: 0;
+  padding: 0.092593rem 0.185185rem;
+}
+
+.wrapper .content .driver-items .item-yzm .yzm-dv .img-yzm {
+  line-height: 1.111111rem;
+  display: inline-block;
+  height: 1.111111rem;
+  width: 33%;
+  float: right;
+}
+
+.wrapper .content .driver-items .item-btn .btn-submit {
+  width: 94%;
+  height: 1.111111rem;
+  background: #5fbfe7;
+  color: #ffffff;
+  font-size: 0.555556rem;
+  line-height: 1.111111rem;
+  text-align: center;
+  margin: 1.481481rem auto 0.925926rem;
+}
+
+.wrapper .content .con-success {
+  width: 90%;
+  margin: auto;
+}
+
+.wrapper .content .con-success .suc-img {
+  background: url(/images/recommendRegister/icon-success.png) no-repeat center;
+  height: 3.148148rem;
+  width: 3.148148rem;
+  text-align: center;
+  margin: auto;
+  margin-top: 0.555556rem;
+  margin-bottom: 1.111111rem;
+}
+
+.wrapper .content .con-success .wait.suc-img {
+  background: url(/images/recommendRegister/icon-wait.png) no-repeat center;
+  margin-top: 1.851852rem;
+}
+
+.wrapper .content .con-success .remind.suc-img {
+  background: url(/images/recommendRegister/icon-remind.png) no-repeat center;
+  margin-top: 1.851852rem;
+}
+
+.wrapper .content .con-success .suc-desc {
+  font-size: 0.518519rem;
+  color: #666666;
+  margin: auto;
+  line-height: 1.111111rem;
+  text-align: center;
+  margin-top: 30%;
+}
+
+.wrapper .content .con-success .suc-desc .result-num {
+  font-size: 0.62963rem;
+}
+
+.wrapper .content .con-success .suc-desc .care-tips {
+  font-size: 0.37037rem;
+  color: red;
+}
+
+.wrapper .content .con-success .wait.suc-desc p,
+.wrapper .content .con-success .remind.suc-desc p {
+  font-size: 0.555556rem;
+  margin-top: 0.185185rem;
+  text-align: center;
+}
+
+.wrapper .content .upgrade-exp {
+  font-size: 0.444444rem;
+  color: #666666;
+  margin: 0 1.111111rem;
+  background-color: #F8F8FA;
+}
+
+.wrapper .content .upgrade-exp .exp-ds {
+  font-size: 0.740741rem;
+  text-align: center;
+}
+
+.wrapper .content .upgrade-exp p {
+  margin-bottom: 0.740741rem;
+  width: 100%;
+  line-height: 0.62963rem;
+  background-color: #F8F8FA;
+}
+
+.wrapper .content .upgrade-exp p span {
+  font-weight: 600;
+}
+
+.wrapper .content .upgrade-exp .exp-title {
+  margin-bottom: 0.185185rem;
+  font-weight: 600;
+}
+
+.wrapper .content .upgrade-exp .exp-green {
+  height: 0.740741rem;
+  line-height: 0.740741rem;
+}
+
+.wrapper .content .upgrade-exp .exp-green span {
+  color: #1484D7;
+  font-weight: 500;
+}
+
+.wrapper .content .upgrade-exp .btn-upgrade {
+  height: 1.111111rem;
+  background: #5FC0E6;
+  color: #ffffff;
+  font-size: 0.555556rem;
+  line-height: 1.111111rem;
+  text-align: center;
+  margin: 1.481481rem auto 0.925926rem;
+}
+
+.showDialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.showDialog .st-content {
+  width: 80%;
+  height: 11.111111rem;
+  margin: 0 auto;
+  margin-top: 3.703704rem;
+  background-color: #ffffff;
+  text-align: center;
+  position: relative;
+  border-radius: 0.277778rem;
+}
+
+.showDialog .st-content .st-title {
+  color: #666666;
+  font-size: 0.62963rem;
+  line-height: 0.740741rem;
+  margin: 0.37037rem 0;
+  float: left;
+  width: 100%;
+}
+
+.showDialog .st-content .st-tips {
+  font-size: 0.481481rem;
+  text-align: center;
+  width: 90%;
+  margin: 0.740741rem auto;
+}
+
+.showDialog .st-content .st-end-num {
+  float: left;
+  width: 100%;
+  font-size: 0.555556rem;
+  max-height: 7.407407rem;
+  overflow: scroll;
+}
+
+.showDialog .st-content .st-end-num input[type=radio] {
+  -webkit-appearance: radio;
+  width: 0.555556rem;
+  height: 0.555556rem;
+  margin-right: 0.185185rem;
+  vertical-align: middle;
+}
+
+.showDialog .st-content .st-end-num li {
+  width: 50%;
+  float: left;
+  height: 1.481481rem;
+  line-height: 1.481481rem;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.showDialog .st-content .st-btn {
+  height: 1.111111rem;
+  width: 100%;
+  position: absolute;
+  bottom: 0.092593rem;
+  left: 0;
+  border-top: 0.018519rem #666666 solid;
+}
+
+.showDialog .st-content .st-btn .btn {
+  float: left;
+  width: 50%;
+  height: 100%;
+  text-align: center;
+  font-size: 0.481481rem;
+  line-height: 1.111111rem;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.showDialog .st-content .st-btn .btn-confirm {
+  margin: 0.092593rem 0;
+  line-height: 0.925926rem;
+  border-right: 0.018519rem #666666 solid;
+}
+
+.showDialog .st-content .st-btn .btn-cancle {
+  line-height: 0.925926rem;
+  margin: 0.092593rem 0;
+}

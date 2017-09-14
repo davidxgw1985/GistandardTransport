@@ -1,0 +1,171 @@
+@charset "utf-8";
+
+/**
+ *  newzong
+ *  
+ */
+
+/* 加载项目通用布局common.css */
+
+/**
+	less效果函数
+	NewZong 2016/07/15
+**/
+
+.cf {
+  overflow: hidden;
+}
+
+/** 高度计算 **/
+
+/** 宽度计算 **/
+
+/*
+定义圆角
+@radius 圆角大小
+*/
+
+/*
+盒子阴影
+@right_left 右边阴影为正数 左边负数
+@bottom_top 下边阴影为正数 上边负数
+@box  阴影大小
+@box_color 阴影颜色
+*/
+
+/*
+文字阴影,可以指定多组阴影
+@right_left1 右边阴影为正数 左边负数
+@bottom_top1 下边阴影为正数 上边负数
+@text  阴影大小
+@text_color 阴影颜色
+*/
+
+/*
+透明度 或渐变 1为不透明 0透明
+css3 rgba(110, 142, 185, .4)!important;前三个是颜色值 后一个是透明值
+用来兼容所有浏览器
+*/
+
+/*
+列布局
+@c1 列数
+@c2 列宽
+@c3 列间距
+@c4 边框样式
+*/
+
+/*背景渐变
+@start  渐变开始颜色
+@end  结束颜色
+*/
+
+/*
+画轮廓 就是内部框
+@outline 样式
+@outline1 间距 负数在内部
+*/
+
+/*
+旋转角度
+@ro定义度数 
+IE不支持 滤镜支持0，1，2，3
+*/
+
+/*
+菱形旋转角度
+@x横向缩放比例
+@y纵向缩放比例
+*/
+
+/* 全局字体大小 */
+
+/* 全局边框颜色 */
+
+.bluecl {
+  color: #5FC0E6 !important;
+}
+
+.single {
+  height: auto;
+  width: 100%;
+}
+
+.single .wrapper {
+  height: auto;
+  width: 100%;
+}
+
+.single .wrapper .content {
+  width: 100%;
+  overflow: scroll;
+  margin-top: 3.148148rem;
+}
+
+.agreement_pc {
+  display: none;
+}
+
+.wrapper .content .upgrade-exp {
+  font-size: 0.444444rem;
+  color: #666666;
+  margin: 0 1.111111rem;
+  background-color: #F8F8FA;
+}
+
+.wrapper .content .upgrade-exp .exp-ds {
+  font-size: 0.740741rem;
+  text-align: center;
+  line-height: 0.925926rem;
+  height: 0.925926rem;
+}
+
+.wrapper .content .upgrade-exp p {
+  margin-bottom: 0.740741rem;
+  width: 100%;
+  line-height: 0.62963rem;
+  text-align: justify;
+  text-justify: inter-ideograph;
+  word-wrap: break-word;
+  background-color: #F8F8FA;
+}
+
+.wrapper .content .upgrade-exp p span {
+  font-weight: 600;
+}
+
+.wrapper .content .upgrade-exp .second {
+  margin-left: 0;
+  text-indent: 0;
+}
+
+.wrapper .content .upgrade-exp .bold-carefule {
+  font-weight: bold;
+}
+
+.wrapper .content .upgrade-exp .exp-title {
+  margin-bottom: 0.185185rem;
+  font-weight: 600;
+}
+
+.wrapper .content .upgrade-exp .exp-green {
+  height: 0.740741rem;
+  line-height: 0.740741rem;
+}
+
+.wrapper .content .upgrade-exp .exp-green span {
+  color: #1484D7;
+  font-weight: 500;
+}
+
+.wrapper .content .upgrade-exp .btn-upgrade {
+  margin: auto;
+  height: 1.111111rem;
+  background: #5FC0E6;
+  color: #ffffff;
+  font-size: 0.555556rem;
+  line-height: 1.111111rem;
+  text-align: center;
+  margin-bottom: 0.555556rem;
+  margin-top: 1.111111rem;
+}

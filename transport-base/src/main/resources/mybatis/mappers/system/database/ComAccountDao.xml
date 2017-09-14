@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ComAccountDao" >
+  <resultMap id="BaseResultMap" type="com.gistandard.transport.base.entity.bean.ComAccount" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="ACCT_USERNAME" property="acctUsername" jdbcType="VARCHAR" />
+    <result column="ACCT_PASSWORD" property="acctPassword" jdbcType="VARCHAR" />
+    <result column="ACCT_STATUS" property="acctStatus" jdbcType="INTEGER" />
+    <result column="ACCT_AUDIT_USER" property="acctAuditUser" jdbcType="VARCHAR" />
+    <result column="ACCT_AUDIT_DATE" property="acctAuditDate" jdbcType="TIMESTAMP" />
+    <result column="CREDIT_GRADE" property="creditGrade" jdbcType="INTEGER" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="FLAG" property="flag" jdbcType="VARCHAR" />
+    <result column="ACCT_TYPE" property="acctType" jdbcType="VARCHAR" />
+    <result column="USER_IMG" property="userImg" jdbcType="VARCHAR" />
+    <result column="BUSI_TYPE" property="busiType" jdbcType="VARCHAR" />
+    <result column="ACCR_SYS" property="accrSys" jdbcType="VARCHAR" />
+    <result column="NICK_NAME" property="nickName" jdbcType="VARCHAR" />
+    <result column="REAL_NAME" property="realName" jdbcType="VARCHAR" />
+    <result column="REGISTER_TYPE" property="registerType" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="TEL_PREFIX" property="telPrefix" jdbcType="VARCHAR" />
+    <result column="TELEPHONE" property="telephone" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="EMAIL_DOMAIN" property="emailDomain" jdbcType="VARCHAR" />
+    <result column="RECOMMEND_ACCOUNT_ID" property="recommendAccountId" jdbcType="INTEGER" />
+    <result column="RECOMMEND_FROM" property="recommendFrom" jdbcType="INTEGER" />
+    <result column="AUTH_TYPE" property="authType" jdbcType="INTEGER" />
+    <result column="AUTH_STATUS" property="authStatus" jdbcType="INTEGER" />
+    <result column="SHARE_STATUS" property="shareStatus" jdbcType="BIT" />
+    <result column="COUNTRY_ID" property="countryId" jdbcType="INTEGER" />
+    <result column="PROVINCE_ID" property="provinceId" jdbcType="INTEGER" />
+    <result column="CITY_ID" property="cityId" jdbcType="INTEGER" />
+    <result column="COUNTY_ID" property="countyId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ACCT_USERNAME, ACCT_PASSWORD, ACCT_STATUS, ACCT_AUDIT_USER, ACCT_AUDIT_DATE,
+    CREDIT_GRADE, REMARK, FLAG, ACCT_TYPE, USER_IMG, BUSI_TYPE, ACCR_SYS, NICK_NAME,
+    REAL_NAME, REGISTER_TYPE, CREATE_TIME, TEL_PREFIX, TELEPHONE, EMAIL, EMAIL_DOMAIN,
+    RECOMMEND_ACCOUNT_ID, RECOMMEND_FROM, AUTH_TYPE, AUTH_STATUS, SHARE_STATUS, COUNTRY_ID,
+    PROVINCE_ID, CITY_ID, COUNTY_ID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from COM_ACCOUNT
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from COM_ACCOUNT
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyProperty="id" useGeneratedKeys="true" parameterType="com.gistandard.transport.base.entity.bean.ComAccount" >
+    insert into COM_ACCOUNT (ID, ACCT_USERNAME, ACCT_PASSWORD, 
+      ACCT_STATUS, ACCT_AUDIT_USER, ACCT_AUDIT_DATE, 
+      CREDIT_GRADE, REMARK, FLAG, 
+      ACCT_TYPE, USER_IMG, BUSI_TYPE, 
+      ACCR_SYS, NICK_NAME, REAL_NAME, 
+      REGISTER_TYPE, CREATE_TIME, TEL_PREFIX, 
+      TELEPHONE, EMAIL, EMAIL_DOMAIN,
+      RECOMMEND_ACCOUNT_ID, RECOMMEND_FROM, AUTH_TYPE,
+      AUTH_STATUS, SHARE_STATUS, COUNTRY_ID,
+      PROVINCE_ID, CITY_ID, COUNTY_ID
+      )
+    values (#{id,jdbcType=INTEGER}, #{acctUsername,jdbcType=VARCHAR}, #{acctPassword,jdbcType=VARCHAR},
+      #{acctStatus,jdbcType=INTEGER}, #{acctAuditUser,jdbcType=VARCHAR}, #{acctAuditDate,jdbcType=TIMESTAMP},
+      #{creditGrade,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{flag,jdbcType=VARCHAR},
+      #{acctType,jdbcType=VARCHAR}, #{userImg,jdbcType=VARCHAR}, #{busiType,jdbcType=VARCHAR},
+      #{accrSys,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR},
+      #{registerType,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{telPrefix,jdbcType=VARCHAR},
+      #{telephone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{emailDomain,jdbcType=VARCHAR},
+      #{recommendAccountId,jdbcType=INTEGER}, #{recommendFrom,jdbcType=INTEGER}, #{authType,jdbcType=INTEGER},
+      #{authStatus,jdbcType=INTEGER}, #{shareStatus,jdbcType=BIT}, #{countryId,jdbcType=INTEGER},
+      #{provinceId,jdbcType=INTEGER}, #{cityId,jdbcType=INTEGER}, #{countyId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" keyProperty="id" useGeneratedKeys="true" parameterType="com.gistandard.transport.base.entity.bean.ComAccount" >
+    insert into COM_ACCOUNT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="acctUsername != null" >
+        ACCT_USERNAME,
+      </if>
+      <if test="acctPassword != null" >
+        ACCT_PASSWORD,
+      </if>
+      <if test="acctStatus != null" >
+        ACCT_STATUS,
+      </if>
+      <if test="acctAuditUser != null" >
+        ACCT_AUDIT_USER,
+      </if>
+      <if test="acctAuditDate != null" >
+        ACCT_AUDIT_DATE,
+      </if>
+      <if test="creditGrade != null" >
+        CREDIT_GRADE,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="flag != null" >
+        FLAG,
+      </if>
+      <if test="acctType != null" >
+        ACCT_TYPE,
+      </if>
+      <if test="userImg != null" >
+        USER_IMG,
+      </if>
+      <if test="busiType != null" >
+        BUSI_TYPE,
+      </if>
+      <if test="accrSys != null" >
+        ACCR_SYS,
+      </if>
+      <if test="nickName != null" >
+        NICK_NAME,
+      </if>
+      <if test="realName != null" >
+        REAL_NAME,
+      </if>
+      <if test="registerType != null" >
+        REGISTER_TYPE,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="telPrefix != null" >
+        TEL_PREFIX,
+      </if>
+      <if test="telephone != null" >
+        TELEPHONE,
+      </if>
+      <if test="email != null" >
+        EMAIL,
+      </if>
+      <if test="emailDomain != null" >
+        EMAIL_DOMAIN,
+      </if>
+      <if test="recommendAccountId != null" >
+        RECOMMEND_ACCOUNT_ID,
+      </if>
+      <if test="recommendFrom != null" >
+        RECOMMEND_FROM,
+      </if>
+      <if test="authType != null" >
+        AUTH_TYPE,
+      </if>
+      <if test="authStatus != null" >
+        AUTH_STATUS,
+      </if>
+      <if test="shareStatus != null" >
+        SHARE_STATUS,
+      </if>
+      <if test="countryId != null" >
+        COUNTRY_ID,
+      </if>
+      <if test="provinceId != null" >
+        PROVINCE_ID,
+      </if>
+      <if test="cityId != null" >
+        CITY_ID,
+      </if>
+      <if test="countyId != null" >
+        COUNTY_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="acctUsername != null" >
+        #{acctUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="acctPassword != null" >
+        #{acctPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="acctStatus != null" >
+        #{acctStatus,jdbcType=INTEGER},
+      </if>
+      <if test="acctAuditUser != null" >
+        #{acctAuditUser,jdbcType=VARCHAR},
+      </if>
+      <if test="acctAuditDate != null" >
+        #{acctAuditDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creditGrade != null" >
+        #{creditGrade,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        #{flag,jdbcType=VARCHAR},
+      </if>
+      <if test="acctType != null" >
+        #{acctType,jdbcType=VARCHAR},
+      </if>
+      <if test="userImg != null" >
+        #{userImg,jdbcType=VARCHAR},
+      </if>
+      <if test="busiType != null" >
+        #{busiType,jdbcType=VARCHAR},
+      </if>
+      <if test="accrSys != null" >
+        #{accrSys,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="registerType != null" >
+        #{registerType,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="telPrefix != null" >
+        #{telPrefix,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="emailDomain != null" >
+        #{emailDomain,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendAccountId != null" >
+        #{recommendAccountId,jdbcType=INTEGER},
+      </if>
+      <if test="recommendFrom != null" >
+        #{recommendFrom,jdbcType=INTEGER},
+      </if>
+      <if test="authType != null" >
+        #{authType,jdbcType=INTEGER},
+      </if>
+      <if test="authStatus != null" >
+        #{authStatus,jdbcType=INTEGER},
+      </if>
+      <if test="shareStatus != null" >
+        #{shareStatus,jdbcType=BIT},
+      </if>
+      <if test="countryId != null" >
+        #{countryId,jdbcType=INTEGER},
+      </if>
+      <if test="provinceId != null" >
+        #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="countyId != null" >
+        #{countyId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gistandard.transport.base.entity.bean.ComAccount" >
+    update COM_ACCOUNT
+    <set >
+      <if test="acctUsername != null" >
+        ACCT_USERNAME = #{acctUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="acctPassword != null" >
+        ACCT_PASSWORD = #{acctPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="acctStatus != null" >
+        ACCT_STATUS = #{acctStatus,jdbcType=INTEGER},
+      </if>
+      <if test="acctAuditUser != null" >
+        ACCT_AUDIT_USER = #{acctAuditUser,jdbcType=VARCHAR},
+      </if>
+      <if test="acctAuditDate != null" >
+        ACCT_AUDIT_DATE = #{acctAuditDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creditGrade != null" >
+        CREDIT_GRADE = #{creditGrade,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null" >
+        FLAG = #{flag,jdbcType=VARCHAR},
+      </if>
+      <if test="acctType != null" >
+        ACCT_TYPE = #{acctType,jdbcType=VARCHAR},
+      </if>
+      <if test="userImg != null" >
+        USER_IMG = #{userImg,jdbcType=VARCHAR},
+      </if>
+      <if test="busiType != null" >
+        BUSI_TYPE = #{busiType,jdbcType=VARCHAR},
+      </if>
+      <if test="accrSys != null" >
+        ACCR_SYS = #{accrSys,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        NICK_NAME = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        REAL_NAME = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="registerType != null" >
+        REGISTER_TYPE = #{registerType,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="telPrefix != null" >
+        TEL_PREFIX = #{telPrefix,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        TELEPHONE = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="emailDomain != null" >
+        EMAIL_DOMAIN = #{emailDomain,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendAccountId != null" >
+        RECOMMEND_ACCOUNT_ID = #{recommendAccountId,jdbcType=INTEGER},
+      </if>
+      <if test="recommendFrom != null" >
+        RECOMMEND_FROM = #{recommendFrom,jdbcType=INTEGER},
+      </if>
+      <if test="authType != null" >
+        AUTH_TYPE = #{authType,jdbcType=INTEGER},
+      </if>
+      <if test="authStatus != null" >
+        AUTH_STATUS = #{authStatus,jdbcType=INTEGER},
+      </if>
+      <if test="shareStatus != null" >
+        SHARE_STATUS = #{shareStatus,jdbcType=BIT},
+      </if>
+      <if test="countryId != null" >
+        COUNTRY_ID = #{countryId,jdbcType=INTEGER},
+      </if>
+      <if test="provinceId != null" >
+        PROVINCE_ID = #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null" >
+        CITY_ID = #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="countyId != null" >
+        COUNTY_ID = #{countyId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gistandard.transport.base.entity.bean.ComAccount" >
+    update COM_ACCOUNT
+    set ACCT_USERNAME = #{acctUsername,jdbcType=VARCHAR},
+    ACCT_PASSWORD = #{acctPassword,jdbcType=VARCHAR},
+    ACCT_STATUS = #{acctStatus,jdbcType=INTEGER},
+    ACCT_AUDIT_USER = #{acctAuditUser,jdbcType=VARCHAR},
+    ACCT_AUDIT_DATE = #{acctAuditDate,jdbcType=TIMESTAMP},
+    CREDIT_GRADE = #{creditGrade,jdbcType=INTEGER},
+    REMARK = #{remark,jdbcType=VARCHAR},
+    FLAG = #{flag,jdbcType=VARCHAR},
+    ACCT_TYPE = #{acctType,jdbcType=VARCHAR},
+    USER_IMG = #{userImg,jdbcType=VARCHAR},
+    BUSI_TYPE = #{busiType,jdbcType=VARCHAR},
+    ACCR_SYS = #{accrSys,jdbcType=VARCHAR},
+    NICK_NAME = #{nickName,jdbcType=VARCHAR},
+    REAL_NAME = #{realName,jdbcType=VARCHAR},
+    REGISTER_TYPE = #{registerType,jdbcType=VARCHAR},
+    CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+    TEL_PREFIX = #{telPrefix,jdbcType=VARCHAR},
+    TELEPHONE = #{telephone,jdbcType=VARCHAR},
+    EMAIL = #{email,jdbcType=VARCHAR},
+    EMAIL_DOMAIN = #{emailDomain,jdbcType=VARCHAR},
+    RECOMMEND_ACCOUNT_ID = #{recommendAccountId,jdbcType=INTEGER},
+    RECOMMEND_FROM = #{recommendFrom,jdbcType=INTEGER},
+    AUTH_TYPE = #{authType,jdbcType=INTEGER},
+    AUTH_STATUS = #{authStatus,jdbcType=INTEGER},
+    SHARE_STATUS = #{shareStatus,jdbcType=BIT},
+    COUNTRY_ID = #{countryId,jdbcType=INTEGER},
+    PROVINCE_ID = #{provinceId,jdbcType=INTEGER},
+    CITY_ID = #{cityId,jdbcType=INTEGER},
+    COUNTY_ID = #{countyId,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="queryByAccount" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from COM_ACCOUNT
+    where ACCT_USERNAME = TRIM(#{acct})
+  </select>
+</mapper>

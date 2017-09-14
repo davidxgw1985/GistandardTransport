@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.order.module.customer.dao.CustomerBillingFormSalmDao" >
+  <resultMap id="BaseResultMap" type="com.gistandard.transport.base.entity.bean.BillingFormSalm" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="BUSI_BOOKNO_ID" property="busiBooknoId" jdbcType="INTEGER" />
+    <result column="CTRLID_NO" property="ctrlidNo" jdbcType="INTEGER" />
+    <result column="SUPP_PARTNO" property="suppPartno" jdbcType="VARCHAR" />
+    <result column="SUPP_INVOICE_NO" property="suppInvoiceNo" jdbcType="VARCHAR" />
+    <result column="SUPP_PRODNAME_CHS" property="suppProdnameChs" jdbcType="VARCHAR" />
+    <result column="SUPP_PRODNAME_ENG" property="suppProdnameEng" jdbcType="VARCHAR" />
+    <result column="SUPP_BUSINESS_GR" property="suppBusinessGr" jdbcType="VARCHAR" />
+    <result column="PRIM_STOCKINN_DATE" property="primStockinnDate" jdbcType="TIMESTAMP" />
+    <result column="PURC_PARTNO" property="purcPartno" jdbcType="VARCHAR" />
+    <result column="PURC_INVOICE_NO" property="purcInvoiceNo" jdbcType="VARCHAR" />
+    <result column="PURC_INDENT_NO" property="purcIndentNo" jdbcType="VARCHAR" />
+    <result column="PURC_INDENT_TYPE" property="purcIndentType" jdbcType="VARCHAR" />
+    <result column="PURC_INVENTORY" property="purcInventory" jdbcType="VARCHAR" />
+    <result column="PURC_GOODS_OWNER" property="purcGoodsOwner" jdbcType="VARCHAR" />
+    <result column="PURC_PRODNAME_CHS" property="purcProdnameChs" jdbcType="VARCHAR" />
+    <result column="PURC_PRODNAME_ENG" property="purcProdnameEng" jdbcType="VARCHAR" />
+    <result column="PURC_BUSINESS_GR" property="purcBusinessGr" jdbcType="VARCHAR" />
+    <result column="PURC_REPORT_NO" property="purcReportNo" jdbcType="VARCHAR" />
+    <result column="PURC_END_CUSTOMER" property="purcEndCustomer" jdbcType="VARCHAR" />
+    <result column="PURC_END_CUSTOMNO" property="purcEndCustomno" jdbcType="VARCHAR" />
+    <result column="THRD_PARTNO" property="thrdPartno" jdbcType="VARCHAR" />
+    <result column="PO_ITEM_NO" property="poItemNo" jdbcType="VARCHAR" />
+    <result column="SUPP_PURC_CUSTOMNO" property="suppPurcCustomno" jdbcType="VARCHAR" />
+    <result column="PURC_SUPP_CUSTNAME" property="purcSuppCustname" jdbcType="VARCHAR" />
+    <result column="TRADE_TERM" property="tradeTerm" jdbcType="VARCHAR" />
+    <result column="TRADE_SITE" property="tradeSite" jdbcType="VARCHAR" />
+    <result column="MADEIN_COUNCO" property="madeinCounco" jdbcType="VARCHAR" />
+    <result column="HAIK_GOODSNA" property="haikGoodsna" jdbcType="VARCHAR" />
+    <result column="HSCODE_NO" property="hscodeNo" jdbcType="VARCHAR" />
+    <result column="HSCODE_NACHS" property="hscodeNachs" jdbcType="VARCHAR" />
+    <result column="HSCODE_SPECS" property="hscodeSpecs" jdbcType="VARCHAR" />
+    <result column="GOODS_PALLET_QTY" property="goodsPalletQty" jdbcType="DECIMAL" />
+    <result column="GOODS_QTY" property="goodsQty" jdbcType="DECIMAL" />
+    <result column="GOODS_QTY_UNIT_CO" property="goodsQtyUnitCo" jdbcType="CHAR" />
+    <result column="GOODS_PACKAGE_BOXNO" property="goodsPackageBoxno" jdbcType="VARCHAR" />
+    <result column="GOODS_PACKAGE_QTY" property="goodsPackageQty" jdbcType="DECIMAL" />
+    <result column="PACKAGE_UNIT_CO" property="packageUnitCo" jdbcType="CHAR" />
+    <result column="PACKAGE_UOM" property="packageUom" jdbcType="DECIMAL" />
+    <result column="GOODS_PRICE" property="goodsPrice" jdbcType="DECIMAL" />
+    <result column="GOODS_VALUE" property="goodsValue" jdbcType="DECIMAL" />
+    <result column="GOODS_CURRENCY_CO" property="goodsCurrencyCo" jdbcType="VARCHAR" />
+    <result column="GOODS_NETWHT" property="goodsNetwht" jdbcType="DECIMAL" />
+    <result column="GOODS_GROSSWHT" property="goodsGrosswht" jdbcType="DECIMAL" />
+    <result column="WEIGHT_UNIT_CO" property="weightUnitCo" jdbcType="CHAR" />
+    <result column="MAKE_NOTICE_NO" property="makeNoticeNo" jdbcType="VARCHAR" />
+    <result column="MAKE_FORM_NO" property="makeFormNo" jdbcType="VARCHAR" />
+    <result column="MAKE_FORM_PCS" property="makeFormPcs" jdbcType="DECIMAL" />
+    <result column="GOODS_VOLCBM" property="goodsVolcbm" jdbcType="DECIMAL" />
+    <result column="GOODS_VOLWHT" property="goodsVolwht" jdbcType="DECIMAL" />
+    <result column="GOODS_FEEWHT" property="goodsFeewht" jdbcType="DECIMAL" />
+    <result column="GOODS_DIMENDESC" property="goodsDimendesc" jdbcType="VARCHAR" />
+    <result column="DATE_CODE" property="dateCode" jdbcType="VARCHAR" />
+    <result column="VMI_HUBID_NO" property="vmiHubidNo" jdbcType="VARCHAR" />
+    <result column="DESTN_VMI_WHNO" property="destnVmiWhno" jdbcType="VARCHAR" />
+    <result column="SCHEDU_TRACE_NO" property="scheduTraceNo" jdbcType="VARCHAR" />
+    <result column="EML_ID" property="emlId" jdbcType="VARCHAR" />
+    <result column="G_NO" property="gNo" jdbcType="VARCHAR" />
+    <result column="GOODS_STATUS" property="goodsStatus" jdbcType="VARCHAR" />
+    <result column="PO_DTLID" property="poDtlid" jdbcType="VARCHAR" />
+    <result column="DECLCONSHAND" property="declconshand" jdbcType="VARCHAR" />
+    <result column="DECLAR_DATE" property="declarDate" jdbcType="TIMESTAMP" />
+    <result column="JJS_GRADE" property="jjsGrade" jdbcType="VARCHAR" />
+    <result column="PREDICT_VALUE" property="predictValue" jdbcType="DECIMAL" />
+    <result column="JJS_VER" property="jjsVer" jdbcType="VARCHAR" />
+    <result column="PREDICT_VALUE_HUB" property="predictValueHub" jdbcType="DECIMAL" />
+    <result column="GOODS_VOLUME" property="goodsVolume" jdbcType="DECIMAL" />
+    <result column="GOODS_VOLUME_UNIT" property="goodsVolumeUnit" jdbcType="CHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="T_CODE" property="tCode" jdbcType="VARCHAR" />
+    <result column="HUB_HANDBOOK_NO" property="hubHandbookNo" jdbcType="VARCHAR" />
+    <result column="HUB_CONTRACT_NO" property="hubContractNo" jdbcType="VARCHAR" />
+    <result column="HUB_CONTRACT_NUM" property="hubContractNum" jdbcType="VARCHAR" />
+    <result column="OLD_SALEBOOKNO" property="oldSalebookno" jdbcType="VARCHAR" />
+    <result column="COMDITY_IDSCR" property="comdityIdscr" jdbcType="VARCHAR" />
+    <result column="LOTNO" property="lotno" jdbcType="VARCHAR" />
+    <result column="ACTUAL_WIGHT" property="actualWight" jdbcType="DECIMAL" />
+    <result column="ACTUAL_VOLUME" property="actualVolume" jdbcType="DECIMAL" />
+    <result column="V_PN" property="vPn" jdbcType="VARCHAR" />
+    <result column="GOODS_LENGTH" property="goodsLength" jdbcType="DECIMAL" />
+    <result column="GOODS_WIDTH" property="goodsWidth" jdbcType="DECIMAL" />
+    <result column="GOODS_HEIGHT" property="goodsHeight" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+      b.ID,b.BUSI_BOOKNO_ID,b.CTRLID_NO,b.SUPP_PARTNO,b.SUPP_INVOICE_NO,b.SUPP_PRODNAME_CHS,b.SUPP_PRODNAME_ENG,b.
+      SUPP_BUSINESS_GR,b.PRIM_STOCKINN_DATE,b.PURC_PARTNO,b.PURC_INVOICE_NO,b.PURC_INDENT_NO,b.
+      PURC_INDENT_TYPE,b.PURC_INVENTORY,b.PURC_GOODS_OWNER,b.PURC_PRODNAME_CHS,b.PURC_PRODNAME_ENG,b.
+      PURC_BUSINESS_GR,b.PURC_REPORT_NO,b.PURC_END_CUSTOMER,b.PURC_END_CUSTOMNO,b.THRD_PARTNO,b.
+      PO_ITEM_NO,b.SUPP_PURC_CUSTOMNO,b.PURC_SUPP_CUSTNAME,b.TRADE_TERM,b.TRADE_SITE,b.MADEIN_COUNCO,b.
+      HAIK_GOODSNA,b.HSCODE_NO,b.HSCODE_NACHS,b.HSCODE_SPECS,b.GOODS_PALLET_QTY,b.GOODS_QTY,b.
+      GOODS_QTY_UNIT_CO,b.GOODS_PACKAGE_BOXNO,b.GOODS_PACKAGE_QTY,b.PACKAGE_UNIT_CO,b.PACKAGE_UOM,b.
+      GOODS_PRICE,b.GOODS_VALUE,b.GOODS_CURRENCY_CO,b.GOODS_NETWHT,b.GOODS_GROSSWHT,b.WEIGHT_UNIT_CO,b.
+      MAKE_NOTICE_NO,b.MAKE_FORM_NO,b.MAKE_FORM_PCS,b.GOODS_VOLCBM,b.GOODS_VOLWHT,b.GOODS_FEEWHT,b.
+      GOODS_DIMENDESC,b.DATE_CODE,b.VMI_HUBID_NO,b.DESTN_VMI_WHNO,b.SCHEDU_TRACE_NO,b.EML_ID,b.
+      G_NO,b.GOODS_STATUS,b.PO_DTLID,b.DECLCONSHAND,b.DECLAR_DATE,b.JJS_GRADE,b.PREDICT_VALUE,b.
+      JJS_VER,b.PREDICT_VALUE_HUB,b.GOODS_VOLUME,b.GOODS_VOLUME_UNIT,b.REMARK,b.HUB_HANDBOOK_NO,b.
+      HUB_CONTRACT_NO,b.HUB_CONTRACT_NUM,b.OLD_SALEBOOKNO,b.COMDITY_IDSCR,b.LOTNO,b.ACTUAL_WIGHT,b.
+      ACTUAL_VOLUME,b.V_PN,b.GOODS_LENGTH,b.GOODS_WIDTH,b.GOODS_HEIGHT
+  </sql>
+  <select id="queryByBusiBooknoId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from BILLING_FORM_SALM b
+    where BUSI_BOOKNO_ID = #{busiBooknoId}
+  </select>
+</mapper>

@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ComQuoteDao" >
+  <resultMap id="BaseResultMap" type="com.gistandard.transport.base.entity.bean.ComQuote" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="ITEM_ID" property="itemId" jdbcType="INTEGER" />
+    <result column="QUOTE_NO" property="quoteNo" jdbcType="VARCHAR" />
+    <result column="START_ROUTE" property="startRoute" jdbcType="INTEGER" />
+    <result column="END_ROUTE" property="endRoute" jdbcType="INTEGER" />
+    <result column="START_STATION" property="startStation" jdbcType="INTEGER" />
+    <result column="END_STATION" property="endStation" jdbcType="INTEGER" />
+    <result column="ADDRESS" property="address" jdbcType="INTEGER" />
+    <result column="PUBLIC_FLAG" property="publicFlag" jdbcType="BIT" />
+    <result column="PRODUCT_TYPE" property="productType" jdbcType="VARCHAR" />
+    <result column="PRODUCT_STATUS" property="productStatus" jdbcType="INTEGER" />
+    <result column="CURRENCY_CODE" property="currencyCode" jdbcType="VARCHAR" />
+    <result column="QUOTE_TYPE" property="quoteType" jdbcType="INTEGER" />
+    <result column="TOTAL_WEIGHT" property="totalWeight" jdbcType="DECIMAL" />
+    <result column="TOTAL_PRICE" property="totalPrice" jdbcType="DECIMAL" />
+    <result column="UNIT_PRICE" property="unitPrice" jdbcType="DECIMAL" />
+    <result column="LIGHT_UNIT_PRICE" property="lightUnitPrice" jdbcType="DECIMAL" />
+    <result column="HEAVY_UNIT_PRICE" property="heavyUnitPrice" jdbcType="DECIMAL" />
+    <result column="ROUTE_ID" property="routeId" jdbcType="VARCHAR" />
+    <result column="COL_NUM" property="colNum" jdbcType="INTEGER" />
+    <result column="CUSTOMER_ID" property="customerId" jdbcType="INTEGER" />
+    <result column="USERINFO_ID" property="userinfoId" jdbcType="INTEGER" />
+    <result column="BELONG_ACCOUNT_ID" property="belongAccountId" jdbcType="INTEGER" />
+    <result column="QUOTE_BELONG" property="quoteBelong" jdbcType="INTEGER" />
+    <result column="ROOT_QUOTE_ID" property="rootQuoteId" jdbcType="INTEGER" />
+    <result column="CREATE_ACCOUNT" property="createAccount" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="START_TIME" property="startTime" jdbcType="VARCHAR" />
+    <result column="END_TIME" property="endTime" jdbcType="VARCHAR" />
+    <result column="CUSTOMS_CO" property="customsCo" jdbcType="VARCHAR" />
+    <result column="TIME_LINES" property="timeLines" jdbcType="INTEGER" />
+    <result column="FIRST_WEIGHT" property="firstWeight" jdbcType="DECIMAL" />
+    <result column="ADDITIONAL_WEIGHT" property="additionalWeight" jdbcType="DECIMAL" />
+    <result column="CAR_TYPE" property="carType" jdbcType="VARCHAR" />
+    <result column="CAR_CAPACITY" property="carCapacity" jdbcType="VARCHAR" />
+    <result column="START_DETAIL_ADDRESS" property="startDetailAddress" jdbcType="VARCHAR" />
+    <result column="END_DETAIL_ADDRESS" property="endDetailAddress" jdbcType="VARCHAR" />
+    <result column="FIRST_WEIGHT_UNIT" property="firstWeightUnit" jdbcType="DECIMAL" />
+    <result column="ADDITIONAL_WEIGHT_UNIT" property="additionalWeightUnit" jdbcType="DECIMAL" />
+    <result column="DEPARTURE_TIME" property="departureTime" jdbcType="VARCHAR" />
+    <result column="VERSION" property="version" jdbcType="INTEGER" />
+    <result column="KD_OPERATE_TYPE" property="kdOperateType" jdbcType="INTEGER" />
+    <result column="PRODUCT_DESC" property="productDesc" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ITEM_ID, QUOTE_NO, START_ROUTE, END_ROUTE, START_STATION, END_STATION, ADDRESS, 
+    PUBLIC_FLAG, PRODUCT_TYPE, PRODUCT_STATUS, CURRENCY_CODE, QUOTE_TYPE, TOTAL_WEIGHT, 
+    TOTAL_PRICE, UNIT_PRICE, LIGHT_UNIT_PRICE, HEAVY_UNIT_PRICE, ROUTE_ID, COL_NUM, CUSTOMER_ID, 
+    USERINFO_ID, BELONG_ACCOUNT_ID, QUOTE_BELONG, ROOT_QUOTE_ID, CREATE_ACCOUNT, CREATE_TIME, 
+    START_TIME, END_TIME, CUSTOMS_CO, TIME_LINES, FIRST_WEIGHT, ADDITIONAL_WEIGHT, CAR_TYPE, 
+    CAR_CAPACITY, START_DETAIL_ADDRESS, END_DETAIL_ADDRESS, FIRST_WEIGHT_UNIT, ADDITIONAL_WEIGHT_UNIT, 
+    DEPARTURE_TIME, VERSION, KD_OPERATE_TYPE,PRODUCT_DESC
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from COM_QUOTE
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from COM_QUOTE
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gistandard.transport.base.entity.bean.ComQuote" >
+    insert into COM_QUOTE (ID, ITEM_ID, QUOTE_NO, 
+      START_ROUTE, END_ROUTE, START_STATION, 
+      END_STATION, ADDRESS, PUBLIC_FLAG, 
+      PRODUCT_TYPE, PRODUCT_STATUS, CURRENCY_CODE, 
+      QUOTE_TYPE, TOTAL_WEIGHT, TOTAL_PRICE, 
+      UNIT_PRICE, LIGHT_UNIT_PRICE, HEAVY_UNIT_PRICE, 
+      ROUTE_ID, COL_NUM, CUSTOMER_ID, 
+      USERINFO_ID, BELONG_ACCOUNT_ID, QUOTE_BELONG, 
+      ROOT_QUOTE_ID, CREATE_ACCOUNT, CREATE_TIME, 
+      START_TIME, END_TIME, CUSTOMS_CO, 
+      TIME_LINES, FIRST_WEIGHT, ADDITIONAL_WEIGHT, 
+      CAR_TYPE, CAR_CAPACITY, START_DETAIL_ADDRESS, 
+      END_DETAIL_ADDRESS, FIRST_WEIGHT_UNIT, ADDITIONAL_WEIGHT_UNIT, 
+      DEPARTURE_TIME, VERSION, KD_OPERATE_TYPE, 
+      PRODUCT_DESC)
+    values (#{id,jdbcType=INTEGER}, #{itemId,jdbcType=INTEGER}, #{quoteNo,jdbcType=VARCHAR}, 
+      #{startRoute,jdbcType=INTEGER}, #{endRoute,jdbcType=INTEGER}, #{startStation,jdbcType=INTEGER}, 
+      #{endStation,jdbcType=INTEGER}, #{address,jdbcType=INTEGER}, #{publicFlag,jdbcType=BIT}, 
+      #{productType,jdbcType=VARCHAR}, #{productStatus,jdbcType=INTEGER}, #{currencyCode,jdbcType=VARCHAR}, 
+      #{quoteType,jdbcType=INTEGER}, #{totalWeight,jdbcType=DECIMAL}, #{totalPrice,jdbcType=DECIMAL}, 
+      #{unitPrice,jdbcType=DECIMAL}, #{lightUnitPrice,jdbcType=DECIMAL}, #{heavyUnitPrice,jdbcType=DECIMAL}, 
+      #{routeId,jdbcType=VARCHAR}, #{colNum,jdbcType=INTEGER}, #{customerId,jdbcType=INTEGER}, 
+      #{userinfoId,jdbcType=INTEGER}, #{belongAccountId,jdbcType=INTEGER}, #{quoteBelong,jdbcType=INTEGER}, 
+      #{rootQuoteId,jdbcType=INTEGER}, #{createAccount,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{startTime,jdbcType=VARCHAR}, #{endTime,jdbcType=VARCHAR}, #{customsCo,jdbcType=VARCHAR}, 
+      #{timeLines,jdbcType=INTEGER}, #{firstWeight,jdbcType=DECIMAL}, #{additionalWeight,jdbcType=DECIMAL}, 
+      #{carType,jdbcType=VARCHAR}, #{carCapacity,jdbcType=VARCHAR}, #{startDetailAddress,jdbcType=VARCHAR}, 
+      #{endDetailAddress,jdbcType=VARCHAR}, #{firstWeightUnit,jdbcType=DECIMAL}, #{additionalWeightUnit,jdbcType=DECIMAL}, 
+      #{departureTime,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER}, #{kdOperateType,jdbcType=INTEGER}, 
+      #{productDesc,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gistandard.transport.base.entity.bean.ComQuote" >
+    insert into COM_QUOTE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="itemId != null" >
+        ITEM_ID,
+      </if>
+      <if test="quoteNo != null" >
+        QUOTE_NO,
+      </if>
+      <if test="startRoute != null" >
+        START_ROUTE,
+      </if>
+      <if test="endRoute != null" >
+        END_ROUTE,
+      </if>
+      <if test="startStation != null" >
+        START_STATION,
+      </if>
+      <if test="endStation != null" >
+        END_STATION,
+      </if>
+      <if test="address != null" >
+        ADDRESS,
+      </if>
+      <if test="publicFlag != null" >
+        PUBLIC_FLAG,
+      </if>
+      <if test="productType != null" >
+        PRODUCT_TYPE,
+      </if>
+      <if test="productStatus != null" >
+        PRODUCT_STATUS,
+      </if>
+      <if test="currencyCode != null" >
+        CURRENCY_CODE,
+      </if>
+      <if test="quoteType != null" >
+        QUOTE_TYPE,
+      </if>
+      <if test="totalWeight != null" >
+        TOTAL_WEIGHT,
+      </if>
+      <if test="totalPrice != null" >
+        TOTAL_PRICE,
+      </if>
+      <if test="unitPrice != null" >
+        UNIT_PRICE,
+      </if>
+      <if test="lightUnitPrice != null" >
+        LIGHT_UNIT_PRICE,
+      </if>
+      <if test="heavyUnitPrice != null" >
+        HEAVY_UNIT_PRICE,
+      </if>
+      <if test="routeId != null" >
+        ROUTE_ID,
+      </if>
+      <if test="colNum != null" >
+        COL_NUM,
+      </if>
+      <if test="customerId != null" >
+        CUSTOMER_ID,
+      </if>
+      <if test="userinfoId != null" >
+        USERINFO_ID,
+      </if>
+      <if test="belongAccountId != null" >
+        BELONG_ACCOUNT_ID,
+      </if>
+      <if test="quoteBelong != null" >
+        QUOTE_BELONG,
+      </if>
+      <if test="rootQuoteId != null" >
+        ROOT_QUOTE_ID,
+      </if>
+      <if test="createAccount != null" >
+        CREATE_ACCOUNT,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="startTime != null" >
+        START_TIME,
+      </if>
+      <if test="endTime != null" >
+        END_TIME,
+      </if>
+      <if test="customsCo != null" >
+        CUSTOMS_CO,
+      </if>
+      <if test="timeLines != null" >
+        TIME_LINES,
+      </if>
+      <if test="firstWeight != null" >
+        FIRST_WEIGHT,
+      </if>
+      <if test="additionalWeight != null" >
+        ADDITIONAL_WEIGHT,
+      </if>
+      <if test="carType != null" >
+        CAR_TYPE,
+      </if>
+      <if test="carCapacity != null" >
+        CAR_CAPACITY,
+      </if>
+      <if test="startDetailAddress != null" >
+        START_DETAIL_ADDRESS,
+      </if>
+      <if test="endDetailAddress != null" >
+        END_DETAIL_ADDRESS,
+      </if>
+      <if test="firstWeightUnit != null" >
+        FIRST_WEIGHT_UNIT,
+      </if>
+      <if test="additionalWeightUnit != null" >
+        ADDITIONAL_WEIGHT_UNIT,
+      </if>
+      <if test="departureTime != null" >
+        DEPARTURE_TIME,
+      </if>
+      <if test="version != null" >
+        VERSION,
+      </if>
+      <if test="kdOperateType != null" >
+        KD_OPERATE_TYPE,
+      </if>
+      <if test="productDesc != null" >
+        PRODUCT_DESC,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="itemId != null" >
+        #{itemId,jdbcType=INTEGER},
+      </if>
+      <if test="quoteNo != null" >
+        #{quoteNo,jdbcType=VARCHAR},
+      </if>
+      <if test="startRoute != null" >
+        #{startRoute,jdbcType=INTEGER},
+      </if>
+      <if test="endRoute != null" >
+        #{endRoute,jdbcType=INTEGER},
+      </if>
+      <if test="startStation != null" >
+        #{startStation,jdbcType=INTEGER},
+      </if>
+      <if test="endStation != null" >
+        #{endStation,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=INTEGER},
+      </if>
+      <if test="publicFlag != null" >
+        #{publicFlag,jdbcType=BIT},
+      </if>
+      <if test="productType != null" >
+        #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="productStatus != null" >
+        #{productStatus,jdbcType=INTEGER},
+      </if>
+      <if test="currencyCode != null" >
+        #{currencyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="quoteType != null" >
+        #{quoteType,jdbcType=INTEGER},
+      </if>
+      <if test="totalWeight != null" >
+        #{totalWeight,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPrice != null" >
+        #{totalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="unitPrice != null" >
+        #{unitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="lightUnitPrice != null" >
+        #{lightUnitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="heavyUnitPrice != null" >
+        #{heavyUnitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="routeId != null" >
+        #{routeId,jdbcType=VARCHAR},
+      </if>
+      <if test="colNum != null" >
+        #{colNum,jdbcType=INTEGER},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="userinfoId != null" >
+        #{userinfoId,jdbcType=INTEGER},
+      </if>
+      <if test="belongAccountId != null" >
+        #{belongAccountId,jdbcType=INTEGER},
+      </if>
+      <if test="quoteBelong != null" >
+        #{quoteBelong,jdbcType=INTEGER},
+      </if>
+      <if test="rootQuoteId != null" >
+        #{rootQuoteId,jdbcType=INTEGER},
+      </if>
+      <if test="createAccount != null" >
+        #{createAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="customsCo != null" >
+        #{customsCo,jdbcType=VARCHAR},
+      </if>
+      <if test="timeLines != null" >
+        #{timeLines,jdbcType=INTEGER},
+      </if>
+      <if test="firstWeight != null" >
+        #{firstWeight,jdbcType=DECIMAL},
+      </if>
+      <if test="additionalWeight != null" >
+        #{additionalWeight,jdbcType=DECIMAL},
+      </if>
+      <if test="carType != null" >
+        #{carType,jdbcType=VARCHAR},
+      </if>
+      <if test="carCapacity != null" >
+        #{carCapacity,jdbcType=VARCHAR},
+      </if>
+      <if test="startDetailAddress != null" >
+        #{startDetailAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="endDetailAddress != null" >
+        #{endDetailAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="firstWeightUnit != null" >
+        #{firstWeightUnit,jdbcType=DECIMAL},
+      </if>
+      <if test="additionalWeightUnit != null" >
+        #{additionalWeightUnit,jdbcType=DECIMAL},
+      </if>
+      <if test="departureTime != null" >
+        #{departureTime,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="kdOperateType != null" >
+        #{kdOperateType,jdbcType=INTEGER},
+      </if>
+      <if test="productDesc != null" >
+        #{productDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gistandard.transport.base.entity.bean.ComQuote" >
+    update COM_QUOTE
+    <set >
+      <if test="itemId != null" >
+        ITEM_ID = #{itemId,jdbcType=INTEGER},
+      </if>
+      <if test="quoteNo != null" >
+        QUOTE_NO = #{quoteNo,jdbcType=VARCHAR},
+      </if>
+      <if test="startRoute != null" >
+        START_ROUTE = #{startRoute,jdbcType=INTEGER},
+      </if>
+      <if test="endRoute != null" >
+        END_ROUTE = #{endRoute,jdbcType=INTEGER},
+      </if>
+      <if test="startStation != null" >
+        START_STATION = #{startStation,jdbcType=INTEGER},
+      </if>
+      <if test="endStation != null" >
+        END_STATION = #{endStation,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        ADDRESS = #{address,jdbcType=INTEGER},
+      </if>
+      <if test="publicFlag != null" >
+        PUBLIC_FLAG = #{publicFlag,jdbcType=BIT},
+      </if>
+      <if test="productType != null" >
+        PRODUCT_TYPE = #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="productStatus != null" >
+        PRODUCT_STATUS = #{productStatus,jdbcType=INTEGER},
+      </if>
+      <if test="currencyCode != null" >
+        CURRENCY_CODE = #{currencyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="quoteType != null" >
+        QUOTE_TYPE = #{quoteType,jdbcType=INTEGER},
+      </if>
+      <if test="totalWeight != null" >
+        TOTAL_WEIGHT = #{totalWeight,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPrice != null" >
+        TOTAL_PRICE = #{totalPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="unitPrice != null" >
+        UNIT_PRICE = #{unitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="lightUnitPrice != null" >
+        LIGHT_UNIT_PRICE = #{lightUnitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="heavyUnitPrice != null" >
+        HEAVY_UNIT_PRICE = #{heavyUnitPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="routeId != null" >
+        ROUTE_ID = #{routeId,jdbcType=VARCHAR},
+      </if>
+      <if test="colNum != null" >
+        COL_NUM = #{colNum,jdbcType=INTEGER},
+      </if>
+      <if test="customerId != null" >
+        CUSTOMER_ID = #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="userinfoId != null" >
+        USERINFO_ID = #{userinfoId,jdbcType=INTEGER},
+      </if>
+      <if test="belongAccountId != null" >
+        BELONG_ACCOUNT_ID = #{belongAccountId,jdbcType=INTEGER},
+      </if>
+      <if test="quoteBelong != null" >
+        QUOTE_BELONG = #{quoteBelong,jdbcType=INTEGER},
+      </if>
+      <if test="rootQuoteId != null" >
+        ROOT_QUOTE_ID = #{rootQuoteId,jdbcType=INTEGER},
+      </if>
+      <if test="createAccount != null" >
+        CREATE_ACCOUNT = #{createAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startTime != null" >
+        START_TIME = #{startTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null" >
+        END_TIME = #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="customsCo != null" >
+        CUSTOMS_CO = #{customsCo,jdbcType=VARCHAR},
+      </if>
+      <if test="timeLines != null" >
+        TIME_LINES = #{timeLines,jdbcType=INTEGER},
+      </if>
+      <if test="firstWeight != null" >
+        FIRST_WEIGHT = #{firstWeight,jdbcType=DECIMAL},
+      </if>
+      <if test="additionalWeight != null" >
+        ADDITIONAL_WEIGHT = #{additionalWeight,jdbcType=DECIMAL},
+      </if>
+      <if test="carType != null" >
+        CAR_TYPE = #{carType,jdbcType=VARCHAR},
+      </if>
+      <if test="carCapacity != null" >
+        CAR_CAPACITY = #{carCapacity,jdbcType=VARCHAR},
+      </if>
+      <if test="startDetailAddress != null" >
+        START_DETAIL_ADDRESS = #{startDetailAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="endDetailAddress != null" >
+        END_DETAIL_ADDRESS = #{endDetailAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="firstWeightUnit != null" >
+        FIRST_WEIGHT_UNIT = #{firstWeightUnit,jdbcType=DECIMAL},
+      </if>
+      <if test="additionalWeightUnit != null" >
+        ADDITIONAL_WEIGHT_UNIT = #{additionalWeightUnit,jdbcType=DECIMAL},
+      </if>
+      <if test="departureTime != null" >
+        DEPARTURE_TIME = #{departureTime,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        VERSION = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="kdOperateType != null" >
+        KD_OPERATE_TYPE = #{kdOperateType,jdbcType=INTEGER},
+      </if>
+      <if test="productDesc != null" >
+        PRODUCT_DESC = #{productDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gistandard.transport.base.entity.bean.ComQuote" >
+    update COM_QUOTE
+    set ITEM_ID = #{itemId,jdbcType=INTEGER},
+      QUOTE_NO = #{quoteNo,jdbcType=VARCHAR},
+      START_ROUTE = #{startRoute,jdbcType=INTEGER},
+      END_ROUTE = #{endRoute,jdbcType=INTEGER},
+      START_STATION = #{startStation,jdbcType=INTEGER},
+      END_STATION = #{endStation,jdbcType=INTEGER},
+      ADDRESS = #{address,jdbcType=INTEGER},
+      PUBLIC_FLAG = #{publicFlag,jdbcType=BIT},
+      PRODUCT_TYPE = #{productType,jdbcType=VARCHAR},
+      PRODUCT_STATUS = #{productStatus,jdbcType=INTEGER},
+      CURRENCY_CODE = #{currencyCode,jdbcType=VARCHAR},
+      QUOTE_TYPE = #{quoteType,jdbcType=INTEGER},
+      TOTAL_WEIGHT = #{totalWeight,jdbcType=DECIMAL},
+      TOTAL_PRICE = #{totalPrice,jdbcType=DECIMAL},
+      UNIT_PRICE = #{unitPrice,jdbcType=DECIMAL},
+      LIGHT_UNIT_PRICE = #{lightUnitPrice,jdbcType=DECIMAL},
+      HEAVY_UNIT_PRICE = #{heavyUnitPrice,jdbcType=DECIMAL},
+      ROUTE_ID = #{routeId,jdbcType=VARCHAR},
+      COL_NUM = #{colNum,jdbcType=INTEGER},
+      CUSTOMER_ID = #{customerId,jdbcType=INTEGER},
+      USERINFO_ID = #{userinfoId,jdbcType=INTEGER},
+      BELONG_ACCOUNT_ID = #{belongAccountId,jdbcType=INTEGER},
+      QUOTE_BELONG = #{quoteBelong,jdbcType=INTEGER},
+      ROOT_QUOTE_ID = #{rootQuoteId,jdbcType=INTEGER},
+      CREATE_ACCOUNT = #{createAccount,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      START_TIME = #{startTime,jdbcType=VARCHAR},
+      END_TIME = #{endTime,jdbcType=VARCHAR},
+      CUSTOMS_CO = #{customsCo,jdbcType=VARCHAR},
+      TIME_LINES = #{timeLines,jdbcType=INTEGER},
+      FIRST_WEIGHT = #{firstWeight,jdbcType=DECIMAL},
+      ADDITIONAL_WEIGHT = #{additionalWeight,jdbcType=DECIMAL},
+      CAR_TYPE = #{carType,jdbcType=VARCHAR},
+      CAR_CAPACITY = #{carCapacity,jdbcType=VARCHAR},
+      START_DETAIL_ADDRESS = #{startDetailAddress,jdbcType=VARCHAR},
+      END_DETAIL_ADDRESS = #{endDetailAddress,jdbcType=VARCHAR},
+      FIRST_WEIGHT_UNIT = #{firstWeightUnit,jdbcType=DECIMAL},
+      ADDITIONAL_WEIGHT_UNIT = #{additionalWeightUnit,jdbcType=DECIMAL},
+      DEPARTURE_TIME = #{departureTime,jdbcType=VARCHAR},
+      VERSION = #{version,jdbcType=INTEGER},
+      KD_OPERATE_TYPE = #{kdOperateType,jdbcType=INTEGER},
+      PRODUCT_DESC = #{productDesc,jdbcType=LONGVARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+
+</mapper>

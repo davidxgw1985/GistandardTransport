@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+       xsi:schemaLocation="http://www.springframework.org/schema/data/mongo
+       http://www.springframework.org/schema/data/mongo/spring-mongo.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+    <mongo:mongo-client id="mongoClient"
+                        host="${mongo.host}" port="${mongo.port}">
+        <mongo:client-options connections-per-host="${mongo.connectionsPerHost}"
+                              threads-allowed-to-block-for-connection-multiplier="${mongo.threadsAllowedToBlockForConnectionMultiplier}"
+                              connect-timeout="${mongo.connectTimeout}"
+                              max-wait-time="${mongo.maxWaitTime}"
+                              socket-keep-alive="${mongo.socketKeepAlive}"
+                              socket-timeout="${mongo.socketTimeout}" />
+    </mongo:mongo-client>
+    <!-- MongoDB Factory for prod-comet-trans : SimpleMongoDbFactory(com.mongodb.MongoClient mongoClient, String databaseName) -->
+    <mongo:db-factory id="mongo-factory-prod-comet-trans"
+                      mongo-ref="mongoClient" dbname="${mongo.dbname}"/>
+    <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+        <constructor-arg name="mongoDbFactory" ref="mongo-factory-prod-comet-trans"/>
+        <constructor-arg name="mongoConverter" ref="mappingMongoConverter" />
+    </bean>
+
+    <bean id="mappingContext" class="org.springframework.data.mongodb.core.mapping.MongoMappingContext" />
+
+    <bean id="mappingMongoConverter" class="org.springframework.data.mongodb.core.convert.MappingMongoConverter">
+        <constructor-arg name="mongoDbFactory" ref="mongo-factory-prod-comet-trans" />
+        <constructor-arg name="mappingContext" ref="mappingContext" />
+        <property name="typeMapper" ref="defaultMongoTypeMapper" />
+    </bean>
+
+    <!-- 默认Mongodb类型映射 -->
+    <bean id="defaultMongoTypeMapper" class="org.springframework.data.mongodb.core.convert.DefaultMongoTypeMapper">
+        <constructor-arg name="typeKey">
+            <null /><!-- 这里设置为空,可以把 spring data mongodb 多余保存的_class字段去掉 -->
+        </constructor-arg>
+    </bean>
+
+    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+</beans>

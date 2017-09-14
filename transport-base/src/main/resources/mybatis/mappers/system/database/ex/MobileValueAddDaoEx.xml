@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ex.MobileValueAddDaoEx">
+    <!-- 根据bookingFormId获取O单增值服务信息 -->
+    <select id="queryMobileValueAddList" resultMap="com.gistandard.transport.base.entity.dao.MobileValueAddDao.BaseResultMap" >
+        select
+        v.ID, v.VALUE_ADD_CODE, v.VALUE_ADD_NAME, v.CREATE_DATE, v.CREATE_USER_ID, v.CREATE_USER, v.STATUS
+        from MOBILE_VALUE_ADD v
+        LEFT JOIN MOBILE_VALUE_ADD_REL r ON v.ID = r.VALUE_ADD_ID
+        where r.BOOKING_FORM_ID = #{bookingFormId}
+    </select>
+
+    <!-- 根据mobileBookingFormId获取I单增值服务信息 -->
+    <select id="queryMobileValueAddListByMoblieOrderId" resultMap="com.gistandard.transport.base.entity.dao.MobileValueAddDao.BaseResultMap">
+        select
+        v.ID, v.VALUE_ADD_CODE, v.VALUE_ADD_NAME, v.CREATE_DATE, v.CREATE_USER_ID, v.CREATE_USER, v.STATUS
+        from MOBILE_VALUE_ADD v
+        LEFT JOIN MOBILE_VALUE_ADD_REL r ON v.ID = r.VALUE_ADD_ID
+        where r.MOBILE_BOOKING_FORM_ID = #{mobileBookingFormId}
+    </select>
+
+    <insert id="batchInsert" parameterType="java.util.List">
+        insert into MOBILE_VALUE_ADD_REL (ID, CREATE_DATE, CREATE_USER_ID,
+        CREATE_USER, BOOKING_FORM_ID, VALUE_ADD_ID,
+        MOBILE_BOOKING_FORM_ID)
+        values
+        <foreach collection="list" item="item" index="index" separator="," >
+            (#{item.id}, #{item.createDate}, #{item.createUserId},
+            #{item.createUser}, #{item.bookingFormId}, #{item.valueAddId},
+            #{item.mobileBookingFormId}
+            )
+        </foreach>
+    </insert>
+
+    <delete id="delMVAByBookingFormId" parameterType="java.lang.Integer">
+        delete from MOBILE_VALUE_ADD_REL
+        where BOOKING_FORM_ID = #{bookingFormId,jdbcType=INTEGER}
+    </delete>
+
+
+    <delete id="delMVAByMobileBookingFormId" parameterType="java.lang.Integer">
+        delete from MOBILE_VALUE_ADD_REL
+        where MOBILE_BOOKING_FORM_ID = #{mobileBookingFormId,jdbcType=INTEGER}
+    </delete>
+</mapper>

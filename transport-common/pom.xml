@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>transport-parent</artifactId>
+        <groupId>com.gistandard.transport</groupId>
+        <version>1.0.1</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>transport-common</artifactId>
+    <packaging>jar</packaging>
+    <properties>
+        <skip_maven_deploy>true</skip_maven_deploy>
+        <springfox.swagger2.version>2.5.0</springfox.swagger2.version>
+        <swagger.annotations.version>1.5.9</swagger.annotations.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.gistandard.transport</groupId>
+            <artifactId>gistandard-base-pojo</artifactId>
+            <version>1.0.3</version>
+        </dependency>
+        <!-- swagger-springmvc -->
+        <dependency>
+            <groupId>com.fasterxml</groupId>
+            <artifactId>classmate</artifactId>
+            <version>1.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${springfox.swagger2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>${swagger.annotations.version}</version>
+        </dependency>
+        <!-- swagger-springmvc dependencies -->
+    </dependencies>
+</project>

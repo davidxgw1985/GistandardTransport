@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ex.BillingFormSalmDaoEx" >
+    <select id="queryVersionByConditions" resultMap="com.gistandard.transport.base.entity.dao.BillingFormSalmDao.BaseResultMap" >
+        select
+        <include refid="com.gistandard.transport.base.entity.dao.BillingFormSalmDao.Base_Column_List" />
+        from APP_VERSION_INFO
+        where OS = #{os,jdbcType=VARCHAR}
+        AND PROJECT = #{project,jdbcType=VARCHAR}
+    </select>
+
+    <delete id="deleteByBusiBooknoId" parameterType="java.lang.Integer" >
+        delete from BILLING_FORM_SALM
+        where 1=1 and BUSI_BOOKNO_ID = #{busiBooknoId}
+    </delete>
+    <insert id="batchInsert" parameterType="java.util.List">
+        insert into BILLING_FORM_SALM (ID, BUSI_BOOKNO_ID, CTRLID_NO,
+        SUPP_PARTNO, SUPP_INVOICE_NO, SUPP_PRODNAME_CHS,
+        SUPP_PRODNAME_ENG, SUPP_BUSINESS_GR, PRIM_STOCKINN_DATE,
+        PURC_PARTNO, PURC_INVOICE_NO, PURC_INDENT_NO,
+        PURC_INDENT_TYPE, PURC_INVENTORY, PURC_GOODS_OWNER,
+        PURC_PRODNAME_CHS, PURC_PRODNAME_ENG, PURC_BUSINESS_GR,
+        PURC_REPORT_NO, PURC_END_CUSTOMER, PURC_END_CUSTOMNO,
+        THRD_PARTNO, PO_ITEM_NO, SUPP_PURC_CUSTOMNO,
+        PURC_SUPP_CUSTNAME, TRADE_TERM, TRADE_SITE,
+        MADEIN_COUNCO, HAIK_GOODSNA, HSCODE_NO,
+        HSCODE_NACHS, HSCODE_SPECS, GOODS_PALLET_QTY,
+        GOODS_QTY, GOODS_QTY_UNIT_CO, GOODS_PACKAGE_BOXNO,
+        GOODS_PACKAGE_QTY, PACKAGE_UNIT_CO, PACKAGE_UOM,
+        GOODS_PRICE, GOODS_VALUE, GOODS_CURRENCY_CO,
+        GOODS_NETWHT, GOODS_GROSSWHT, WEIGHT_UNIT_CO,
+        MAKE_NOTICE_NO, MAKE_FORM_NO, MAKE_FORM_PCS,
+        GOODS_VOLCBM, GOODS_VOLWHT, GOODS_FEEWHT,
+        GOODS_DIMENDESC, DATE_CODE, VMI_HUBID_NO,
+        DESTN_VMI_WHNO, SCHEDU_TRACE_NO, EML_ID,
+        G_NO, GOODS_STATUS, PO_DTLID,
+        COMESALM0004, COMESALM0005, COMESALM0006,
+        COMESALM0007, COMESALM0008, COMESALM0009,
+        COMESALM0010, COMESALM0013, COMESALM0014,
+        COMESALM0015, COMESALM0018, COMESALM0019,
+        COMESALM0020, COMESALM0023, COMESALM0024,
+        COMESALM0027, COMESALM0029, COMESALM0030,
+        COMESALM0031, COMESALM0039, COMESALM0040,
+        COMESALM0050, COMESALM0051, COMESALM0060,
+        COMESALM0063, COMESALM0064, COMESALM0065,
+        COMESALM0066, COMESALM0067, COMESALM0068,
+        COMESALM0069, COMESALM0070, COMESALM0071,
+        COMESALM0072, COMESALM0073, COMESALM0074,
+        COMESALM0075, COMESALM0076, COMESALM0077,
+        COMESALM0078, COMESALM0081, COMESALM0082,
+        COMESALM0083, COMESALM0084, COMESALM0089,
+        COMESALM0090, COMESALM0091, COMESALM0092,
+        COMESALM0097, COMESALM0098, COMESALM0099,
+        COMESALM0100, COMESALM0101, COMESALM0102,
+        COMESALM0120, DECLCONSHAND, DECLAR_DATE,
+        JJS_GRADE, PREDICT_VALUE, JJS_VER,
+        PREDICT_VALUE_HUB, GOODS_VOLUME, GOODS_VOLUME_UNIT,
+        REMARK, T_CODE, HUB_HANDBOOK_NO,
+        HUB_CONTRACT_NO, HUB_CONTRACT_NUM, OLD_SALEBOOKNO,
+        COMDITY_IDSCR, LOTNO, ACTUAL_WIGHT,
+        ACTUAL_VOLUME, V_PN,GOODS_LENGTH,GOODS_WIDTH,GOODS_HEIGHT) VALUES
+        <foreach collection="list" item="item" index="index" separator="," >
+            (#{item.id}, #{item.busiBooknoId}, #{item.ctrlidNo},
+            #{item.suppPartno}, #{item.suppInvoiceNo}, #{item.suppProdnameChs},
+            #{item.suppProdnameEng}, #{item.suppBusinessGr}, #{item.primStockinnDate},
+            #{item.purcPartno}, #{item.purcInvoiceNo}, #{item.purcIndentNo},
+            #{item.purcIndentType}, #{item.purcInventory}, #{item.purcGoodsOwner},
+            #{item.purcProdnameChs}, #{item.purcProdnameEng}, #{item.purcBusinessGr},
+            #{item.purcReportNo}, #{item.purcEndCustomer}, #{item.purcEndCustomno},
+            #{item.thrdPartno}, #{item.poItemNo}, #{item.suppPurcCustomno},
+            #{item.purcSuppCustname}, #{item.tradeTerm}, #{item.tradeSite},
+            #{item.madeinCounco}, #{item.haikGoodsna}, #{item.hscodeNo},
+            #{item.hscodeNachs}, #{item.hscodeSpecs}, #{item.goodsPalletQty},
+            #{item.goodsQty}, #{item.goodsQtyUnitCo}, #{item.goodsPackageBoxno},
+            #{item.goodsPackageQty}, #{item.packageUnitCo}, #{item.packageUom},
+            #{item.goodsPrice}, #{item.goodsValue}, #{item.goodsCurrencyCo},
+            #{item.goodsNetwht}, #{item.goodsGrosswht}, #{item.weightUnitCo},
+            #{item.makeNoticeNo}, #{item.makeFormNo}, #{item.makeFormPcs},
+            #{item.goodsVolcbm}, #{item.goodsVolwht}, #{item.goodsFeewht},
+            #{item.goodsDimendesc}, #{item.dateCode}, #{item.vmiHubidNo},
+            #{item.destnVmiWhno}, #{item.scheduTraceNo}, #{item.emlId},
+            #{item.gNo}, #{item.goodsStatus}, #{item.poDtlid},
+            #{item.comesalm0004}, #{item.comesalm0005}, #{item.comesalm0006},
+            #{item.comesalm0007}, #{item.comesalm0008}, #{item.comesalm0009},
+            #{item.comesalm0010}, #{item.comesalm0013}, #{item.comesalm0014},
+            #{item.comesalm0015}, #{item.comesalm0018}, #{item.comesalm0019},
+            #{item.comesalm0020}, #{item.comesalm0023}, #{item.comesalm0024},
+            #{item.comesalm0027}, #{item.comesalm0029}, #{item.comesalm0030},
+            #{item.comesalm0031}, #{item.comesalm0039}, #{item.comesalm0040},
+            #{item.comesalm0050}, #{item.comesalm0051}, #{item.comesalm0060},
+            #{item.comesalm0063}, #{item.comesalm0064}, #{item.comesalm0065},
+            #{item.comesalm0066}, #{item.comesalm0067}, #{item.comesalm0068},
+            #{item.comesalm0069}, #{item.comesalm0070}, #{item.comesalm0071},
+            #{item.comesalm0072}, #{item.comesalm0073}, #{item.comesalm0074},
+            #{item.comesalm0075}, #{item.comesalm0076}, #{item.comesalm0077},
+            #{item.comesalm0078}, #{item.comesalm0081}, #{item.comesalm0082},
+            #{item.comesalm0083}, #{item.comesalm0084}, #{item.comesalm0089},
+            #{item.comesalm0090}, #{item.comesalm0091}, #{item.comesalm0092},
+            #{item.comesalm0097}, #{item.comesalm0098}, #{item.comesalm0099},
+            #{item.comesalm0100}, #{item.comesalm0101}, #{item.comesalm0102},
+            #{item.comesalm0120}, #{item.declconshand}, #{item.declarDate},
+            #{item.jjsGrade}, #{item.predictValue}, #{item.jjsVer},
+            #{item.predictValueHub}, #{item.goodsVolume}, #{item.goodsVolumeUnit},
+            #{item.remark}, #{item.tCode}, #{item.hubHandbookNo},
+            #{item.hubContractNo}, #{item.hubContractNum}, #{item.oldSalebookno},
+            #{item.comdityIdscr}, #{item.lotno}, #{item.actualWight},
+            #{item.actualVolume}, #{item.vPn}, #{item.goodsLength}, #{item.goodsWidth}, #{item.goodsHeight})
+        </foreach>
+    </insert>
+    <select id="queryByBusiBooknoId" resultMap="com.gistandard.transport.base.entity.dao.BillingFormSalmDao.BaseResultMap" parameterType="java.lang.Integer" >
+        select /*master*/
+        <include refid="com.gistandard.transport.base.entity.dao.BillingFormSalmDao.Base_Column_List" />
+        from BILLING_FORM_SALM
+        where BUSI_BOOKNO_ID = #{busiBooknoId}
+    </select>
+
+
+    <sql id="SALM_Column_List" >
+        salm.ID, salm.BUSI_BOOKNO_ID, salm.CTRLID_NO, salm.SUPP_PARTNO, salm.SUPP_INVOICE_NO, salm.SUPP_PRODNAME_CHS, salm.SUPP_PRODNAME_ENG,
+        salm.SUPP_BUSINESS_GR, salm.PRIM_STOCKINN_DATE, salm.PURC_PARTNO, salm.PURC_INVOICE_NO, salm.PURC_INDENT_NO,
+        salm.PURC_INDENT_TYPE, salm.PURC_INVENTORY, salm.PURC_GOODS_OWNER, salm.PURC_PRODNAME_CHS, salm.PURC_PRODNAME_ENG,
+        salm.PURC_BUSINESS_GR, salm.PURC_REPORT_NO, salm.PURC_END_CUSTOMER, salm.PURC_END_CUSTOMNO, salm.THRD_PARTNO,
+        salm.PO_ITEM_NO, salm.SUPP_PURC_CUSTOMNO, salm.PURC_SUPP_CUSTNAME, salm.TRADE_TERM, salm.TRADE_SITE, salm.MADEIN_COUNCO,
+        salm.HAIK_GOODSNA, salm.HSCODE_NO, salm.HSCODE_NACHS, salm.HSCODE_SPECS, salm.GOODS_PALLET_QTY, salm.GOODS_QTY,
+        salm.GOODS_QTY_UNIT_CO, salm.GOODS_PACKAGE_BOXNO, salm.GOODS_PACKAGE_QTY, salm.PACKAGE_UNIT_CO, salm.PACKAGE_UOM,
+        salm.GOODS_PRICE, salm.GOODS_VALUE, salm.GOODS_CURRENCY_CO, salm.GOODS_NETWHT, salm.GOODS_GROSSWHT, salm.WEIGHT_UNIT_CO,
+        salm.MAKE_NOTICE_NO, salm.MAKE_FORM_NO, salm.MAKE_FORM_PCS, salm.GOODS_VOLCBM, salm.GOODS_VOLWHT, salm.GOODS_FEEWHT,
+        salm.GOODS_DIMENDESC, salm.DATE_CODE, salm.VMI_HUBID_NO, salm.DESTN_VMI_WHNO, salm.SCHEDU_TRACE_NO, salm.EML_ID,
+        salm.G_NO, salm.GOODS_STATUS, salm.PO_DTLID, salm.COMESALM0004, salm.COMESALM0005, salm.COMESALM0006, salm.COMESALM0007,
+        salm.COMESALM0008, salm.COMESALM0009, salm.COMESALM0010, salm.COMESALM0013, salm.COMESALM0014, salm.COMESALM0015,
+        salm.COMESALM0018, salm.COMESALM0019, salm.COMESALM0020, salm.COMESALM0023, salm.COMESALM0024, salm.COMESALM0027,
+        salm.COMESALM0029, salm.COMESALM0030, salm.COMESALM0031, salm.COMESALM0039, salm.COMESALM0040, salm.COMESALM0050,
+        salm.COMESALM0051, salm.COMESALM0060, salm.COMESALM0063, salm.COMESALM0064, salm.COMESALM0065, salm.COMESALM0066,
+        salm.COMESALM0067, salm.COMESALM0068, salm.COMESALM0069, salm.COMESALM0070, salm.COMESALM0071, salm.COMESALM0072,
+        salm.COMESALM0073, salm.COMESALM0074, salm.COMESALM0075, salm.COMESALM0076, salm.COMESALM0077, salm.COMESALM0078,
+        salm.COMESALM0081, salm.COMESALM0082, salm.COMESALM0083, salm.COMESALM0084, salm.COMESALM0089, salm.COMESALM0090,
+        salm.COMESALM0091, salm.COMESALM0092, salm.COMESALM0097, salm.COMESALM0098, salm.COMESALM0099, salm.COMESALM0100,
+        salm.COMESALM0101, salm.COMESALM0102, salm.COMESALM0120, salm.DECLCONSHAND, salm.DECLAR_DATE, salm.JJS_GRADE, salm.PREDICT_VALUE,
+        salm.JJS_VER, salm.PREDICT_VALUE_HUB, salm.GOODS_VOLUME, salm.GOODS_VOLUME_UNIT, salm.REMARK, salm.T_CODE, salm.HUB_HANDBOOK_NO,
+        salm.HUB_CONTRACT_NO, salm.HUB_CONTRACT_NUM, salm.OLD_SALEBOOKNO, salm.COMDITY_IDSCR, salm.LOTNO, salm.ACTUAL_WIGHT,
+        salm.ACTUAL_VOLUME, salm.V_PN, salm.goods_length, salm.goods_width, salm.goods_height
+    </sql>
+    <select id="queryByBusiBookno" resultMap="com.gistandard.transport.base.entity.dao.BillingFormSalmDao.BaseResultMap" parameterType="java.lang.String" >
+        select /*master*/
+        <include refid="SALM_Column_List" />
+        from BILLING_FORM_SALM salm
+        LEFT JOIN BOOKING_FORM bf ON bf.ID = salm.BUSI_BOOKNO_ID
+        where bf.BUSI_BOOK_NO = #{busiBookno}
+    </select>
+
+</mapper>

@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ComAccountRequestDao">
+    <resultMap id="BaseResultMap" type="com.gistandard.transport.base.entity.bean.ComAccountRequest">
+        <id column="ID" property="id" jdbcType="INTEGER"/>
+        <result column="ACCOUNT_ID" property="accountId" jdbcType="INTEGER"/>
+        <result column="ROLE_ID" property="roleId" jdbcType="INTEGER"/>
+        <result column="REQ_TIME" property="reqTime" jdbcType="TIMESTAMP"/>
+        <result column="REQ_TYPE" property="reqType" jdbcType="INTEGER"/>
+        <result column="REQ_STATUS" property="reqStatus" jdbcType="INTEGER"/>
+        <result column="REQ_RESULT_DESC" property="reqResultDesc" jdbcType="VARCHAR"/>
+        <result column="RECOMMEND_FLAG" property="recommendFlag" jdbcType="BIT"/>
+        <result column="INVESTIGATOR" property="investigator" jdbcType="VARCHAR"/>
+        <result column="REFEREE" property="referee" jdbcType="VARCHAR"/>
+        <result column="BIZ_MANAGE_ACCOUNT" property="bizManageAccount" jdbcType="VARCHAR"/>
+        <result column="AUTH_REAL_NAME" property="authRealName" jdbcType="VARCHAR"/>
+        <result column="AUTH_IDENTITYNO" property="authIdentityno" jdbcType="VARCHAR"/>
+        <result column="INVESTIGATION_TIME" property="investigationTime" jdbcType="TIMESTAMP"/>
+        <result column="WECHAT_MERCHANT_ACCOUNT" property="wechatMerchantAccount" jdbcType="VARCHAR"/>
+        <result column="SHOP_NAME" property="shopName" jdbcType="VARCHAR"/>
+        <result column="SHOP_LINK" property="shopLink" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+      ID, ACCOUNT_ID, ROLE_ID, REQ_TIME, REQ_TYPE, REQ_STATUS, REQ_RESULT_DESC, RECOMMEND_FLAG,
+      INVESTIGATOR, REFEREE, BIZ_MANAGE_ACCOUNT, AUTH_REAL_NAME, AUTH_IDENTITYNO, INVESTIGATION_TIME,
+      WECHAT_MERCHANT_ACCOUNT, SHOP_NAME, SHOP_LINK
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from COM_ACCOUNT_REQUEST
+        where ID = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+      delete from COM_ACCOUNT_REQUEST
+      where ID = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true"
+                parameterType="com.gistandard.transport.base.entity.bean.ComAccountRequest">
+      insert into COM_ACCOUNT_REQUEST (ID, ACCOUNT_ID, ROLE_ID,
+      REQ_TIME, REQ_TYPE, REQ_STATUS,
+      REQ_RESULT_DESC, RECOMMEND_FLAG, INVESTIGATOR,
+      REFEREE, BIZ_MANAGE_ACCOUNT, AUTH_REAL_NAME,
+      AUTH_IDENTITYNO, INVESTIGATION_TIME, WECHAT_MERCHANT_ACCOUNT,
+      SHOP_NAME, SHOP_LINK)
+      values (#{id,jdbcType=INTEGER}, #{accountId,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER},
+      #{reqTime,jdbcType=TIMESTAMP}, #{reqType,jdbcType=INTEGER}, #{reqStatus,jdbcType=INTEGER},
+      #{reqResultDesc,jdbcType=VARCHAR}, #{recommendFlag,jdbcType=BIT}, #{investigator,jdbcType=VARCHAR},
+      #{referee,jdbcType=VARCHAR}, #{bizManageAccount,jdbcType=VARCHAR}, #{authRealName,jdbcType=VARCHAR},
+      #{authIdentityno,jdbcType=VARCHAR}, #{investigationTime,jdbcType=TIMESTAMP}, #{wechatMerchantAccount,jdbcType=VARCHAR},
+      #{shopName,jdbcType=VARCHAR}, #{shopLink,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.gistandard.transport.base.entity.bean.ComAccountRequest">
+        insert into COM_ACCOUNT_REQUEST
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                ID,
+            </if>
+            <if test="accountId != null">
+                ACCOUNT_ID,
+            </if>
+            <if test="roleId != null">
+                ROLE_ID,
+            </if>
+            <if test="reqTime != null">
+                REQ_TIME,
+            </if>
+            <if test="reqType != null">
+                REQ_TYPE,
+            </if>
+            <if test="reqStatus != null">
+                REQ_STATUS,
+            </if>
+            <if test="reqResultDesc != null">
+                REQ_RESULT_DESC,
+            </if>
+            <if test="recommendFlag != null">
+                RECOMMEND_FLAG,
+            </if>
+            <if test="investigator != null">
+                INVESTIGATOR,
+            </if>
+            <if test="referee != null">
+                REFEREE,
+            </if>
+            <if test="bizManageAccount != null">
+                BIZ_MANAGE_ACCOUNT,
+            </if>
+            <if test="authRealName != null">
+                AUTH_REAL_NAME,
+            </if>
+            <if test="authIdentityno != null">
+                AUTH_IDENTITYNO,
+            </if>
+            <if test="investigationTime != null">
+                INVESTIGATION_TIME,
+            </if>
+            <if test="wechatMerchantAccount != null">
+                WECHAT_MERCHANT_ACCOUNT,
+            </if>
+            <if test="shopName != null">
+                SHOP_NAME,
+            </if>
+            <if test="shopLink != null">
+                SHOP_LINK,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="accountId != null">
+                #{accountId,jdbcType=INTEGER},
+            </if>
+            <if test="roleId != null">
+                #{roleId,jdbcType=INTEGER},
+            </if>
+            <if test="reqTime != null">
+                #{reqTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="reqType != null">
+                #{reqType,jdbcType=INTEGER},
+            </if>
+            <if test="reqStatus != null">
+                #{reqStatus,jdbcType=INTEGER},
+            </if>
+            <if test="reqResultDesc != null">
+                #{reqResultDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="recommendFlag != null">
+                #{recommendFlag,jdbcType=BIT},
+            </if>
+            <if test="investigator != null">
+                #{investigator,jdbcType=VARCHAR},
+            </if>
+            <if test="referee != null">
+                #{referee,jdbcType=VARCHAR},
+            </if>
+            <if test="bizManageAccount != null">
+                #{bizManageAccount,jdbcType=VARCHAR},
+            </if>
+            <if test="authRealName != null">
+                #{authRealName,jdbcType=VARCHAR},
+            </if>
+            <if test="authIdentityno != null">
+                #{authIdentityno,jdbcType=VARCHAR},
+            </if>
+            <if test="investigationTime != null">
+                #{investigationTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="wechatMerchantAccount != null">
+                #{wechatMerchantAccount,jdbcType=VARCHAR},
+            </if>
+            <if test="shopName != null">
+                #{shopName,jdbcType=VARCHAR},
+            </if>
+            <if test="shopLink != null">
+                #{shopLink,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective"
+            parameterType="com.gistandard.transport.base.entity.bean.ComAccountRequest">
+        update COM_ACCOUNT_REQUEST
+        <set>
+            <if test="accountId != null">
+                ACCOUNT_ID = #{accountId,jdbcType=INTEGER},
+            </if>
+            <if test="roleId != null">
+                ROLE_ID = #{roleId,jdbcType=INTEGER},
+            </if>
+            <if test="reqTime != null">
+                REQ_TIME = #{reqTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="reqType != null">
+                REQ_TYPE = #{reqType,jdbcType=INTEGER},
+            </if>
+            <if test="reqStatus != null">
+                REQ_STATUS = #{reqStatus,jdbcType=INTEGER},
+            </if>
+            <if test="reqResultDesc != null">
+                REQ_RESULT_DESC = #{reqResultDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="recommendFlag != null">
+                RECOMMEND_FLAG = #{recommendFlag,jdbcType=BIT},
+            </if>
+            <if test="investigator != null">
+                INVESTIGATOR = #{investigator,jdbcType=VARCHAR},
+            </if>
+            <if test="referee != null">
+                REFEREE = #{referee,jdbcType=VARCHAR},
+            </if>
+            <if test="bizManageAccount != null">
+                BIZ_MANAGE_ACCOUNT = #{bizManageAccount,jdbcType=VARCHAR},
+            </if>
+            <if test="authRealName != null">
+                AUTH_REAL_NAME = #{authRealName,jdbcType=VARCHAR},
+            </if>
+            <if test="authIdentityno != null">
+                AUTH_IDENTITYNO = #{authIdentityno,jdbcType=VARCHAR},
+            </if>
+            <if test="investigationTime != null">
+                INVESTIGATION_TIME = #{investigationTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="wechatMerchantAccount != null">
+                WECHAT_MERCHANT_ACCOUNT = #{wechatMerchantAccount,jdbcType=VARCHAR},
+            </if>
+            <if test="shopName != null">
+                SHOP_NAME = #{shopName,jdbcType=VARCHAR},
+            </if>
+            <if test="shopLink != null">
+                SHOP_LINK = #{shopLink,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.gistandard.transport.base.entity.bean.ComAccountRequest">
+      update COM_ACCOUNT_REQUEST
+      set ACCOUNT_ID = #{accountId,jdbcType=INTEGER},
+      ROLE_ID = #{roleId,jdbcType=INTEGER},
+      REQ_TIME = #{reqTime,jdbcType=TIMESTAMP},
+      REQ_TYPE = #{reqType,jdbcType=INTEGER},
+      REQ_STATUS = #{reqStatus,jdbcType=INTEGER},
+      REQ_RESULT_DESC = #{reqResultDesc,jdbcType=VARCHAR},
+      RECOMMEND_FLAG = #{recommendFlag,jdbcType=BIT},
+      INVESTIGATOR = #{investigator,jdbcType=VARCHAR},
+      REFEREE = #{referee,jdbcType=VARCHAR},
+      BIZ_MANAGE_ACCOUNT = #{bizManageAccount,jdbcType=VARCHAR},
+      AUTH_REAL_NAME = #{authRealName,jdbcType=VARCHAR},
+      AUTH_IDENTITYNO = #{authIdentityno,jdbcType=VARCHAR},
+      INVESTIGATION_TIME = #{investigationTime,jdbcType=TIMESTAMP},
+      WECHAT_MERCHANT_ACCOUNT = #{wechatMerchantAccount,jdbcType=VARCHAR},
+      SHOP_NAME = #{shopName,jdbcType=VARCHAR},
+      SHOP_LINK = #{shopLink,jdbcType=VARCHAR}
+      where ID = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

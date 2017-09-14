@@ -1,0 +1,1655 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.BillingFormSalmDao" >
+  <resultMap id="BaseResultMap" type="com.gistandard.transport.base.entity.bean.BillingFormSalm" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="BUSI_BOOKNO_ID" property="busiBooknoId" jdbcType="INTEGER" />
+    <result column="CTRLID_NO" property="ctrlidNo" jdbcType="INTEGER" />
+    <result column="SUPP_PARTNO" property="suppPartno" jdbcType="VARCHAR" />
+    <result column="SUPP_INVOICE_NO" property="suppInvoiceNo" jdbcType="VARCHAR" />
+    <result column="SUPP_PRODNAME_CHS" property="suppProdnameChs" jdbcType="VARCHAR" />
+    <result column="SUPP_PRODNAME_ENG" property="suppProdnameEng" jdbcType="VARCHAR" />
+    <result column="SUPP_BUSINESS_GR" property="suppBusinessGr" jdbcType="VARCHAR" />
+    <result column="PRIM_STOCKINN_DATE" property="primStockinnDate" jdbcType="TIMESTAMP" />
+    <result column="PURC_PARTNO" property="purcPartno" jdbcType="VARCHAR" />
+    <result column="PURC_INVOICE_NO" property="purcInvoiceNo" jdbcType="VARCHAR" />
+    <result column="PURC_INDENT_NO" property="purcIndentNo" jdbcType="VARCHAR" />
+    <result column="PURC_INDENT_TYPE" property="purcIndentType" jdbcType="VARCHAR" />
+    <result column="PURC_INVENTORY" property="purcInventory" jdbcType="VARCHAR" />
+    <result column="PURC_GOODS_OWNER" property="purcGoodsOwner" jdbcType="VARCHAR" />
+    <result column="PURC_PRODNAME_CHS" property="purcProdnameChs" jdbcType="VARCHAR" />
+    <result column="PURC_PRODNAME_ENG" property="purcProdnameEng" jdbcType="VARCHAR" />
+    <result column="PURC_BUSINESS_GR" property="purcBusinessGr" jdbcType="VARCHAR" />
+    <result column="PURC_REPORT_NO" property="purcReportNo" jdbcType="VARCHAR" />
+    <result column="PURC_END_CUSTOMER" property="purcEndCustomer" jdbcType="VARCHAR" />
+    <result column="PURC_END_CUSTOMNO" property="purcEndCustomno" jdbcType="VARCHAR" />
+    <result column="THRD_PARTNO" property="thrdPartno" jdbcType="VARCHAR" />
+    <result column="PO_ITEM_NO" property="poItemNo" jdbcType="VARCHAR" />
+    <result column="SUPP_PURC_CUSTOMNO" property="suppPurcCustomno" jdbcType="VARCHAR" />
+    <result column="PURC_SUPP_CUSTNAME" property="purcSuppCustname" jdbcType="VARCHAR" />
+    <result column="TRADE_TERM" property="tradeTerm" jdbcType="VARCHAR" />
+    <result column="TRADE_SITE" property="tradeSite" jdbcType="VARCHAR" />
+    <result column="MADEIN_COUNCO" property="madeinCounco" jdbcType="VARCHAR" />
+    <result column="HAIK_GOODSNA" property="haikGoodsna" jdbcType="VARCHAR" />
+    <result column="HSCODE_NO" property="hscodeNo" jdbcType="VARCHAR" />
+    <result column="HSCODE_NACHS" property="hscodeNachs" jdbcType="VARCHAR" />
+    <result column="HSCODE_SPECS" property="hscodeSpecs" jdbcType="VARCHAR" />
+    <result column="GOODS_PALLET_QTY" property="goodsPalletQty" jdbcType="DECIMAL" />
+    <result column="GOODS_QTY" property="goodsQty" jdbcType="DECIMAL" />
+    <result column="GOODS_QTY_UNIT_CO" property="goodsQtyUnitCo" jdbcType="CHAR" />
+    <result column="GOODS_PACKAGE_BOXNO" property="goodsPackageBoxno" jdbcType="VARCHAR" />
+    <result column="GOODS_PACKAGE_QTY" property="goodsPackageQty" jdbcType="DECIMAL" />
+    <result column="PACKAGE_UNIT_CO" property="packageUnitCo" jdbcType="CHAR" />
+    <result column="PACKAGE_UOM" property="packageUom" jdbcType="DECIMAL" />
+    <result column="GOODS_PRICE" property="goodsPrice" jdbcType="DECIMAL" />
+    <result column="GOODS_VALUE" property="goodsValue" jdbcType="DECIMAL" />
+    <result column="GOODS_CURRENCY_CO" property="goodsCurrencyCo" jdbcType="VARCHAR" />
+    <result column="GOODS_NETWHT" property="goodsNetwht" jdbcType="DECIMAL" />
+    <result column="GOODS_GROSSWHT" property="goodsGrosswht" jdbcType="DECIMAL" />
+    <result column="WEIGHT_UNIT_CO" property="weightUnitCo" jdbcType="CHAR" />
+    <result column="MAKE_NOTICE_NO" property="makeNoticeNo" jdbcType="VARCHAR" />
+    <result column="MAKE_FORM_NO" property="makeFormNo" jdbcType="VARCHAR" />
+    <result column="MAKE_FORM_PCS" property="makeFormPcs" jdbcType="DECIMAL" />
+    <result column="GOODS_VOLCBM" property="goodsVolcbm" jdbcType="DECIMAL" />
+    <result column="GOODS_VOLWHT" property="goodsVolwht" jdbcType="DECIMAL" />
+    <result column="GOODS_FEEWHT" property="goodsFeewht" jdbcType="DECIMAL" />
+    <result column="GOODS_DIMENDESC" property="goodsDimendesc" jdbcType="VARCHAR" />
+    <result column="DATE_CODE" property="dateCode" jdbcType="VARCHAR" />
+    <result column="VMI_HUBID_NO" property="vmiHubidNo" jdbcType="VARCHAR" />
+    <result column="DESTN_VMI_WHNO" property="destnVmiWhno" jdbcType="VARCHAR" />
+    <result column="SCHEDU_TRACE_NO" property="scheduTraceNo" jdbcType="VARCHAR" />
+    <result column="EML_ID" property="emlId" jdbcType="VARCHAR" />
+    <result column="G_NO" property="gNo" jdbcType="VARCHAR" />
+    <result column="GOODS_STATUS" property="goodsStatus" jdbcType="VARCHAR" />
+    <result column="PO_DTLID" property="poDtlid" jdbcType="VARCHAR" />
+    <result column="COMESALM0004" property="comesalm0004" jdbcType="VARCHAR" />
+    <result column="COMESALM0005" property="comesalm0005" jdbcType="VARCHAR" />
+    <result column="COMESALM0006" property="comesalm0006" jdbcType="VARCHAR" />
+    <result column="COMESALM0007" property="comesalm0007" jdbcType="VARCHAR" />
+    <result column="COMESALM0008" property="comesalm0008" jdbcType="VARCHAR" />
+    <result column="COMESALM0009" property="comesalm0009" jdbcType="VARCHAR" />
+    <result column="COMESALM0010" property="comesalm0010" jdbcType="VARCHAR" />
+    <result column="COMESALM0013" property="comesalm0013" jdbcType="VARCHAR" />
+    <result column="COMESALM0014" property="comesalm0014" jdbcType="VARCHAR" />
+    <result column="COMESALM0015" property="comesalm0015" jdbcType="VARCHAR" />
+    <result column="COMESALM0018" property="comesalm0018" jdbcType="VARCHAR" />
+    <result column="COMESALM0019" property="comesalm0019" jdbcType="VARCHAR" />
+    <result column="COMESALM0020" property="comesalm0020" jdbcType="VARCHAR" />
+    <result column="COMESALM0023" property="comesalm0023" jdbcType="VARCHAR" />
+    <result column="COMESALM0024" property="comesalm0024" jdbcType="VARCHAR" />
+    <result column="COMESALM0027" property="comesalm0027" jdbcType="VARCHAR" />
+    <result column="COMESALM0029" property="comesalm0029" jdbcType="VARCHAR" />
+    <result column="COMESALM0030" property="comesalm0030" jdbcType="VARCHAR" />
+    <result column="COMESALM0031" property="comesalm0031" jdbcType="VARCHAR" />
+    <result column="COMESALM0039" property="comesalm0039" jdbcType="VARCHAR" />
+    <result column="COMESALM0040" property="comesalm0040" jdbcType="VARCHAR" />
+    <result column="COMESALM0050" property="comesalm0050" jdbcType="DECIMAL" />
+    <result column="COMESALM0051" property="comesalm0051" jdbcType="DECIMAL" />
+    <result column="COMESALM0060" property="comesalm0060" jdbcType="DECIMAL" />
+    <result column="COMESALM0063" property="comesalm0063" jdbcType="DECIMAL" />
+    <result column="COMESALM0064" property="comesalm0064" jdbcType="DECIMAL" />
+    <result column="COMESALM0065" property="comesalm0065" jdbcType="DECIMAL" />
+    <result column="COMESALM0066" property="comesalm0066" jdbcType="DECIMAL" />
+    <result column="COMESALM0067" property="comesalm0067" jdbcType="DECIMAL" />
+    <result column="COMESALM0068" property="comesalm0068" jdbcType="DECIMAL" />
+    <result column="COMESALM0069" property="comesalm0069" jdbcType="DECIMAL" />
+    <result column="COMESALM0070" property="comesalm0070" jdbcType="DECIMAL" />
+    <result column="COMESALM0071" property="comesalm0071" jdbcType="DECIMAL" />
+    <result column="COMESALM0072" property="comesalm0072" jdbcType="DECIMAL" />
+    <result column="COMESALM0073" property="comesalm0073" jdbcType="DECIMAL" />
+    <result column="COMESALM0074" property="comesalm0074" jdbcType="DECIMAL" />
+    <result column="COMESALM0075" property="comesalm0075" jdbcType="DECIMAL" />
+    <result column="COMESALM0076" property="comesalm0076" jdbcType="DECIMAL" />
+    <result column="COMESALM0077" property="comesalm0077" jdbcType="DECIMAL" />
+    <result column="COMESALM0078" property="comesalm0078" jdbcType="DECIMAL" />
+    <result column="COMESALM0081" property="comesalm0081" jdbcType="DECIMAL" />
+    <result column="COMESALM0082" property="comesalm0082" jdbcType="DECIMAL" />
+    <result column="COMESALM0083" property="comesalm0083" jdbcType="DECIMAL" />
+    <result column="COMESALM0084" property="comesalm0084" jdbcType="DECIMAL" />
+    <result column="COMESALM0089" property="comesalm0089" jdbcType="TIMESTAMP" />
+    <result column="COMESALM0090" property="comesalm0090" jdbcType="TIMESTAMP" />
+    <result column="COMESALM0091" property="comesalm0091" jdbcType="TIMESTAMP" />
+    <result column="COMESALM0092" property="comesalm0092" jdbcType="TIMESTAMP" />
+    <result column="COMESALM0097" property="comesalm0097" jdbcType="TIMESTAMP" />
+    <result column="COMESALM0098" property="comesalm0098" jdbcType="TIMESTAMP" />
+    <result column="COMESALM0099" property="comesalm0099" jdbcType="TIMESTAMP" />
+    <result column="COMESALM0100" property="comesalm0100" jdbcType="TIMESTAMP" />
+    <result column="COMESALM0101" property="comesalm0101" jdbcType="TIMESTAMP" />
+    <result column="COMESALM0102" property="comesalm0102" jdbcType="TIMESTAMP" />
+    <result column="COMESALM0120" property="comesalm0120" jdbcType="VARCHAR" />
+    <result column="DECLCONSHAND" property="declconshand" jdbcType="VARCHAR" />
+    <result column="DECLAR_DATE" property="declarDate" jdbcType="TIMESTAMP" />
+    <result column="JJS_GRADE" property="jjsGrade" jdbcType="VARCHAR" />
+    <result column="PREDICT_VALUE" property="predictValue" jdbcType="DECIMAL" />
+    <result column="JJS_VER" property="jjsVer" jdbcType="VARCHAR" />
+    <result column="PREDICT_VALUE_HUB" property="predictValueHub" jdbcType="DECIMAL" />
+    <result column="GOODS_VOLUME" property="goodsVolume" jdbcType="DECIMAL" />
+    <result column="GOODS_VOLUME_UNIT" property="goodsVolumeUnit" jdbcType="CHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="T_CODE" property="tCode" jdbcType="VARCHAR" />
+    <result column="HUB_HANDBOOK_NO" property="hubHandbookNo" jdbcType="VARCHAR" />
+    <result column="HUB_CONTRACT_NO" property="hubContractNo" jdbcType="VARCHAR" />
+    <result column="HUB_CONTRACT_NUM" property="hubContractNum" jdbcType="VARCHAR" />
+    <result column="OLD_SALEBOOKNO" property="oldSalebookno" jdbcType="VARCHAR" />
+    <result column="COMDITY_IDSCR" property="comdityIdscr" jdbcType="VARCHAR" />
+    <result column="LOTNO" property="lotno" jdbcType="VARCHAR" />
+    <result column="ACTUAL_WIGHT" property="actualWight" jdbcType="DECIMAL" />
+    <result column="ACTUAL_VOLUME" property="actualVolume" jdbcType="DECIMAL" />
+    <result column="V_PN" property="vPn" jdbcType="VARCHAR" />
+    <result column="GOODS_LENGTH" property="goodsLength" jdbcType="DECIMAL" />
+    <result column="GOODS_WIDTH" property="goodsWidth" jdbcType="DECIMAL" />
+    <result column="GOODS_HEIGHT" property="goodsHeight" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, BUSI_BOOKNO_ID, CTRLID_NO, SUPP_PARTNO, SUPP_INVOICE_NO, SUPP_PRODNAME_CHS, SUPP_PRODNAME_ENG, 
+    SUPP_BUSINESS_GR, PRIM_STOCKINN_DATE, PURC_PARTNO, PURC_INVOICE_NO, PURC_INDENT_NO, 
+    PURC_INDENT_TYPE, PURC_INVENTORY, PURC_GOODS_OWNER, PURC_PRODNAME_CHS, PURC_PRODNAME_ENG, 
+    PURC_BUSINESS_GR, PURC_REPORT_NO, PURC_END_CUSTOMER, PURC_END_CUSTOMNO, THRD_PARTNO, 
+    PO_ITEM_NO, SUPP_PURC_CUSTOMNO, PURC_SUPP_CUSTNAME, TRADE_TERM, TRADE_SITE, MADEIN_COUNCO, 
+    HAIK_GOODSNA, HSCODE_NO, HSCODE_NACHS, HSCODE_SPECS, GOODS_PALLET_QTY, GOODS_QTY, 
+    GOODS_QTY_UNIT_CO, GOODS_PACKAGE_BOXNO, GOODS_PACKAGE_QTY, PACKAGE_UNIT_CO, PACKAGE_UOM, 
+    GOODS_PRICE, GOODS_VALUE, GOODS_CURRENCY_CO, GOODS_NETWHT, GOODS_GROSSWHT, WEIGHT_UNIT_CO, 
+    MAKE_NOTICE_NO, MAKE_FORM_NO, MAKE_FORM_PCS, GOODS_VOLCBM, GOODS_VOLWHT, GOODS_FEEWHT, 
+    GOODS_DIMENDESC, DATE_CODE, VMI_HUBID_NO, DESTN_VMI_WHNO, SCHEDU_TRACE_NO, EML_ID, 
+    G_NO, GOODS_STATUS, PO_DTLID, COMESALM0004, COMESALM0005, COMESALM0006, COMESALM0007, 
+    COMESALM0008, COMESALM0009, COMESALM0010, COMESALM0013, COMESALM0014, COMESALM0015, 
+    COMESALM0018, COMESALM0019, COMESALM0020, COMESALM0023, COMESALM0024, COMESALM0027, 
+    COMESALM0029, COMESALM0030, COMESALM0031, COMESALM0039, COMESALM0040, COMESALM0050, 
+    COMESALM0051, COMESALM0060, COMESALM0063, COMESALM0064, COMESALM0065, COMESALM0066, 
+    COMESALM0067, COMESALM0068, COMESALM0069, COMESALM0070, COMESALM0071, COMESALM0072, 
+    COMESALM0073, COMESALM0074, COMESALM0075, COMESALM0076, COMESALM0077, COMESALM0078, 
+    COMESALM0081, COMESALM0082, COMESALM0083, COMESALM0084, COMESALM0089, COMESALM0090, 
+    COMESALM0091, COMESALM0092, COMESALM0097, COMESALM0098, COMESALM0099, COMESALM0100, 
+    COMESALM0101, COMESALM0102, COMESALM0120, DECLCONSHAND, DECLAR_DATE, JJS_GRADE, PREDICT_VALUE, 
+    JJS_VER, PREDICT_VALUE_HUB, GOODS_VOLUME, GOODS_VOLUME_UNIT, REMARK, T_CODE, HUB_HANDBOOK_NO, 
+    HUB_CONTRACT_NO, HUB_CONTRACT_NUM, OLD_SALEBOOKNO, COMDITY_IDSCR, LOTNO, ACTUAL_WIGHT, 
+    ACTUAL_VOLUME, V_PN, goods_length, goods_width, goods_height
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from BILLING_FORM_SALM
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from BILLING_FORM_SALM
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyProperty="id" useGeneratedKeys="true" parameterType="com.gistandard.transport.base.entity.bean.BillingFormSalm" >
+    insert into BILLING_FORM_SALM (ID, BUSI_BOOKNO_ID, CTRLID_NO, 
+      SUPP_PARTNO, SUPP_INVOICE_NO, SUPP_PRODNAME_CHS, 
+      SUPP_PRODNAME_ENG, SUPP_BUSINESS_GR, PRIM_STOCKINN_DATE, 
+      PURC_PARTNO, PURC_INVOICE_NO, PURC_INDENT_NO, 
+      PURC_INDENT_TYPE, PURC_INVENTORY, PURC_GOODS_OWNER, 
+      PURC_PRODNAME_CHS, PURC_PRODNAME_ENG, PURC_BUSINESS_GR, 
+      PURC_REPORT_NO, PURC_END_CUSTOMER, PURC_END_CUSTOMNO, 
+      THRD_PARTNO, PO_ITEM_NO, SUPP_PURC_CUSTOMNO, 
+      PURC_SUPP_CUSTNAME, TRADE_TERM, TRADE_SITE, 
+      MADEIN_COUNCO, HAIK_GOODSNA, HSCODE_NO, 
+      HSCODE_NACHS, HSCODE_SPECS, GOODS_PALLET_QTY, 
+      GOODS_QTY, GOODS_QTY_UNIT_CO, GOODS_PACKAGE_BOXNO, 
+      GOODS_PACKAGE_QTY, PACKAGE_UNIT_CO, PACKAGE_UOM, 
+      GOODS_PRICE, GOODS_VALUE, GOODS_CURRENCY_CO, 
+      GOODS_NETWHT, GOODS_GROSSWHT, WEIGHT_UNIT_CO, 
+      MAKE_NOTICE_NO, MAKE_FORM_NO, MAKE_FORM_PCS, 
+      GOODS_VOLCBM, GOODS_VOLWHT, GOODS_FEEWHT, 
+      GOODS_DIMENDESC, DATE_CODE, VMI_HUBID_NO, 
+      DESTN_VMI_WHNO, SCHEDU_TRACE_NO, EML_ID, 
+      G_NO, GOODS_STATUS, PO_DTLID, 
+      COMESALM0004, COMESALM0005, COMESALM0006, 
+      COMESALM0007, COMESALM0008, COMESALM0009, 
+      COMESALM0010, COMESALM0013, COMESALM0014, 
+      COMESALM0015, COMESALM0018, COMESALM0019, 
+      COMESALM0020, COMESALM0023, COMESALM0024, 
+      COMESALM0027, COMESALM0029, COMESALM0030, 
+      COMESALM0031, COMESALM0039, COMESALM0040, 
+      COMESALM0050, COMESALM0051, COMESALM0060, 
+      COMESALM0063, COMESALM0064, COMESALM0065, 
+      COMESALM0066, COMESALM0067, COMESALM0068, 
+      COMESALM0069, COMESALM0070, COMESALM0071, 
+      COMESALM0072, COMESALM0073, COMESALM0074, 
+      COMESALM0075, COMESALM0076, COMESALM0077, 
+      COMESALM0078, COMESALM0081, COMESALM0082, 
+      COMESALM0083, COMESALM0084, COMESALM0089, 
+      COMESALM0090, COMESALM0091, COMESALM0092, 
+      COMESALM0097, COMESALM0098, COMESALM0099, 
+      COMESALM0100, COMESALM0101, COMESALM0102, 
+      COMESALM0120, DECLCONSHAND, DECLAR_DATE, 
+      JJS_GRADE, PREDICT_VALUE, JJS_VER, 
+      PREDICT_VALUE_HUB, GOODS_VOLUME, GOODS_VOLUME_UNIT, 
+      REMARK, T_CODE, HUB_HANDBOOK_NO, 
+      HUB_CONTRACT_NO, HUB_CONTRACT_NUM, OLD_SALEBOOKNO, 
+      COMDITY_IDSCR, LOTNO, ACTUAL_WIGHT, 
+      ACTUAL_VOLUME, V_PN, goods_length, 
+      goods_width, goods_height)
+    values (#{id,jdbcType=INTEGER}, #{busiBooknoId,jdbcType=INTEGER}, #{ctrlidNo,jdbcType=INTEGER}, 
+      #{suppPartno,jdbcType=VARCHAR}, #{suppInvoiceNo,jdbcType=VARCHAR}, #{suppProdnameChs,jdbcType=VARCHAR}, 
+      #{suppProdnameEng,jdbcType=VARCHAR}, #{suppBusinessGr,jdbcType=VARCHAR}, #{primStockinnDate,jdbcType=TIMESTAMP}, 
+      #{purcPartno,jdbcType=VARCHAR}, #{purcInvoiceNo,jdbcType=VARCHAR}, #{purcIndentNo,jdbcType=VARCHAR}, 
+      #{purcIndentType,jdbcType=VARCHAR}, #{purcInventory,jdbcType=VARCHAR}, #{purcGoodsOwner,jdbcType=VARCHAR}, 
+      #{purcProdnameChs,jdbcType=VARCHAR}, #{purcProdnameEng,jdbcType=VARCHAR}, #{purcBusinessGr,jdbcType=VARCHAR}, 
+      #{purcReportNo,jdbcType=VARCHAR}, #{purcEndCustomer,jdbcType=VARCHAR}, #{purcEndCustomno,jdbcType=VARCHAR}, 
+      #{thrdPartno,jdbcType=VARCHAR}, #{poItemNo,jdbcType=VARCHAR}, #{suppPurcCustomno,jdbcType=VARCHAR}, 
+      #{purcSuppCustname,jdbcType=VARCHAR}, #{tradeTerm,jdbcType=VARCHAR}, #{tradeSite,jdbcType=VARCHAR}, 
+      #{madeinCounco,jdbcType=VARCHAR}, #{haikGoodsna,jdbcType=VARCHAR}, #{hscodeNo,jdbcType=VARCHAR}, 
+      #{hscodeNachs,jdbcType=VARCHAR}, #{hscodeSpecs,jdbcType=VARCHAR}, #{goodsPalletQty,jdbcType=DECIMAL}, 
+      #{goodsQty,jdbcType=DECIMAL}, #{goodsQtyUnitCo,jdbcType=CHAR}, #{goodsPackageBoxno,jdbcType=VARCHAR}, 
+      #{goodsPackageQty,jdbcType=DECIMAL}, #{packageUnitCo,jdbcType=CHAR}, #{packageUom,jdbcType=DECIMAL}, 
+      #{goodsPrice,jdbcType=DECIMAL}, #{goodsValue,jdbcType=DECIMAL}, #{goodsCurrencyCo,jdbcType=VARCHAR}, 
+      #{goodsNetwht,jdbcType=DECIMAL}, #{goodsGrosswht,jdbcType=DECIMAL}, #{weightUnitCo,jdbcType=CHAR}, 
+      #{makeNoticeNo,jdbcType=VARCHAR}, #{makeFormNo,jdbcType=VARCHAR}, #{makeFormPcs,jdbcType=DECIMAL}, 
+      #{goodsVolcbm,jdbcType=DECIMAL}, #{goodsVolwht,jdbcType=DECIMAL}, #{goodsFeewht,jdbcType=DECIMAL}, 
+      #{goodsDimendesc,jdbcType=VARCHAR}, #{dateCode,jdbcType=VARCHAR}, #{vmiHubidNo,jdbcType=VARCHAR}, 
+      #{destnVmiWhno,jdbcType=VARCHAR}, #{scheduTraceNo,jdbcType=VARCHAR}, #{emlId,jdbcType=VARCHAR}, 
+      #{gNo,jdbcType=VARCHAR}, #{goodsStatus,jdbcType=VARCHAR}, #{poDtlid,jdbcType=VARCHAR}, 
+      #{comesalm0004,jdbcType=VARCHAR}, #{comesalm0005,jdbcType=VARCHAR}, #{comesalm0006,jdbcType=VARCHAR}, 
+      #{comesalm0007,jdbcType=VARCHAR}, #{comesalm0008,jdbcType=VARCHAR}, #{comesalm0009,jdbcType=VARCHAR}, 
+      #{comesalm0010,jdbcType=VARCHAR}, #{comesalm0013,jdbcType=VARCHAR}, #{comesalm0014,jdbcType=VARCHAR}, 
+      #{comesalm0015,jdbcType=VARCHAR}, #{comesalm0018,jdbcType=VARCHAR}, #{comesalm0019,jdbcType=VARCHAR}, 
+      #{comesalm0020,jdbcType=VARCHAR}, #{comesalm0023,jdbcType=VARCHAR}, #{comesalm0024,jdbcType=VARCHAR}, 
+      #{comesalm0027,jdbcType=VARCHAR}, #{comesalm0029,jdbcType=VARCHAR}, #{comesalm0030,jdbcType=VARCHAR}, 
+      #{comesalm0031,jdbcType=VARCHAR}, #{comesalm0039,jdbcType=VARCHAR}, #{comesalm0040,jdbcType=VARCHAR}, 
+      #{comesalm0050,jdbcType=DECIMAL}, #{comesalm0051,jdbcType=DECIMAL}, #{comesalm0060,jdbcType=DECIMAL}, 
+      #{comesalm0063,jdbcType=DECIMAL}, #{comesalm0064,jdbcType=DECIMAL}, #{comesalm0065,jdbcType=DECIMAL}, 
+      #{comesalm0066,jdbcType=DECIMAL}, #{comesalm0067,jdbcType=DECIMAL}, #{comesalm0068,jdbcType=DECIMAL}, 
+      #{comesalm0069,jdbcType=DECIMAL}, #{comesalm0070,jdbcType=DECIMAL}, #{comesalm0071,jdbcType=DECIMAL}, 
+      #{comesalm0072,jdbcType=DECIMAL}, #{comesalm0073,jdbcType=DECIMAL}, #{comesalm0074,jdbcType=DECIMAL}, 
+      #{comesalm0075,jdbcType=DECIMAL}, #{comesalm0076,jdbcType=DECIMAL}, #{comesalm0077,jdbcType=DECIMAL}, 
+      #{comesalm0078,jdbcType=DECIMAL}, #{comesalm0081,jdbcType=DECIMAL}, #{comesalm0082,jdbcType=DECIMAL}, 
+      #{comesalm0083,jdbcType=DECIMAL}, #{comesalm0084,jdbcType=DECIMAL}, #{comesalm0089,jdbcType=TIMESTAMP}, 
+      #{comesalm0090,jdbcType=TIMESTAMP}, #{comesalm0091,jdbcType=TIMESTAMP}, #{comesalm0092,jdbcType=TIMESTAMP}, 
+      #{comesalm0097,jdbcType=TIMESTAMP}, #{comesalm0098,jdbcType=TIMESTAMP}, #{comesalm0099,jdbcType=TIMESTAMP}, 
+      #{comesalm0100,jdbcType=TIMESTAMP}, #{comesalm0101,jdbcType=TIMESTAMP}, #{comesalm0102,jdbcType=TIMESTAMP}, 
+      #{comesalm0120,jdbcType=VARCHAR}, #{declconshand,jdbcType=VARCHAR}, #{declarDate,jdbcType=TIMESTAMP}, 
+      #{jjsGrade,jdbcType=VARCHAR}, #{predictValue,jdbcType=DECIMAL}, #{jjsVer,jdbcType=VARCHAR}, 
+      #{predictValueHub,jdbcType=DECIMAL}, #{goodsVolume,jdbcType=DECIMAL}, #{goodsVolumeUnit,jdbcType=CHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{tCode,jdbcType=VARCHAR}, #{hubHandbookNo,jdbcType=VARCHAR}, 
+      #{hubContractNo,jdbcType=VARCHAR}, #{hubContractNum,jdbcType=VARCHAR}, #{oldSalebookno,jdbcType=VARCHAR}, 
+      #{comdityIdscr,jdbcType=VARCHAR}, #{lotno,jdbcType=VARCHAR}, #{actualWight,jdbcType=DECIMAL}, 
+      #{actualVolume,jdbcType=DECIMAL}, #{vPn,jdbcType=VARCHAR}, #{goodsLength},
+      #{goodsWidth}, #{goodsHeight})
+  </insert>
+  <insert id="insertSelective" keyProperty="id" useGeneratedKeys="true" parameterType="com.gistandard.transport.base.entity.bean.BillingFormSalm" >
+    insert into BILLING_FORM_SALM
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="busiBooknoId != null" >
+        BUSI_BOOKNO_ID,
+      </if>
+      <if test="ctrlidNo != null" >
+        CTRLID_NO,
+      </if>
+      <if test="suppPartno != null" >
+        SUPP_PARTNO,
+      </if>
+      <if test="suppInvoiceNo != null" >
+        SUPP_INVOICE_NO,
+      </if>
+      <if test="suppProdnameChs != null" >
+        SUPP_PRODNAME_CHS,
+      </if>
+      <if test="suppProdnameEng != null" >
+        SUPP_PRODNAME_ENG,
+      </if>
+      <if test="suppBusinessGr != null" >
+        SUPP_BUSINESS_GR,
+      </if>
+      <if test="primStockinnDate != null" >
+        PRIM_STOCKINN_DATE,
+      </if>
+      <if test="purcPartno != null" >
+        PURC_PARTNO,
+      </if>
+      <if test="purcInvoiceNo != null" >
+        PURC_INVOICE_NO,
+      </if>
+      <if test="purcIndentNo != null" >
+        PURC_INDENT_NO,
+      </if>
+      <if test="purcIndentType != null" >
+        PURC_INDENT_TYPE,
+      </if>
+      <if test="purcInventory != null" >
+        PURC_INVENTORY,
+      </if>
+      <if test="purcGoodsOwner != null" >
+        PURC_GOODS_OWNER,
+      </if>
+      <if test="purcProdnameChs != null" >
+        PURC_PRODNAME_CHS,
+      </if>
+      <if test="purcProdnameEng != null" >
+        PURC_PRODNAME_ENG,
+      </if>
+      <if test="purcBusinessGr != null" >
+        PURC_BUSINESS_GR,
+      </if>
+      <if test="purcReportNo != null" >
+        PURC_REPORT_NO,
+      </if>
+      <if test="purcEndCustomer != null" >
+        PURC_END_CUSTOMER,
+      </if>
+      <if test="purcEndCustomno != null" >
+        PURC_END_CUSTOMNO,
+      </if>
+      <if test="thrdPartno != null" >
+        THRD_PARTNO,
+      </if>
+      <if test="poItemNo != null" >
+        PO_ITEM_NO,
+      </if>
+      <if test="suppPurcCustomno != null" >
+        SUPP_PURC_CUSTOMNO,
+      </if>
+      <if test="purcSuppCustname != null" >
+        PURC_SUPP_CUSTNAME,
+      </if>
+      <if test="tradeTerm != null" >
+        TRADE_TERM,
+      </if>
+      <if test="tradeSite != null" >
+        TRADE_SITE,
+      </if>
+      <if test="madeinCounco != null" >
+        MADEIN_COUNCO,
+      </if>
+      <if test="haikGoodsna != null" >
+        HAIK_GOODSNA,
+      </if>
+      <if test="hscodeNo != null" >
+        HSCODE_NO,
+      </if>
+      <if test="hscodeNachs != null" >
+        HSCODE_NACHS,
+      </if>
+      <if test="hscodeSpecs != null" >
+        HSCODE_SPECS,
+      </if>
+      <if test="goodsPalletQty != null" >
+        GOODS_PALLET_QTY,
+      </if>
+      <if test="goodsQty != null" >
+        GOODS_QTY,
+      </if>
+      <if test="goodsQtyUnitCo != null" >
+        GOODS_QTY_UNIT_CO,
+      </if>
+      <if test="goodsPackageBoxno != null" >
+        GOODS_PACKAGE_BOXNO,
+      </if>
+      <if test="goodsPackageQty != null" >
+        GOODS_PACKAGE_QTY,
+      </if>
+      <if test="packageUnitCo != null" >
+        PACKAGE_UNIT_CO,
+      </if>
+      <if test="packageUom != null" >
+        PACKAGE_UOM,
+      </if>
+      <if test="goodsPrice != null" >
+        GOODS_PRICE,
+      </if>
+      <if test="goodsValue != null" >
+        GOODS_VALUE,
+      </if>
+      <if test="goodsCurrencyCo != null" >
+        GOODS_CURRENCY_CO,
+      </if>
+      <if test="goodsNetwht != null" >
+        GOODS_NETWHT,
+      </if>
+      <if test="goodsGrosswht != null" >
+        GOODS_GROSSWHT,
+      </if>
+      <if test="weightUnitCo != null" >
+        WEIGHT_UNIT_CO,
+      </if>
+      <if test="makeNoticeNo != null" >
+        MAKE_NOTICE_NO,
+      </if>
+      <if test="makeFormNo != null" >
+        MAKE_FORM_NO,
+      </if>
+      <if test="makeFormPcs != null" >
+        MAKE_FORM_PCS,
+      </if>
+      <if test="goodsVolcbm != null" >
+        GOODS_VOLCBM,
+      </if>
+      <if test="goodsVolwht != null" >
+        GOODS_VOLWHT,
+      </if>
+      <if test="goodsFeewht != null" >
+        GOODS_FEEWHT,
+      </if>
+      <if test="goodsDimendesc != null" >
+        GOODS_DIMENDESC,
+      </if>
+      <if test="dateCode != null" >
+        DATE_CODE,
+      </if>
+      <if test="vmiHubidNo != null" >
+        VMI_HUBID_NO,
+      </if>
+      <if test="destnVmiWhno != null" >
+        DESTN_VMI_WHNO,
+      </if>
+      <if test="scheduTraceNo != null" >
+        SCHEDU_TRACE_NO,
+      </if>
+      <if test="emlId != null" >
+        EML_ID,
+      </if>
+      <if test="gNo != null" >
+        G_NO,
+      </if>
+      <if test="goodsStatus != null" >
+        GOODS_STATUS,
+      </if>
+      <if test="poDtlid != null" >
+        PO_DTLID,
+      </if>
+      <if test="comesalm0004 != null" >
+        COMESALM0004,
+      </if>
+      <if test="comesalm0005 != null" >
+        COMESALM0005,
+      </if>
+      <if test="comesalm0006 != null" >
+        COMESALM0006,
+      </if>
+      <if test="comesalm0007 != null" >
+        COMESALM0007,
+      </if>
+      <if test="comesalm0008 != null" >
+        COMESALM0008,
+      </if>
+      <if test="comesalm0009 != null" >
+        COMESALM0009,
+      </if>
+      <if test="comesalm0010 != null" >
+        COMESALM0010,
+      </if>
+      <if test="comesalm0013 != null" >
+        COMESALM0013,
+      </if>
+      <if test="comesalm0014 != null" >
+        COMESALM0014,
+      </if>
+      <if test="comesalm0015 != null" >
+        COMESALM0015,
+      </if>
+      <if test="comesalm0018 != null" >
+        COMESALM0018,
+      </if>
+      <if test="comesalm0019 != null" >
+        COMESALM0019,
+      </if>
+      <if test="comesalm0020 != null" >
+        COMESALM0020,
+      </if>
+      <if test="comesalm0023 != null" >
+        COMESALM0023,
+      </if>
+      <if test="comesalm0024 != null" >
+        COMESALM0024,
+      </if>
+      <if test="comesalm0027 != null" >
+        COMESALM0027,
+      </if>
+      <if test="comesalm0029 != null" >
+        COMESALM0029,
+      </if>
+      <if test="comesalm0030 != null" >
+        COMESALM0030,
+      </if>
+      <if test="comesalm0031 != null" >
+        COMESALM0031,
+      </if>
+      <if test="comesalm0039 != null" >
+        COMESALM0039,
+      </if>
+      <if test="comesalm0040 != null" >
+        COMESALM0040,
+      </if>
+      <if test="comesalm0050 != null" >
+        COMESALM0050,
+      </if>
+      <if test="comesalm0051 != null" >
+        COMESALM0051,
+      </if>
+      <if test="comesalm0060 != null" >
+        COMESALM0060,
+      </if>
+      <if test="comesalm0063 != null" >
+        COMESALM0063,
+      </if>
+      <if test="comesalm0064 != null" >
+        COMESALM0064,
+      </if>
+      <if test="comesalm0065 != null" >
+        COMESALM0065,
+      </if>
+      <if test="comesalm0066 != null" >
+        COMESALM0066,
+      </if>
+      <if test="comesalm0067 != null" >
+        COMESALM0067,
+      </if>
+      <if test="comesalm0068 != null" >
+        COMESALM0068,
+      </if>
+      <if test="comesalm0069 != null" >
+        COMESALM0069,
+      </if>
+      <if test="comesalm0070 != null" >
+        COMESALM0070,
+      </if>
+      <if test="comesalm0071 != null" >
+        COMESALM0071,
+      </if>
+      <if test="comesalm0072 != null" >
+        COMESALM0072,
+      </if>
+      <if test="comesalm0073 != null" >
+        COMESALM0073,
+      </if>
+      <if test="comesalm0074 != null" >
+        COMESALM0074,
+      </if>
+      <if test="comesalm0075 != null" >
+        COMESALM0075,
+      </if>
+      <if test="comesalm0076 != null" >
+        COMESALM0076,
+      </if>
+      <if test="comesalm0077 != null" >
+        COMESALM0077,
+      </if>
+      <if test="comesalm0078 != null" >
+        COMESALM0078,
+      </if>
+      <if test="comesalm0081 != null" >
+        COMESALM0081,
+      </if>
+      <if test="comesalm0082 != null" >
+        COMESALM0082,
+      </if>
+      <if test="comesalm0083 != null" >
+        COMESALM0083,
+      </if>
+      <if test="comesalm0084 != null" >
+        COMESALM0084,
+      </if>
+      <if test="comesalm0089 != null" >
+        COMESALM0089,
+      </if>
+      <if test="comesalm0090 != null" >
+        COMESALM0090,
+      </if>
+      <if test="comesalm0091 != null" >
+        COMESALM0091,
+      </if>
+      <if test="comesalm0092 != null" >
+        COMESALM0092,
+      </if>
+      <if test="comesalm0097 != null" >
+        COMESALM0097,
+      </if>
+      <if test="comesalm0098 != null" >
+        COMESALM0098,
+      </if>
+      <if test="comesalm0099 != null" >
+        COMESALM0099,
+      </if>
+      <if test="comesalm0100 != null" >
+        COMESALM0100,
+      </if>
+      <if test="comesalm0101 != null" >
+        COMESALM0101,
+      </if>
+      <if test="comesalm0102 != null" >
+        COMESALM0102,
+      </if>
+      <if test="comesalm0120 != null" >
+        COMESALM0120,
+      </if>
+      <if test="declconshand != null" >
+        DECLCONSHAND,
+      </if>
+      <if test="declarDate != null" >
+        DECLAR_DATE,
+      </if>
+      <if test="jjsGrade != null" >
+        JJS_GRADE,
+      </if>
+      <if test="predictValue != null" >
+        PREDICT_VALUE,
+      </if>
+      <if test="jjsVer != null" >
+        JJS_VER,
+      </if>
+      <if test="predictValueHub != null" >
+        PREDICT_VALUE_HUB,
+      </if>
+      <if test="goodsVolume != null" >
+        GOODS_VOLUME,
+      </if>
+      <if test="goodsVolumeUnit != null" >
+        GOODS_VOLUME_UNIT,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="tCode != null" >
+        T_CODE,
+      </if>
+      <if test="hubHandbookNo != null" >
+        HUB_HANDBOOK_NO,
+      </if>
+      <if test="hubContractNo != null" >
+        HUB_CONTRACT_NO,
+      </if>
+      <if test="hubContractNum != null" >
+        HUB_CONTRACT_NUM,
+      </if>
+      <if test="oldSalebookno != null" >
+        OLD_SALEBOOKNO,
+      </if>
+      <if test="comdityIdscr != null" >
+        COMDITY_IDSCR,
+      </if>
+      <if test="lotno != null" >
+        LOTNO,
+      </if>
+      <if test="actualWight != null" >
+        ACTUAL_WIGHT,
+      </if>
+      <if test="actualVolume != null" >
+        ACTUAL_VOLUME,
+      </if>
+      <if test="vPn != null" >
+        V_PN,
+      </if>
+      <if test="goodsLength != null" >
+        goods_length,
+      </if>
+      <if test="goodsWidth != null" >
+        goods_width,
+      </if>
+      <if test="goodsHeight != null" >
+        goods_height,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="busiBooknoId != null" >
+        #{busiBooknoId,jdbcType=INTEGER},
+      </if>
+      <if test="ctrlidNo != null" >
+        #{ctrlidNo,jdbcType=INTEGER},
+      </if>
+      <if test="suppPartno != null" >
+        #{suppPartno,jdbcType=VARCHAR},
+      </if>
+      <if test="suppInvoiceNo != null" >
+        #{suppInvoiceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="suppProdnameChs != null" >
+        #{suppProdnameChs,jdbcType=VARCHAR},
+      </if>
+      <if test="suppProdnameEng != null" >
+        #{suppProdnameEng,jdbcType=VARCHAR},
+      </if>
+      <if test="suppBusinessGr != null" >
+        #{suppBusinessGr,jdbcType=VARCHAR},
+      </if>
+      <if test="primStockinnDate != null" >
+        #{primStockinnDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="purcPartno != null" >
+        #{purcPartno,jdbcType=VARCHAR},
+      </if>
+      <if test="purcInvoiceNo != null" >
+        #{purcInvoiceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="purcIndentNo != null" >
+        #{purcIndentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="purcIndentType != null" >
+        #{purcIndentType,jdbcType=VARCHAR},
+      </if>
+      <if test="purcInventory != null" >
+        #{purcInventory,jdbcType=VARCHAR},
+      </if>
+      <if test="purcGoodsOwner != null" >
+        #{purcGoodsOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="purcProdnameChs != null" >
+        #{purcProdnameChs,jdbcType=VARCHAR},
+      </if>
+      <if test="purcProdnameEng != null" >
+        #{purcProdnameEng,jdbcType=VARCHAR},
+      </if>
+      <if test="purcBusinessGr != null" >
+        #{purcBusinessGr,jdbcType=VARCHAR},
+      </if>
+      <if test="purcReportNo != null" >
+        #{purcReportNo,jdbcType=VARCHAR},
+      </if>
+      <if test="purcEndCustomer != null" >
+        #{purcEndCustomer,jdbcType=VARCHAR},
+      </if>
+      <if test="purcEndCustomno != null" >
+        #{purcEndCustomno,jdbcType=VARCHAR},
+      </if>
+      <if test="thrdPartno != null" >
+        #{thrdPartno,jdbcType=VARCHAR},
+      </if>
+      <if test="poItemNo != null" >
+        #{poItemNo,jdbcType=VARCHAR},
+      </if>
+      <if test="suppPurcCustomno != null" >
+        #{suppPurcCustomno,jdbcType=VARCHAR},
+      </if>
+      <if test="purcSuppCustname != null" >
+        #{purcSuppCustname,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeTerm != null" >
+        #{tradeTerm,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeSite != null" >
+        #{tradeSite,jdbcType=VARCHAR},
+      </if>
+      <if test="madeinCounco != null" >
+        #{madeinCounco,jdbcType=VARCHAR},
+      </if>
+      <if test="haikGoodsna != null" >
+        #{haikGoodsna,jdbcType=VARCHAR},
+      </if>
+      <if test="hscodeNo != null" >
+        #{hscodeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="hscodeNachs != null" >
+        #{hscodeNachs,jdbcType=VARCHAR},
+      </if>
+      <if test="hscodeSpecs != null" >
+        #{hscodeSpecs,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPalletQty != null" >
+        #{goodsPalletQty,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsQty != null" >
+        #{goodsQty,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsQtyUnitCo != null" >
+        #{goodsQtyUnitCo,jdbcType=CHAR},
+      </if>
+      <if test="goodsPackageBoxno != null" >
+        #{goodsPackageBoxno,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPackageQty != null" >
+        #{goodsPackageQty,jdbcType=DECIMAL},
+      </if>
+      <if test="packageUnitCo != null" >
+        #{packageUnitCo,jdbcType=CHAR},
+      </if>
+      <if test="packageUom != null" >
+        #{packageUom,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsPrice != null" >
+        #{goodsPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsValue != null" >
+        #{goodsValue,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsCurrencyCo != null" >
+        #{goodsCurrencyCo,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsNetwht != null" >
+        #{goodsNetwht,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsGrosswht != null" >
+        #{goodsGrosswht,jdbcType=DECIMAL},
+      </if>
+      <if test="weightUnitCo != null" >
+        #{weightUnitCo,jdbcType=CHAR},
+      </if>
+      <if test="makeNoticeNo != null" >
+        #{makeNoticeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="makeFormNo != null" >
+        #{makeFormNo,jdbcType=VARCHAR},
+      </if>
+      <if test="makeFormPcs != null" >
+        #{makeFormPcs,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsVolcbm != null" >
+        #{goodsVolcbm,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsVolwht != null" >
+        #{goodsVolwht,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsFeewht != null" >
+        #{goodsFeewht,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsDimendesc != null" >
+        #{goodsDimendesc,jdbcType=VARCHAR},
+      </if>
+      <if test="dateCode != null" >
+        #{dateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="vmiHubidNo != null" >
+        #{vmiHubidNo,jdbcType=VARCHAR},
+      </if>
+      <if test="destnVmiWhno != null" >
+        #{destnVmiWhno,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduTraceNo != null" >
+        #{scheduTraceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="emlId != null" >
+        #{emlId,jdbcType=VARCHAR},
+      </if>
+      <if test="gNo != null" >
+        #{gNo,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsStatus != null" >
+        #{goodsStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="poDtlid != null" >
+        #{poDtlid,jdbcType=VARCHAR},
+      </if>
+      <if test="comesalm0004 != null" >
+        #{comesalm0004,jdbcType=VARCHAR},
+      </if>
+      <if test="comesalm0005 != null" >
+        #{comesalm0005,jdbcType=VARCHAR},
+      </if>
+      <if test="comesalm0006 != null" >
+        #{comesalm0006,jdbcType=VARCHAR},
+      </if>
+      <if test="comesalm0007 != null" >
+        #{comesalm0007,jdbcType=VARCHAR},
+      </if>
+      <if test="comesalm0008 != null" >
+        #{comesalm0008,jdbcType=VARCHAR},
+      </if>
+      <if test="comesalm0009 != null" >
+        #{comesalm0009,jdbcType=VARCHAR},
+      </if>
+      <if test="comesalm0010 != null" >
+        #{comesalm0010,jdbcType=VARCHAR},
+      </if>
+      <if test="comesalm0013 != null" >
+        #{comesalm0013,jdbcType=VARCHAR},
+      </if>
+      <if test="comesalm0014 != null" >
+        #{comesalm0014,jdbcType=VARCHAR},
+      </if>
+      <if test="comesalm0015 != null" >
+        #{comesalm0015,jdbcType=VARCHAR},
+      </if>
+      <if test="comesalm0018 != null" >
+        #{comesalm0018,jdbcType=VARCHAR},
+      </if>
+      <if test="comesalm0019 != null" >
+        #{comesalm0019,jdbcType=VARCHAR},
+      </if>
+      <if test="comesalm0020 != null" >
+        #{comesalm0020,jdbcType=VARCHAR},
+      </if>
+      <if test="comesalm0023 != null" >
+        #{comesalm0023,jdbcType=VARCHAR},
+      </if>
+      <if test="comesalm0024 != null" >
+        #{comesalm0024,jdbcType=VARCHAR},
+      </if>
+      <if test="comesalm0027 != null" >
+        #{comesalm0027,jdbcType=VARCHAR},
+      </if>
+      <if test="comesalm0029 != null" >
+        #{comesalm0029,jdbcType=VARCHAR},
+      </if>
+      <if test="comesalm0030 != null" >
+        #{comesalm0030,jdbcType=VARCHAR},
+      </if>
+      <if test="comesalm0031 != null" >
+        #{comesalm0031,jdbcType=VARCHAR},
+      </if>
+      <if test="comesalm0039 != null" >
+        #{comesalm0039,jdbcType=VARCHAR},
+      </if>
+      <if test="comesalm0040 != null" >
+        #{comesalm0040,jdbcType=VARCHAR},
+      </if>
+      <if test="comesalm0050 != null" >
+        #{comesalm0050,jdbcType=DECIMAL},
+      </if>
+      <if test="comesalm0051 != null" >
+        #{comesalm0051,jdbcType=DECIMAL},
+      </if>
+      <if test="comesalm0060 != null" >
+        #{comesalm0060,jdbcType=DECIMAL},
+      </if>
+      <if test="comesalm0063 != null" >
+        #{comesalm0063,jdbcType=DECIMAL},
+      </if>
+      <if test="comesalm0064 != null" >
+        #{comesalm0064,jdbcType=DECIMAL},
+      </if>
+      <if test="comesalm0065 != null" >
+        #{comesalm0065,jdbcType=DECIMAL},
+      </if>
+      <if test="comesalm0066 != null" >
+        #{comesalm0066,jdbcType=DECIMAL},
+      </if>
+      <if test="comesalm0067 != null" >
+        #{comesalm0067,jdbcType=DECIMAL},
+      </if>
+      <if test="comesalm0068 != null" >
+        #{comesalm0068,jdbcType=DECIMAL},
+      </if>
+      <if test="comesalm0069 != null" >
+        #{comesalm0069,jdbcType=DECIMAL},
+      </if>
+      <if test="comesalm0070 != null" >
+        #{comesalm0070,jdbcType=DECIMAL},
+      </if>
+      <if test="comesalm0071 != null" >
+        #{comesalm0071,jdbcType=DECIMAL},
+      </if>
+      <if test="comesalm0072 != null" >
+        #{comesalm0072,jdbcType=DECIMAL},
+      </if>
+      <if test="comesalm0073 != null" >
+        #{comesalm0073,jdbcType=DECIMAL},
+      </if>
+      <if test="comesalm0074 != null" >
+        #{comesalm0074,jdbcType=DECIMAL},
+      </if>
+      <if test="comesalm0075 != null" >
+        #{comesalm0075,jdbcType=DECIMAL},
+      </if>
+      <if test="comesalm0076 != null" >
+        #{comesalm0076,jdbcType=DECIMAL},
+      </if>
+      <if test="comesalm0077 != null" >
+        #{comesalm0077,jdbcType=DECIMAL},
+      </if>
+      <if test="comesalm0078 != null" >
+        #{comesalm0078,jdbcType=DECIMAL},
+      </if>
+      <if test="comesalm0081 != null" >
+        #{comesalm0081,jdbcType=DECIMAL},
+      </if>
+      <if test="comesalm0082 != null" >
+        #{comesalm0082,jdbcType=DECIMAL},
+      </if>
+      <if test="comesalm0083 != null" >
+        #{comesalm0083,jdbcType=DECIMAL},
+      </if>
+      <if test="comesalm0084 != null" >
+        #{comesalm0084,jdbcType=DECIMAL},
+      </if>
+      <if test="comesalm0089 != null" >
+        #{comesalm0089,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comesalm0090 != null" >
+        #{comesalm0090,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comesalm0091 != null" >
+        #{comesalm0091,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comesalm0092 != null" >
+        #{comesalm0092,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comesalm0097 != null" >
+        #{comesalm0097,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comesalm0098 != null" >
+        #{comesalm0098,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comesalm0099 != null" >
+        #{comesalm0099,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comesalm0100 != null" >
+        #{comesalm0100,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comesalm0101 != null" >
+        #{comesalm0101,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comesalm0102 != null" >
+        #{comesalm0102,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comesalm0120 != null" >
+        #{comesalm0120,jdbcType=VARCHAR},
+      </if>
+      <if test="declconshand != null" >
+        #{declconshand,jdbcType=VARCHAR},
+      </if>
+      <if test="declarDate != null" >
+        #{declarDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jjsGrade != null" >
+        #{jjsGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="predictValue != null" >
+        #{predictValue,jdbcType=DECIMAL},
+      </if>
+      <if test="jjsVer != null" >
+        #{jjsVer,jdbcType=VARCHAR},
+      </if>
+      <if test="predictValueHub != null" >
+        #{predictValueHub,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsVolume != null" >
+        #{goodsVolume,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsVolumeUnit != null" >
+        #{goodsVolumeUnit,jdbcType=CHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="tCode != null" >
+        #{tCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hubHandbookNo != null" >
+        #{hubHandbookNo,jdbcType=VARCHAR},
+      </if>
+      <if test="hubContractNo != null" >
+        #{hubContractNo,jdbcType=VARCHAR},
+      </if>
+      <if test="hubContractNum != null" >
+        #{hubContractNum,jdbcType=VARCHAR},
+      </if>
+      <if test="oldSalebookno != null" >
+        #{oldSalebookno,jdbcType=VARCHAR},
+      </if>
+      <if test="comdityIdscr != null" >
+        #{comdityIdscr,jdbcType=VARCHAR},
+      </if>
+      <if test="lotno != null" >
+        #{lotno,jdbcType=VARCHAR},
+      </if>
+      <if test="actualWight != null" >
+        #{actualWight,jdbcType=DECIMAL},
+      </if>
+      <if test="actualVolume != null" >
+        #{actualVolume,jdbcType=DECIMAL},
+      </if>
+      <if test="vPn != null" >
+        #{vPn,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsLength != null" >
+        #{goodsLength},
+      </if>
+      <if test="goodsWidth != null" >
+        #{goodsWidth},
+      </if>
+      <if test="goodsHeight != null" >
+        #{goodsHeight},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gistandard.transport.base.entity.bean.BillingFormSalm" >
+    update BILLING_FORM_SALM
+    <set >
+      <if test="busiBooknoId != null" >
+        BUSI_BOOKNO_ID = #{busiBooknoId,jdbcType=INTEGER},
+      </if>
+      <if test="ctrlidNo != null" >
+        CTRLID_NO = #{ctrlidNo,jdbcType=INTEGER},
+      </if>
+      <if test="suppPartno != null" >
+        SUPP_PARTNO = #{suppPartno,jdbcType=VARCHAR},
+      </if>
+      <if test="suppInvoiceNo != null" >
+        SUPP_INVOICE_NO = #{suppInvoiceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="suppProdnameChs != null" >
+        SUPP_PRODNAME_CHS = #{suppProdnameChs,jdbcType=VARCHAR},
+      </if>
+      <if test="suppProdnameEng != null" >
+        SUPP_PRODNAME_ENG = #{suppProdnameEng,jdbcType=VARCHAR},
+      </if>
+      <if test="suppBusinessGr != null" >
+        SUPP_BUSINESS_GR = #{suppBusinessGr,jdbcType=VARCHAR},
+      </if>
+      <if test="primStockinnDate != null" >
+        PRIM_STOCKINN_DATE = #{primStockinnDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="purcPartno != null" >
+        PURC_PARTNO = #{purcPartno,jdbcType=VARCHAR},
+      </if>
+      <if test="purcInvoiceNo != null" >
+        PURC_INVOICE_NO = #{purcInvoiceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="purcIndentNo != null" >
+        PURC_INDENT_NO = #{purcIndentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="purcIndentType != null" >
+        PURC_INDENT_TYPE = #{purcIndentType,jdbcType=VARCHAR},
+      </if>
+      <if test="purcInventory != null" >
+        PURC_INVENTORY = #{purcInventory,jdbcType=VARCHAR},
+      </if>
+      <if test="purcGoodsOwner != null" >
+        PURC_GOODS_OWNER = #{purcGoodsOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="purcProdnameChs != null" >
+        PURC_PRODNAME_CHS = #{purcProdnameChs,jdbcType=VARCHAR},
+      </if>
+      <if test="purcProdnameEng != null" >
+        PURC_PRODNAME_ENG = #{purcProdnameEng,jdbcType=VARCHAR},
+      </if>
+      <if test="purcBusinessGr != null" >
+        PURC_BUSINESS_GR = #{purcBusinessGr,jdbcType=VARCHAR},
+      </if>
+      <if test="purcReportNo != null" >
+        PURC_REPORT_NO = #{purcReportNo,jdbcType=VARCHAR},
+      </if>
+      <if test="purcEndCustomer != null" >
+        PURC_END_CUSTOMER = #{purcEndCustomer,jdbcType=VARCHAR},
+      </if>
+      <if test="purcEndCustomno != null" >
+        PURC_END_CUSTOMNO = #{purcEndCustomno,jdbcType=VARCHAR},
+      </if>
+      <if test="thrdPartno != null" >
+        THRD_PARTNO = #{thrdPartno,jdbcType=VARCHAR},
+      </if>
+      <if test="poItemNo != null" >
+        PO_ITEM_NO = #{poItemNo,jdbcType=VARCHAR},
+      </if>
+      <if test="suppPurcCustomno != null" >
+        SUPP_PURC_CUSTOMNO = #{suppPurcCustomno,jdbcType=VARCHAR},
+      </if>
+      <if test="purcSuppCustname != null" >
+        PURC_SUPP_CUSTNAME = #{purcSuppCustname,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeTerm != null" >
+        TRADE_TERM = #{tradeTerm,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeSite != null" >
+        TRADE_SITE = #{tradeSite,jdbcType=VARCHAR},
+      </if>
+      <if test="madeinCounco != null" >
+        MADEIN_COUNCO = #{madeinCounco,jdbcType=VARCHAR},
+      </if>
+      <if test="haikGoodsna != null" >
+        HAIK_GOODSNA = #{haikGoodsna,jdbcType=VARCHAR},
+      </if>
+      <if test="hscodeNo != null" >
+        HSCODE_NO = #{hscodeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="hscodeNachs != null" >
+        HSCODE_NACHS = #{hscodeNachs,jdbcType=VARCHAR},
+      </if>
+      <if test="hscodeSpecs != null" >
+        HSCODE_SPECS = #{hscodeSpecs,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPalletQty != null" >
+        GOODS_PALLET_QTY = #{goodsPalletQty,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsQty != null" >
+        GOODS_QTY = #{goodsQty,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsQtyUnitCo != null" >
+        GOODS_QTY_UNIT_CO = #{goodsQtyUnitCo,jdbcType=CHAR},
+      </if>
+      <if test="goodsPackageBoxno != null" >
+        GOODS_PACKAGE_BOXNO = #{goodsPackageBoxno,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPackageQty != null" >
+        GOODS_PACKAGE_QTY = #{goodsPackageQty,jdbcType=DECIMAL},
+      </if>
+      <if test="packageUnitCo != null" >
+        PACKAGE_UNIT_CO = #{packageUnitCo,jdbcType=CHAR},
+      </if>
+      <if test="packageUom != null" >
+        PACKAGE_UOM = #{packageUom,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsPrice != null" >
+        GOODS_PRICE = #{goodsPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsValue != null" >
+        GOODS_VALUE = #{goodsValue,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsCurrencyCo != null" >
+        GOODS_CURRENCY_CO = #{goodsCurrencyCo,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsNetwht != null" >
+        GOODS_NETWHT = #{goodsNetwht,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsGrosswht != null" >
+        GOODS_GROSSWHT = #{goodsGrosswht,jdbcType=DECIMAL},
+      </if>
+      <if test="weightUnitCo != null" >
+        WEIGHT_UNIT_CO = #{weightUnitCo,jdbcType=CHAR},
+      </if>
+      <if test="makeNoticeNo != null" >
+        MAKE_NOTICE_NO = #{makeNoticeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="makeFormNo != null" >
+        MAKE_FORM_NO = #{makeFormNo,jdbcType=VARCHAR},
+      </if>
+      <if test="makeFormPcs != null" >
+        MAKE_FORM_PCS = #{makeFormPcs,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsVolcbm != null" >
+        GOODS_VOLCBM = #{goodsVolcbm,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsVolwht != null" >
+        GOODS_VOLWHT = #{goodsVolwht,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsFeewht != null" >
+        GOODS_FEEWHT = #{goodsFeewht,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsDimendesc != null" >
+        GOODS_DIMENDESC = #{goodsDimendesc,jdbcType=VARCHAR},
+      </if>
+      <if test="dateCode != null" >
+        DATE_CODE = #{dateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="vmiHubidNo != null" >
+        VMI_HUBID_NO = #{vmiHubidNo,jdbcType=VARCHAR},
+      </if>
+      <if test="destnVmiWhno != null" >
+        DESTN_VMI_WHNO = #{destnVmiWhno,jdbcType=VARCHAR},
+      </if>
+      <if test="scheduTraceNo != null" >
+        SCHEDU_TRACE_NO = #{scheduTraceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="emlId != null" >
+        EML_ID = #{emlId,jdbcType=VARCHAR},
+      </if>
+      <if test="gNo != null" >
+        G_NO = #{gNo,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsStatus != null" >
+        GOODS_STATUS = #{goodsStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="poDtlid != null" >
+        PO_DTLID = #{poDtlid,jdbcType=VARCHAR},
+      </if>
+      <if test="comesalm0004 != null" >
+        COMESALM0004 = #{comesalm0004,jdbcType=VARCHAR},
+      </if>
+      <if test="comesalm0005 != null" >
+        COMESALM0005 = #{comesalm0005,jdbcType=VARCHAR},
+      </if>
+      <if test="comesalm0006 != null" >
+        COMESALM0006 = #{comesalm0006,jdbcType=VARCHAR},
+      </if>
+      <if test="comesalm0007 != null" >
+        COMESALM0007 = #{comesalm0007,jdbcType=VARCHAR},
+      </if>
+      <if test="comesalm0008 != null" >
+        COMESALM0008 = #{comesalm0008,jdbcType=VARCHAR},
+      </if>
+      <if test="comesalm0009 != null" >
+        COMESALM0009 = #{comesalm0009,jdbcType=VARCHAR},
+      </if>
+      <if test="comesalm0010 != null" >
+        COMESALM0010 = #{comesalm0010,jdbcType=VARCHAR},
+      </if>
+      <if test="comesalm0013 != null" >
+        COMESALM0013 = #{comesalm0013,jdbcType=VARCHAR},
+      </if>
+      <if test="comesalm0014 != null" >
+        COMESALM0014 = #{comesalm0014,jdbcType=VARCHAR},
+      </if>
+      <if test="comesalm0015 != null" >
+        COMESALM0015 = #{comesalm0015,jdbcType=VARCHAR},
+      </if>
+      <if test="comesalm0018 != null" >
+        COMESALM0018 = #{comesalm0018,jdbcType=VARCHAR},
+      </if>
+      <if test="comesalm0019 != null" >
+        COMESALM0019 = #{comesalm0019,jdbcType=VARCHAR},
+      </if>
+      <if test="comesalm0020 != null" >
+        COMESALM0020 = #{comesalm0020,jdbcType=VARCHAR},
+      </if>
+      <if test="comesalm0023 != null" >
+        COMESALM0023 = #{comesalm0023,jdbcType=VARCHAR},
+      </if>
+      <if test="comesalm0024 != null" >
+        COMESALM0024 = #{comesalm0024,jdbcType=VARCHAR},
+      </if>
+      <if test="comesalm0027 != null" >
+        COMESALM0027 = #{comesalm0027,jdbcType=VARCHAR},
+      </if>
+      <if test="comesalm0029 != null" >
+        COMESALM0029 = #{comesalm0029,jdbcType=VARCHAR},
+      </if>
+      <if test="comesalm0030 != null" >
+        COMESALM0030 = #{comesalm0030,jdbcType=VARCHAR},
+      </if>
+      <if test="comesalm0031 != null" >
+        COMESALM0031 = #{comesalm0031,jdbcType=VARCHAR},
+      </if>
+      <if test="comesalm0039 != null" >
+        COMESALM0039 = #{comesalm0039,jdbcType=VARCHAR},
+      </if>
+      <if test="comesalm0040 != null" >
+        COMESALM0040 = #{comesalm0040,jdbcType=VARCHAR},
+      </if>
+      <if test="comesalm0050 != null" >
+        COMESALM0050 = #{comesalm0050,jdbcType=DECIMAL},
+      </if>
+      <if test="comesalm0051 != null" >
+        COMESALM0051 = #{comesalm0051,jdbcType=DECIMAL},
+      </if>
+      <if test="comesalm0060 != null" >
+        COMESALM0060 = #{comesalm0060,jdbcType=DECIMAL},
+      </if>
+      <if test="comesalm0063 != null" >
+        COMESALM0063 = #{comesalm0063,jdbcType=DECIMAL},
+      </if>
+      <if test="comesalm0064 != null" >
+        COMESALM0064 = #{comesalm0064,jdbcType=DECIMAL},
+      </if>
+      <if test="comesalm0065 != null" >
+        COMESALM0065 = #{comesalm0065,jdbcType=DECIMAL},
+      </if>
+      <if test="comesalm0066 != null" >
+        COMESALM0066 = #{comesalm0066,jdbcType=DECIMAL},
+      </if>
+      <if test="comesalm0067 != null" >
+        COMESALM0067 = #{comesalm0067,jdbcType=DECIMAL},
+      </if>
+      <if test="comesalm0068 != null" >
+        COMESALM0068 = #{comesalm0068,jdbcType=DECIMAL},
+      </if>
+      <if test="comesalm0069 != null" >
+        COMESALM0069 = #{comesalm0069,jdbcType=DECIMAL},
+      </if>
+      <if test="comesalm0070 != null" >
+        COMESALM0070 = #{comesalm0070,jdbcType=DECIMAL},
+      </if>
+      <if test="comesalm0071 != null" >
+        COMESALM0071 = #{comesalm0071,jdbcType=DECIMAL},
+      </if>
+      <if test="comesalm0072 != null" >
+        COMESALM0072 = #{comesalm0072,jdbcType=DECIMAL},
+      </if>
+      <if test="comesalm0073 != null" >
+        COMESALM0073 = #{comesalm0073,jdbcType=DECIMAL},
+      </if>
+      <if test="comesalm0074 != null" >
+        COMESALM0074 = #{comesalm0074,jdbcType=DECIMAL},
+      </if>
+      <if test="comesalm0075 != null" >
+        COMESALM0075 = #{comesalm0075,jdbcType=DECIMAL},
+      </if>
+      <if test="comesalm0076 != null" >
+        COMESALM0076 = #{comesalm0076,jdbcType=DECIMAL},
+      </if>
+      <if test="comesalm0077 != null" >
+        COMESALM0077 = #{comesalm0077,jdbcType=DECIMAL},
+      </if>
+      <if test="comesalm0078 != null" >
+        COMESALM0078 = #{comesalm0078,jdbcType=DECIMAL},
+      </if>
+      <if test="comesalm0081 != null" >
+        COMESALM0081 = #{comesalm0081,jdbcType=DECIMAL},
+      </if>
+      <if test="comesalm0082 != null" >
+        COMESALM0082 = #{comesalm0082,jdbcType=DECIMAL},
+      </if>
+      <if test="comesalm0083 != null" >
+        COMESALM0083 = #{comesalm0083,jdbcType=DECIMAL},
+      </if>
+      <if test="comesalm0084 != null" >
+        COMESALM0084 = #{comesalm0084,jdbcType=DECIMAL},
+      </if>
+      <if test="comesalm0089 != null" >
+        COMESALM0089 = #{comesalm0089,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comesalm0090 != null" >
+        COMESALM0090 = #{comesalm0090,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comesalm0091 != null" >
+        COMESALM0091 = #{comesalm0091,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comesalm0092 != null" >
+        COMESALM0092 = #{comesalm0092,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comesalm0097 != null" >
+        COMESALM0097 = #{comesalm0097,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comesalm0098 != null" >
+        COMESALM0098 = #{comesalm0098,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comesalm0099 != null" >
+        COMESALM0099 = #{comesalm0099,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comesalm0100 != null" >
+        COMESALM0100 = #{comesalm0100,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comesalm0101 != null" >
+        COMESALM0101 = #{comesalm0101,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comesalm0102 != null" >
+        COMESALM0102 = #{comesalm0102,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comesalm0120 != null" >
+        COMESALM0120 = #{comesalm0120,jdbcType=VARCHAR},
+      </if>
+      <if test="declconshand != null" >
+        DECLCONSHAND = #{declconshand,jdbcType=VARCHAR},
+      </if>
+      <if test="declarDate != null" >
+        DECLAR_DATE = #{declarDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jjsGrade != null" >
+        JJS_GRADE = #{jjsGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="predictValue != null" >
+        PREDICT_VALUE = #{predictValue,jdbcType=DECIMAL},
+      </if>
+      <if test="jjsVer != null" >
+        JJS_VER = #{jjsVer,jdbcType=VARCHAR},
+      </if>
+      <if test="predictValueHub != null" >
+        PREDICT_VALUE_HUB = #{predictValueHub,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsVolume != null" >
+        GOODS_VOLUME = #{goodsVolume,jdbcType=DECIMAL},
+      </if>
+      <if test="goodsVolumeUnit != null" >
+        GOODS_VOLUME_UNIT = #{goodsVolumeUnit,jdbcType=CHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="tCode != null" >
+        T_CODE = #{tCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hubHandbookNo != null" >
+        HUB_HANDBOOK_NO = #{hubHandbookNo,jdbcType=VARCHAR},
+      </if>
+      <if test="hubContractNo != null" >
+        HUB_CONTRACT_NO = #{hubContractNo,jdbcType=VARCHAR},
+      </if>
+      <if test="hubContractNum != null" >
+        HUB_CONTRACT_NUM = #{hubContractNum,jdbcType=VARCHAR},
+      </if>
+      <if test="oldSalebookno != null" >
+        OLD_SALEBOOKNO = #{oldSalebookno,jdbcType=VARCHAR},
+      </if>
+      <if test="comdityIdscr != null" >
+        COMDITY_IDSCR = #{comdityIdscr,jdbcType=VARCHAR},
+      </if>
+      <if test="lotno != null" >
+        LOTNO = #{lotno,jdbcType=VARCHAR},
+      </if>
+      <if test="actualWight != null" >
+        ACTUAL_WIGHT = #{actualWight,jdbcType=DECIMAL},
+      </if>
+      <if test="actualVolume != null" >
+        ACTUAL_VOLUME = #{actualVolume,jdbcType=DECIMAL},
+      </if>
+      <if test="vPn != null" >
+        V_PN = #{vPn,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsLength != null" >
+        goods_length = #{goodsLength},
+      </if>
+      <if test="goodsWidth != null" >
+        goods_width = #{goodsWidth},
+      </if>
+      <if test="goodsHeight != null" >
+        goods_height = #{goodsHeight},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gistandard.transport.base.entity.bean.BillingFormSalm" >
+    update BILLING_FORM_SALM
+    set BUSI_BOOKNO_ID = #{busiBooknoId,jdbcType=INTEGER},
+      CTRLID_NO = #{ctrlidNo,jdbcType=INTEGER},
+      SUPP_PARTNO = #{suppPartno,jdbcType=VARCHAR},
+      SUPP_INVOICE_NO = #{suppInvoiceNo,jdbcType=VARCHAR},
+      SUPP_PRODNAME_CHS = #{suppProdnameChs,jdbcType=VARCHAR},
+      SUPP_PRODNAME_ENG = #{suppProdnameEng,jdbcType=VARCHAR},
+      SUPP_BUSINESS_GR = #{suppBusinessGr,jdbcType=VARCHAR},
+      PRIM_STOCKINN_DATE = #{primStockinnDate,jdbcType=TIMESTAMP},
+      PURC_PARTNO = #{purcPartno,jdbcType=VARCHAR},
+      PURC_INVOICE_NO = #{purcInvoiceNo,jdbcType=VARCHAR},
+      PURC_INDENT_NO = #{purcIndentNo,jdbcType=VARCHAR},
+      PURC_INDENT_TYPE = #{purcIndentType,jdbcType=VARCHAR},
+      PURC_INVENTORY = #{purcInventory,jdbcType=VARCHAR},
+      PURC_GOODS_OWNER = #{purcGoodsOwner,jdbcType=VARCHAR},
+      PURC_PRODNAME_CHS = #{purcProdnameChs,jdbcType=VARCHAR},
+      PURC_PRODNAME_ENG = #{purcProdnameEng,jdbcType=VARCHAR},
+      PURC_BUSINESS_GR = #{purcBusinessGr,jdbcType=VARCHAR},
+      PURC_REPORT_NO = #{purcReportNo,jdbcType=VARCHAR},
+      PURC_END_CUSTOMER = #{purcEndCustomer,jdbcType=VARCHAR},
+      PURC_END_CUSTOMNO = #{purcEndCustomno,jdbcType=VARCHAR},
+      THRD_PARTNO = #{thrdPartno,jdbcType=VARCHAR},
+      PO_ITEM_NO = #{poItemNo,jdbcType=VARCHAR},
+      SUPP_PURC_CUSTOMNO = #{suppPurcCustomno,jdbcType=VARCHAR},
+      PURC_SUPP_CUSTNAME = #{purcSuppCustname,jdbcType=VARCHAR},
+      TRADE_TERM = #{tradeTerm,jdbcType=VARCHAR},
+      TRADE_SITE = #{tradeSite,jdbcType=VARCHAR},
+      MADEIN_COUNCO = #{madeinCounco,jdbcType=VARCHAR},
+      HAIK_GOODSNA = #{haikGoodsna,jdbcType=VARCHAR},
+      HSCODE_NO = #{hscodeNo,jdbcType=VARCHAR},
+      HSCODE_NACHS = #{hscodeNachs,jdbcType=VARCHAR},
+      HSCODE_SPECS = #{hscodeSpecs,jdbcType=VARCHAR},
+      GOODS_PALLET_QTY = #{goodsPalletQty,jdbcType=DECIMAL},
+      GOODS_QTY = #{goodsQty,jdbcType=DECIMAL},
+      GOODS_QTY_UNIT_CO = #{goodsQtyUnitCo,jdbcType=CHAR},
+      GOODS_PACKAGE_BOXNO = #{goodsPackageBoxno,jdbcType=VARCHAR},
+      GOODS_PACKAGE_QTY = #{goodsPackageQty,jdbcType=DECIMAL},
+      PACKAGE_UNIT_CO = #{packageUnitCo,jdbcType=CHAR},
+      PACKAGE_UOM = #{packageUom,jdbcType=DECIMAL},
+      GOODS_PRICE = #{goodsPrice,jdbcType=DECIMAL},
+      GOODS_VALUE = #{goodsValue,jdbcType=DECIMAL},
+      GOODS_CURRENCY_CO = #{goodsCurrencyCo,jdbcType=VARCHAR},
+      GOODS_NETWHT = #{goodsNetwht,jdbcType=DECIMAL},
+      GOODS_GROSSWHT = #{goodsGrosswht,jdbcType=DECIMAL},
+      WEIGHT_UNIT_CO = #{weightUnitCo,jdbcType=CHAR},
+      MAKE_NOTICE_NO = #{makeNoticeNo,jdbcType=VARCHAR},
+      MAKE_FORM_NO = #{makeFormNo,jdbcType=VARCHAR},
+      MAKE_FORM_PCS = #{makeFormPcs,jdbcType=DECIMAL},
+      GOODS_VOLCBM = #{goodsVolcbm,jdbcType=DECIMAL},
+      GOODS_VOLWHT = #{goodsVolwht,jdbcType=DECIMAL},
+      GOODS_FEEWHT = #{goodsFeewht,jdbcType=DECIMAL},
+      GOODS_DIMENDESC = #{goodsDimendesc,jdbcType=VARCHAR},
+      DATE_CODE = #{dateCode,jdbcType=VARCHAR},
+      VMI_HUBID_NO = #{vmiHubidNo,jdbcType=VARCHAR},
+      DESTN_VMI_WHNO = #{destnVmiWhno,jdbcType=VARCHAR},
+      SCHEDU_TRACE_NO = #{scheduTraceNo,jdbcType=VARCHAR},
+      EML_ID = #{emlId,jdbcType=VARCHAR},
+      G_NO = #{gNo,jdbcType=VARCHAR},
+      GOODS_STATUS = #{goodsStatus,jdbcType=VARCHAR},
+      PO_DTLID = #{poDtlid,jdbcType=VARCHAR},
+      COMESALM0004 = #{comesalm0004,jdbcType=VARCHAR},
+      COMESALM0005 = #{comesalm0005,jdbcType=VARCHAR},
+      COMESALM0006 = #{comesalm0006,jdbcType=VARCHAR},
+      COMESALM0007 = #{comesalm0007,jdbcType=VARCHAR},
+      COMESALM0008 = #{comesalm0008,jdbcType=VARCHAR},
+      COMESALM0009 = #{comesalm0009,jdbcType=VARCHAR},
+      COMESALM0010 = #{comesalm0010,jdbcType=VARCHAR},
+      COMESALM0013 = #{comesalm0013,jdbcType=VARCHAR},
+      COMESALM0014 = #{comesalm0014,jdbcType=VARCHAR},
+      COMESALM0015 = #{comesalm0015,jdbcType=VARCHAR},
+      COMESALM0018 = #{comesalm0018,jdbcType=VARCHAR},
+      COMESALM0019 = #{comesalm0019,jdbcType=VARCHAR},
+      COMESALM0020 = #{comesalm0020,jdbcType=VARCHAR},
+      COMESALM0023 = #{comesalm0023,jdbcType=VARCHAR},
+      COMESALM0024 = #{comesalm0024,jdbcType=VARCHAR},
+      COMESALM0027 = #{comesalm0027,jdbcType=VARCHAR},
+      COMESALM0029 = #{comesalm0029,jdbcType=VARCHAR},
+      COMESALM0030 = #{comesalm0030,jdbcType=VARCHAR},
+      COMESALM0031 = #{comesalm0031,jdbcType=VARCHAR},
+      COMESALM0039 = #{comesalm0039,jdbcType=VARCHAR},
+      COMESALM0040 = #{comesalm0040,jdbcType=VARCHAR},
+      COMESALM0050 = #{comesalm0050,jdbcType=DECIMAL},
+      COMESALM0051 = #{comesalm0051,jdbcType=DECIMAL},
+      COMESALM0060 = #{comesalm0060,jdbcType=DECIMAL},
+      COMESALM0063 = #{comesalm0063,jdbcType=DECIMAL},
+      COMESALM0064 = #{comesalm0064,jdbcType=DECIMAL},
+      COMESALM0065 = #{comesalm0065,jdbcType=DECIMAL},
+      COMESALM0066 = #{comesalm0066,jdbcType=DECIMAL},
+      COMESALM0067 = #{comesalm0067,jdbcType=DECIMAL},
+      COMESALM0068 = #{comesalm0068,jdbcType=DECIMAL},
+      COMESALM0069 = #{comesalm0069,jdbcType=DECIMAL},
+      COMESALM0070 = #{comesalm0070,jdbcType=DECIMAL},
+      COMESALM0071 = #{comesalm0071,jdbcType=DECIMAL},
+      COMESALM0072 = #{comesalm0072,jdbcType=DECIMAL},
+      COMESALM0073 = #{comesalm0073,jdbcType=DECIMAL},
+      COMESALM0074 = #{comesalm0074,jdbcType=DECIMAL},
+      COMESALM0075 = #{comesalm0075,jdbcType=DECIMAL},
+      COMESALM0076 = #{comesalm0076,jdbcType=DECIMAL},
+      COMESALM0077 = #{comesalm0077,jdbcType=DECIMAL},
+      COMESALM0078 = #{comesalm0078,jdbcType=DECIMAL},
+      COMESALM0081 = #{comesalm0081,jdbcType=DECIMAL},
+      COMESALM0082 = #{comesalm0082,jdbcType=DECIMAL},
+      COMESALM0083 = #{comesalm0083,jdbcType=DECIMAL},
+      COMESALM0084 = #{comesalm0084,jdbcType=DECIMAL},
+      COMESALM0089 = #{comesalm0089,jdbcType=TIMESTAMP},
+      COMESALM0090 = #{comesalm0090,jdbcType=TIMESTAMP},
+      COMESALM0091 = #{comesalm0091,jdbcType=TIMESTAMP},
+      COMESALM0092 = #{comesalm0092,jdbcType=TIMESTAMP},
+      COMESALM0097 = #{comesalm0097,jdbcType=TIMESTAMP},
+      COMESALM0098 = #{comesalm0098,jdbcType=TIMESTAMP},
+      COMESALM0099 = #{comesalm0099,jdbcType=TIMESTAMP},
+      COMESALM0100 = #{comesalm0100,jdbcType=TIMESTAMP},
+      COMESALM0101 = #{comesalm0101,jdbcType=TIMESTAMP},
+      COMESALM0102 = #{comesalm0102,jdbcType=TIMESTAMP},
+      COMESALM0120 = #{comesalm0120,jdbcType=VARCHAR},
+      DECLCONSHAND = #{declconshand,jdbcType=VARCHAR},
+      DECLAR_DATE = #{declarDate,jdbcType=TIMESTAMP},
+      JJS_GRADE = #{jjsGrade,jdbcType=VARCHAR},
+      PREDICT_VALUE = #{predictValue,jdbcType=DECIMAL},
+      JJS_VER = #{jjsVer,jdbcType=VARCHAR},
+      PREDICT_VALUE_HUB = #{predictValueHub,jdbcType=DECIMAL},
+      GOODS_VOLUME = #{goodsVolume,jdbcType=DECIMAL},
+      GOODS_VOLUME_UNIT = #{goodsVolumeUnit,jdbcType=CHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      T_CODE = #{tCode,jdbcType=VARCHAR},
+      HUB_HANDBOOK_NO = #{hubHandbookNo,jdbcType=VARCHAR},
+      HUB_CONTRACT_NO = #{hubContractNo,jdbcType=VARCHAR},
+      HUB_CONTRACT_NUM = #{hubContractNum,jdbcType=VARCHAR},
+      OLD_SALEBOOKNO = #{oldSalebookno,jdbcType=VARCHAR},
+      COMDITY_IDSCR = #{comdityIdscr,jdbcType=VARCHAR},
+      LOTNO = #{lotno,jdbcType=VARCHAR},
+      ACTUAL_WIGHT = #{actualWight,jdbcType=DECIMAL},
+      ACTUAL_VOLUME = #{actualVolume,jdbcType=DECIMAL},
+      V_PN = #{vPn,jdbcType=VARCHAR},
+      goods_length = #{goodsLength},
+      goods_width = #{goodsWidth},
+      goods_height = #{goodsHeight}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

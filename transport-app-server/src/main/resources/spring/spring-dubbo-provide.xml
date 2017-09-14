@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd"
+        >
+    <dubbo:application name="mobileStation_provider"/>
+    <dubbo:registry protocol="zookeeper" address="${zookeeper.dubbo}" />
+    <dubbo:protocol name="dubbo" port="20885" />
+
+    <!-- 用webservice协议在8187端口暴露服务 -->
+    <!--<dubbo:protocol id="webservice" name="webservice" port="8080" server="servlet"/>-->
+
+    <!-- 扫描注解包路径，多个包用逗号分隔，不填pacakge表示扫描当前ApplicationContext中所有的类 -->
+<!--    <dubbo:annotation package="com.gistandard.transport.order.dubbo.service,
+                                com.gistandard.transport.app.module.security.service" />-->
+
+    <bean id="tokenManageServiceImpl" class="com.gistandard.transport.app.module.security.service.impl.TokenManageServiceImpl"/>
+    <dubbo:service interface="com.gistandard.transport.app.dubbo.security.service.TokenManageService"
+                   ref="tokenManageServiceImpl" protocol="dubbo"/>
+
+    <bean id="mobileOrderDubboServiceImpl" class="com.gistandard.transport.order.dubbo.service.impl.MobileOrderDubboServiceImpl"/>
+    <dubbo:service interface="com.gistandard.transport.app.dubbo.order.service.MobileOrderDubboService"
+                   ref="mobileOrderDubboServiceImpl" protocol="dubbo"/>
+
+    <bean id="signInDubboServiceImpl" class="com.gistandard.transport.order.dubbo.service.impl.SignInDubboServiceImpl"/>
+    <dubbo:service interface="com.gistandard.transport.app.dubbo.sign.service.SignInDubboService"
+                   ref="signInDubboServiceImpl" protocol="dubbo"/>
+
+    <bean id="assistDubboServiceImpl" class="com.gistandard.transport.order.dubbo.service.impl.AssistDubboServiceImpl"/>
+    <dubbo:service interface="com.gistandard.transport.app.dubbo.order.service.AssistDubboService"
+                   ref="assistDubboServiceImpl" protocol="dubbo"/>
+
+    <bean id="fleetDubboServiceImpl" class="com.gistandard.transport.order.dubbo.service.impl.FleetDubboServiceImpl"/>
+    <dubbo:service interface="com.gistandard.transport.app.dubbo.fleet.service.FleetDubboService"
+                   ref="fleetDubboServiceImpl" protocol="dubbo"/>
+
+    <bean id="waOrderDubboServiceImpl" class="com.gistandard.transport.order.dubbo.service.impl.WaOrderDubboServiceImpl"/>
+    <dubbo:service interface="com.gistandard.transport.app.dubbo.wa.service.WaOrderDubboService"
+                   ref="waOrderDubboServiceImpl" protocol="dubbo"/>
+
+    <bean id="transportOrderDubboServiceImpl" class="com.gistandard.transport.order.dubbo.service.impl.TransportOrderDubboServiceImpl"/>
+    <dubbo:service interface="com.gistandard.transport.app.dubbo.order.service.TransportOrderDubboService"
+                   ref="transportOrderDubboServiceImpl" protocol="dubbo"/>
+
+    <bean id="WeChatQueryPriceDubboServiceImpl" class="com.gistandard.transport.order.wechat.service.impl.WeChatQueryPriceDubboServiceImpl"/>
+    <dubbo:service interface="com.gistandard.transport.app.dubbo.wechat.service.WeChatQueryPriceDubboService"
+                   ref="WeChatQueryPriceDubboServiceImpl" protocol="dubbo"/>
+
+    <bean id="WeChatOrderDubboServiceImpl" class="com.gistandard.transport.order.wechat.service.impl.WeChatOrderDubboServiceImpl"/>
+    <dubbo:service interface="com.gistandard.transport.app.dubbo.wechat.service.WeChatOrderDubboService"
+                   ref="WeChatOrderDubboServiceImpl" protocol="dubbo"/>
+
+    <bean id="WeChatAddressDubboServiceImpl" class="com.gistandard.transport.order.wechat.service.impl.WeChatAddressDubboServiceImpl"/>
+    <dubbo:service interface="com.gistandard.transport.app.dubbo.wechat.service.WeChatAddressDubboService"
+                   ref="WeChatAddressDubboServiceImpl" protocol="dubbo"/>
+
+
+    <bean id="yunSmsServiceImpl" class="com.gistandard.transport.sms.service.impl.YunSmsServiceImpl"/>
+    <dubbo:service interface="com.gistandard.transport.app.dubbo.sms.service.SmsDubboService"
+                   ref="yunSmsServiceImpl" protocol="dubbo"/>
+
+    <bean id="generateOrderNumberServiceImpl" class="com.gistandard.transport.order.module.genno.impl.GenerateOrderNumberServiceImpl"/>
+    <dubbo:service interface="com.gistandard.transport.app.dubbo.genno.GenerateOrderNumberService"
+                   ref="generateOrderNumberServiceImpl" protocol="dubbo"/>
+
+    <bean id="registerDubboServiceImpl" class="com.gistandard.transport.dubbo.service.impl.RegisterDubboServiceImpl"/>
+    <dubbo:service interface="com.gistandard.transport.app.dubbo.register.service.RegisterDubboService"
+                   ref="registerDubboServiceImpl" protocol="dubbo"/>
+
+
+    <bean id="vehicleDubboServiceImpl" class="com.gistandard.transport.app.module.dubbo.fleet.service.VehicleDubboServiceImpl"/>
+    <dubbo:service interface="com.gistandard.transport.app.dubbo.fleet.service.VehicleDubboService"
+                   ref="vehicleDubboServiceImpl" protocol="dubbo"/>
+
+    <!--
+    <dubbo:service interface="com.valueplus.psc.dubbo.realize.login.service.AccountWSService" ref="accountWSServiceImpl" protocol="webservice"/>
+    <bean id="accountWSServiceImpl" class="com.valueplus.psc.dubbo.realize.login.service.AccountWSServiceImpl" />
+    -->
+
+    <!--<dubbo:service interface="com.gistandard.transport.order.webservice.server.mobilestation.service.MobileStationWebService" ref="mobileStationWebServiceImpl" protocol="webservice"/>-->
+    <!--<bean id="mobileStationWebServiceImpl" class="com.gistandard.transport.order.webservice.server.mobilestation.service.impl.MobileStationWebServiceImpl" />-->
+</beans>

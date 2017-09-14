@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ComProvinceDao" >
+  <cache type="com.gistandard.transport.base.system.mybatis.cache.RedisCache" />
+  <resultMap id="BaseResultMap" type="com.gistandard.transport.base.entity.bean.ComProvince" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="PROVINCE_NAME" property="provinceName" jdbcType="VARCHAR" />
+    <result column="SHORT_NAME" property="shortName" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="PROVINCE_PINYIN" property="provincePinyin" jdbcType="VARCHAR" />
+    <result column="PROVINCE_PY" property="provincePy" jdbcType="VARCHAR" />
+    <result column="COUNTRY_ID" property="countryId" jdbcType="INTEGER" />
+    <result column="SORT_NO" property="sortNo" jdbcType="INTEGER" />
+    <result column="CITY_ID" property="cityId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, PROVINCE_NAME, SHORT_NAME, UPDATE_TIME, PROVINCE_PINYIN, PROVINCE_PY, COUNTRY_ID,
+     SORT_NO, CITY_ID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from COM_PROVINCE
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COM_PROVINCE
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gistandard.transport.base.entity.bean.ComProvince" >
+     insert into COM_PROVINCE (ID, PROVINCE_NAME, SHORT_NAME,
+    UPDATE_TIME, PROVINCE_PINYIN, PROVINCE_PY,
+    COUNTRY_ID, SORT_NO, CITY_ID)
+    values (#{id,jdbcType=INTEGER}, #{provinceName,jdbcType=VARCHAR}, #{shortName,jdbcType=VARCHAR},
+    #{updateTime,jdbcType=TIMESTAMP}, #{provincePinyin,jdbcType=VARCHAR}, #{provincePy,jdbcType=VARCHAR},
+    #{countryId,jdbcType=INTEGER}, #{sortNo,jdbcType=INTEGER}, #{cityId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gistandard.transport.base.entity.bean.ComProvince" >
+    insert into COM_PROVINCE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="provinceName != null" >
+        PROVINCE_NAME,
+      </if>
+      <if test="shortName != null" >
+        SHORT_NAME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="provincePinyin != null" >
+        PROVINCE_PINYIN,
+      </if>
+      <if test="provincePy != null" >
+        PROVINCE_PY,
+      </if>
+      <if test="countryId != null" >
+        COUNTRY_ID,
+      </if>
+      <if test="sortNo != null" >
+        SORT_NO,
+      </if>
+      <if test="cityId != null" >
+        CITY_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="provinceName != null" >
+        #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="shortName != null" >
+        #{shortName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="provincePinyin != null" >
+        #{provincePinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="provincePy != null" >
+        #{provincePy,jdbcType=VARCHAR},
+      </if>
+      <if test="countryId != null" >
+        #{countryId,jdbcType=INTEGER},
+      </if>
+      <if test="sortNo != null" >
+        #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gistandard.transport.base.entity.bean.ComProvince" >
+    update COM_PROVINCE
+    <set >
+      <if test="provinceName != null" >
+        PROVINCE_NAME = #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="shortName != null" >
+        SHORT_NAME = #{shortName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="provincePinyin != null" >
+        PROVINCE_PINYIN = #{provincePinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="provincePy != null" >
+        PROVINCE_PY = #{provincePy,jdbcType=VARCHAR},
+      </if>
+      <if test="countryId != null" >
+        COUNTRY_ID = #{countryId,jdbcType=INTEGER},
+      </if>
+      <if test="sortNo != null" >
+        SORT_NO = #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null" >
+        CITY_ID = #{cityId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gistandard.transport.base.entity.bean.ComProvince" >
+    update COM_PROVINCE
+    set PROVINCE_NAME = #{provinceName,jdbcType=VARCHAR},
+      SHORT_NAME = #{shortName,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      PROVINCE_PINYIN = #{provincePinyin,jdbcType=VARCHAR},
+      PROVINCE_PY = #{provincePy,jdbcType=VARCHAR},
+      COUNTRY_ID = #{countryId,jdbcType=INTEGER},
+      SORT_NO = #{sortNo,jdbcType=INTEGER},
+      CITY_ID = #{cityId,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

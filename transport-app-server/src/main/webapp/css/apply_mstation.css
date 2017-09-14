@@ -1,0 +1,228 @@
+@charset "utf-8";
+
+/**
+ *  newzong
+ *  
+ */
+
+/* 加载项目通用布局mixin.css */
+
+/**
+	less效果函数
+	NewZong 2016/07/15
+**/
+
+.cf {
+  overflow: hidden;
+}
+
+/** 高度计算 **/
+
+/** 宽度计算 **/
+
+/*
+定义圆角
+@radius 圆角大小
+*/
+
+/*
+盒子阴影
+@right_left 右边阴影为正数 左边负数
+@bottom_top 下边阴影为正数 上边负数
+@box  阴影大小
+@box_color 阴影颜色
+*/
+
+/*
+文字阴影,可以指定多组阴影
+@right_left1 右边阴影为正数 左边负数
+@bottom_top1 下边阴影为正数 上边负数
+@text  阴影大小
+@text_color 阴影颜色
+*/
+
+/*
+透明度 或渐变 1为不透明 0透明
+css3 rgba(110, 142, 185, .4)!important;前三个是颜色值 后一个是透明值
+用来兼容所有浏览器
+*/
+
+/*
+列布局
+@c1 列数
+@c2 列宽
+@c3 列间距
+@c4 边框样式
+*/
+
+/*背景渐变
+@start  渐变开始颜色
+@end  结束颜色
+*/
+
+/*
+画轮廓 就是内部框
+@outline 样式
+@outline1 间距 负数在内部
+*/
+
+/*
+旋转角度
+@ro定义度数 
+IE不支持 滤镜支持0，1，2，3
+*/
+
+/*
+菱形旋转角度
+@x横向缩放比例
+@y纵向缩放比例
+*/
+
+/* 全局字体大小 */
+
+/* 全局边框颜色 */
+
+* {
+  box-sizing: border-box;
+}
+
+.wrapper .content .mstation-btn {
+  height: 1.111111rem;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+.wrapper .content .mstation-btn .btn {
+  float: left;
+  width: 50%;
+  height: 100%;
+  text-align: center;
+  font-size: 0.555556rem;
+  padding: 0.092593rem 0;
+  line-height: 0.925926rem;
+}
+
+.wrapper .content .mstation-btn .btn-confirm {
+  background: #5fbfe7;
+  color: #ffffff;
+}
+
+.wrapper .content .mstation-btn .btn-cancle {
+  color: #5fbfe7;
+  border: 0.018519rem #5fbfe7 solid;
+}
+
+.showTips {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.showTips .st-content {
+  width: 65%;
+  height: 5.555556rem;
+  margin: 0 auto;
+  margin-top: calc((100% - 3.703704rem)/2);
+  background-color: #ffffff;
+  text-align: center;
+  position: relative;
+  border-radius: 0.277778rem;
+}
+
+.showTips .st-content .st-title {
+  color: black;
+  font-size: 0.62963rem;
+  line-height: 0.740741rem;
+  margin: 0.37037rem 0;
+}
+
+.showTips .st-content .st-tips {
+  font-size: 0.481481rem;
+  text-align: center;
+  width: 90%;
+  margin: 0.740741rem auto;
+}
+
+.showTips .st-content .st-btn {
+  height: 1.111111rem;
+  width: 100%;
+  position: absolute;
+  bottom: 0.092593rem;
+  left: 0;
+}
+
+.showTips .st-content .st-btn .btn {
+  float: left;
+  width: 50%;
+  height: 100%;
+  text-align: center;
+  font-size: 0.481481rem;
+  padding: 0.092593rem 0;
+  line-height: 0.925926rem;
+}
+
+.showTips .st-content .st-btn .btn-confirm {
+  margin: 0 0.185185rem;
+  background: #5fbfe7;
+  color: #ffffff;
+}
+
+.showTips .st-content .st-btn .btn-cancle {
+  margin: 0 0.185185rem;
+  color: #5fbfe7;
+  border: 0.018519rem #5fbfe7 solid;
+}
+
+.search-con {
+  width: 94%;
+  height: 1.296296rem;
+  line-height: 1.296296rem;
+  margin: 2.037037rem auto 0.37037rem;
+  position: relative;
+}
+
+.search-con input {
+  color: #333333;
+  width: 100%;
+  height: 1.296296rem;
+  line-height: 1.296296rem;
+}
+
+.search-con .btn-icsear {
+  display: inline-block;
+  position: absolute;
+  top: 0.092593rem;
+  right: 0.185185rem;
+  content: " ";
+  height: 0.925926rem;
+  width: 0.925926rem;
+  background: url(/images/mobileApply/images/icon-search.png) no-repeat center;
+  background-size: 0.925926rem;
+}
+
+/* iPhone4 */
+
+@media screen and (min-device-width: 320px) and (max-device-height: 500px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+  .wrapper .content .con-type .tp-courier {
+    width: 50%;
+  }
+}
+
+/* iPhone5 */
+
+@media screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+  .wrapper .content .con-type .tp-courier {
+    /*margin: 7% auto;*/
+  }
+}
+
+@media only screen and (max-device-width: 640px), only screen and (max-device-width: 667px), only screen and (max-width: 480px) and (orientation: landscape) {
+  .wrapper .content .con-type .tp-courier {
+    /*margin: 8% auto;*/
+  }
+}

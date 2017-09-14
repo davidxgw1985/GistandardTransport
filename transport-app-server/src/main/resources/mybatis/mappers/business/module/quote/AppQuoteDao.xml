@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.app.module.quote.dao.AppQuoteDao">
+
+
+
+    <!--根据条件查询站点 -->
+    <sql id="queryStationListSql">
+        select ID, CUSTOM_NO, CUST_TTL, CUST_CLAS, CUST_RANC, CUST_NAME, CUST_ENG, CUST_ROOT, CUST_AREA,
+        CUST_GILD, COMSKIND, CUST_MAN, CUST_MANTEL, CUST_ADD, CUST_POST, IDENTNO, COUNTRY,
+        PROVINCE, CITY, COUNTY, CUST_E_ADD, CUST_E_POST, CUST_TEL, CUST_FAX, CUST_MAIL, CUST_WEB,
+        FLINK_MAN, FPLACE, FWORK_TEL, FWORK_FAX, FMOBILE, FEMAIL, FHOMETEL, SLINKMAN, SPLACE,
+        SWORKTEL, SWORKFAX, SMOBILE, SEMAIL, SHOMETEL, CUST_COMNO, CUST_TAXNO, CURR_CODE,
+        CUST_BANK, CUST_BANKNO, RECEIKIND, PROMPTDAYS, SETTLEKIND, SETTLEDAYS, CREDITRANC,
+        CREDITMAX, CUSTVMMSNO, CUSTINTRO, NARRATE, DEPTOUN, ISPUBLIC, SALESNO, NOTEDATE,
+        ACCOUNT_ID, STA_LONGITUDE, STA_LATITUDE
+        from VIEW_STATION
+        where
+        (COUNTRY = #{areaCode,jdbcType=VARCHAR}
+        OR PROVINCE = #{areaCode,jdbcType=VARCHAR}
+        OR CITY = #{areaCode,jdbcType=VARCHAR}
+        OR COUNTY = #{areaCode,jdbcType=VARCHAR})
+        <if test="keywords!= null and keywords!= ''">
+            AND  CUST_NAME like CONCAT('%',#{keywords},'%')
+        </if>
+    </sql>
+
+    <select id="queryStationList" resultMap="com.gistandard.transport.base.entity.dao.ComCustomerDao.BaseResultMap"
+            parameterType="com.gistandard.transport.app.module.quote.bean.QueryStationListReq">
+        <include refid="queryStationListSql"/>
+        <if test="pageSize !=0">
+            limit #{startRecord}, #{pageSize}
+        </if>
+    </select>
+
+    <select id="queryStationListCount" resultType="java.lang.Integer"
+            parameterType="com.gistandard.transport.app.module.quote.bean.QueryStationListReq">
+        select count(0) FROM (
+        <include refid="queryStationListSql"/>
+        ) tmp
+    </select>
+</mapper>

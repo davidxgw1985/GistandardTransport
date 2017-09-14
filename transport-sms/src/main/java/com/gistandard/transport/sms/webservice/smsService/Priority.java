@@ -1,0 +1,38 @@
+
+package com.gistandard.transport.sms.webservice.smsService;
+
+import javax.xml.bind.annotation.XmlEnum;
+import javax.xml.bind.annotation.XmlType;
+
+
+/**
+ * <p>Priority的 Java 类。
+ * 
+ * <p>以下模式片段指定包含在此类中的预期内容。
+ * <p>
+ * <pre>
+ * &lt;simpleType name="Priority"&gt;
+ *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string"&gt;
+ *     &lt;enumeration value="NORMAL"/&gt;
+ *     &lt;enumeration value="HIGH"/&gt;
+ *   &lt;/restriction&gt;
+ * &lt;/simpleType&gt;
+ * </pre>
+ * 
+ */
+@XmlType(name = "Priority", namespace = "http://www.csapi.org/schema/location")
+@XmlEnum
+public enum Priority {
+
+    NORMAL,
+    HIGH;
+
+    public String value() {
+        return name();
+    }
+
+    public static Priority fromValue(String v) {
+        return valueOf(v);
+    }
+
+}

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ex.MobileFleetBiddingDaoEx">
+    <!-- 根据订单查询所有车队竞价信息列表 -->
+    <select id="queryAllFleetBiddingInfo" resultMap="com.gistandard.transport.base.entity.dao.MobileFleetBiddingDao.BaseResultMap" >
+        select
+        <include refid="com.gistandard.transport.base.entity.dao.MobileFleetBiddingDao.Base_Column_List" />
+        from MOBILE_FLEET_BIDDING
+        where CHOOSE_FLAG = 1 AND BUSI_BOOK_NO = #{busiBookNo}
+    </select>
+
+    <!-- 根据订单号查询有效的竞价信息 -->
+    <select id="queryFleetBidding" resultMap="com.gistandard.transport.base.entity.dao.MobileFleetBiddingDao.BaseResultMap">
+        select
+        <include refid="com.gistandard.transport.base.entity.dao.MobileFleetBiddingDao.Base_Column_List" />
+        from MOBILE_FLEET_BIDDING
+        where CHOOSE_FLAG = 1
+        <choose>
+            <when test="scheducarno != null">
+                AND SCHEDUCARNO = #{scheducarno}
+            </when>
+            <otherwise>
+                AND BUSI_BOOK_NO = #{busiBookNo}
+            </otherwise>
+        </choose>
+        limit 1
+    </select>
+
+
+    <update id="updateByBookingFormId" parameterType="com.gistandard.transport.base.entity.bean.MobileFleetBidding" >
+        update MOBILE_FLEET_BIDDING
+        <set >
+            <if test="truckId != null" >
+                TRUCK_ID = #{truckId,jdbcType=INTEGER},
+            </if>
+            <if test="truckCode != null" >
+                TRUCK_CODE = #{truckCode,jdbcType=VARCHAR},
+            </if>
+            <if test="driverUserId != null" >
+                DRIVER_USER_ID = #{driverUserId,jdbcType=INTEGER},
+            </if>
+            <if test="driverUser != null" >
+                DRIVER_USER = #{driverUser,jdbcType=VARCHAR},
+            </if>
+            <if test="driverName != null" >
+                DRIVER_NAME = #{driverName,jdbcType=VARCHAR},
+            </if>
+            <if test="driverTelephone != null" >
+                DRIVER_TELEPHONE = #{driverTelephone,jdbcType=VARCHAR},
+            </if>
+            <if test="productType != null" >
+                PRODUCT_TYPE = #{productType,jdbcType=VARCHAR},
+            </if>
+            <if test="bookingFormId != null" >
+                BOOKING_FORM_ID = #{bookingFormId,jdbcType=INTEGER},
+            </if>
+            <if test="mobileBookingFormId != null" >
+                MOBILE_BOOKING_FORM_ID = #{mobileBookingFormId,jdbcType=INTEGER},
+            </if>
+            <if test="driverBidValue != null" >
+                DRIVER_BID_VALUE =  #{driverBidValue,jdbcType=DECIMAL},
+            </if>
+            <if test="driverBidCurr != null" >
+                DRIVER_BID_CURR = #{driverBidCurr,jdbcType=CHAR},
+            </if>
+        </set>
+        where BOOKING_FORM_ID = #{bookingFormId,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByBusiBookNo" parameterType="com.gistandard.transport.base.entity.bean.MobileFleetBidding" >
+        update MOBILE_FLEET_BIDDING
+        <set >
+            <if test="truckId != null" >
+                TRUCK_ID = #{truckId,jdbcType=INTEGER},
+            </if>
+            <if test="truckCode != null" >
+                TRUCK_CODE = #{truckCode,jdbcType=VARCHAR},
+            </if>
+            <if test="driverUserId != null" >
+                DRIVER_USER_ID = #{driverUserId,jdbcType=INTEGER},
+            </if>
+            <if test="driverUser != null" >
+                DRIVER_USER = #{driverUser,jdbcType=VARCHAR},
+            </if>
+            <if test="driverName != null" >
+                DRIVER_NAME = #{driverName,jdbcType=VARCHAR},
+            </if>
+            <if test="driverTelephone != null" >
+                DRIVER_TELEPHONE = #{driverTelephone,jdbcType=VARCHAR},
+            </if>
+            <if test="productType != null" >
+                PRODUCT_TYPE = #{productType,jdbcType=VARCHAR},
+            </if>
+            <if test="bookingFormId != null" >
+                BOOKING_FORM_ID = #{bookingFormId,jdbcType=INTEGER},
+            </if>
+            <if test="mobileBookingFormId != null" >
+                MOBILE_BOOKING_FORM_ID = #{mobileBookingFormId,jdbcType=INTEGER},
+            </if>
+            <if test="driverBidValue != null" >
+                DRIVER_BID_VALUE =  #{driverBidValue,jdbcType=DECIMAL},
+            </if>
+            <if test="driverBidCurr != null" >
+                DRIVER_BID_CURR = #{driverBidCurr,jdbcType=CHAR},
+            </if>
+        </set>
+        where BUSI_BOOK_NO = #{busiBookNo}
+        AND CHOOSE_FLAG = 1
+    </update>
+
+    <!-- 根据订单编号查询报价-->
+    <select id="selectByOrderId" resultMap="com.gistandard.transport.base.entity.dao.MobileFleetBiddingDao.BaseResultMap">
+        select
+        <include refid="com.gistandard.transport.base.entity.dao.MobileFleetBiddingDao.Base_Column_List" />
+        from MOBILE_FLEET_BIDDING
+        where BOOKING_FORM_ID = #{bookingFormId,jdbcType=INTEGER}
+        AND CHOOSE_FLAG = 1
+        limit 1
+    </select>
+</mapper>

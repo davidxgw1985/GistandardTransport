@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jaxws="http://cxf.apache.org/jaxws"
+       xmlns:http-conf="http://cxf.apache.org/transports/http/configuration"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://cxf.apache.org/jaxws
+        http://cxf.apache.org/schemas/jaxws.xsd
+        http://cxf.apache.org/transports/http/configuration
+        http://cxf.apache.org/schemas/configuration/http-conf.xsd">
+
+    <bean id="mobileStationWebServiceImpl" class="com.gistandard.transport.order.webservice.server.mobilestation.service.impl.MobileStationWebServiceImpl"></bean>
+    <jaxws:server id="mobileStationWebService" serviceClass="com.gistandard.transport.order.webservice.server.mobilestation.service.MobileStationWebService"
+                  address="/mobileStationWebService">
+        <jaxws:serviceBean>
+            <ref bean="mobileStationWebServiceImpl"/>
+        </jaxws:serviceBean>
+        <jaxws:features>
+            <bean class="org.apache.cxf.feature.LoggingFeature"/>
+        </jaxws:features>
+    </jaxws:server>
+</beans>

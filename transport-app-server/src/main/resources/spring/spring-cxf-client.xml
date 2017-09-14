@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jaxws="http://cxf.apache.org/jaxws"
+       xmlns:http-conf="http://cxf.apache.org/transports/http/configuration"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://cxf.apache.org/jaxws
+        http://cxf.apache.org/schemas/jaxws.xsd
+        http://cxf.apache.org/transports/http/configuration
+        http://cxf.apache.org/schemas/configuration/http-conf.xsd">
+
+    <jaxws:client id="cmccMasWbs" name="cmccMasWbs"
+                  serviceClass="com.gistandard.transport.sms.webservice.smsService.CmccMasWbs"
+                  address="${cmccMasWbsAddress}"></jaxws:client>
+
+    <!--gps -->
+    <jaxws:client id="pnWebService" name="pnWebService"
+                  serviceClass="com.gistandard.transport.system.webservice.client.gps.PnWebService"
+                  address="${pnWebServiceAddress}"></jaxws:client>
+
+    <!--客户下单用 太平保险接口-->
+    <jaxws:client id="iZrxCommonService" name="iZrxCommonService"
+                  serviceClass="com.gistandard.transport.order.webservice.client.FreightCommonService.IZrxCommonService"
+                  address="${iZrxCommonServiceAddress}"></jaxws:client>
+
+    <jaxws:client id="generalAcctWebService" name="generalAcctWebService"
+                  serviceClass="com.gistandard.transport.pay.webservice.generalAcct.GeneralAcctWebService"
+                  address="${generalAcctWebServiceAddress}"></jaxws:client>
+
+    <jaxws:client id="generalAcct" name="generalAcct"
+                  serviceClass="com.gistandard.transport.calculate.webservice.generalAcctService.GeneralAcctWebService"
+                  address="${generalAcctAddress}"></jaxws:client>
+
+    <jaxws:client id="calcWebService" name="calcWebService"
+                  serviceClass="com.gistandard.transport.system.webservice.client.calcWebService.CalcWebService"
+                  address="${calcWebServiceAddress}"></jaxws:client>
+
+    <!--商户中心用 签派 接单等接口-->
+    <jaxws:client id="mobileRecOrderWebService" name="mobileRecOrderWebService"
+                  serviceClass="com.gistandard.transport.order.webservice.client.merchant.order.MobileRecOrderWebService"
+                  address="${mobileRecOrderWebServiceAddress}"></jaxws:client>
+
+    <!--商户中心用 I单支付状态查询-->
+    <jaxws:client id="queryCalcManagerWebService" name="queryCalcManagerWebService"
+                  serviceClass="com.gistandard.transport.system.webservice.client.payinfo.QueryCalcManagerWebService"
+                  address="${queryCalcManagerWebServiceAddress}"></jaxws:client>
+
+    <!--快递HUB接口-->
+    <jaxws:client id="expreessOrderWebService" name="expreessOrderWebService"
+                  serviceClass="com.gistandard.transport.order.webservice.client.order.hub.ExpreessOrderWebService"
+                  address="${expreessOrderWebServiceAddress}"></jaxws:client>
+    <jaxws:client id="expressBusinessOrderWebService" name="expressBusinessOrderWebService"
+                  serviceClass="com.gistandard.transport.order.webservice.client.order.expressbusiness.ExpressBusinessOrderWebService"
+                  address="${expreessBusinessOrderWebServiceAddress}"></jaxws:client>
+
+    <!--物流HUB接口-->
+    <jaxws:client id="orderWebService" name="orderWebService"
+                  serviceClass="com.gistandard.transport.order.webservice.client.order.transport.OrderService"
+                  address="${orderWebServiceAddress}">
+        <jaxws:features>
+            <bean class="org.apache.cxf.feature.LoggingFeature"/>
+        </jaxws:features>
+    </jaxws:client>
+</beans>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ComCurrencyDao" >
+  <cache type="com.gistandard.transport.base.system.mybatis.cache.RedisCache" />
+  <resultMap id="BaseResultMap" type="com.gistandard.transport.base.entity.bean.ComCurrency" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="CURRENCY_CODE" property="currencyCode" jdbcType="CHAR" />
+    <result column="CURRENCY_EN" property="currencyEn" jdbcType="VARCHAR" />
+    <result column="CURRENCY_CH" property="currencyCh" jdbcType="VARCHAR" />
+    <result column="SORTID" property="sortid" jdbcType="INTEGER" />
+    <result column="ISUSE" property="isuse" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, CURRENCY_CODE, CURRENCY_EN, CURRENCY_CH, SORTID, ISUSE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from COM_CURRENCY
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from COM_CURRENCY
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gistandard.transport.base.entity.bean.ComCurrency" >
+    insert into COM_CURRENCY (ID, CURRENCY_CODE, CURRENCY_EN, 
+      CURRENCY_CH, SORTID, ISUSE
+      )
+    values (#{id,jdbcType=INTEGER}, #{currencyCode,jdbcType=CHAR}, #{currencyEn,jdbcType=VARCHAR}, 
+      #{currencyCh,jdbcType=VARCHAR}, #{sortid,jdbcType=INTEGER}, #{isuse,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gistandard.transport.base.entity.bean.ComCurrency" >
+    insert into COM_CURRENCY
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="currencyCode != null" >
+        CURRENCY_CODE,
+      </if>
+      <if test="currencyEn != null" >
+        CURRENCY_EN,
+      </if>
+      <if test="currencyCh != null" >
+        CURRENCY_CH,
+      </if>
+      <if test="sortid != null" >
+        SORTID,
+      </if>
+      <if test="isuse != null" >
+        ISUSE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="currencyCode != null" >
+        #{currencyCode,jdbcType=CHAR},
+      </if>
+      <if test="currencyEn != null" >
+        #{currencyEn,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyCh != null" >
+        #{currencyCh,jdbcType=VARCHAR},
+      </if>
+      <if test="sortid != null" >
+        #{sortid,jdbcType=INTEGER},
+      </if>
+      <if test="isuse != null" >
+        #{isuse,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gistandard.transport.base.entity.bean.ComCurrency" >
+    update COM_CURRENCY
+    <set >
+      <if test="currencyCode != null" >
+        CURRENCY_CODE = #{currencyCode,jdbcType=CHAR},
+      </if>
+      <if test="currencyEn != null" >
+        CURRENCY_EN = #{currencyEn,jdbcType=VARCHAR},
+      </if>
+      <if test="currencyCh != null" >
+        CURRENCY_CH = #{currencyCh,jdbcType=VARCHAR},
+      </if>
+      <if test="sortid != null" >
+        SORTID = #{sortid,jdbcType=INTEGER},
+      </if>
+      <if test="isuse != null" >
+        ISUSE = #{isuse,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gistandard.transport.base.entity.bean.ComCurrency" >
+    update COM_CURRENCY
+    set CURRENCY_CODE = #{currencyCode,jdbcType=CHAR},
+      CURRENCY_EN = #{currencyEn,jdbcType=VARCHAR},
+      CURRENCY_CH = #{currencyCh,jdbcType=VARCHAR},
+      SORTID = #{sortid,jdbcType=INTEGER},
+      ISUSE = #{isuse,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

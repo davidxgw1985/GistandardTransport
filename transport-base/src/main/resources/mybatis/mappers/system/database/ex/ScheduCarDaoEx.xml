@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ex.ScheduCarDaoEx" >
+    <select id="selectByScheducarno" resultMap="com.gistandard.transport.base.entity.dao.ScheduCarDao.BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="com.gistandard.transport.base.entity.dao.ScheduCarDao.Base_Column_List" />
+        from SCHEDU_CAR
+        where SCHEDUCARNO = #{scheducarno}
+    </select>
+    <update id="acceptOrder" parameterType="com.gistandard.transport.base.entity.bean.ScheduCar" >
+        update SCHEDU_CAR
+        set SCHEDUCARNO = #{scheducarno,jdbcType=VARCHAR},
+        VEHICLEID = #{vehicleid,jdbcType=INTEGER},
+        TRUCKCODE = #{truckcode,jdbcType=VARCHAR},
+        TRUCKTYPE = #{trucktype,jdbcType=VARCHAR},
+        DRIVER = #{driver,jdbcType=VARCHAR},
+        CONTAINERNO = #{containerno,jdbcType=VARCHAR},
+        ETD = #{etd,jdbcType=TIMESTAMP},
+        SCHEDUCARCTRL = #{scheducarctrl,jdbcType=INTEGER},
+        CREATEUSER = #{createuser,jdbcType=VARCHAR},
+        CREATEDATE = #{createdate,jdbcType=TIMESTAMP},
+        VEHICLE_ORDER_ID = #{vehicleOrderId,jdbcType=INTEGER},
+        COM_DRIVER_INFO_ID = #{comDriverInfoId,jdbcType=INTEGER},
+        ACCT_USERNAME = #{acctUsername,jdbcType=VARCHAR},
+        STA_CODE = #{staCode,jdbcType=VARCHAR},
+        ACTUAL_STATR_DATE = #{actualStatrDate,jdbcType=TIMESTAMP},
+        CUSTOM_NO = #{customNo,jdbcType=VARCHAR},
+        IS_USE = #{isUse,jdbcType=INTEGER},
+        IS_JS = #{isJs,jdbcType=INTEGER},
+        JS_AMOUNT = #{jsAmount,jdbcType=DECIMAL},
+        JS_CURRENCY = #{jsCurrency,jdbcType=CHAR},
+        ARRIVAL_TIME = #{arrivalTime,jdbcType=TIMESTAMP},
+        BOX_ID = #{boxId,jdbcType=INTEGER},
+        BRACKET_ID = #{bracketId,jdbcType=INTEGER}
+        where ID = #{id,jdbcType=INTEGER}
+        and SCHEDUCARCTRL != 14
+    </update>
+</mapper>

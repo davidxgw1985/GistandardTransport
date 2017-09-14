@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ComCityDao" >
+  <cache type="com.gistandard.transport.base.system.mybatis.cache.RedisCache" />
+  <resultMap id="BaseResultMap" type="com.gistandard.transport.base.entity.bean.ComCity" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="SHORT_NAME" property="shortName" jdbcType="VARCHAR" />
+    <result column="CITY_PINYIN" property="cityPinyin" jdbcType="VARCHAR" />
+    <result column="CITY_SHORT_P_Y" property="cityShortPY" jdbcType="VARCHAR" />
+    <result column="HOT_CITY" property="hotCity" jdbcType="BIT" />
+    <result column="LAST_MODIFY_TIME" property="lastModifyTime" jdbcType="TIMESTAMP" />
+    <result column="SORT_NO" property="sortNo" jdbcType="INTEGER" />
+    <result column="PROVINCE_ID" property="provinceId" jdbcType="INTEGER" />
+    <result column="TEL_CODE" property="telCode" jdbcType="VARCHAR" />
+    <result column="COUNTRY_TTL" property="countryTtl" jdbcType="VARCHAR" />
+    <result column="LONGITUDE" property="longitude" jdbcType="DECIMAL" />
+    <result column="LATITUDE" property="latitude" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, NAME, SHORT_NAME, CITY_PINYIN, CITY_SHORT_P_Y, HOT_CITY, LAST_MODIFY_TIME, SORT_NO, PROVINCE_ID,
+    TEL_CODE, COUNTRY_TTL, LONGITUDE, LATITUDE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from COM_CITY
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from COM_CITY
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.gistandard.transport.base.entity.bean.ComCity" >
+     insert into COM_CITY (ID, NAME, SHORT_NAME, CITY_PINYIN,
+    CITY_SHORT_P_Y, HOT_CITY, LAST_MODIFY_TIME,
+    SORT_NO, PROVINCE_ID, TEL_CODE,
+    COUNTRY_TTL, LONGITUDE, LATITUDE)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{shortName,jdbcType=VARCHAR}, #{cityPinyin,jdbcType=VARCHAR},
+    #{cityShortPY,jdbcType=VARCHAR}, #{hotCity,jdbcType=BIT}, #{lastModifyTime,jdbcType=TIMESTAMP},
+    #{sortNo,jdbcType=INTEGER}, #{provinceId,jdbcType=INTEGER}, #{telCode,jdbcType=VARCHAR},
+    #{countryTtl,jdbcType=VARCHAR}, #{longitude,jdbcType=DECIMAL}, #{latitude,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gistandard.transport.base.entity.bean.ComCity" >
+    insert into COM_CITY
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="shortName != null" >
+        SHORT_NAME,
+      </if>
+      <if test="cityPinyin != null" >
+        CITY_PINYIN,
+      </if>
+      <if test="cityShortPY != null" >
+        CITY_SHORT_P_Y,
+      </if>
+      <if test="hotCity != null" >
+        HOT_CITY,
+      </if>
+      <if test="lastModifyTime != null" >
+        LAST_MODIFY_TIME,
+      </if>
+      <if test="sortNo != null" >
+        SORT_NO,
+      </if>
+      <if test="provinceId != null" >
+        PROVINCE_ID,
+      </if>
+      <if test="telCode != null" >
+        TEL_CODE,
+      </if>
+      <if test="countryTtl != null" >
+        COUNTRY_TTL,
+      </if>
+      <if test="longitude != null" >
+        LONGITUDE,
+      </if>
+      <if test="latitude != null" >
+        LATITUDE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="shortName != null" >
+        #{shortName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityPinyin != null" >
+        #{cityPinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="cityShortPY != null" >
+        #{cityShortPY,jdbcType=VARCHAR},
+      </if>
+      <if test="hotCity != null" >
+        #{hotCity,jdbcType=BIT},
+      </if>
+      <if test="lastModifyTime != null" >
+        #{lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sortNo != null" >
+        #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="provinceId != null" >
+        #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="telCode != null" >
+        #{telCode,jdbcType=VARCHAR},
+      </if>
+      <if test="countryTtl != null" >
+        #{countryTtl,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null" >
+        #{longitude,jdbcType=DECIMAL},
+      </if>
+      <if test="latitude != null" >
+        #{latitude,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gistandard.transport.base.entity.bean.ComCity" >
+    update COM_CITY
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="shortName != null" >
+        SHORT_NAME = #{shortName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityPinyin != null" >
+        CITY_PINYIN = #{cityPinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="cityShortPY != null" >
+        CITY_SHORT_P_Y = #{cityShortPY,jdbcType=VARCHAR},
+      </if>
+      <if test="hotCity != null" >
+        HOT_CITY = #{hotCity,jdbcType=BIT},
+      </if>
+      <if test="lastModifyTime != null" >
+        LAST_MODIFY_TIME = #{lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sortNo != null" >
+        SORT_NO = #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="provinceId != null" >
+        PROVINCE_ID = #{provinceId,jdbcType=INTEGER},
+      </if>
+      <if test="telCode != null" >
+        TEL_CODE = #{telCode,jdbcType=VARCHAR},
+      </if>
+      <if test="countryTtl != null" >
+        COUNTRY_TTL = #{countryTtl,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null" >
+        LONGITUDE = #{longitude,jdbcType=DECIMAL},
+      </if>
+      <if test="latitude != null" >
+        LATITUDE = #{latitude,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gistandard.transport.base.entity.bean.ComCity" >
+    update COM_CITY
+    set NAME = #{name,jdbcType=VARCHAR},
+      SHORT_NAME = #{shortName,jdbcType=VARCHAR},
+      CITY_PINYIN = #{cityPinyin,jdbcType=VARCHAR},
+      CITY_SHORT_P_Y = #{cityShortPY,jdbcType=VARCHAR},
+      HOT_CITY = #{hotCity,jdbcType=BIT},
+      LAST_MODIFY_TIME = #{lastModifyTime,jdbcType=TIMESTAMP},
+      SORT_NO = #{sortNo,jdbcType=INTEGER},
+      PROVINCE_ID = #{provinceId,jdbcType=INTEGER},
+      TEL_CODE = #{telCode,jdbcType=VARCHAR},
+      COUNTRY_TTL = #{countryTtl,jdbcType=VARCHAR},
+      LONGITUDE = #{longitude,jdbcType=DECIMAL},
+      LATITUDE = #{latitude,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ComVehicleCarriageRecordDao" >
+  <resultMap id="BaseResultMap" type="com.gistandard.transport.base.entity.bean.ComVehicleCarriageRecord" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="CARRIAGE_TYPE" property="carriageType" jdbcType="VARCHAR" />
+    <result column="CARRIAGE_NO" property="carriageNo" jdbcType="VARCHAR" />
+    <result column="CARRIAGE_LENGTH" property="carriageLength" jdbcType="INTEGER" />
+    <result column="CARRIAGE_WIDTH" property="carriageWidth" jdbcType="INTEGER" />
+    <result column="CARRIAGE_HEIGHT" property="carriageHeight" jdbcType="INTEGER" />
+    <result column="CARRIAGE_WEIGHT" property="carriageWeight" jdbcType="INTEGER" />
+    <result column="EMPTY_WEIGHT_FLAG" property="emptyWeightFlag" jdbcType="VARCHAR" />
+    <result column="SOURCE_CODE" property="sourceCode" jdbcType="VARCHAR" />
+    <result column="VEHICLE_ID" property="vehicleId" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, CARRIAGE_TYPE, CARRIAGE_NO, CARRIAGE_LENGTH, CARRIAGE_WIDTH, CARRIAGE_HEIGHT, 
+    CARRIAGE_WEIGHT, EMPTY_WEIGHT_FLAG, SOURCE_CODE, VEHICLE_ID, CREATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from COM_VEHICLE_CARRIAGE_RECORD
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from COM_VEHICLE_CARRIAGE_RECORD
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyProperty="id" useGeneratedKeys="true" parameterType="com.gistandard.transport.base.entity.bean.ComVehicleCarriageRecord" >
+    insert into COM_VEHICLE_CARRIAGE_RECORD (ID, CARRIAGE_TYPE, CARRIAGE_NO, 
+      CARRIAGE_LENGTH, CARRIAGE_WIDTH, CARRIAGE_HEIGHT, 
+      CARRIAGE_WEIGHT, EMPTY_WEIGHT_FLAG, SOURCE_CODE, 
+      VEHICLE_ID, CREATE_TIME)
+    values (#{id,jdbcType=INTEGER}, #{carriageType,jdbcType=VARCHAR}, #{carriageNo,jdbcType=VARCHAR}, 
+      #{carriageLength,jdbcType=INTEGER}, #{carriageWidth,jdbcType=INTEGER}, #{carriageHeight,jdbcType=INTEGER}, 
+      #{carriageWeight,jdbcType=INTEGER}, #{emptyWeightFlag,jdbcType=VARCHAR}, #{sourceCode,jdbcType=VARCHAR}, 
+      #{vehicleId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyProperty="id" useGeneratedKeys="true" parameterType="com.gistandard.transport.base.entity.bean.ComVehicleCarriageRecord" >
+    insert into COM_VEHICLE_CARRIAGE_RECORD
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="carriageType != null" >
+        CARRIAGE_TYPE,
+      </if>
+      <if test="carriageNo != null" >
+        CARRIAGE_NO,
+      </if>
+      <if test="carriageLength != null" >
+        CARRIAGE_LENGTH,
+      </if>
+      <if test="carriageWidth != null" >
+        CARRIAGE_WIDTH,
+      </if>
+      <if test="carriageHeight != null" >
+        CARRIAGE_HEIGHT,
+      </if>
+      <if test="carriageWeight != null" >
+        CARRIAGE_WEIGHT,
+      </if>
+      <if test="emptyWeightFlag != null" >
+        EMPTY_WEIGHT_FLAG,
+      </if>
+      <if test="sourceCode != null" >
+        SOURCE_CODE,
+      </if>
+      <if test="vehicleId != null" >
+        VEHICLE_ID,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="carriageType != null" >
+        #{carriageType,jdbcType=VARCHAR},
+      </if>
+      <if test="carriageNo != null" >
+        #{carriageNo,jdbcType=VARCHAR},
+      </if>
+      <if test="carriageLength != null" >
+        #{carriageLength,jdbcType=INTEGER},
+      </if>
+      <if test="carriageWidth != null" >
+        #{carriageWidth,jdbcType=INTEGER},
+      </if>
+      <if test="carriageHeight != null" >
+        #{carriageHeight,jdbcType=INTEGER},
+      </if>
+      <if test="carriageWeight != null" >
+        #{carriageWeight,jdbcType=INTEGER},
+      </if>
+      <if test="emptyWeightFlag != null" >
+        #{emptyWeightFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceCode != null" >
+        #{sourceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="vehicleId != null" >
+        #{vehicleId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gistandard.transport.base.entity.bean.ComVehicleCarriageRecord" >
+    update COM_VEHICLE_CARRIAGE_RECORD
+    <set >
+      <if test="carriageType != null" >
+        CARRIAGE_TYPE = #{carriageType,jdbcType=VARCHAR},
+      </if>
+      <if test="carriageNo != null" >
+        CARRIAGE_NO = #{carriageNo,jdbcType=VARCHAR},
+      </if>
+      <if test="carriageLength != null" >
+        CARRIAGE_LENGTH = #{carriageLength,jdbcType=INTEGER},
+      </if>
+      <if test="carriageWidth != null" >
+        CARRIAGE_WIDTH = #{carriageWidth,jdbcType=INTEGER},
+      </if>
+      <if test="carriageHeight != null" >
+        CARRIAGE_HEIGHT = #{carriageHeight,jdbcType=INTEGER},
+      </if>
+      <if test="carriageWeight != null" >
+        CARRIAGE_WEIGHT = #{carriageWeight,jdbcType=INTEGER},
+      </if>
+      <if test="emptyWeightFlag != null" >
+        EMPTY_WEIGHT_FLAG = #{emptyWeightFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceCode != null" >
+        SOURCE_CODE = #{sourceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="vehicleId != null" >
+        VEHICLE_ID = #{vehicleId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gistandard.transport.base.entity.bean.ComVehicleCarriageRecord" >
+    update COM_VEHICLE_CARRIAGE_RECORD
+    set CARRIAGE_TYPE = #{carriageType,jdbcType=VARCHAR},
+      CARRIAGE_NO = #{carriageNo,jdbcType=VARCHAR},
+      CARRIAGE_LENGTH = #{carriageLength,jdbcType=INTEGER},
+      CARRIAGE_WIDTH = #{carriageWidth,jdbcType=INTEGER},
+      CARRIAGE_HEIGHT = #{carriageHeight,jdbcType=INTEGER},
+      CARRIAGE_WEIGHT = #{carriageWeight,jdbcType=INTEGER},
+      EMPTY_WEIGHT_FLAG = #{emptyWeightFlag,jdbcType=VARCHAR},
+      SOURCE_CODE = #{sourceCode,jdbcType=VARCHAR},
+      VEHICLE_ID = #{vehicleId,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

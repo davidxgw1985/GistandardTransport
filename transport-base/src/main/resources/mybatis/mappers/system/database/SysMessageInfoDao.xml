@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.SysMessageInfoDao" >
+  <resultMap id="BaseResultMap" type="com.gistandard.transport.base.entity.bean.SysMessageInfo" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="ACCOUNT_ID" property="accountId" jdbcType="INTEGER" />
+    <result column="MESSAGE_TYPE" property="messageType" jdbcType="INTEGER" />
+    <result column="MESSAGE_CONTENT" property="messageContent" jdbcType="VARCHAR" />
+    <result column="MESSAGE_STATUS" property="messageStatus" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="BUSI_BOOK_NO" property="busiBookNo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ACCOUNT_ID, MESSAGE_TYPE, MESSAGE_CONTENT, MESSAGE_STATUS, CREATE_TIME, BUSI_BOOK_NO
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from SYS_MESSAGE_INFO
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from SYS_MESSAGE_INFO
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gistandard.transport.base.entity.bean.SysMessageInfo" >
+    insert into SYS_MESSAGE_INFO (ID, ACCOUNT_ID, MESSAGE_TYPE, 
+      MESSAGE_CONTENT, MESSAGE_STATUS, CREATE_TIME, 
+      BUSI_BOOK_NO)
+    values (#{id,jdbcType=INTEGER}, #{accountId,jdbcType=INTEGER}, #{messageType,jdbcType=INTEGER}, 
+      #{messageContent,jdbcType=VARCHAR}, #{messageStatus,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{busiBookNo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gistandard.transport.base.entity.bean.SysMessageInfo" >
+    insert into SYS_MESSAGE_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="accountId != null" >
+        ACCOUNT_ID,
+      </if>
+      <if test="messageType != null" >
+        MESSAGE_TYPE,
+      </if>
+      <if test="messageContent != null" >
+        MESSAGE_CONTENT,
+      </if>
+      <if test="messageStatus != null" >
+        MESSAGE_STATUS,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="busiBookNo != null" >
+        BUSI_BOOK_NO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="accountId != null" >
+        #{accountId,jdbcType=INTEGER},
+      </if>
+      <if test="messageType != null" >
+        #{messageType,jdbcType=INTEGER},
+      </if>
+      <if test="messageContent != null" >
+        #{messageContent,jdbcType=VARCHAR},
+      </if>
+      <if test="messageStatus != null" >
+        #{messageStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="busiBookNo != null" >
+        #{busiBookNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gistandard.transport.base.entity.bean.SysMessageInfo" >
+    update SYS_MESSAGE_INFO
+    <set >
+      <if test="accountId != null" >
+        ACCOUNT_ID = #{accountId,jdbcType=INTEGER},
+      </if>
+      <if test="messageType != null" >
+        MESSAGE_TYPE = #{messageType,jdbcType=INTEGER},
+      </if>
+      <if test="messageContent != null" >
+        MESSAGE_CONTENT = #{messageContent,jdbcType=VARCHAR},
+      </if>
+      <if test="messageStatus != null" >
+        MESSAGE_STATUS = #{messageStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="busiBookNo != null" >
+        BUSI_BOOK_NO = #{busiBookNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gistandard.transport.base.entity.bean.SysMessageInfo" >
+    update SYS_MESSAGE_INFO
+    set ACCOUNT_ID = #{accountId,jdbcType=INTEGER},
+      MESSAGE_TYPE = #{messageType,jdbcType=INTEGER},
+      MESSAGE_CONTENT = #{messageContent,jdbcType=VARCHAR},
+      MESSAGE_STATUS = #{messageStatus,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      BUSI_BOOK_NO = #{busiBookNo,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

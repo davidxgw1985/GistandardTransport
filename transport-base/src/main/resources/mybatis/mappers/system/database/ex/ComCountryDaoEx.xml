@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ex.ComCountryDaoEx" >
+
+  <cache-ref namespace="com.gistandard.transport.base.entity.dao.ComCountryDao"/>
+
+  <select id="queryAll" resultMap="com.gistandard.transport.base.entity.dao.ComCountryDao.BaseResultMap">
+    select
+    <include refid="com.gistandard.transport.base.entity.dao.ComCountryDao.Base_Column_List" />
+    from COM_COUNTRY
+  </select>
+</mapper>

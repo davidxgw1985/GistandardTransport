@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.OrderCustomInfoDao" >
+  <resultMap id="BaseResultMap" type="com.gistandard.transport.base.entity.bean.OrderCustomInfo" >
+    <id column="ORDER_CUSTOM_ID" property="orderCustomId" jdbcType="INTEGER" />
+    <result column="BOOKING_FOMR_ID" property="bookingFomrId" jdbcType="INTEGER" />
+    <result column="CUSTOM_NO" property="customNo" jdbcType="VARCHAR" />
+    <result column="CUSTOM_NAME" property="customName" jdbcType="VARCHAR" />
+    <result column="CUSTOM_COUNTRY" property="customCountry" jdbcType="VARCHAR" />
+    <result column="CUSTOM_PROVINCE" property="customProvince" jdbcType="VARCHAR" />
+    <result column="CUSTOM_CITY" property="customCity" jdbcType="VARCHAR" />
+    <result column="CUSTOM_COUNTY" property="customCounty" jdbcType="VARCHAR" />
+    <result column="CUSTOM_ADDR" property="customAddr" jdbcType="VARCHAR" />
+    <result column="CUSTOM_LINK_MAN" property="customLinkMan" jdbcType="VARCHAR" />
+    <result column="CUSTOM_LINK_TEL" property="customLinkTel" jdbcType="VARCHAR" />
+    <result column="CUSTOM_LINK_MAIL" property="customLinkMail" jdbcType="VARCHAR" />
+    <result column="CUSTOM_LINK_FAX" property="customLinkFax" jdbcType="VARCHAR" />
+    <result column="CUSTOM_LONGITUDE" property="customLongitude" jdbcType="DECIMAL" />
+    <result column="CUSTOM_LATITUDE" property="customLatitude" jdbcType="DECIMAL" />
+    <result column="CUSTOM_TYPE" property="customType" jdbcType="INTEGER" />
+    <result column="CUSTOM_CATEGORY" property="customCategory" jdbcType="INTEGER" />
+    <result column="CREATE_USER_ID" property="createUserId" jdbcType="INTEGER" />
+    <result column="CREATE_USER" property="createUser" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ORDER_CUSTOM_ID, BOOKING_FOMR_ID, CUSTOM_NO, CUSTOM_NAME, CUSTOM_COUNTRY, CUSTOM_PROVINCE, 
+    CUSTOM_CITY, CUSTOM_COUNTY, CUSTOM_ADDR, CUSTOM_LINK_MAN, CUSTOM_LINK_TEL, CUSTOM_LINK_MAIL, 
+    CUSTOM_LINK_FAX, CUSTOM_LONGITUDE, CUSTOM_LATITUDE, CUSTOM_TYPE, CUSTOM_CATEGORY, 
+    CREATE_USER_ID, CREATE_USER, CREATE_DATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ORDER_CUSTOM_INFO
+    where ORDER_CUSTOM_ID = #{orderCustomId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ORDER_CUSTOM_INFO
+    where ORDER_CUSTOM_ID = #{orderCustomId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gistandard.transport.base.entity.bean.OrderCustomInfo" >
+    insert into ORDER_CUSTOM_INFO (ORDER_CUSTOM_ID, BOOKING_FOMR_ID, CUSTOM_NO, 
+      CUSTOM_NAME, CUSTOM_COUNTRY, CUSTOM_PROVINCE, 
+      CUSTOM_CITY, CUSTOM_COUNTY, CUSTOM_ADDR, 
+      CUSTOM_LINK_MAN, CUSTOM_LINK_TEL, CUSTOM_LINK_MAIL, 
+      CUSTOM_LINK_FAX, CUSTOM_LONGITUDE, CUSTOM_LATITUDE, 
+      CUSTOM_TYPE, CUSTOM_CATEGORY, CREATE_USER_ID, 
+      CREATE_USER, CREATE_DATE)
+    values (#{orderCustomId,jdbcType=INTEGER}, #{bookingFomrId,jdbcType=INTEGER}, #{customNo,jdbcType=VARCHAR}, 
+      #{customName,jdbcType=VARCHAR}, #{customCountry,jdbcType=VARCHAR}, #{customProvince,jdbcType=VARCHAR}, 
+      #{customCity,jdbcType=VARCHAR}, #{customCounty,jdbcType=VARCHAR}, #{customAddr,jdbcType=VARCHAR}, 
+      #{customLinkMan,jdbcType=VARCHAR}, #{customLinkTel,jdbcType=VARCHAR}, #{customLinkMail,jdbcType=VARCHAR}, 
+      #{customLinkFax,jdbcType=VARCHAR}, #{customLongitude,jdbcType=DECIMAL}, #{customLatitude,jdbcType=DECIMAL}, 
+      #{customType,jdbcType=INTEGER}, #{customCategory,jdbcType=INTEGER}, #{createUserId,jdbcType=INTEGER}, 
+      #{createUser,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gistandard.transport.base.entity.bean.OrderCustomInfo" >
+    insert into ORDER_CUSTOM_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderCustomId != null" >
+        ORDER_CUSTOM_ID,
+      </if>
+      <if test="bookingFomrId != null" >
+        BOOKING_FOMR_ID,
+      </if>
+      <if test="customNo != null" >
+        CUSTOM_NO,
+      </if>
+      <if test="customName != null" >
+        CUSTOM_NAME,
+      </if>
+      <if test="customCountry != null" >
+        CUSTOM_COUNTRY,
+      </if>
+      <if test="customProvince != null" >
+        CUSTOM_PROVINCE,
+      </if>
+      <if test="customCity != null" >
+        CUSTOM_CITY,
+      </if>
+      <if test="customCounty != null" >
+        CUSTOM_COUNTY,
+      </if>
+      <if test="customAddr != null" >
+        CUSTOM_ADDR,
+      </if>
+      <if test="customLinkMan != null" >
+        CUSTOM_LINK_MAN,
+      </if>
+      <if test="customLinkTel != null" >
+        CUSTOM_LINK_TEL,
+      </if>
+      <if test="customLinkMail != null" >
+        CUSTOM_LINK_MAIL,
+      </if>
+      <if test="customLinkFax != null" >
+        CUSTOM_LINK_FAX,
+      </if>
+      <if test="customLongitude != null" >
+        CUSTOM_LONGITUDE,
+      </if>
+      <if test="customLatitude != null" >
+        CUSTOM_LATITUDE,
+      </if>
+      <if test="customType != null" >
+        CUSTOM_TYPE,
+      </if>
+      <if test="customCategory != null" >
+        CUSTOM_CATEGORY,
+      </if>
+      <if test="createUserId != null" >
+        CREATE_USER_ID,
+      </if>
+      <if test="createUser != null" >
+        CREATE_USER,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderCustomId != null" >
+        #{orderCustomId,jdbcType=INTEGER},
+      </if>
+      <if test="bookingFomrId != null" >
+        #{bookingFomrId,jdbcType=INTEGER},
+      </if>
+      <if test="customNo != null" >
+        #{customNo,jdbcType=VARCHAR},
+      </if>
+      <if test="customName != null" >
+        #{customName,jdbcType=VARCHAR},
+      </if>
+      <if test="customCountry != null" >
+        #{customCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="customProvince != null" >
+        #{customProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="customCity != null" >
+        #{customCity,jdbcType=VARCHAR},
+      </if>
+      <if test="customCounty != null" >
+        #{customCounty,jdbcType=VARCHAR},
+      </if>
+      <if test="customAddr != null" >
+        #{customAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="customLinkMan != null" >
+        #{customLinkMan,jdbcType=VARCHAR},
+      </if>
+      <if test="customLinkTel != null" >
+        #{customLinkTel,jdbcType=VARCHAR},
+      </if>
+      <if test="customLinkMail != null" >
+        #{customLinkMail,jdbcType=VARCHAR},
+      </if>
+      <if test="customLinkFax != null" >
+        #{customLinkFax,jdbcType=VARCHAR},
+      </if>
+      <if test="customLongitude != null" >
+        #{customLongitude,jdbcType=DECIMAL},
+      </if>
+      <if test="customLatitude != null" >
+        #{customLatitude,jdbcType=DECIMAL},
+      </if>
+      <if test="customType != null" >
+        #{customType,jdbcType=INTEGER},
+      </if>
+      <if test="customCategory != null" >
+        #{customCategory,jdbcType=INTEGER},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gistandard.transport.base.entity.bean.OrderCustomInfo" >
+    update ORDER_CUSTOM_INFO
+    <set >
+      <if test="bookingFomrId != null" >
+        BOOKING_FOMR_ID = #{bookingFomrId,jdbcType=INTEGER},
+      </if>
+      <if test="customNo != null" >
+        CUSTOM_NO = #{customNo,jdbcType=VARCHAR},
+      </if>
+      <if test="customName != null" >
+        CUSTOM_NAME = #{customName,jdbcType=VARCHAR},
+      </if>
+      <if test="customCountry != null" >
+        CUSTOM_COUNTRY = #{customCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="customProvince != null" >
+        CUSTOM_PROVINCE = #{customProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="customCity != null" >
+        CUSTOM_CITY = #{customCity,jdbcType=VARCHAR},
+      </if>
+      <if test="customCounty != null" >
+        CUSTOM_COUNTY = #{customCounty,jdbcType=VARCHAR},
+      </if>
+      <if test="customAddr != null" >
+        CUSTOM_ADDR = #{customAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="customLinkMan != null" >
+        CUSTOM_LINK_MAN = #{customLinkMan,jdbcType=VARCHAR},
+      </if>
+      <if test="customLinkTel != null" >
+        CUSTOM_LINK_TEL = #{customLinkTel,jdbcType=VARCHAR},
+      </if>
+      <if test="customLinkMail != null" >
+        CUSTOM_LINK_MAIL = #{customLinkMail,jdbcType=VARCHAR},
+      </if>
+      <if test="customLinkFax != null" >
+        CUSTOM_LINK_FAX = #{customLinkFax,jdbcType=VARCHAR},
+      </if>
+      <if test="customLongitude != null" >
+        CUSTOM_LONGITUDE = #{customLongitude,jdbcType=DECIMAL},
+      </if>
+      <if test="customLatitude != null" >
+        CUSTOM_LATITUDE = #{customLatitude,jdbcType=DECIMAL},
+      </if>
+      <if test="customType != null" >
+        CUSTOM_TYPE = #{customType,jdbcType=INTEGER},
+      </if>
+      <if test="customCategory != null" >
+        CUSTOM_CATEGORY = #{customCategory,jdbcType=INTEGER},
+      </if>
+      <if test="createUserId != null" >
+        CREATE_USER_ID = #{createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null" >
+        CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ORDER_CUSTOM_ID = #{orderCustomId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gistandard.transport.base.entity.bean.OrderCustomInfo" >
+    update ORDER_CUSTOM_INFO
+    set BOOKING_FOMR_ID = #{bookingFomrId,jdbcType=INTEGER},
+      CUSTOM_NO = #{customNo,jdbcType=VARCHAR},
+      CUSTOM_NAME = #{customName,jdbcType=VARCHAR},
+      CUSTOM_COUNTRY = #{customCountry,jdbcType=VARCHAR},
+      CUSTOM_PROVINCE = #{customProvince,jdbcType=VARCHAR},
+      CUSTOM_CITY = #{customCity,jdbcType=VARCHAR},
+      CUSTOM_COUNTY = #{customCounty,jdbcType=VARCHAR},
+      CUSTOM_ADDR = #{customAddr,jdbcType=VARCHAR},
+      CUSTOM_LINK_MAN = #{customLinkMan,jdbcType=VARCHAR},
+      CUSTOM_LINK_TEL = #{customLinkTel,jdbcType=VARCHAR},
+      CUSTOM_LINK_MAIL = #{customLinkMail,jdbcType=VARCHAR},
+      CUSTOM_LINK_FAX = #{customLinkFax,jdbcType=VARCHAR},
+      CUSTOM_LONGITUDE = #{customLongitude,jdbcType=DECIMAL},
+      CUSTOM_LATITUDE = #{customLatitude,jdbcType=DECIMAL},
+      CUSTOM_TYPE = #{customType,jdbcType=INTEGER},
+      CUSTOM_CATEGORY = #{customCategory,jdbcType=INTEGER},
+      CREATE_USER_ID = #{createUserId,jdbcType=INTEGER},
+      CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP}
+    where ORDER_CUSTOM_ID = #{orderCustomId,jdbcType=INTEGER}
+  </update>
+</mapper>

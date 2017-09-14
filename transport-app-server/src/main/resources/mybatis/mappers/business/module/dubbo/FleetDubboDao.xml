@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.app.module.dubbo.fleet.dao.FleetDubboDao">
+    <resultMap id="queryVehicleMap" type="com.gistandard.transport.app.dubbo.fleet.bean.FleetAccountInfo">
+        <result column="ID" property="id" jdbcType="INTEGER"/>
+        <result column="TRUCKCODE" property="truckcode" jdbcType="VARCHAR" />
+        <result column="DRIVING_CODE" property="drivingCode" jdbcType="VARCHAR" />
+        <result column="TRUCKTYPE" property="trucktype" jdbcType="VARCHAR" />
+        <result column="ENGINECODE" property="enginecode" jdbcType="VARCHAR" />
+        <result column="LENGTH" property="length" jdbcType="DECIMAL" />
+        <result column="WIDTH" property="width" jdbcType="DECIMAL" />
+        <result column="HEIGHT" property="height" jdbcType="DECIMAL" />
+        <result column="BRACKETDATE" property="bracketdate" jdbcType="TIMESTAMP" />
+        <result column="BTREGISTERCODE" property="btregistercode" jdbcType="VARCHAR" />
+        <result column="BTTAXCODE" property="bttaxcode" jdbcType="VARCHAR" />
+        <result column="VEHICLEDATE" property="vehicledate" jdbcType="TIMESTAMP" />
+        <result column="HASGPS" property="hasgps" jdbcType="BIT" />
+        <result column="MAX_WEIGHT" property="maxWeight" jdbcType="DECIMAL" />
+        <result column="DISPLACEMENT" property="displacement" jdbcType="VARCHAR" />
+        <result column="CARGOVOLUME" property="cargovolume" jdbcType="VARCHAR" />
+
+        <result column="ACCOUNT_ID" property="driverAccountId" jdbcType="INTEGER"/>
+        <result column="ACCT_USERNAME" property="acctUsername" jdbcType="VARCHAR"/>
+        <result column="REAL_NAME" property="realName" jdbcType="VARCHAR"/>
+        <result column="TELEPHONE" property="telephone" jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="queryVehicle" resultMap="queryVehicleMap" parameterType="com.gistandard.transport.app.dubbo.fleet.bean.QueryVehiclePar">
+      SELECT CVI.ID,CVI.TRUCKCODE,CVI.TRUCKTYPE, CVI.ENGINECODE, CVI.LENGTH, CVI.WIDTH, CVI.HEIGHT,
+        CVI.BRACKETDATE, CVI.BTREGISTERCODE, CVI.BTTAXCODE, CVI.VEHICLEDATE, CVI.HASGPS, CVI.MAX_WEIGHT, CVI.DISPLACEMENT, CVI.CARGOVOLUME,
+        CDI.ACCOUNT_ID,CA.ACCT_USERNAME,CA.REAL_NAME,CA.TELEPHONE
+          FROM COM_VEHICLE_INFO CVI
+          LEFT JOIN COM_DRIVER_INFO CDI ON CDI.VEHICLE_ID = CVI.ID
+          LEFT JOIN COM_ACCOUNT CA ON CA.ID = CDI.ACCOUNT_ID
+      WHERE CVI.COMPANY_ACCOUNT_ID = #{companyAccountId}
+        <if test="truckcode!= null and truckcode!= ''">
+            AND  CVI.TRUCKCODE LIKE CONCAT('%',#{truckcode},'%')
+        </if>
+        <if test="trucktype!= null and trucktype!= ''">
+            AND  CVI.TRUCKTYPE LIKE CONCAT('%',#{trucktype},'%')
+        </if>
+        <if test="driverRealName!= null and driverRealName!= ''">
+            AND  CA.REAL_NAME LIKE CONCAT('%',#{driverRealName},'%')
+        </if>
+        <if test="driverTelephone!= null and driverTelephone!= ''">
+            AND  CA.TELEPHONE LIKE CONCAT('%',#{driverTelephone},'%')
+        </if>
+        <if test="driverAcctUsername!= null and driverAcctUsername!= ''">
+            AND  CA.ACCT_USERNAME LIKE CONCAT('%',#{driverAcctUsername},'%')
+        </if>
+        <if test="cargovolumeMax!= null and cargovolumeMax!= ''">
+            <![CDATA[ AND CVI.CARGOVOLUME <= #{cargovolumeMax} ]]>
+        </if>
+        <if test="cargovolumeMin!= null and cargovolumeMin!= '' ">
+            <![CDATA[ AND CVI.CARGOVOLUME >= #{cargovolumeMin} ]]>
+        </if>
+        <if test="maxWeightMax!= null and maxWeightMax!= ''">
+            <![CDATA[ AND CVI.MAX_WEIGHT <= #{maxWeightMax} ]]>
+        </if>
+        <if test="maxWeightMin!= null and maxWeightMin!= ''">
+            <![CDATA[ AND CVI.MAX_WEIGHT >= #{maxWeightMin} ]]>
+        </if>
+      LIMIT #{start},#{limit}
+    </select>
+    <select id="queryVehicleCount" resultType="java.lang.Integer" parameterType="com.gistandard.transport.app.dubbo.fleet.bean.QueryVehiclePar">
+        SELECT COUNT(1)
+            FROM COM_VEHICLE_INFO CVI
+            LEFT JOIN COM_DRIVER_INFO CDI ON CDI.VEHICLE_ID = CVI.ID
+            LEFT JOIN COM_ACCOUNT CA ON CA.ID = CDI.ACCOUNT_ID
+        WHERE CVI.COMPANY_ACCOUNT_ID = #{companyAccountId}
+        <if test="truckcode!= null and truckcode!= ''">
+            AND  CVI.TRUCKCODE LIKE CONCAT('%',#{truckcode},'%')
+        </if>
+        <if test="trucktype!= null and trucktype!= ''">
+            AND  CVI.TRUCKTYPE LIKE CONCAT('%',#{trucktype},'%')
+        </if>
+        <if test="driverRealName!= null and driverRealName!= ''">
+            AND  CA.REAL_NAME LIKE CONCAT('%',#{driverRealName},'%')
+        </if>
+        <if test="driverTelephone!= null and driverTelephone!= ''">
+            AND  CA.TELEPHONE LIKE CONCAT('%',#{driverTelephone},'%')
+        </if>
+        <if test="driverAcctUsername!= null and driverAcctUsername!= ''">
+            AND  CA.ACCT_USERNAME LIKE CONCAT('%',#{driverAcctUsername},'%')
+        </if>
+        <if test="cargovolumeMax!= null and cargovolumeMax!= ''">
+            <![CDATA[ AND CVI.CARGOVOLUME <= #{cargovolumeMax} ]]>
+        </if>
+        <if test="cargovolumeMin!= null and cargovolumeMin!= '' ">
+            <![CDATA[ AND CVI.CARGOVOLUME >= #{cargovolumeMin} ]]>
+        </if>
+        <if test="maxWeightMax!= null and maxWeightMax!= ''">
+            <![CDATA[ AND CVI.MAX_WEIGHT <= #{maxWeightMax} ]]>
+        </if>
+        <if test="maxWeightMin!= null and maxWeightMin!= ''">
+            <![CDATA[ AND CVI.MAX_WEIGHT >= #{maxWeightMin} ]]>
+        </if>
+    </select>
+    <!-- 根据企业id查询所有未绑定车子的司机账号信息-->
+    <select id="queryUnbindDriver" resultMap="queryVehicleMap" parameterType="com.gistandard.transport.app.dubbo.fleet.bean.QueryunbindDriverPar" >
+        SELECT CD.ACCOUNT_ID,CA.ACCT_USERNAME,CA.REAL_NAME, CA.TELEPHONE
+        FROM COM_COMPANY_STAFF COM
+        LEFT JOIN COM_ACCOUNT CA ON COM.STAFF_ACCOUNT_ID = CA.ID
+        LEFT JOIN COM_DRIVER_INFO CD ON COM.STAFF_ACCOUNT_ID = CD.ACCOUNT_ID
+        WHERE CA.ACCT_STATUS = 2 AND  FIND_IN_SET('3', COM.ROLE_IDS) AND ISNULL(CD.VEHICLE_ID)
+        AND COM.COMPANY_ACCOUNT_ID = #{companyAccountId}
+        <if test="realName!= null and realName!= ''">
+            AND  CA.REAL_NAME =#{realName}
+        </if>
+        <if test="acctUsername!= null and acctUsername!= ''">
+            AND  CA.ACCT_USERNAME =#{acctUsername}
+        </if>
+        <if test="telephone!= null and telephone!= ''">
+            AND  CA.TELEPHONE =#{telephone}
+        </if>
+        LIMIT #{start},#{limit}
+    </select>
+    <select id="queryUnbindDriverCount" resultType="java.lang.Integer" parameterType="com.gistandard.transport.app.dubbo.fleet.bean.QueryunbindDriverPar" >
+        SELECT COUNT(1)
+        FROM COM_COMPANY_STAFF COM
+        LEFT JOIN COM_ACCOUNT CA ON COM.STAFF_ACCOUNT_ID = CA.ID
+        LEFT JOIN COM_DRIVER_INFO CD ON COM.STAFF_ACCOUNT_ID = CD.ACCOUNT_ID
+        WHERE CA.ACCT_STATUS = 2 AND  FIND_IN_SET('3', COM.ROLE_IDS) AND ISNULL(CD.VEHICLE_ID)
+        AND COM.COMPANY_ACCOUNT_ID = #{companyAccountId}
+        <if test="realName!= null and realName!= ''">
+            AND  CA.REAL_NAME =#{realName}
+        </if>
+        <if test="acctUsername!= null and acctUsername!= ''">
+            AND  CA.ACCT_USERNAME =#{acctUsername}
+        </if>
+        <if test="telephone!= null and telephone!= ''">
+            AND  CA.TELEPHONE =#{telephone}
+        </if>
+    </select>
+
+    <resultMap id="queryAccountByParMap" type="com.gistandard.transport.app.dubbo.fleet.bean.QueryAccountPar">
+        <result column="ID" property="accountId" jdbcType="INTEGER"/>
+        <result column="ACCT_USERNAME" property="acctUsername" jdbcType="VARCHAR"/>
+        <result column="REAL_NAME" property="realName" jdbcType="VARCHAR"/>
+        <result column="TELEPHONE" property="telephone" jdbcType="VARCHAR"/>
+        <result column="ACCT_STATUS" property="acctStatus" jdbcType="INTEGER" />
+        <result column="USER_IMG" property="userImg" jdbcType="VARCHAR" />
+        <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+        <result column="EMAIL_DOMAIN" property="emailDomain" jdbcType="VARCHAR" />
+
+        <result column="PROVINCE_NAME" property="provinceName" jdbcType="VARCHAR" />
+        <result column="NAME" property="cityName" jdbcType="VARCHAR" />
+        <result column="AREA_NAME" property="countyName" jdbcType="VARCHAR" />
+    </resultMap>
+    <select id="queryAccountByPar" resultMap="queryAccountByParMap" parameterType="com.gistandard.transport.app.dubbo.fleet.bean.QueryAccountPar" >
+        SELECT CP.PROVINCE_NAME,CCI.NAME,CCO.AREA_NAME,
+        CA.ID,CA.ACCT_USERNAME,CA.REAL_NAME, CA.TELEPHONE,CA.ACCT_STATUS,CA.EMAIL,CA.EMAIL_DOMAIN,CA.USER_IMG
+        FROM COM_ACCOUNT CA
+        LEFT JOIN COM_ACCOUNT_ROLE_REL CARL ON CA.ID = CARL.ACCOUNT_ID
+        LEFT JOIN COM_CUSTOMER CC ON CC.ACCOUNT_ID = CA.ID
+        LEFT JOIN COM_PROVINCE CP ON CP.ID = CC.PROVINCE
+        LEFT JOIN COM_CITY CCI ON CCI.ID = CC.CITY
+        LEFT JOIN COM_COUNTY CCO ON CCO.ID = CC.COUNTY
+        WHERE CARL.ROLE_ID = #{roleId}
+        <if test="realName!= null and realName!= ''">
+            AND  CA.REAL_NAME LIKE CONCAT('%',#{realName},'%')
+        </if>
+        <if test="acctUsername!= null and acctUsername!= ''">
+            AND  CA.ACCT_USERNAME LIKE CONCAT('%',#{acctUsername},'%')
+        </if>
+        <if test="provinceName!= null and provinceName!= ''">
+            AND  CP.PROVINCE_NAME LIKE CONCAT('%',#{provinceName},'%')
+        </if>
+        <if test="cityName!= null and cityName!= ''">
+            AND  CCI.NAME LIKE CONCAT('%',#{cityName},'%')
+        </if>
+        <if test="countyName!= null and countyName!= ''">
+            AND  CCO.AREA_NAME LIKE CONCAT('%',#{countyName},'%')
+        </if>
+        <if test="acctStatus!= null ">
+            AND  CA.ACCT_STATUS = #{acctStatus}
+        </if>
+    </select>
+</mapper>

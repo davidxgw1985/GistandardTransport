@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.order.dubbo.dao.OrderDubboDao">
+
+    <!--商管中心 业务注册用户报表查询 -->
+    <resultMap id="queryBusRegisterUserListMap" type="com.gistandard.transport.order.dubbo.bean.QueryBusRegisterUserListBean">
+        <result column="busAcct" property="busAcct" jdbcType="VARCHAR"/>
+        <result column="busName" property="busName" jdbcType="VARCHAR" />
+        <result column="busTel" property="busTel" jdbcType="VARCHAR" />
+        <result column="userAcct" property="userAcct" jdbcType="VARCHAR" />
+        <result column="userName" property="userName" jdbcType="VARCHAR" />
+        <result column="registerDate" property="registerDate" jdbcType="TIMESTAMP" />
+        <result column="acctType" property="acctType" jdbcType="INTEGER"/>
+        <result column="userTel" property="userTel" jdbcType="VARCHAR" />
+        <result column="userProvice" property="userProvice" jdbcType="INTEGER" />
+        <result column="userCity" property="userCity" jdbcType="INTEGER" />
+        <result column="userCounty" property="userCounty" jdbcType="INTEGER" />
+    </resultMap>
+    <select id="queryBusRegisterUserList" resultMap="queryBusRegisterUserListMap"
+            parameterType="com.gistandard.transport.app.dubbo.order.bean.QueryBusRegisterUserReq">
+        SELECT
+            CA2.ACCT_USERNAME AS busAcct,CA2.REAL_NAME AS busName,CA2.TELEPHONE AS busTel,
+            CA.ACCT_USERNAME AS userAcct,CA.REAL_NAME AS userName,CA.CREATE_TIME AS registerDate,CA.ACCT_TYPE AS acctType,
+        CASE WHEN CA.ACCT_TYPE = 1 THEN CU.TELEPHONE
+                ELSE CC.FWORK_TEL
+                END AS userTel,
+        CASE WHEN CA.ACCT_TYPE = 1 THEN CU.PROVINCE
+                ELSE CC.PROVINCE
+                END AS userProvice,
+        CASE WHEN CA.ACCT_TYPE = 1 THEN CU.CITY
+                ELSE CC.CITY
+                END AS userCity,
+        CASE WHEN CA.ACCT_TYPE = 1 THEN CU.COUNTY
+                ELSE CC.COUNTY
+                END AS userCounty
+        FROM COM_ACCOUNT CA
+        LEFT JOIN COM_ACCOUNT CA2 ON CA2.ID = CA.RECOMMEND_ACCOUNT_ID AND CA2.ACCT_STATUS = 2
+        LEFT JOIN COM_USERINFO CU ON CU.ACCOUNT_ID = CA.ID
+        LEFT JOIN COM_CUSTOMER CC ON CC.ACCOUNT_ID = CA.ID
+        WHERE CA.ACCT_STATUS = 2
+        <if test="selfRegister != null and selfRegister == true " >
+            AND CA2.ACCT_USERNAME IS NULL
+        </if>
+        <if test="busCode != null and busCode != '' " >
+            AND (CA2.ACCT_USERNAME LIKE CONCAT('%',#{busCode},'%')
+            OR CA2.REAL_NAME LIKE CONCAT('%',#{busCode},'%'))
+        </if>
+        <if test="userCode != null and userCode != '' " >
+            AND (CA.ACCT_USERNAME LIKE CONCAT('%',#{userCode},'%')
+            OR CA.REAL_NAME LIKE CONCAT('%',#{userCode},'%'))
+        </if>
+        <if test="startDate != null and startDate != '' " >
+            <![CDATA[ AND DATE_FORMAT(CA.CREATE_TIME,'%Y-%m-%d') >= #{startDate} ]]>
+        </if>
+        <if test="startDate != null and startDate != '' " >
+            <![CDATA[ AND DATE_FORMAT(CA.CREATE_TIME,'%Y-%m-%d') <= #{endDate} ]]>
+        </if>
+        <if test="pageSize != 0 ">
+            limit #{startRecord},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getBusRegisterUserCount" resultType="java.lang.Integer"
+            parameterType="com.gistandard.transport.app.dubbo.order.bean.QueryBusRegisterUserReq">
+        SELECT
+        COUNT(CA.ID)
+        FROM COM_ACCOUNT CA
+        LEFT JOIN COM_ACCOUNT CA2 ON CA2.ID = CA.RECOMMEND_ACCOUNT_ID AND CA2.ACCT_STATUS = 2
+        LEFT JOIN COM_USERINFO CU ON CU.ACCOUNT_ID = CA.ID
+        LEFT JOIN COM_CUSTOMER CC ON CC.ACCOUNT_ID = CA.ID
+        WHERE CA.ACCT_STATUS = 2
+        <if test="selfRegister != null and selfRegister == true " >
+            AND CA2.ACCT_USERNAME IS NULL
+        </if>
+        <if test="busCode != null and busCode != '' " >
+            AND (CA2.ACCT_USERNAME LIKE CONCAT('%',#{busCode},'%')
+            OR CA2.REAL_NAME LIKE CONCAT('%',#{busCode},'%'))
+        </if>
+        <if test="userCode != null and userCode != '' " >
+            AND (CA.ACCT_USERNAME LIKE CONCAT('%',#{userCode},'%')
+            OR CA.REAL_NAME LIKE CONCAT('%',#{userCode},'%'))
+        </if>
+        <if test="startDate != null and startDate != '' " >
+            <![CDATA[ AND DATE_FORMAT(CA.CREATE_TIME,'%Y-%m-%d') >= #{startDate} ]]>
+        </if>
+        <if test="startDate != null and startDate != '' " >
+            <![CDATA[ AND DATE_FORMAT(CA.CREATE_TIME,'%Y-%m-%d') <= #{endDate} ]]>
+        </if>
+    </select>
+
+    <!--商管中心 业用户下单报表查询  -->
+    <resultMap id="queryUserOrderListMap" type="com.gistandard.transport.order.dubbo.bean.QueryUserOrderListBean">
+        <result column="userAcct" property="userAcct" jdbcType="VARCHAR" />
+        <result column="userName" property="userName" jdbcType="VARCHAR" />
+        <result column="userTel" property="userTel" jdbcType="VARCHAR" />
+        <result column="userRegisterDate" property="userRegisterDate" jdbcType="TIMESTAMP" />
+        <result column="busAcct" property="busAcct" jdbcType="VARCHAR"/>
+        <result column="busName" property="busName" jdbcType="VARCHAR" />
+        <result column="busTel" property="busTel" jdbcType="VARCHAR" />
+        <result column="bookingDate" property="bookingDate" jdbcType="TIMESTAMP" />
+        <result column="docNo" property="docNo" jdbcType="VARCHAR" />
+        <result column="productType" property="productType" jdbcType="VARCHAR" />
+        <result column="payPrice" property="payPrice" jdbcType="DECIMAL" />
+        <result column="weight" property="weight" jdbcType="DECIMAL" />
+        <result column="busiBookNo" property="busiBookNo" jdbcType="VARCHAR" />
+        <result column="provice" property="provice" jdbcType="INTEGER" />
+        <result column="city" property="city" jdbcType="INTEGER" />
+        <result column="county" property="county" jdbcType="INTEGER" />
+        <result column="price" property="price" jdbcType="DECIMAL" />
+        <result column="rate" property="rate" jdbcType="DECIMAL" />
+    </resultMap>
+    <select id="queryUserOrderList" resultMap="queryUserOrderListMap"
+            parameterType="com.gistandard.transport.app.dubbo.order.bean.QueryUserOrderReq">
+        SELECT  CA.ACCT_USERNAME AS userAcct,CA.REAL_NAME AS userName,
+        CASE WHEN CA.ACCT_TYPE = 1 THEN CU.TELEPHONE
+        ELSE CC.FWORK_TEL
+        END AS userTel,
+        CA.CREATE_TIME AS userRegisterDate,
+        CA2.ACCT_USERNAME AS busAcct,CA2.REAL_NAME AS busName,CA2.TELEPHONE AS busTel,
+        BF.BOOKING_DATE AS bookingDate,BF.DOCNO AS docNo,BF.TRANSPORT_TYPE AS productType,BF.PREDICT_VALUE AS payPrice,BF.WHT_FEEWHT AS weight,
+        BF.BUSI_BOOK_NO AS busiBookNo,BF.CARRIAGE_RECEI_PROVINCE AS provice,
+        BF.CARRIAGE_RECEI_CITY AS city,BF.CARRIAGE_RECEI_COUNTY AS county,
+        CQ.FIRST_WEIGHT AS price,MST.AmtAfterTax2 AS rate
+
+        FROM COM_ACCOUNT CA
+        INNER JOIN COM_ACCOUNT CA2 ON CA2.ID = CA.RECOMMEND_ACCOUNT_ID AND CA2.ACCT_STATUS = 2
+        AND CA2.ACCT_USERNAME IS NOT NULL
+        <if test="busCode != null and busCode != '' " >
+            AND (CA2.ACCT_USERNAME LIKE CONCAT('%',#{busCode},'%')
+            OR CA2.REAL_NAME LIKE CONCAT('%',#{busCode},'%'))
+        </if>
+        LEFT JOIN COM_USERINFO CU ON CU.ACCOUNT_ID = CA.ID
+        LEFT JOIN COM_CUSTOMER CC ON CC.ACCOUNT_ID = CA.ID
+        LEFT JOIN BOOKING_FORM BF ON CA.ID = BF.CREATE_USER_ID
+        AND BF.BUSI_CTRL>0
+        <if test="productType != null and productType != '' " >
+            AND BF.TRANSPORT_TYPE = #{productType}
+        </if>
+        <if test="startDate != null and startDate != '' " >
+            <![CDATA[ AND DATE_FORMAT(BF.BOOKING_DATE,'%Y-%m-%d') >= #{startDate} ]]>
+        </if>
+        <if test="endDate != null and endDate != '' " >
+            <![CDATA[ AND DATE_FORMAT(BF.BOOKING_DATE,'%Y-%m-%d') <= #{endDate} ]]>
+        </if>
+        LEFT JOIN COM_QUOTE CQ ON CQ.QUOTE_NO = BF.DOCNO AND CQ.ITEM_ID =38
+        LEFT JOIN tbValidBillMst MST ON MST.InitDocNo = BF.BUSI_BOOK_NO AND MST.SysCatalog =3 AND MST.Remark = '业务提成'
+        WHERE CA.ACCT_STATUS = 2
+        <if test="registerStartDate != null and registerStartDate != '' " >
+            <![CDATA[ AND DATE_FORMAT(CA.CREATE_TIME,'%Y-%m-%d') >= #{registerStartDate} ]]>
+        </if>
+        <if test="registerEndDate != null and registerEndDate != '' " >
+            <![CDATA[ AND DATE_FORMAT(CA.CREATE_TIME,'%Y-%m-%d') <= #{registerEndDate} ]]>
+        </if>
+        <if test="pageSize != 0 ">
+            LIMIT #{startRecord},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getUserOrderCount" resultType="java.lang.Integer"
+            parameterType="com.gistandard.transport.app.dubbo.order.bean.QueryUserOrderReq">
+        SELECT
+        COUNT(CA.ID)
+        FROM COM_ACCOUNT CA
+        INNER JOIN COM_ACCOUNT CA2 ON CA2.ID = CA.RECOMMEND_ACCOUNT_ID AND CA2.ACCT_STATUS = 2
+        AND CA2.ACCT_USERNAME IS NOT NULL
+        <if test="busCode != null and busCode != '' " >
+            AND (CA2.ACCT_USERNAME LIKE CONCAT('%',#{busCode},'%')
+            OR CA2.REAL_NAME LIKE CONCAT('%',#{busCode},'%'))
+        </if>
+        LEFT JOIN COM_USERINFO CU ON CU.ACCOUNT_ID = CA.ID
+        LEFT JOIN COM_CUSTOMER CC ON CC.ACCOUNT_ID = CA.ID
+        LEFT JOIN BOOKING_FORM BF ON CA.ID = BF.CREATE_USER_ID
+        AND BF.BUSI_CTRL>0
+        <if test="productType != null and productType != '' " >
+            AND BF.TRANSPORT_TYPE = #{productType}
+        </if>
+        <if test="startDate != null and startDate != '' " >
+            <![CDATA[ AND DATE_FORMAT(BF.BOOKING_DATE,'%Y-%m-%d') >= #{startDate} ]]>
+        </if>
+        <if test="endDate != null and endDate != '' " >
+            <![CDATA[ AND DATE_FORMAT(BF.BOOKING_DATE,'%Y-%m-%d') <= #{endDate} ]]>
+        </if>
+        WHERE CA.ACCT_STATUS = 2
+        <if test="registerStartDate != null and registerStartDate != '' " >
+            <![CDATA[ AND DATE_FORMAT(CA.CREATE_TIME,'%Y-%m-%d') >= #{registerStartDate} ]]>
+        </if>
+        <if test="registerEndDate != null and registerEndDate != '' " >
+            <![CDATA[ AND DATE_FORMAT(CA.CREATE_TIME,'%Y-%m-%d') <= #{registerEndDate} ]]>
+        </if>
+    </select>
+
+    <!-- 根据报价单号查询标准价格 -->
+    <select id="getComQuoteByDocNo" resultMap="com.gistandard.transport.base.entity.dao.ComQuoteDao.BaseResultMap">
+        select
+        <include refid="com.gistandard.transport.base.entity.dao.ComQuoteDao.Base_Column_List" />
+        from COM_QUOTE
+        where QUOTE_NO = #{docNo}
+        AND ITEM_ID =38
+    </select>
+</mapper>

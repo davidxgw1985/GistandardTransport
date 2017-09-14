@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.ComCompanyStaffDao" >
+  <resultMap id="BaseResultMap" type="com.gistandard.transport.base.entity.bean.ComCompanyStaff" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="COMPANY_ACCOUNT_ID" property="companyAccountId" jdbcType="INTEGER" />
+    <result column="STAFF_ACCOUNT_ID" property="staffAccountId" jdbcType="INTEGER" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+    <result column="ROLE_TYPE" property="roleType" jdbcType="INTEGER" />
+    <result column="ROLE_IDS" property="roleIds" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="MODIFY_ACCOUNT_ID" property="modifyAccountId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, COMPANY_ACCOUNT_ID, STAFF_ACCOUNT_ID, STATUS, ROLE_TYPE, ROLE_IDS, CREATE_TIME, 
+    MODIFY_ACCOUNT_ID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from COM_COMPANY_STAFF
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from COM_COMPANY_STAFF
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gistandard.transport.base.entity.bean.ComCompanyStaff" >
+    insert into COM_COMPANY_STAFF (ID, COMPANY_ACCOUNT_ID, STAFF_ACCOUNT_ID, 
+      STATUS, ROLE_TYPE, ROLE_IDS, 
+      CREATE_TIME, MODIFY_ACCOUNT_ID)
+    values (#{id,jdbcType=INTEGER}, #{companyAccountId,jdbcType=INTEGER}, #{staffAccountId,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{roleType,jdbcType=INTEGER}, #{roleIds,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifyAccountId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gistandard.transport.base.entity.bean.ComCompanyStaff" >
+    insert into COM_COMPANY_STAFF
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="companyAccountId != null" >
+        COMPANY_ACCOUNT_ID,
+      </if>
+      <if test="staffAccountId != null" >
+        STAFF_ACCOUNT_ID,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="roleType != null" >
+        ROLE_TYPE,
+      </if>
+      <if test="roleIds != null" >
+        ROLE_IDS,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="modifyAccountId != null" >
+        MODIFY_ACCOUNT_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="companyAccountId != null" >
+        #{companyAccountId,jdbcType=INTEGER},
+      </if>
+      <if test="staffAccountId != null" >
+        #{staffAccountId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="roleType != null" >
+        #{roleType,jdbcType=INTEGER},
+      </if>
+      <if test="roleIds != null" >
+        #{roleIds,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyAccountId != null" >
+        #{modifyAccountId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gistandard.transport.base.entity.bean.ComCompanyStaff" >
+    update COM_COMPANY_STAFF
+    <set >
+      <if test="companyAccountId != null" >
+        COMPANY_ACCOUNT_ID = #{companyAccountId,jdbcType=INTEGER},
+      </if>
+      <if test="staffAccountId != null" >
+        STAFF_ACCOUNT_ID = #{staffAccountId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="roleType != null" >
+        ROLE_TYPE = #{roleType,jdbcType=INTEGER},
+      </if>
+      <if test="roleIds != null" >
+        ROLE_IDS = #{roleIds,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyAccountId != null" >
+        MODIFY_ACCOUNT_ID = #{modifyAccountId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gistandard.transport.base.entity.bean.ComCompanyStaff" >
+    update COM_COMPANY_STAFF
+    set COMPANY_ACCOUNT_ID = #{companyAccountId,jdbcType=INTEGER},
+      STAFF_ACCOUNT_ID = #{staffAccountId,jdbcType=INTEGER},
+      STATUS = #{status,jdbcType=INTEGER},
+      ROLE_TYPE = #{roleType,jdbcType=INTEGER},
+      ROLE_IDS = #{roleIds,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      MODIFY_ACCOUNT_ID = #{modifyAccountId,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

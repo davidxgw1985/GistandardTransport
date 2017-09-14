@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.BizAttachmentDao" >
+  <resultMap id="BaseResultMap" type="com.gistandard.transport.base.entity.bean.BizAttachment" >
+    <id column="ATTACH_ID" property="attachId" jdbcType="INTEGER" />
+    <result column="ATTACH_NAME" property="attachName" jdbcType="VARCHAR" />
+    <result column="ATTACH_OLD_NAME" property="attachOldName" jdbcType="VARCHAR" />
+    <result column="ATTACH_DOMAIN" property="attachDomain" jdbcType="VARCHAR" />
+    <result column="ATTACH_PATH" property="attachPath" jdbcType="VARCHAR" />
+    <result column="PROJECT_PATH" property="projectPath" jdbcType="VARCHAR" />
+    <result column="ATTACH_TYPE" property="attachType" jdbcType="VARCHAR" />
+    <result column="ATTACH_STATE" property="attachState" jdbcType="INTEGER" />
+    <result column="ATTACH_SIZE" property="attachSize" jdbcType="VARCHAR" />
+    <result column="ATTACH_REL_ID" property="attachRelId" jdbcType="INTEGER" />
+    <result column="ATTACH_SERVER_IP" property="attachServerIp" jdbcType="VARCHAR" />
+    <result column="UPLOAD_USER" property="uploadUser" jdbcType="INTEGER" />
+    <result column="UPLOAD_TIME" property="uploadTime" jdbcType="TIMESTAMP" />
+    <result column="FILE_TYPE" property="fileType" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ATTACH_ID, ATTACH_NAME, ATTACH_OLD_NAME, ATTACH_DOMAIN, ATTACH_PATH, PROJECT_PATH, 
+    ATTACH_TYPE, ATTACH_STATE, ATTACH_SIZE, ATTACH_REL_ID, ATTACH_SERVER_IP, UPLOAD_USER, 
+    UPLOAD_TIME, FILE_TYPE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from BIZ_ATTACHMENT
+    where ATTACH_ID = #{attachId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from BIZ_ATTACHMENT
+    where ATTACH_ID = #{attachId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyProperty="attachId" useGeneratedKeys="true" parameterType="com.gistandard.transport.base.entity.bean.BizAttachment" >
+    insert into BIZ_ATTACHMENT (ATTACH_ID, ATTACH_NAME, ATTACH_OLD_NAME, 
+      ATTACH_DOMAIN, ATTACH_PATH, PROJECT_PATH, 
+      ATTACH_TYPE, ATTACH_STATE, ATTACH_SIZE, 
+      ATTACH_REL_ID, ATTACH_SERVER_IP, UPLOAD_USER, 
+      UPLOAD_TIME, FILE_TYPE)
+    values (#{attachId,jdbcType=INTEGER}, #{attachName,jdbcType=VARCHAR}, #{attachOldName,jdbcType=VARCHAR}, 
+      #{attachDomain,jdbcType=VARCHAR}, #{attachPath,jdbcType=VARCHAR}, #{projectPath,jdbcType=VARCHAR}, 
+      #{attachType,jdbcType=VARCHAR}, #{attachState,jdbcType=INTEGER}, #{attachSize,jdbcType=VARCHAR}, 
+      #{attachRelId,jdbcType=INTEGER}, #{attachServerIp,jdbcType=VARCHAR}, #{uploadUser,jdbcType=INTEGER}, 
+      #{uploadTime,jdbcType=TIMESTAMP}, #{fileType,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyProperty="attachId" useGeneratedKeys="true" parameterType="com.gistandard.transport.base.entity.bean.BizAttachment" >
+    insert into BIZ_ATTACHMENT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="attachId != null" >
+        ATTACH_ID,
+      </if>
+      <if test="attachName != null" >
+        ATTACH_NAME,
+      </if>
+      <if test="attachOldName != null" >
+        ATTACH_OLD_NAME,
+      </if>
+      <if test="attachDomain != null" >
+        ATTACH_DOMAIN,
+      </if>
+      <if test="attachPath != null" >
+        ATTACH_PATH,
+      </if>
+      <if test="projectPath != null" >
+        PROJECT_PATH,
+      </if>
+      <if test="attachType != null" >
+        ATTACH_TYPE,
+      </if>
+      <if test="attachState != null" >
+        ATTACH_STATE,
+      </if>
+      <if test="attachSize != null" >
+        ATTACH_SIZE,
+      </if>
+      <if test="attachRelId != null" >
+        ATTACH_REL_ID,
+      </if>
+      <if test="attachServerIp != null" >
+        ATTACH_SERVER_IP,
+      </if>
+      <if test="uploadUser != null" >
+        UPLOAD_USER,
+      </if>
+      <if test="uploadTime != null" >
+        UPLOAD_TIME,
+      </if>
+      <if test="fileType != null" >
+        FILE_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="attachId != null" >
+        #{attachId,jdbcType=INTEGER},
+      </if>
+      <if test="attachName != null" >
+        #{attachName,jdbcType=VARCHAR},
+      </if>
+      <if test="attachOldName != null" >
+        #{attachOldName,jdbcType=VARCHAR},
+      </if>
+      <if test="attachDomain != null" >
+        #{attachDomain,jdbcType=VARCHAR},
+      </if>
+      <if test="attachPath != null" >
+        #{attachPath,jdbcType=VARCHAR},
+      </if>
+      <if test="projectPath != null" >
+        #{projectPath,jdbcType=VARCHAR},
+      </if>
+      <if test="attachType != null" >
+        #{attachType,jdbcType=VARCHAR},
+      </if>
+      <if test="attachState != null" >
+        #{attachState,jdbcType=INTEGER},
+      </if>
+      <if test="attachSize != null" >
+        #{attachSize,jdbcType=VARCHAR},
+      </if>
+      <if test="attachRelId != null" >
+        #{attachRelId,jdbcType=INTEGER},
+      </if>
+      <if test="attachServerIp != null" >
+        #{attachServerIp,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadUser != null" >
+        #{uploadUser,jdbcType=INTEGER},
+      </if>
+      <if test="uploadTime != null" >
+        #{uploadTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fileType != null" >
+        #{fileType,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gistandard.transport.base.entity.bean.BizAttachment" >
+    update BIZ_ATTACHMENT
+    <set >
+      <if test="attachName != null" >
+        ATTACH_NAME = #{attachName,jdbcType=VARCHAR},
+      </if>
+      <if test="attachOldName != null" >
+        ATTACH_OLD_NAME = #{attachOldName,jdbcType=VARCHAR},
+      </if>
+      <if test="attachDomain != null" >
+        ATTACH_DOMAIN = #{attachDomain,jdbcType=VARCHAR},
+      </if>
+      <if test="attachPath != null" >
+        ATTACH_PATH = #{attachPath,jdbcType=VARCHAR},
+      </if>
+      <if test="projectPath != null" >
+        PROJECT_PATH = #{projectPath,jdbcType=VARCHAR},
+      </if>
+      <if test="attachType != null" >
+        ATTACH_TYPE = #{attachType,jdbcType=VARCHAR},
+      </if>
+      <if test="attachState != null" >
+        ATTACH_STATE = #{attachState,jdbcType=INTEGER},
+      </if>
+      <if test="attachSize != null" >
+        ATTACH_SIZE = #{attachSize,jdbcType=VARCHAR},
+      </if>
+      <if test="attachRelId != null" >
+        ATTACH_REL_ID = #{attachRelId,jdbcType=INTEGER},
+      </if>
+      <if test="attachServerIp != null" >
+        ATTACH_SERVER_IP = #{attachServerIp,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadUser != null" >
+        UPLOAD_USER = #{uploadUser,jdbcType=INTEGER},
+      </if>
+      <if test="uploadTime != null" >
+        UPLOAD_TIME = #{uploadTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fileType != null" >
+        FILE_TYPE = #{fileType,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ATTACH_ID = #{attachId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gistandard.transport.base.entity.bean.BizAttachment" >
+    update BIZ_ATTACHMENT
+    set ATTACH_NAME = #{attachName,jdbcType=VARCHAR},
+      ATTACH_OLD_NAME = #{attachOldName,jdbcType=VARCHAR},
+      ATTACH_DOMAIN = #{attachDomain,jdbcType=VARCHAR},
+      ATTACH_PATH = #{attachPath,jdbcType=VARCHAR},
+      PROJECT_PATH = #{projectPath,jdbcType=VARCHAR},
+      ATTACH_TYPE = #{attachType,jdbcType=VARCHAR},
+      ATTACH_STATE = #{attachState,jdbcType=INTEGER},
+      ATTACH_SIZE = #{attachSize,jdbcType=VARCHAR},
+      ATTACH_REL_ID = #{attachRelId,jdbcType=INTEGER},
+      ATTACH_SERVER_IP = #{attachServerIp,jdbcType=VARCHAR},
+      UPLOAD_USER = #{uploadUser,jdbcType=INTEGER},
+      UPLOAD_TIME = #{uploadTime,jdbcType=TIMESTAMP},
+      FILE_TYPE = #{fileType,jdbcType=INTEGER}
+    where ATTACH_ID = #{attachId,jdbcType=INTEGER}
+  </update>
+</mapper>

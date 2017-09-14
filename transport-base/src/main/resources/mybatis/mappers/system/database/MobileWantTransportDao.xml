@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.base.entity.dao.MobileWantTransportDao" >
+  <resultMap id="BaseResultMap" type="com.gistandard.transport.base.entity.bean.MobileWantTransport" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="LINE_START" property="lineStart" jdbcType="VARCHAR" />
+    <result column="LINE_DEST" property="lineDest" jdbcType="VARCHAR" />
+    <result column="DEPART_TIME" property="departTime" jdbcType="TIMESTAMP" />
+    <result column="ARRIVE_TIME" property="arriveTime" jdbcType="TIMESTAMP" />
+    <result column="RESPONDENT_USER" property="respondentUser" jdbcType="INTEGER" />
+    <result column="REST_LOAD" property="restLoad" jdbcType="DECIMAL" />
+    <result column="REST_SPACE" property="restSpace" jdbcType="DECIMAL" />
+    <result column="HEAVY_PRICE" property="heavyPrice" jdbcType="DECIMAL" />
+    <result column="LIGHT_PRICE" property="lightPrice" jdbcType="DECIMAL" />
+    <result column="LOWEST_VOTE" property="lowestVote" jdbcType="DECIMAL" />
+    <result column="PER_TICKET" property="perTicket" jdbcType="DECIMAL" />
+    <result column="CURRENCY" property="currency" jdbcType="CHAR" />
+    <result column="WANT_TYPE" property="wantType" jdbcType="INTEGER" />
+    <result column="CREATE_USER_ID" property="createUserId" jdbcType="INTEGER" />
+    <result column="CREATE_USER" property="createUser" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_USER_ID" property="updateUserId" jdbcType="INTEGER" />
+    <result column="UPDATE_USER" property="updateUser" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="STATUS" property="status" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, LINE_START, LINE_DEST, DEPART_TIME, ARRIVE_TIME, RESPONDENT_USER, REST_LOAD, 
+    REST_SPACE, HEAVY_PRICE, LIGHT_PRICE, LOWEST_VOTE, PER_TICKET, CURRENCY, WANT_TYPE, 
+    CREATE_USER_ID, CREATE_USER, CREATE_TIME, UPDATE_USER_ID, UPDATE_USER, UPDATE_TIME, 
+    STATUS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from MOBILE_WANT_TRANSPORT
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from MOBILE_WANT_TRANSPORT
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gistandard.transport.base.entity.bean.MobileWantTransport" >
+    insert into MOBILE_WANT_TRANSPORT (ID, LINE_START, LINE_DEST, 
+      DEPART_TIME, ARRIVE_TIME, RESPONDENT_USER, 
+      REST_LOAD, REST_SPACE, HEAVY_PRICE, 
+      LIGHT_PRICE, LOWEST_VOTE, PER_TICKET, 
+      CURRENCY, WANT_TYPE, CREATE_USER_ID, 
+      CREATE_USER, CREATE_TIME, UPDATE_USER_ID, 
+      UPDATE_USER, UPDATE_TIME, STATUS
+      )
+    values (#{id,jdbcType=INTEGER}, #{lineStart,jdbcType=VARCHAR}, #{lineDest,jdbcType=VARCHAR}, 
+      #{departTime,jdbcType=TIMESTAMP}, #{arriveTime,jdbcType=TIMESTAMP}, #{respondentUser,jdbcType=INTEGER}, 
+      #{restLoad,jdbcType=DECIMAL}, #{restSpace,jdbcType=DECIMAL}, #{heavyPrice,jdbcType=DECIMAL}, 
+      #{lightPrice,jdbcType=DECIMAL}, #{lowestVote,jdbcType=DECIMAL}, #{perTicket,jdbcType=DECIMAL}, 
+      #{currency,jdbcType=CHAR}, #{wantType,jdbcType=INTEGER}, #{createUserId,jdbcType=INTEGER}, 
+      #{createUser,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateUserId,jdbcType=INTEGER}, 
+      #{updateUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gistandard.transport.base.entity.bean.MobileWantTransport" >
+    insert into MOBILE_WANT_TRANSPORT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="lineStart != null" >
+        LINE_START,
+      </if>
+      <if test="lineDest != null" >
+        LINE_DEST,
+      </if>
+      <if test="departTime != null" >
+        DEPART_TIME,
+      </if>
+      <if test="arriveTime != null" >
+        ARRIVE_TIME,
+      </if>
+      <if test="respondentUser != null" >
+        RESPONDENT_USER,
+      </if>
+      <if test="restLoad != null" >
+        REST_LOAD,
+      </if>
+      <if test="restSpace != null" >
+        REST_SPACE,
+      </if>
+      <if test="heavyPrice != null" >
+        HEAVY_PRICE,
+      </if>
+      <if test="lightPrice != null" >
+        LIGHT_PRICE,
+      </if>
+      <if test="lowestVote != null" >
+        LOWEST_VOTE,
+      </if>
+      <if test="perTicket != null" >
+        PER_TICKET,
+      </if>
+      <if test="currency != null" >
+        CURRENCY,
+      </if>
+      <if test="wantType != null" >
+        WANT_TYPE,
+      </if>
+      <if test="createUserId != null" >
+        CREATE_USER_ID,
+      </if>
+      <if test="createUser != null" >
+        CREATE_USER,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateUserId != null" >
+        UPDATE_USER_ID,
+      </if>
+      <if test="updateUser != null" >
+        UPDATE_USER,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="lineStart != null" >
+        #{lineStart,jdbcType=VARCHAR},
+      </if>
+      <if test="lineDest != null" >
+        #{lineDest,jdbcType=VARCHAR},
+      </if>
+      <if test="departTime != null" >
+        #{departTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="arriveTime != null" >
+        #{arriveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="respondentUser != null" >
+        #{respondentUser,jdbcType=INTEGER},
+      </if>
+      <if test="restLoad != null" >
+        #{restLoad,jdbcType=DECIMAL},
+      </if>
+      <if test="restSpace != null" >
+        #{restSpace,jdbcType=DECIMAL},
+      </if>
+      <if test="heavyPrice != null" >
+        #{heavyPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="lightPrice != null" >
+        #{lightPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="lowestVote != null" >
+        #{lowestVote,jdbcType=DECIMAL},
+      </if>
+      <if test="perTicket != null" >
+        #{perTicket,jdbcType=DECIMAL},
+      </if>
+      <if test="currency != null" >
+        #{currency,jdbcType=CHAR},
+      </if>
+      <if test="wantType != null" >
+        #{wantType,jdbcType=INTEGER},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null" >
+        #{updateUserId,jdbcType=INTEGER},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gistandard.transport.base.entity.bean.MobileWantTransport" >
+    update MOBILE_WANT_TRANSPORT
+    <set >
+      <if test="lineStart != null" >
+        LINE_START = #{lineStart,jdbcType=VARCHAR},
+      </if>
+      <if test="lineDest != null" >
+        LINE_DEST = #{lineDest,jdbcType=VARCHAR},
+      </if>
+      <if test="departTime != null" >
+        DEPART_TIME = #{departTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="arriveTime != null" >
+        ARRIVE_TIME = #{arriveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="respondentUser != null" >
+        RESPONDENT_USER = #{respondentUser,jdbcType=INTEGER},
+      </if>
+      <if test="restLoad != null" >
+        REST_LOAD = #{restLoad,jdbcType=DECIMAL},
+      </if>
+      <if test="restSpace != null" >
+        REST_SPACE = #{restSpace,jdbcType=DECIMAL},
+      </if>
+      <if test="heavyPrice != null" >
+        HEAVY_PRICE = #{heavyPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="lightPrice != null" >
+        LIGHT_PRICE = #{lightPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="lowestVote != null" >
+        LOWEST_VOTE = #{lowestVote,jdbcType=DECIMAL},
+      </if>
+      <if test="perTicket != null" >
+        PER_TICKET = #{perTicket,jdbcType=DECIMAL},
+      </if>
+      <if test="currency != null" >
+        CURRENCY = #{currency,jdbcType=CHAR},
+      </if>
+      <if test="wantType != null" >
+        WANT_TYPE = #{wantType,jdbcType=INTEGER},
+      </if>
+      <if test="createUserId != null" >
+        CREATE_USER_ID = #{createUserId,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null" >
+        CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null" >
+        UPDATE_USER_ID = #{updateUserId,jdbcType=INTEGER},
+      </if>
+      <if test="updateUser != null" >
+        UPDATE_USER = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gistandard.transport.base.entity.bean.MobileWantTransport" >
+    update MOBILE_WANT_TRANSPORT
+    set LINE_START = #{lineStart,jdbcType=VARCHAR},
+      LINE_DEST = #{lineDest,jdbcType=VARCHAR},
+      DEPART_TIME = #{departTime,jdbcType=TIMESTAMP},
+      ARRIVE_TIME = #{arriveTime,jdbcType=TIMESTAMP},
+      RESPONDENT_USER = #{respondentUser,jdbcType=INTEGER},
+      REST_LOAD = #{restLoad,jdbcType=DECIMAL},
+      REST_SPACE = #{restSpace,jdbcType=DECIMAL},
+      HEAVY_PRICE = #{heavyPrice,jdbcType=DECIMAL},
+      LIGHT_PRICE = #{lightPrice,jdbcType=DECIMAL},
+      LOWEST_VOTE = #{lowestVote,jdbcType=DECIMAL},
+      PER_TICKET = #{perTicket,jdbcType=DECIMAL},
+      CURRENCY = #{currency,jdbcType=CHAR},
+      WANT_TYPE = #{wantType,jdbcType=INTEGER},
+      CREATE_USER_ID = #{createUserId,jdbcType=INTEGER},
+      CREATE_USER = #{createUser,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_USER_ID = #{updateUserId,jdbcType=INTEGER},
+      UPDATE_USER = #{updateUser,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      STATUS = #{status,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

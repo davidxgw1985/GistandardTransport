@@ -1,0 +1,156 @@
+@charset "utf-8";
+
+#PathMenu {
+  position: absolute;
+  top: 0.04rem;
+  right: 0.426667rem;
+  width: 1.066667rem;
+  height: 1.066667rem;
+}
+
+.PathInner {
+  /*position:relative;*/
+  /*	width: 60px;
+	height: 60px;*/
+}
+
+.PathInner .PathItem {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  opacity: 0;
+}
+
+.PathInner a {
+  /* position:absolute; */
+  display: block;
+  /* overflow:hidden; */
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 999;
+}
+
+.PathInner a .item,
+.rotate {
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: block;
+  overflow: hidden;
+  text-align: center;
+  vertical-align: middle;
+  position: absolute;
+}
+
+.PathInner .PathMain {
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  position: absolute;
+  display: block;
+  /* overflow:hidden; */
+  background-position: center;
+  background-repeat: no-repeat;
+  bottom: 0;
+  left: 0;
+}
+
+.PathInner .PathMain .Tmain {
+  /*background-image: url(../static/images/bg-2x.p/ng);*/
+  width: 1.066667rem;
+  height: 1.066667rem;
+}
+
+.PathInner .PathMain .Tmain .rotate {
+  /*background-image: url(../static/images/icon-2x.png);*/
+  -moz-transform: rotate(0deg);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.PathInner .cover {
+  width: 100%;
+  height: 100%;
+  display: block;
+  /*background:url(../static/images/bg-hl-2x.png) center no-repeat;*/
+  cursor: pointer;
+  *filter: alpha(opacity=0);
+  filter: alpha(opacity=0)\0;
+  opacity: 0;
+  -webkit-transition: opacity .2s ease-out;
+  -moz-transition: opacity .2s ease-out;
+  -ms-transition: opacity .2s ease-out;
+  -o-transition: opacity .2s ease-out;
+}
+
+.PathInner .cover:hover {
+  opacity: 0.2;
+  *filter: alpha(opacity=20);
+  filter: alpha(opacity=20)\0;
+}
+
+.PathItem .link {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0.8rem;
+  height: 0.8rem;
+  /*background-image: url(../static/images/bg-item-2x.png);*/
+  background: red;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  background: rgba(0,0,0,0.5);
+}
+
+.PathItem .link .item {
+  bottom: 0;
+  left: 0;
+}
+
+.metaicondetail {
+  background: #fff;
+  color: #fff;
+  border-radius: 0.08rem;
+  border: 0.013333rem #333 solid;
+  min-width: 1.333333rem;
+  max-width: 4rem;
+  overflow: hidden;
+  text-align: center;
+  position: absolute;
+  display: none;
+  top: -1.533333rem;
+  left: -0.293333rem;
+}
+
+.metaicondetail .inner {
+  border: 0.026667rem #fff solid;
+  border-radius: 0.08rem;
+  background: #272727;
+  font-size: 0.186667rem;
+  padding: 0.066667rem;
+}
+
+.metaicondetail span {
+  font-family: candara, arail;
+  font-size: 0.24rem;
+}
+
+.metaicondetail s {
+  border-color: #333 transparent transparent;
+  border-style: solid dashed dashed;
+  border-width: 0.066667rem;
+  clear: both;
+  display: inline-block;
+  font-size: 0;
+  height: 0;
+  margin-left: 0.04rem;
+  overflow: hidden;
+  position: absolute;
+  right: 50%;
+  top: 0.586667rem;
+  width: 0;
+}
+
+/* 代码整理：懒人之家 www.lanrenzhijia.com */

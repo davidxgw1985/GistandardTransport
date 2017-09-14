@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gistandard.transport.quote.system.database.dao.QuoteDao" >
+
+
+  <insert id="addNewProduct" parameterType="com.gistandard.transport.base.entity.bean.ComQuote"
+          keyProperty="id">
+
+    insert into COM_QUOTE ( ITEM_ID, START_ROUTE,
+      END_ROUTE, START_STATION, END_STATION,ADDRESS,
+      PRODUCT_DESC, PUBLIC_FLAG, PRODUCT_TYPE, 
+      PRODUCT_STATUS, CURRENCY_CODE, QUOTE_TYPE, 
+      TOTAL_WEIGHT, TOTAL_PRICE, UNIT_PRICE, LIGHT_UNIT_PRICE,
+      HEAVY_UNIT_PRICE, ROUTE_ID,COL_NUM, CUSTOMER_ID,USERINFO_ID,BELONG_ACCOUNT_ID,QUOTE_BELONG,CREATE_ACCOUNT,
+      CREATE_TIME,START_TIME,END_TIME,CUSTOMS_CO,TIME_LINES,FIRST_WEIGHT,ADDITIONAL_WEIGHT,
+      CAR_TYPE,CAR_CAPACITY,START_DETAIL_ADDRESS, END_DETAIL_ADDRESS,FIRST_WEIGHT_UNIT ,ADDITIONAL_WEIGHT_UNIT,
+      DEPARTURE_TIME,VERSION,KD_OPERATE_TYPE)
+    values (#{itemId,jdbcType=INTEGER},#{startRoute,jdbcType=INTEGER},  #{endRoute,jdbcType=INTEGER},
+      #{startStation,jdbcType=INTEGER},#{endStation,jdbcType=INTEGER}, #{address,jdbcType=INTEGER},
+      #{productDesc,jdbcType=VARCHAR},#{publicFlag,jdbcType=BIT}, #{productType,jdbcType=VARCHAR},
+      #{productStatus,jdbcType=INTEGER},#{currencyCode,jdbcType=VARCHAR}, #{quoteType,jdbcType=INTEGER},
+      #{totalWeight,jdbcType=DECIMAL},#{totalPrice,jdbcType=DECIMAL}, #{unitPrice,jdbcType=DECIMAL},
+      #{lightUnitPrice,jdbcType=DECIMAL},#{heavyUnitPrice,jdbcType=DECIMAL}, #{routeId,jdbcType=VARCHAR},
+      #{colNum,jdbcType=INTEGER},#{customerId,jdbcType=VARCHAR},#{userinfoId,jdbcType=INTEGER}, #{belongAccountId,jdbcType=INTEGER},
+      #{quoteBelong,jdbcType=INTEGER},#{createAccount,jdbcType=VARCHAR},NOW(),
+      #{startTime,jdbcType=VARCHAR},#{endTime,jdbcType=VARCHAR},#{customsCo,jdbcType=VARCHAR},
+      #{timeLines,jdbcType=VARCHAR},#{firstWeight},#{additionalWeight},
+      #{carType,jdbcType=VARCHAR},#{carCapacity,jdbcType=VARCHAR},
+      #{startDetailAddress,jdbcType=VARCHAR},#{endDetailAddress,jdbcType=VARCHAR},
+      #{firstWeightUnit,jdbcType=DECIMAL},#{additionalWeightUnit,jdbcType=DECIMAL},#{departureTime,jdbcType=VARCHAR},
+      #{version,jdbcType=INTEGER},#{kdOperateType,jdbcType=INTEGER})
+    <selectKey  keyProperty="id"  order="AFTER" resultType="int">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+  </insert>
+  <update id="updateQuoteNo" parameterType="com.gistandard.transport.base.entity.bean.ComQuote">
+    UPDATE COM_QUOTE A SET A.QUOTE_NO=#{comQuote.quoteNo},A.ROOT_QUOTE_ID = #{comQuote.id} WHERE A.ID=#{comQuote.id}
+  </update>
+
+  <update id="updateRootQuoteIDByPrimaryKey" >
+    UPDATE COM_QUOTE A SET A.ROOT_QUOTE_ID=#{rootQuoteId} WHERE A.ID=#{id}
+  </update>
+<update id="updateQuoteStatus" >
+    UPDATE COM_QUOTE A SET A.PRODUCT_STATUS=#{quoteStatus.value} WHERE A.ID=#{quoteId}
+  </update>
+
+</mapper>
